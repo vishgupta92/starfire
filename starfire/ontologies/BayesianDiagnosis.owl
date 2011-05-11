@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<rdf:RDF
+    xmlns:protege="http://protege.stanford.edu/plugins/owl/protege#"
+    xmlns:xsp="http://www.owl-ontologies.com/2005/08/07/xsp.owl#"
+    xmlns:swrlb="http://www.w3.org/2003/11/swrlb#"
+    xmlns:pr-owl="http://www.pr-owl.org/pr-owl.owl#"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:diagnosis="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns:sqwrl="http://sqwrl.stanford.edu/ontologies/built-ins/3.4/sqwrl.owl#"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+    xmlns:swrl="http://www.w3.org/2003/11/swrl#"
+    xmlns="https://starfire.googlecode.com/svn/trunk/starfire/ontologies/BayesianDiagnosis.owl#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+    xmlns:swrla="http://swrl.stanford.edu/ontologies/3.3/swrla.owl#"
+  xml:base="https://starfire.googlecode.com/svn/trunk/starfire/ontologies/BayesianDiagnosis.owl">
+  <owl:Ontology rdf:about="">
+    <owl:imports rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl"/>
+  </owl:Ontology>
+  <rdfs:Class rdf:about="http://www.pr-owl.org/pr-owl.owl#Node"/>
+  <owl:Class rdf:ID="HypothesisNode">
+    <rdfs:subClassOf rdf:resource="http://www.pr-owl.org/pr-owl.owl#Node"/>
+    <owl:disjointWith>
+      <owl:Class rdf:ID="ObservationNode"/>
+    </owl:disjointWith>
+  </owl:Class>
+  <owl:Class rdf:about="#ObservationNode">
+    <rdfs:subClassOf rdf:resource="http://www.pr-owl.org/pr-owl.owl#Node"/>
+    <owl:disjointWith rdf:resource="#HypothesisNode"/>
+  </owl:Class>
+  <owl:ObjectProperty rdf:ID="hasBayesianHypothesis">
+    <rdfs:domain rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#Hypothesis"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdfs:range rdf:resource="#HypothesisNode"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="hasBayesianObservation">
+    <rdfs:domain rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#Observation"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdfs:range rdf:resource="#ObservationNode"/>
+  </owl:ObjectProperty>
+</rdf:RDF>
+
+<!-- Created with Protege (with OWL Plugin 3.4.6, Build 613)  http://protege.stanford.edu -->
