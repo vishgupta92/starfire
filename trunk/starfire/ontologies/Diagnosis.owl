@@ -2,7 +2,7 @@
 <rdf:RDF
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
     xmlns:protege="http://protege.stanford.edu/plugins/owl/protege#"
-    xmlns="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#"
+    xmlns:diagnosis="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#"
     xmlns:xsp="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/2005/08/07/xsp.owl#"
     xmlns:owl="http://www.w3.org/2002/07/owl#"
     xmlns:sqwrl="http://sqwrl.stanford.edu/ontologies/built-ins/3.4/sqwrl.owl#"
@@ -20,650 +20,801 @@
     <owl:imports rdf:resource="http://sqwrl.stanford.edu/ontologies/built-ins/3.4/sqwrl.owl"/>
     <owl:imports rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.4/rdfb.owl"/>
   </owl:Ontology>
-  <owl:Class rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#Diagnosis">
-    <rdfs:comment xml:lang="en">&lt;p style="margin-top: 0"&gt;
-      This class represents the concept of diagnosis, i.e. the procedure to 
-      find the root cause failure.
-    &lt;/p&gt;</rdfs:comment>
-  </owl:Class>
-  <owl:Class rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#Device">
-    <owl:equivalentClass>
-      <owl:Class>
-        <owl:intersectionOf rdf:parseType="Collection">
-          <owl:Class rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#System"/>
-          <owl:Class>
-            <owl:complementOf>
-              <owl:Class rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#Subsystem"/>
-            </owl:complementOf>
-          </owl:Class>
-          <owl:Class rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#HardwareSystem"/>
-        </owl:intersectionOf>
-      </owl:Class>
-    </owl:equivalentClass>
-  </owl:Class>
-  <owl:Class rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#HardwareSystem">
+  <owl:Class rdf:ID="EnvironmentAction">
     <rdfs:subClassOf>
-      <owl:Class rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#System"/>
-    </rdfs:subClassOf>
-    <owl:disjointWith>
-      <owl:Class rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#SoftwareSystem"/>
-    </owl:disjointWith>
-  </owl:Class>
-  <owl:Class rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#Subsystem">
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#System"/>
-    </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#SoftwareSystem">
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#System"/>
-    </rdfs:subClassOf>
-    <owl:disjointWith rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#HardwareSystem"/>
-  </owl:Class>
-  <owl:Class rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#Failure">
-    <rdfs:comment xml:lang="en">&lt;p style="margin-top: 0"&gt;
-      This class represents the concept of failure.
-    &lt;/p&gt;</rdfs:comment>
-  </owl:Class>
-  <owl:Class rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#UnsatisfiedCondition">
-    <rdfs:comment xml:lang="en">&lt;p style="margin-top: 0"&gt;
-      This class represents conditions that are not satisfied.
-    &lt;/p&gt;</rdfs:comment>
-    <owl:disjointWith>
-      <owl:Class rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#SatisfiedCondition"/>
-    </owl:disjointWith>
-    <owl:equivalentClass>
-      <owl:Class>
-        <owl:intersectionOf rdf:parseType="Collection">
-          <owl:Class rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#Condition"/>
-          <owl:Class>
-            <owl:complementOf>
-              <owl:Class rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#SatisfiedCondition"/>
-            </owl:complementOf>
-          </owl:Class>
-        </owl:intersectionOf>
-      </owl:Class>
-    </owl:equivalentClass>
-  </owl:Class>
-  <owl:Class rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#Human">
-    <rdfs:comment xml:lang="en">&lt;p style="margin-top: 0"&gt;
-      This class represents human actors that can perform actions manually.
-    &lt;/p&gt;</rdfs:comment>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#Actor"/>
-    </rdfs:subClassOf>
-    <owl:disjointWith>
-      <owl:Class rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#Agent"/>
-    </owl:disjointWith>
-  </owl:Class>
-  <owl:Class rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#UnsuccessfulyPerformedAction">
-    <rdfs:comment xml:lang="en">&lt;p style="margin-top: 0"&gt;
-      This class represents an action that has been unsuccessfuly performed by 
-      an actor, i.e. not all its postconditions are satisfied.
-    &lt;/p&gt;</rdfs:comment>
-    <owl:disjointWith>
-      <owl:Class rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#SuccessfulyPerformedAction"/>
-    </owl:disjointWith>
-    <owl:equivalentClass>
-      <owl:Class>
-        <owl:intersectionOf rdf:parseType="Collection">
-          <owl:Class rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#PerformedAction"/>
-          <owl:Class>
-            <owl:complementOf>
-              <owl:Class rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#SuccessfulyPerformedAction"/>
-            </owl:complementOf>
-          </owl:Class>
-        </owl:intersectionOf>
-      </owl:Class>
-    </owl:equivalentClass>
-  </owl:Class>
-  <owl:Class rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#Actor">
-    <rdfs:comment xml:lang="en">&lt;p style="margin-top: 0"&gt;
-      This class represents any actor that can perform actions.
-    &lt;/p&gt;</rdfs:comment>
-  </owl:Class>
-  <owl:Class rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#Symptom">
-    <rdfs:comment xml:lang="en">&lt;p style="margin-top: 0"&gt;
-      This class represents the symtom that starts a diagnosis.
-    &lt;/p&gt;</rdfs:comment>
-  </owl:Class>
-  <owl:Class rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#Network">
-    <rdfs:comment xml:lang="en">&lt;p style="margin-top: 0"&gt;
-      This class represents a network of connected devices.
-    &lt;/p&gt;</rdfs:comment>
-  </owl:Class>
-  <owl:Class rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#MonitoringAction">
-    <owl:disjointWith>
-      <owl:Class rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#TestAction"/>
-    </owl:disjointWith>
-    <owl:disjointWith>
-      <owl:Class rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#HealingAction"/>
-    </owl:disjointWith>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#EnvironmentAction"/>
-    </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#HealingAction">
-    <rdfs:comment xml:lang="en">&lt;p style="margin-top: 0"&gt;
-      This class represents an action that can repair a failure.
-    &lt;/p&gt;</rdfs:comment>
-    <owl:disjointWith rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#MonitoringAction"/>
-    <owl:disjointWith>
-      <owl:Class rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#TestAction"/>
-    </owl:disjointWith>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#EnvironmentAction"/>
-    </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#EnvironmentAction">
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#Action"/>
+      <owl:Class rdf:ID="Action"/>
     </rdfs:subClassOf>
     <rdfs:comment xml:lang="en">&lt;p style="margin-top: 0"&gt;
       This class represents actions that can be executed in the environment, 
       for example: external systems.
     &lt;/p&gt;</rdfs:comment>
   </owl:Class>
-  <owl:Class rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#RequiredActorCondition">
-    <rdfs:comment xml:lang="en">&lt;p style="margin-top: 0"&gt;
-      This type of condition represents that an action needs an actor able to 
-      perform it.
-    &lt;/p&gt;</rdfs:comment>
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#Condition"/>
-    </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#SatisfiedCondition">
-    <owl:disjointWith rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#UnsatisfiedCondition"/>
-    <owl:equivalentClass>
-      <owl:Class>
-        <owl:intersectionOf rdf:parseType="Collection">
-          <owl:Class rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#Condition"/>
-          <owl:Restriction>
-            <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean"
-            >true</owl:hasValue>
-            <owl:onProperty>
-              <owl:FunctionalProperty rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#satisfied"/>
-            </owl:onProperty>
-          </owl:Restriction>
-        </owl:intersectionOf>
-      </owl:Class>
-    </owl:equivalentClass>
-    <rdfs:comment xml:lang="en">&lt;p style="margin-top: 0"&gt;
-      This class represents conditions that are satisfied.
-    &lt;/p&gt;</rdfs:comment>
-  </owl:Class>
-  <owl:Class rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#SuccessfulyPerformedAction">
-    <owl:equivalentClass>
-      <owl:Class>
-        <owl:intersectionOf rdf:parseType="Collection">
-          <owl:Class rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#PerformedAction"/>
-          <owl:Restriction>
-            <owl:onProperty>
-              <owl:FunctionalProperty rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#successfullyPerformed"/>
-            </owl:onProperty>
-            <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean"
-            >true</owl:hasValue>
-          </owl:Restriction>
-        </owl:intersectionOf>
-      </owl:Class>
-    </owl:equivalentClass>
-    <rdfs:comment xml:lang="en">&lt;p style="margin-top: 0"&gt;
-      This class represents an action that has been successfuly performed by 
-      an actor, i.e. all its postconditions are satisfied.
-    &lt;/p&gt;</rdfs:comment>
-    <owl:disjointWith rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#UnsuccessfulyPerformedAction"/>
-  </owl:Class>
-  <owl:Class rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#System">
+  <owl:Class rdf:ID="System">
     <rdfs:comment xml:lang="en">&lt;p style="margin-top: 0"&gt;
       This concept represents systems that exist in the scenario.
     &lt;/p&gt;</rdfs:comment>
   </owl:Class>
-  <owl:Class rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#Condition">
-    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty>
-          <owl:FunctionalProperty rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#satisfied"/>
-        </owl:onProperty>
-        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
-        >1</owl:cardinality>
-      </owl:Restriction>
-    </rdfs:subClassOf>
+  <owl:Class rdf:ID="UnsatisfiedCondition">
     <rdfs:comment xml:lang="en">&lt;p style="margin-top: 0"&gt;
-      This class represents conditions of actions.
+      This class represents conditions that are not satisfied.
     &lt;/p&gt;</rdfs:comment>
-  </owl:Class>
-  <owl:Class rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#PerformedAction">
-    <rdfs:subClassOf>
-      <owl:Class rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#Action"/>
-    </rdfs:subClassOf>
-    <owl:equivalentClass>
-      <owl:Restriction>
-        <owl:onProperty>
-          <owl:FunctionalProperty rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#performed"/>
-        </owl:onProperty>
-        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
-        >1</owl:cardinality>
-      </owl:Restriction>
-    </owl:equivalentClass>
-    <rdfs:comment xml:lang="en">&lt;p style="margin-top: 0"&gt;
-      This class represents an action that has been performed by an actor.
-    &lt;/p&gt;</rdfs:comment>
-  </owl:Class>
-  <owl:Class rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#Connection">
-    <rdfs:comment xml:lang="en">&lt;p style="margin-top: 0"&gt;
-      This class represents the connection between devices.
-    &lt;/p&gt;</rdfs:comment>
-  </owl:Class>
-  <owl:Class rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#TestAction">
-    <owl:disjointWith rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#MonitoringAction"/>
-    <owl:disjointWith rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#HealingAction"/>
-    <rdfs:comment xml:lang="en">&lt;p style="margin-top: 0"&gt;
-      This class represents an action that can test a device, a systems, etc.
-    &lt;/p&gt;</rdfs:comment>
-    <rdfs:subClassOf rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#EnvironmentAction"/>
-  </owl:Class>
-  <owl:Class rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#Agent">
-    <rdfs:subClassOf rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#Actor"/>
-    <owl:disjointWith rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#Human"/>
-    <rdfs:comment xml:lang="en">&lt;p style="margin-top: 0"&gt;
-      This class represents software actors that can automate actions.
-    &lt;/p&gt;</rdfs:comment>
-  </owl:Class>
-  <owl:Class rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#AvailableAction">
+    <owl:disjointWith>
+      <owl:Class rdf:ID="SatisfiedCondition"/>
+    </owl:disjointWith>
     <owl:equivalentClass>
       <owl:Class>
         <owl:intersectionOf rdf:parseType="Collection">
-          <owl:Class rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#Action"/>
+          <owl:Class rdf:ID="Condition"/>
+          <owl:Class>
+            <owl:complementOf>
+              <owl:Class rdf:about="#SatisfiedCondition"/>
+            </owl:complementOf>
+          </owl:Class>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+  </owl:Class>
+  <owl:Class rdf:ID="SuccessfulyPerformedAction">
+    <owl:disjointWith>
+      <owl:Class rdf:ID="UnsuccessfulyPerformedAction"/>
+    </owl:disjointWith>
+    <rdfs:comment xml:lang="en">&lt;p style="margin-top: 0"&gt;
+      This class represents an action that has been successfuly performed by 
+      an actor, i.e. all its postconditions are satisfied.
+    &lt;/p&gt;</rdfs:comment>
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <owl:Class rdf:ID="PerformedAction"/>
           <owl:Restriction>
-            <owl:onProperty>
-              <owl:FunctionalProperty rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#available"/>
-            </owl:onProperty>
             <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean"
             >true</owl:hasValue>
+            <owl:onProperty>
+              <owl:FunctionalProperty rdf:ID="successfullyPerformed"/>
+            </owl:onProperty>
           </owl:Restriction>
         </owl:intersectionOf>
       </owl:Class>
     </owl:equivalentClass>
+  </owl:Class>
+  <owl:Class rdf:ID="TestAction">
+    <owl:disjointWith>
+      <owl:Class rdf:ID="MonitoringAction"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:ID="HealingAction"/>
+    </owl:disjointWith>
     <rdfs:comment xml:lang="en">&lt;p style="margin-top: 0"&gt;
-      This class is used to classify actions which all its preconditions are 
-      satisfied.
+      This class represents an action that can test a device, a systems, etc.
+    &lt;/p&gt;</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#EnvironmentAction"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Condition">
+    <rdfs:comment xml:lang="en">&lt;p style="margin-top: 0"&gt;
+      This class represents conditions of actions.
+    &lt;/p&gt;</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:FunctionalProperty rdf:ID="satisfied"/>
+        </owl:onProperty>
+        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >1</owl:cardinality>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="Human">
+    <rdfs:comment xml:lang="en">&lt;p style="margin-top: 0"&gt;
+      This class represents human actors that can perform actions manually.
     &lt;/p&gt;</rdfs:comment>
     <owl:disjointWith>
-      <owl:Class rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#UnavailableAction"/>
+      <owl:Class rdf:ID="Agent"/>
     </owl:disjointWith>
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Actor"/>
+    </rdfs:subClassOf>
   </owl:Class>
-  <owl:Class rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#Hypothesis">
+  <owl:Class rdf:ID="Observation"/>
+  <owl:Class rdf:ID="Hypothesis">
     <rdfs:comment xml:lang="en">&lt;p style="margin-top: 0"&gt;
       This class represents the hypothesis of a failure. It has a associated 
       confidence to represent how many certainty is about the occurrence of a 
       failure.
     &lt;/p&gt;</rdfs:comment>
   </owl:Class>
-  <owl:Class rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#UnavailableAction">
-    <owl:disjointWith rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#AvailableAction"/>
+  <owl:Class rdf:ID="SoftwareSystem">
+    <rdfs:subClassOf rdf:resource="#System"/>
+    <owl:disjointWith>
+      <owl:Class rdf:ID="HardwareSystem"/>
+    </owl:disjointWith>
+  </owl:Class>
+  <owl:Class rdf:ID="Device">
     <owl:equivalentClass>
       <owl:Class>
         <owl:intersectionOf rdf:parseType="Collection">
-          <owl:Class rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#Action"/>
+          <owl:Class rdf:about="#System"/>
           <owl:Class>
-            <owl:complementOf rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#AvailableAction"/>
+            <owl:complementOf>
+              <owl:Class rdf:ID="Subsystem"/>
+            </owl:complementOf>
           </owl:Class>
+          <owl:Class rdf:about="#HardwareSystem"/>
         </owl:intersectionOf>
       </owl:Class>
     </owl:equivalentClass>
+  </owl:Class>
+  <owl:Class rdf:ID="Symptom">
     <rdfs:comment xml:lang="en">&lt;p style="margin-top: 0"&gt;
-      This class is used to classify actions which not all its preconditions 
-      are satisfied.
+      This class represents the symtom that starts a diagnosis.
     &lt;/p&gt;</rdfs:comment>
   </owl:Class>
-  <owl:Class rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#Variable">
+  <owl:Class rdf:about="#SatisfiedCondition">
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Condition"/>
+          <owl:Restriction>
+            <owl:onProperty>
+              <owl:FunctionalProperty rdf:about="#satisfied"/>
+            </owl:onProperty>
+            <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean"
+            >true</owl:hasValue>
+          </owl:Restriction>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+    <owl:disjointWith rdf:resource="#UnsatisfiedCondition"/>
     <rdfs:comment xml:lang="en">&lt;p style="margin-top: 0"&gt;
-      This class represents data of the scenario. For example: variableType: 
-      clientIP variableValue: 192.168.0.100
+      This class represents conditions that are satisfied.
     &lt;/p&gt;</rdfs:comment>
   </owl:Class>
-  <owl:Class rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#Action">
+  <owl:Class rdf:ID="Diagnosis">
+    <rdfs:comment xml:lang="en">&lt;p style="margin-top: 0"&gt;
+      This class represents the concept of diagnosis, i.e. the procedure to 
+      find the root cause failure.
+    &lt;/p&gt;</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:about="#MonitoringAction">
+    <owl:disjointWith rdf:resource="#TestAction"/>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#HealingAction"/>
+    </owl:disjointWith>
+    <rdfs:subClassOf rdf:resource="#EnvironmentAction"/>
+  </owl:Class>
+  <owl:Class rdf:about="#HealingAction">
+    <rdfs:subClassOf rdf:resource="#EnvironmentAction"/>
+    <owl:disjointWith rdf:resource="#MonitoringAction"/>
+    <owl:disjointWith rdf:resource="#TestAction"/>
+    <rdfs:comment xml:lang="en">&lt;p style="margin-top: 0"&gt;
+      This class represents an action that can repair a failure.
+    &lt;/p&gt;</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="Failure">
+    <rdfs:comment xml:lang="en">&lt;p style="margin-top: 0"&gt;
+      This class represents the concept of failure.
+    &lt;/p&gt;</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:about="#Agent">
+    <owl:disjointWith rdf:resource="#Human"/>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#Actor"/>
+    </rdfs:subClassOf>
+    <rdfs:comment xml:lang="en">&lt;p style="margin-top: 0"&gt;
+      This class represents software actors that can automate actions.
+    &lt;/p&gt;</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="RequiredActorCondition">
+    <rdfs:subClassOf rdf:resource="#Condition"/>
+    <rdfs:comment xml:lang="en">&lt;p style="margin-top: 0"&gt;
+      This type of condition represents that an action needs an actor able to 
+      perform it.
+    &lt;/p&gt;</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:about="#HardwareSystem">
+    <rdfs:subClassOf rdf:resource="#System"/>
+    <owl:disjointWith rdf:resource="#SoftwareSystem"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Action">
+    <rdfs:comment xml:lang="en">&lt;p style="margin-top: 0"&gt;
+      This class represents an action that can be performed by an actor at any 
+      time.
+    &lt;/p&gt;</rdfs:comment>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
         >1</owl:cardinality>
         <owl:onProperty>
-          <owl:FunctionalProperty rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#available"/>
+          <owl:FunctionalProperty rdf:ID="available"/>
         </owl:onProperty>
       </owl:Restriction>
     </rdfs:subClassOf>
     <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
     <rdfs:subClassOf>
       <owl:Restriction>
+        <owl:valuesFrom rdf:resource="#RequiredActorCondition"/>
         <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
         >1</owl:cardinality>
-        <owl:valuesFrom rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#RequiredActorCondition"/>
         <owl:onProperty>
-          <owl:ObjectProperty rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#hasPrecondition"/>
+          <owl:ObjectProperty rdf:ID="hasPrecondition"/>
         </owl:onProperty>
       </owl:Restriction>
     </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#UnsuccessfulyPerformedAction">
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#PerformedAction"/>
+          <owl:Class>
+            <owl:complementOf rdf:resource="#SuccessfulyPerformedAction"/>
+          </owl:Class>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+    <owl:disjointWith rdf:resource="#SuccessfulyPerformedAction"/>
     <rdfs:comment xml:lang="en">&lt;p style="margin-top: 0"&gt;
-      This class represents an action that can be performed by an actor at any 
-      time.
+      This class represents an action that has been unsuccessfuly performed by 
+      an actor, i.e. not all its postconditions are satisfied.
     &lt;/p&gt;</rdfs:comment>
   </owl:Class>
-  <owl:Class rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#Observation"/>
-  <owl:ObjectProperty rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#startsDiagnosis">
-    <rdfs:domain rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#Symptom"/>
-    <owl:inverseOf>
-      <owl:ObjectProperty rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#startedBySymptom"/>
-    </owl:inverseOf>
-    <rdfs:range rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#Diagnosis"/>
-  </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#resultSymptom">
-    <rdfs:domain rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#MonitoringAction"/>
-    <rdfs:range rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#Symptom"/>
-  </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#performedTestAction">
+  <owl:Class rdf:ID="UnavailableAction">
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Action"/>
+          <owl:Class>
+            <owl:complementOf>
+              <owl:Class rdf:ID="AvailableAction"/>
+            </owl:complementOf>
+          </owl:Class>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#AvailableAction"/>
+    </owl:disjointWith>
+    <rdfs:comment xml:lang="en">&lt;p style="margin-top: 0"&gt;
+      This class is used to classify actions which not all its preconditions 
+      are satisfied.
+    &lt;/p&gt;</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:about="#AvailableAction">
+    <rdfs:comment xml:lang="en">&lt;p style="margin-top: 0"&gt;
+      This class is used to classify actions which all its preconditions are 
+      satisfied.
+    &lt;/p&gt;</rdfs:comment>
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Action"/>
+          <owl:Restriction>
+            <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean"
+            >true</owl:hasValue>
+            <owl:onProperty>
+              <owl:FunctionalProperty rdf:about="#available"/>
+            </owl:onProperty>
+          </owl:Restriction>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+    <owl:disjointWith rdf:resource="#UnavailableAction"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Connection">
+    <rdfs:comment xml:lang="en">&lt;p style="margin-top: 0"&gt;
+      This class represents the connection between devices.
+    &lt;/p&gt;</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="Variable">
+    <rdfs:comment xml:lang="en">&lt;p style="margin-top: 0"&gt;
+      This class represents data of the scenario. For example: variableType: 
+      clientIP variableValue: 192.168.0.100
+    &lt;/p&gt;</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:ID="Network">
+    <rdfs:comment xml:lang="en">&lt;p style="margin-top: 0"&gt;
+      This class represents a network of connected devices.
+    &lt;/p&gt;</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:about="#PerformedAction">
+    <owl:equivalentClass>
+      <owl:Restriction>
+        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >1</owl:cardinality>
+        <owl:onProperty>
+          <owl:FunctionalProperty rdf:ID="performed"/>
+        </owl:onProperty>
+      </owl:Restriction>
+    </owl:equivalentClass>
+    <rdfs:comment xml:lang="en">&lt;p style="margin-top: 0"&gt;
+      This class represents an action that has been performed by an actor.
+    &lt;/p&gt;</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="#Action"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Actor">
+    <rdfs:comment xml:lang="en">&lt;p style="margin-top: 0"&gt;
+      This class represents any actor that can perform actions.
+    &lt;/p&gt;</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:about="#Subsystem">
+    <rdfs:subClassOf rdf:resource="#System"/>
+  </owl:Class>
+  <owl:ObjectProperty rdf:ID="performedHealingAction">
     <rdfs:subPropertyOf>
-      <owl:ObjectProperty rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#performedAction"/>
+      <owl:ObjectProperty rdf:ID="performedAction"/>
     </rdfs:subPropertyOf>
     <rdfs:range>
       <owl:Class>
         <owl:intersectionOf rdf:parseType="Collection">
-          <owl:Class rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#TestAction"/>
-          <owl:Class rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#PerformedAction"/>
+          <owl:Class rdf:about="#HealingAction"/>
+          <owl:Class rdf:about="#PerformedAction"/>
         </owl:intersectionOf>
       </owl:Class>
     </rdfs:range>
   </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#isPartOf">
-    <rdfs:range rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#System"/>
-    <rdfs:domain rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#Subsystem"/>
+  <owl:ObjectProperty rdf:ID="canBeRepairedWith">
+    <rdfs:range rdf:resource="#HealingAction"/>
     <owl:inverseOf>
-      <owl:ObjectProperty rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#isComposedBy"/>
+      <owl:ObjectProperty rdf:ID="repairsFailure"/>
+    </owl:inverseOf>
+    <rdfs:domain rdf:resource="#Failure"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="isPartOfNetwork">
+    <rdfs:domain rdf:resource="#Connection"/>
+    <rdfs:range rdf:resource="#Network"/>
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:ID="hasConnection"/>
     </owl:inverseOf>
   </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#hasPerformed">
-    <rdfs:domain rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#Actor"/>
-    <owl:inverseOf>
-      <owl:ObjectProperty rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#hasBeenPerformedBy"/>
-    </owl:inverseOf>
-    <rdfs:range rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#PerformedAction"/>
+  <owl:ObjectProperty rdf:ID="resultSymptom">
+    <rdfs:range rdf:resource="#Symptom"/>
+    <rdfs:domain rdf:resource="#MonitoringAction"/>
   </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#hasAgentResiding">
-    <rdfs:domain rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#System"/>
+  <owl:ObjectProperty rdf:ID="isConnectedBy">
     <owl:inverseOf>
-      <owl:FunctionalProperty rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#isExecutingIn"/>
+      <owl:ObjectProperty rdf:ID="connectsSystem"/>
     </owl:inverseOf>
-    <rdfs:range rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#Agent"/>
+    <rdfs:domain rdf:resource="#Device"/>
+    <rdfs:range rdf:resource="#Connection"/>
   </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#isPartOfNetwork">
-    <rdfs:range rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#Network"/>
-    <rdfs:domain rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#Connection"/>
+  <owl:ObjectProperty rdf:ID="isComposedBy">
     <owl:inverseOf>
-      <owl:ObjectProperty rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#hasConnection"/>
+      <owl:ObjectProperty rdf:ID="isPartOf"/>
     </owl:inverseOf>
+    <rdfs:domain rdf:resource="#System"/>
+    <rdfs:range rdf:resource="#Subsystem"/>
   </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#hasPrecondition">
+  <owl:ObjectProperty rdf:about="#connectsSystem">
+    <rdfs:domain rdf:resource="#Connection"/>
+    <rdfs:range rdf:resource="#Device"/>
+    <owl:inverseOf rdf:resource="#isConnectedBy"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="hasPostcondition">
     <rdfs:subPropertyOf>
-      <owl:ObjectProperty rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#hasCondition"/>
+      <owl:ObjectProperty rdf:ID="hasCondition"/>
     </rdfs:subPropertyOf>
   </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#connectsSystem">
+  <owl:ObjectProperty rdf:ID="canPerform">
+    <rdfs:range rdf:resource="#Action"/>
     <owl:inverseOf>
-      <owl:ObjectProperty rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#isConnectedBy"/>
+      <owl:ObjectProperty rdf:ID="canBePerformedBy"/>
     </owl:inverseOf>
-    <rdfs:domain rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#Connection"/>
-    <rdfs:range rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#Device"/>
+    <rdfs:domain rdf:resource="#Actor"/>
   </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#canBeRepairedWith">
-    <rdfs:range rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#HealingAction"/>
+  <owl:ObjectProperty rdf:about="#isPartOf">
+    <owl:inverseOf rdf:resource="#isComposedBy"/>
+    <rdfs:domain rdf:resource="#Subsystem"/>
+    <rdfs:range rdf:resource="#System"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="hasPerformed">
+    <rdfs:range rdf:resource="#PerformedAction"/>
+    <rdfs:domain rdf:resource="#Actor"/>
     <owl:inverseOf>
-      <owl:ObjectProperty rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#repairsFailure"/>
+      <owl:ObjectProperty rdf:ID="hasBeenPerformedBy"/>
     </owl:inverseOf>
-    <rdfs:domain rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#Failure"/>
   </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#belongsToNetwork">
+  <owl:ObjectProperty rdf:ID="startedBySymptom">
     <owl:inverseOf>
-      <owl:ObjectProperty rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#hasDevice"/>
+      <owl:ObjectProperty rdf:ID="startsDiagnosis"/>
     </owl:inverseOf>
-    <rdfs:range rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#Network"/>
-    <rdfs:domain rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#Device"/>
+    <rdfs:range rdf:resource="#Symptom"/>
+    <rdfs:domain rdf:resource="#Diagnosis"/>
   </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#startedBySymptom">
-    <rdfs:domain rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#Diagnosis"/>
-    <owl:inverseOf rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#startsDiagnosis"/>
-    <rdfs:range rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#Symptom"/>
+  <owl:ObjectProperty rdf:about="#startsDiagnosis">
+    <owl:inverseOf rdf:resource="#startedBySymptom"/>
+    <rdfs:range rdf:resource="#Diagnosis"/>
+    <rdfs:domain rdf:resource="#Symptom"/>
   </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#performedMonitoringAction">
+  <owl:ObjectProperty rdf:ID="hasHypothesis">
+    <rdfs:domain rdf:resource="#Diagnosis"/>
+    <rdfs:range rdf:resource="#Hypothesis"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#repairsFailure">
+    <rdfs:domain rdf:resource="#HealingAction"/>
+    <rdfs:range rdf:resource="#Failure"/>
+    <owl:inverseOf rdf:resource="#canBeRepairedWith"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="belongsToNetwork">
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:ID="hasDevice"/>
+    </owl:inverseOf>
+    <rdfs:domain rdf:resource="#Device"/>
+    <rdfs:range rdf:resource="#Network"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#hasPrecondition">
     <rdfs:subPropertyOf>
-      <owl:ObjectProperty rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#performedAction"/>
+      <owl:ObjectProperty rdf:about="#hasCondition"/>
+    </rdfs:subPropertyOf>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="performedTestAction">
+    <rdfs:subPropertyOf>
+      <owl:ObjectProperty rdf:about="#performedAction"/>
     </rdfs:subPropertyOf>
     <rdfs:range>
       <owl:Class>
         <owl:intersectionOf rdf:parseType="Collection">
-          <owl:Class rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#MonitoringAction"/>
-          <owl:Class rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#PerformedAction"/>
+          <owl:Class rdf:about="#TestAction"/>
+          <owl:Class rdf:about="#PerformedAction"/>
         </owl:intersectionOf>
       </owl:Class>
     </rdfs:range>
   </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#performedHealingAction">
+  <owl:ObjectProperty rdf:about="#hasBeenPerformedBy">
+    <rdfs:range rdf:resource="#Actor"/>
+    <owl:inverseOf rdf:resource="#hasPerformed"/>
+    <rdfs:domain rdf:resource="#PerformedAction"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="performedMonitoringAction">
     <rdfs:subPropertyOf>
-      <owl:ObjectProperty rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#performedAction"/>
+      <owl:ObjectProperty rdf:about="#performedAction"/>
     </rdfs:subPropertyOf>
     <rdfs:range>
       <owl:Class>
         <owl:intersectionOf rdf:parseType="Collection">
-          <owl:Class rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#HealingAction"/>
-          <owl:Class rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#PerformedAction"/>
+          <owl:Class rdf:about="#MonitoringAction"/>
+          <owl:Class rdf:about="#PerformedAction"/>
         </owl:intersectionOf>
       </owl:Class>
     </rdfs:range>
   </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#repairsFailure">
-    <owl:inverseOf rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#canBeRepairedWith"/>
-    <rdfs:domain rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#HealingAction"/>
-    <rdfs:range rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#Failure"/>
+  <owl:ObjectProperty rdf:about="#hasCondition">
+    <rdfs:range rdf:resource="#Condition"/>
+    <rdfs:domain rdf:resource="#Action"/>
   </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#hasConnection">
-    <rdfs:range rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#Connection"/>
-    <owl:inverseOf rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#isPartOfNetwork"/>
-    <rdfs:domain rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#Network"/>
+  <owl:ObjectProperty rdf:about="#hasDevice">
+    <rdfs:range rdf:resource="#Device"/>
+    <rdfs:domain rdf:resource="#Network"/>
+    <owl:inverseOf rdf:resource="#belongsToNetwork"/>
   </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#hasBeenPerformedBy">
-    <owl:inverseOf rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#hasPerformed"/>
-    <rdfs:range rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#Actor"/>
-    <rdfs:domain rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#PerformedAction"/>
-  </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#canBePerformedBy">
-    <rdfs:range rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#Actor"/>
-    <rdfs:domain rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#Action"/>
+  <owl:ObjectProperty rdf:ID="hasAgentResiding">
     <owl:inverseOf>
-      <owl:ObjectProperty rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#canPerform"/>
+      <owl:FunctionalProperty rdf:ID="isExecutingIn"/>
     </owl:inverseOf>
+    <rdfs:domain rdf:resource="#System"/>
+    <rdfs:range rdf:resource="#Agent"/>
   </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#canPerform">
-    <rdfs:domain rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#Actor"/>
-    <owl:inverseOf rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#canBePerformedBy"/>
-    <rdfs:range rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#Action"/>
+  <owl:ObjectProperty rdf:about="#canBePerformedBy">
+    <rdfs:range rdf:resource="#Actor"/>
+    <rdfs:domain rdf:resource="#Action"/>
+    <owl:inverseOf rdf:resource="#canPerform"/>
   </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#performedAction">
-    <rdfs:domain rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#Diagnosis"/>
-    <rdfs:range rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#PerformedAction"/>
+  <owl:ObjectProperty rdf:about="#hasConnection">
+    <owl:inverseOf rdf:resource="#isPartOfNetwork"/>
+    <rdfs:domain rdf:resource="#Network"/>
+    <rdfs:range rdf:resource="#Connection"/>
   </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#hasHypothesis">
-    <rdfs:range rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#Hypothesis"/>
-    <rdfs:domain rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#Diagnosis"/>
+  <owl:ObjectProperty rdf:about="#performedAction">
+    <rdfs:domain rdf:resource="#Diagnosis"/>
+    <rdfs:range rdf:resource="#PerformedAction"/>
   </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#hasCondition">
-    <rdfs:range rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#Condition"/>
-    <rdfs:domain rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#Action"/>
-  </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#hasDevice">
-    <owl:inverseOf rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#belongsToNetwork"/>
-    <rdfs:domain rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#Network"/>
-    <rdfs:range rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#Device"/>
-  </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#isConnectedBy">
-    <rdfs:domain rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#Device"/>
-    <owl:inverseOf rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#connectsSystem"/>
-    <rdfs:range rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#Connection"/>
-  </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#isComposedBy">
-    <rdfs:range rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#Subsystem"/>
-    <rdfs:domain rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#System"/>
-    <owl:inverseOf rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#isPartOf"/>
-  </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#hasPostcondition">
-    <rdfs:subPropertyOf rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#hasCondition"/>
-  </owl:ObjectProperty>
-  <owl:DatatypeProperty rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#performableTypeOfActions">
+  <owl:DatatypeProperty rdf:ID="performableTypeOfActions">
+    <rdfs:domain rdf:resource="#Actor"/>
     <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-    <rdfs:domain rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#Actor"/>
   </owl:DatatypeProperty>
-  <owl:DatatypeProperty rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#possibleResults">
+  <owl:DatatypeProperty rdf:ID="possibleResults">
     <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
   </owl:DatatypeProperty>
-  <owl:FunctionalProperty rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#hasLocation">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:domain>
-      <owl:Class>
-        <owl:unionOf rdf:parseType="Collection">
-          <owl:Class rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#Failure"/>
-          <owl:Class rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#Symptom"/>
-        </owl:unionOf>
-      </owl:Class>
-    </rdfs:domain>
-    <owl:inverseOf>
-      <owl:InverseFunctionalProperty rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#hasFailure"/>
-    </owl:inverseOf>
-  </owl:FunctionalProperty>
-  <owl:FunctionalProperty rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#id">
-    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-    <rdfs:domain rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#Actor"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-  </owl:FunctionalProperty>
-  <owl:FunctionalProperty rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#whenHasFinished">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  <owl:FunctionalProperty rdf:ID="whenHasBeenPerformed">
+    <rdfs:domain rdf:resource="#PerformedAction"/>
     <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
-  </owl:FunctionalProperty>
-  <owl:FunctionalProperty rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#successfullyPerformed">
-    <rdfs:domain rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#PerformedAction"/>
-    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
   </owl:FunctionalProperty>
-  <owl:FunctionalProperty rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#expectedBenefit">
-    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
-    <rdfs:domain rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#TestAction"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-  </owl:FunctionalProperty>
-  <owl:FunctionalProperty rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#satisfied">
-    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
-    <rdfs:domain rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#Condition"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-  </owl:FunctionalProperty>
-  <owl:FunctionalProperty rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#residesIn">
-    <rdfs:domain rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#Variable"/>
-    <owl:inverseOf>
-      <owl:InverseFunctionalProperty rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#hasData"/>
-    </owl:inverseOf>
-    <rdfs:range rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#System"/>
+  <owl:FunctionalProperty rdf:ID="residesIn">
+    <rdfs:range rdf:resource="#System"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <owl:inverseOf>
+      <owl:InverseFunctionalProperty rdf:ID="hasData"/>
+    </owl:inverseOf>
+    <rdfs:domain rdf:resource="#Variable"/>
   </owl:FunctionalProperty>
-  <owl:FunctionalProperty rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#hypothesisConfidence">
-    <rdfs:domain rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#Hypothesis"/>
+  <owl:FunctionalProperty rdf:ID="representsPossibleFailure">
+    <rdfs:range rdf:resource="#Failure"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="#Hypothesis"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="variableValue">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
   </owl:FunctionalProperty>
-  <owl:FunctionalProperty rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#variableValue">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-  </owl:FunctionalProperty>
-  <owl:FunctionalProperty rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#status">
+  <owl:FunctionalProperty rdf:ID="status">
     <rdfs:range>
       <owl:DataRange>
         <owl:oneOf rdf:parseType="Resource">
-          <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-          >Finished</rdf:first>
           <rdf:rest rdf:parseType="Resource">
             <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
             <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
             >Started</rdf:first>
           </rdf:rest>
+          <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+          >Finished</rdf:first>
         </owl:oneOf>
       </owl:DataRange>
     </rdfs:range>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
   </owl:FunctionalProperty>
-  <owl:FunctionalProperty rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#performed">
-    <rdfs:domain rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#Action"/>
+  <owl:FunctionalProperty rdf:ID="observationType">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="#Observation"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="id">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="#Actor"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="whenHasStarted">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="variableType">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="#Variable"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="#available">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
     <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+    <rdfs:domain rdf:resource="#Action"/>
   </owl:FunctionalProperty>
-  <owl:FunctionalProperty rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#observationResult">
+  <owl:FunctionalProperty rdf:ID="hasLocation">
+    <owl:inverseOf>
+      <owl:InverseFunctionalProperty rdf:ID="hasFailure"/>
+    </owl:inverseOf>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
     <rdfs:domain>
       <owl:Class>
         <owl:unionOf rdf:parseType="Collection">
-          <owl:Class rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#TestAction"/>
-          <owl:Class rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#Symptom"/>
+          <owl:Class rdf:about="#Failure"/>
+          <owl:Class rdf:about="#Symptom"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="observationValue">
+    <rdfs:domain rdf:resource="#Observation"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="observationResult">
+    <rdfs:range rdf:resource="#Observation"/>
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#TestAction"/>
+          <owl:Class rdf:about="#Symptom"/>
         </owl:unionOf>
       </owl:Class>
     </rdfs:domain>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:range rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#Observation"/>
   </owl:FunctionalProperty>
-  <owl:FunctionalProperty rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#representsPossibleFailure">
+  <owl:FunctionalProperty rdf:about="#isExecutingIn">
+    <rdfs:range rdf:resource="#System"/>
+    <owl:inverseOf rdf:resource="#hasAgentResiding"/>
+    <rdfs:domain rdf:resource="#Agent"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:domain rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#Hypothesis"/>
-    <rdfs:range rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#Failure"/>
   </owl:FunctionalProperty>
-  <owl:FunctionalProperty rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#available">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-    <rdfs:domain rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#Action"/>
+  <owl:FunctionalProperty rdf:about="#satisfied">
     <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+    <rdfs:domain rdf:resource="#Condition"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
   </owl:FunctionalProperty>
-  <owl:FunctionalProperty rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#whenHasStarted">
+  <owl:FunctionalProperty rdf:ID="whenHasFinished">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
     <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:ID="hypothesisConfidence">
+    <rdfs:domain rdf:resource="#Hypothesis"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="#successfullyPerformed">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+    <rdfs:domain rdf:resource="#PerformedAction"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="#performed">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+    <rdfs:domain rdf:resource="#Action"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
   </owl:FunctionalProperty>
-  <owl:FunctionalProperty rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#whenHasBeenPerformed">
-    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-    <rdfs:domain rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#PerformedAction"/>
-  </owl:FunctionalProperty>
-  <owl:FunctionalProperty rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#observationType">
-    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-    <rdfs:domain rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#Observation"/>
-  </owl:FunctionalProperty>
-  <owl:FunctionalProperty rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#variableType">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-    <rdfs:domain rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#Variable"/>
-  </owl:FunctionalProperty>
-  <owl:FunctionalProperty rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#observationValue">
-    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-    <rdfs:domain rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#Observation"/>
+  <owl:FunctionalProperty rdf:ID="expectedBenefit">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    <rdfs:domain rdf:resource="#TestAction"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
   </owl:FunctionalProperty>
-  <owl:FunctionalProperty rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#isExecutingIn">
-    <rdfs:range rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#System"/>
-    <owl:inverseOf rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#hasAgentResiding"/>
+  <owl:InverseFunctionalProperty rdf:about="#hasFailure">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:domain rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#Agent"/>
-  </owl:FunctionalProperty>
-  <owl:InverseFunctionalProperty rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#hasFailure">
-    <rdfs:domain rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#System"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:range rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#Failure"/>
-    <owl:inverseOf rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#hasLocation"/>
+    <owl:inverseOf rdf:resource="#hasLocation"/>
+    <rdfs:domain rdf:resource="#System"/>
+    <rdfs:range rdf:resource="#Failure"/>
   </owl:InverseFunctionalProperty>
-  <owl:InverseFunctionalProperty rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#hasData">
+  <owl:InverseFunctionalProperty rdf:about="#hasData">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <owl:inverseOf rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#residesIn"/>
-    <rdfs:domain rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#System"/>
-    <rdfs:range rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#Variable"/>
+    <owl:inverseOf rdf:resource="#residesIn"/>
+    <rdfs:range rdf:resource="#Variable"/>
+    <rdfs:domain rdf:resource="#System"/>
   </owl:InverseFunctionalProperty>
-  <swrl:Imp rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#Rule-AvailableActions-3Precond">
+  <swrl:AtomList>
+    <rdf:first>
+      <swrl:ClassAtom>
+        <swrl:argument1>
+          <swrl:Variable rdf:ID="action"/>
+        </swrl:argument1>
+        <swrl:classPredicate rdf:resource="#Action"/>
+      </swrl:ClassAtom>
+    </rdf:first>
+    <rdf:rest>
+      <swrl:AtomList>
+        <rdf:first>
+          <swrl:ClassAtom>
+            <swrl:classPredicate rdf:resource="#Actor"/>
+            <swrl:argument1>
+              <swrl:Variable rdf:ID="actor"/>
+            </swrl:argument1>
+          </swrl:ClassAtom>
+        </rdf:first>
+        <rdf:rest>
+          <swrl:AtomList>
+            <rdf:rest>
+              <swrl:AtomList>
+                <rdf:first>
+                  <swrl:IndividualPropertyAtom>
+                    <swrl:propertyPredicate rdf:resource="#hasPrecondition"/>
+                    <swrl:argument1 rdf:resource="#action"/>
+                    <swrl:argument2>
+                      <swrl:Variable rdf:ID="cond"/>
+                    </swrl:argument2>
+                  </swrl:IndividualPropertyAtom>
+                </rdf:first>
+                <rdf:rest>
+                  <swrl:AtomList>
+                    <rdf:rest>
+                      <swrl:AtomList>
+                        <rdf:first>
+                          <swrl:BuiltinAtom>
+                            <swrl:builtin rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.4/rdfb.owl#isClass"/>
+                            <swrl:arguments>
+                              <rdf:List>
+                                <rdf:first rdf:resource="#action"/>
+                                <rdf:rest>
+                                  <rdf:List>
+                                    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                                    <rdf:first>
+                                      <swrl:Variable rdf:ID="performableActionType"/>
+                                    </rdf:first>
+                                  </rdf:List>
+                                </rdf:rest>
+                              </rdf:List>
+                            </swrl:arguments>
+                          </swrl:BuiltinAtom>
+                        </rdf:first>
+                        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                      </swrl:AtomList>
+                    </rdf:rest>
+                    <rdf:first>
+                      <swrl:DatavaluedPropertyAtom>
+                        <swrl:argument1 rdf:resource="#actor"/>
+                        <swrl:argument2 rdf:resource="#performableActionType"/>
+                        <swrl:propertyPredicate rdf:resource="#performableTypeOfActions"/>
+                      </swrl:DatavaluedPropertyAtom>
+                    </rdf:first>
+                  </swrl:AtomList>
+                </rdf:rest>
+              </swrl:AtomList>
+            </rdf:rest>
+            <rdf:first>
+              <swrl:ClassAtom>
+                <swrl:classPredicate rdf:resource="#RequiredActorCondition"/>
+                <swrl:argument1 rdf:resource="#cond"/>
+              </swrl:ClassAtom>
+            </rdf:first>
+          </swrl:AtomList>
+        </rdf:rest>
+      </swrl:AtomList>
+    </rdf:rest>
+  </swrl:AtomList>
+  <swrl:AtomList/>
+  <swrl:Imp rdf:ID="Rule-RequiredActorCondition">
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Check if there is an actor that can perform an action</rdfs:comment>
+    <swrla:isRuleEnabled rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean"
+    >true</swrla:isRuleEnabled>
+    <swrl:body>
+      <swrl:AtomList>
+        <rdf:rest>
+          <swrl:AtomList>
+            <rdf:rest>
+              <swrl:AtomList>
+                <rdf:rest>
+                  <swrl:AtomList>
+                    <rdf:rest>
+                      <swrl:AtomList>
+                        <rdf:rest>
+                          <swrl:AtomList>
+                            <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                            <rdf:first>
+                              <swrl:BuiltinAtom>
+                                <swrl:arguments>
+                                  <rdf:List>
+                                    <rdf:rest>
+                                      <rdf:List>
+                                        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                                        <rdf:first>
+                                          <swrl:Variable rdf:ID="performableType"/>
+                                        </rdf:first>
+                                      </rdf:List>
+                                    </rdf:rest>
+                                    <rdf:first rdf:resource="#action"/>
+                                  </rdf:List>
+                                </swrl:arguments>
+                                <swrl:builtin rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.4/rdfb.owl#isClass"/>
+                              </swrl:BuiltinAtom>
+                            </rdf:first>
+                          </swrl:AtomList>
+                        </rdf:rest>
+                        <rdf:first>
+                          <swrl:DatavaluedPropertyAtom>
+                            <swrl:argument1 rdf:resource="#actor"/>
+                            <swrl:argument2 rdf:resource="#performableType"/>
+                            <swrl:propertyPredicate rdf:resource="#performableTypeOfActions"/>
+                          </swrl:DatavaluedPropertyAtom>
+                        </rdf:first>
+                      </swrl:AtomList>
+                    </rdf:rest>
+                    <rdf:first>
+                      <swrl:ClassAtom>
+                        <swrl:argument1 rdf:resource="#cond"/>
+                        <swrl:classPredicate rdf:resource="#RequiredActorCondition"/>
+                      </swrl:ClassAtom>
+                    </rdf:first>
+                  </swrl:AtomList>
+                </rdf:rest>
+                <rdf:first>
+                  <swrl:IndividualPropertyAtom>
+                    <swrl:propertyPredicate rdf:resource="#hasPrecondition"/>
+                    <swrl:argument1 rdf:resource="#action"/>
+                    <swrl:argument2 rdf:resource="#cond"/>
+                  </swrl:IndividualPropertyAtom>
+                </rdf:first>
+              </swrl:AtomList>
+            </rdf:rest>
+            <rdf:first>
+              <swrl:ClassAtom>
+                <swrl:argument1 rdf:resource="#action"/>
+                <swrl:classPredicate rdf:resource="#Action"/>
+              </swrl:ClassAtom>
+            </rdf:first>
+          </swrl:AtomList>
+        </rdf:rest>
+        <rdf:first>
+          <swrl:ClassAtom>
+            <swrl:argument1 rdf:resource="#actor"/>
+            <swrl:classPredicate rdf:resource="#Actor"/>
+          </swrl:ClassAtom>
+        </rdf:first>
+      </swrl:AtomList>
+    </swrl:body>
+    <swrla:hasRuleCategory rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >(12#(1))^(12)-(4)</swrla:hasRuleCategory>
     <swrl:head>
       <swrl:AtomList>
         <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
@@ -671,59 +822,68 @@
           <swrl:DatavaluedPropertyAtom>
             <swrl:argument2 rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean"
             >true</swrl:argument2>
-            <swrl:argument1>
-              <swrl:Variable rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#action"/>
-            </swrl:argument1>
-            <swrl:propertyPredicate rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#available"/>
+            <swrl:argument1 rdf:resource="#cond"/>
+            <swrl:propertyPredicate rdf:resource="#satisfied"/>
           </swrl:DatavaluedPropertyAtom>
         </rdf:first>
       </swrl:AtomList>
     </swrl:head>
+  </swrl:Imp>
+  <swrl:Imp rdf:ID="Rule-AvailableActions-3Precond">
     <swrl:body>
       <swrl:AtomList>
         <rdf:first>
           <swrl:ClassAtom>
-            <swrl:classPredicate rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#UnavailableAction"/>
-            <swrl:argument1 rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#action"/>
+            <swrl:argument1 rdf:resource="#action"/>
+            <swrl:classPredicate rdf:resource="#UnavailableAction"/>
           </swrl:ClassAtom>
         </rdf:first>
         <rdf:rest>
           <swrl:AtomList>
             <rdf:first>
               <swrl:IndividualPropertyAtom>
-                <swrl:argument1 rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#action"/>
                 <swrl:argument2>
-                  <swrl:Variable rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#cond1"/>
+                  <swrl:Variable rdf:ID="cond1"/>
                 </swrl:argument2>
-                <swrl:propertyPredicate rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#hasPrecondition"/>
+                <swrl:argument1 rdf:resource="#action"/>
+                <swrl:propertyPredicate rdf:resource="#hasPrecondition"/>
               </swrl:IndividualPropertyAtom>
             </rdf:first>
             <rdf:rest>
               <swrl:AtomList>
                 <rdf:first>
                   <swrl:IndividualPropertyAtom>
-                    <swrl:propertyPredicate rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#hasPrecondition"/>
-                    <swrl:argument1 rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#action"/>
+                    <swrl:propertyPredicate rdf:resource="#hasPrecondition"/>
                     <swrl:argument2>
-                      <swrl:Variable rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#cond2"/>
+                      <swrl:Variable rdf:ID="cond2"/>
                     </swrl:argument2>
+                    <swrl:argument1 rdf:resource="#action"/>
                   </swrl:IndividualPropertyAtom>
                 </rdf:first>
                 <rdf:rest>
                   <swrl:AtomList>
-                    <rdf:first>
-                      <swrl:IndividualPropertyAtom>
-                        <swrl:propertyPredicate rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#hasPrecondition"/>
-                        <swrl:argument2>
-                          <swrl:Variable rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#cond3"/>
-                        </swrl:argument2>
-                        <swrl:argument1 rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#action"/>
-                      </swrl:IndividualPropertyAtom>
-                    </rdf:first>
                     <rdf:rest>
                       <swrl:AtomList>
                         <rdf:rest>
                           <swrl:AtomList>
+                            <rdf:first>
+                              <swrl:BuiltinAtom>
+                                <swrl:builtin rdf:resource="http://sqwrl.stanford.edu/ontologies/built-ins/3.4/sqwrl.owl#notEqual"/>
+                                <swrl:arguments>
+                                  <rdf:List>
+                                    <rdf:first rdf:resource="#cond1"/>
+                                    <rdf:rest>
+                                      <rdf:List>
+                                        <rdf:first>
+                                          <swrl:Variable rdf:ID="cond3"/>
+                                        </rdf:first>
+                                        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                                      </rdf:List>
+                                    </rdf:rest>
+                                  </rdf:List>
+                                </swrl:arguments>
+                              </swrl:BuiltinAtom>
+                            </rdf:first>
                             <rdf:rest>
                               <swrl:AtomList>
                                 <rdf:rest>
@@ -735,20 +895,20 @@
                                             <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
                                             <rdf:first>
                                               <swrl:DatavaluedPropertyAtom>
-                                                <swrl:argument1 rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#cond3"/>
+                                                <swrl:propertyPredicate rdf:resource="#satisfied"/>
                                                 <swrl:argument2
                                                  rdf:datatype=
                                                 "http://www.w3.org/2001/XMLSchema#boolean"
                                                 >true</swrl:argument2>
-                                                <swrl:propertyPredicate rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#satisfied"/>
+                                                <swrl:argument1 rdf:resource="#cond3"/>
                                               </swrl:DatavaluedPropertyAtom>
                                             </rdf:first>
                                           </swrl:AtomList>
                                         </rdf:rest>
                                         <rdf:first>
                                           <swrl:DatavaluedPropertyAtom>
-                                            <swrl:propertyPredicate rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#satisfied"/>
-                                            <swrl:argument1 rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#cond2"/>
+                                            <swrl:argument1 rdf:resource="#cond2"/>
+                                            <swrl:propertyPredicate rdf:resource="#satisfied"/>
                                             <swrl:argument2 rdf:datatype=
                                             "http://www.w3.org/2001/XMLSchema#boolean"
                                             >true</swrl:argument2>
@@ -758,11 +918,11 @@
                                     </rdf:rest>
                                     <rdf:first>
                                       <swrl:DatavaluedPropertyAtom>
-                                        <swrl:propertyPredicate rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#satisfied"/>
+                                        <swrl:propertyPredicate rdf:resource="#satisfied"/>
+                                        <swrl:argument1 rdf:resource="#cond1"/>
                                         <swrl:argument2 rdf:datatype=
                                         "http://www.w3.org/2001/XMLSchema#boolean"
                                         >true</swrl:argument2>
-                                        <swrl:argument1 rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#cond1"/>
                                       </swrl:DatavaluedPropertyAtom>
                                     </rdf:first>
                                   </swrl:AtomList>
@@ -772,55 +932,46 @@
                                     <swrl:builtin rdf:resource="http://sqwrl.stanford.edu/ontologies/built-ins/3.4/sqwrl.owl#notEqual"/>
                                     <swrl:arguments>
                                       <rdf:List>
+                                        <rdf:first rdf:resource="#cond2"/>
                                         <rdf:rest>
                                           <rdf:List>
                                             <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
-                                            <rdf:first rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#cond3"/>
+                                            <rdf:first rdf:resource="#cond3"/>
                                           </rdf:List>
                                         </rdf:rest>
-                                        <rdf:first rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#cond2"/>
                                       </rdf:List>
                                     </swrl:arguments>
                                   </swrl:BuiltinAtom>
                                 </rdf:first>
                               </swrl:AtomList>
                             </rdf:rest>
-                            <rdf:first>
-                              <swrl:BuiltinAtom>
-                                <swrl:builtin rdf:resource="http://sqwrl.stanford.edu/ontologies/built-ins/3.4/sqwrl.owl#notEqual"/>
-                                <swrl:arguments>
-                                  <rdf:List>
-                                    <rdf:first rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#cond1"/>
-                                    <rdf:rest>
-                                      <rdf:List>
-                                        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
-                                        <rdf:first rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#cond3"/>
-                                      </rdf:List>
-                                    </rdf:rest>
-                                  </rdf:List>
-                                </swrl:arguments>
-                              </swrl:BuiltinAtom>
-                            </rdf:first>
                           </swrl:AtomList>
                         </rdf:rest>
                         <rdf:first>
                           <swrl:BuiltinAtom>
-                            <swrl:builtin rdf:resource="http://sqwrl.stanford.edu/ontologies/built-ins/3.4/sqwrl.owl#notEqual"/>
                             <swrl:arguments>
                               <rdf:List>
+                                <rdf:first rdf:resource="#cond1"/>
                                 <rdf:rest>
                                   <rdf:List>
-                                    <rdf:first rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#cond2"/>
                                     <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                                    <rdf:first rdf:resource="#cond2"/>
                                   </rdf:List>
                                 </rdf:rest>
-                                <rdf:first rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#cond1"/>
                               </rdf:List>
                             </swrl:arguments>
+                            <swrl:builtin rdf:resource="http://sqwrl.stanford.edu/ontologies/built-ins/3.4/sqwrl.owl#notEqual"/>
                           </swrl:BuiltinAtom>
                         </rdf:first>
                       </swrl:AtomList>
                     </rdf:rest>
+                    <rdf:first>
+                      <swrl:IndividualPropertyAtom>
+                        <swrl:argument1 rdf:resource="#action"/>
+                        <swrl:argument2 rdf:resource="#cond3"/>
+                        <swrl:propertyPredicate rdf:resource="#hasPrecondition"/>
+                      </swrl:IndividualPropertyAtom>
+                    </rdf:first>
                   </swrl:AtomList>
                 </rdf:rest>
               </swrl:AtomList>
@@ -829,43 +980,69 @@
         </rdf:rest>
       </swrl:AtomList>
     </swrl:body>
+    <swrl:head>
+      <swrl:AtomList>
+        <rdf:first>
+          <swrl:DatavaluedPropertyAtom>
+            <swrl:argument1 rdf:resource="#action"/>
+            <swrl:argument2 rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean"
+            >true</swrl:argument2>
+            <swrl:propertyPredicate rdf:resource="#available"/>
+          </swrl:DatavaluedPropertyAtom>
+        </rdf:first>
+        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+      </swrl:AtomList>
+    </swrl:head>
   </swrl:Imp>
-  <swrl:Imp rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#Rule-PossibleActionsMapping">
+  <swrl:DatavaluedPropertyAtom>
+    <swrl:propertyPredicate rdf:resource="#satisfied"/>
+    <swrl:argument1 rdf:resource="#cond"/>
+  </swrl:DatavaluedPropertyAtom>
+  <swrl:Imp rdf:ID="Rule-PossibleActionsMapping">
+    <swrl:head>
+      <swrl:AtomList>
+        <rdf:first>
+          <swrl:IndividualPropertyAtom>
+            <swrl:argument1 rdf:resource="#actor"/>
+            <swrl:argument2 rdf:resource="#action"/>
+            <swrl:propertyPredicate rdf:resource="#canPerform"/>
+          </swrl:IndividualPropertyAtom>
+        </rdf:first>
+        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+      </swrl:AtomList>
+    </swrl:head>
     <swrl:body>
       <swrl:AtomList>
         <rdf:first>
           <swrl:ClassAtom>
-            <swrl:argument1>
-              <swrl:Variable rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#actor"/>
-            </swrl:argument1>
-            <swrl:classPredicate rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#Actor"/>
+            <swrl:argument1 rdf:resource="#actor"/>
+            <swrl:classPredicate rdf:resource="#Actor"/>
           </swrl:ClassAtom>
         </rdf:first>
         <rdf:rest>
           <swrl:AtomList>
-            <rdf:first>
-              <swrl:ClassAtom>
-                <swrl:classPredicate rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#AvailableAction"/>
-                <swrl:argument1 rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#action"/>
-              </swrl:ClassAtom>
-            </rdf:first>
             <rdf:rest>
               <swrl:AtomList>
+                <rdf:first>
+                  <swrl:DatavaluedPropertyAtom>
+                    <swrl:propertyPredicate rdf:resource="#performableTypeOfActions"/>
+                    <swrl:argument1 rdf:resource="#actor"/>
+                    <swrl:argument2 rdf:resource="#performableActionType"/>
+                  </swrl:DatavaluedPropertyAtom>
+                </rdf:first>
                 <rdf:rest>
                   <swrl:AtomList>
                     <rdf:first>
                       <swrl:BuiltinAtom>
                         <swrl:arguments>
                           <rdf:List>
+                            <rdf:first rdf:resource="#action"/>
                             <rdf:rest>
                               <rdf:List>
-                                <rdf:first>
-                                  <swrl:Variable rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#performableActionType"/>
-                                </rdf:first>
+                                <rdf:first rdf:resource="#performableActionType"/>
                                 <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
                               </rdf:List>
                             </rdf:rest>
-                            <rdf:first rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#action"/>
                           </rdf:List>
                         </swrl:arguments>
                         <swrl:builtin rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.4/rdfb.owl#isClass"/>
@@ -874,206 +1051,19 @@
                     <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
                   </swrl:AtomList>
                 </rdf:rest>
-                <rdf:first>
-                  <swrl:DatavaluedPropertyAtom>
-                    <swrl:argument2 rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#performableActionType"/>
-                    <swrl:propertyPredicate rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#performableTypeOfActions"/>
-                    <swrl:argument1 rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#actor"/>
-                  </swrl:DatavaluedPropertyAtom>
-                </rdf:first>
-              </swrl:AtomList>
-            </rdf:rest>
-          </swrl:AtomList>
-        </rdf:rest>
-      </swrl:AtomList>
-    </swrl:body>
-    <swrl:head>
-      <swrl:AtomList>
-        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
-        <rdf:first>
-          <swrl:IndividualPropertyAtom>
-            <swrl:propertyPredicate rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#canPerform"/>
-            <swrl:argument1 rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#actor"/>
-            <swrl:argument2 rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#action"/>
-          </swrl:IndividualPropertyAtom>
-        </rdf:first>
-      </swrl:AtomList>
-    </swrl:head>
-  </swrl:Imp>
-  <swrl:DatavaluedPropertyAtom>
-    <swrl:propertyPredicate rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#satisfied"/>
-    <swrl:argument1>
-      <swrl:Variable rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#cond"/>
-    </swrl:argument1>
-  </swrl:DatavaluedPropertyAtom>
-  <swrl:AtomList/>
-  <swrl:Imp rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#Rule-RequiredActorCondition">
-    <swrla:isRuleEnabled rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean"
-    >true</swrla:isRuleEnabled>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >Check if there is an actor that can perform an action</rdfs:comment>
-    <swrla:hasRuleCategory rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >(12#(1))^(12)-(4)</swrla:hasRuleCategory>
-    <swrl:body>
-      <swrl:AtomList>
-        <rdf:rest>
-          <swrl:AtomList>
-            <rdf:rest>
-              <swrl:AtomList>
-                <rdf:rest>
-                  <swrl:AtomList>
-                    <rdf:first>
-                      <swrl:ClassAtom>
-                        <swrl:argument1 rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#cond"/>
-                        <swrl:classPredicate rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#RequiredActorCondition"/>
-                      </swrl:ClassAtom>
-                    </rdf:first>
-                    <rdf:rest>
-                      <swrl:AtomList>
-                        <rdf:first>
-                          <swrl:DatavaluedPropertyAtom>
-                            <swrl:argument2>
-                              <swrl:Variable rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#performableType"/>
-                            </swrl:argument2>
-                            <swrl:argument1 rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#actor"/>
-                            <swrl:propertyPredicate rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#performableTypeOfActions"/>
-                          </swrl:DatavaluedPropertyAtom>
-                        </rdf:first>
-                        <rdf:rest>
-                          <swrl:AtomList>
-                            <rdf:first>
-                              <swrl:BuiltinAtom>
-                                <swrl:builtin rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.4/rdfb.owl#isClass"/>
-                                <swrl:arguments>
-                                  <rdf:List>
-                                    <rdf:first rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#action"/>
-                                    <rdf:rest>
-                                      <rdf:List>
-                                        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
-                                        <rdf:first rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#performableType"/>
-                                      </rdf:List>
-                                    </rdf:rest>
-                                  </rdf:List>
-                                </swrl:arguments>
-                              </swrl:BuiltinAtom>
-                            </rdf:first>
-                            <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
-                          </swrl:AtomList>
-                        </rdf:rest>
-                      </swrl:AtomList>
-                    </rdf:rest>
-                  </swrl:AtomList>
-                </rdf:rest>
-                <rdf:first>
-                  <swrl:IndividualPropertyAtom>
-                    <swrl:argument2 rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#cond"/>
-                    <swrl:argument1 rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#action"/>
-                    <swrl:propertyPredicate rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#hasPrecondition"/>
-                  </swrl:IndividualPropertyAtom>
-                </rdf:first>
               </swrl:AtomList>
             </rdf:rest>
             <rdf:first>
               <swrl:ClassAtom>
-                <swrl:classPredicate rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#Action"/>
-                <swrl:argument1 rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#action"/>
+                <swrl:classPredicate rdf:resource="#AvailableAction"/>
+                <swrl:argument1 rdf:resource="#action"/>
               </swrl:ClassAtom>
             </rdf:first>
           </swrl:AtomList>
         </rdf:rest>
-        <rdf:first>
-          <swrl:ClassAtom>
-            <swrl:classPredicate rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#Actor"/>
-            <swrl:argument1 rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#actor"/>
-          </swrl:ClassAtom>
-        </rdf:first>
       </swrl:AtomList>
     </swrl:body>
-    <swrl:head>
-      <swrl:AtomList>
-        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
-        <rdf:first>
-          <swrl:DatavaluedPropertyAtom>
-            <swrl:propertyPredicate rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#satisfied"/>
-            <swrl:argument1 rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#cond"/>
-            <swrl:argument2 rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean"
-            >true</swrl:argument2>
-          </swrl:DatavaluedPropertyAtom>
-        </rdf:first>
-      </swrl:AtomList>
-    </swrl:head>
   </swrl:Imp>
-  <swrl:AtomList>
-    <rdf:rest>
-      <swrl:AtomList>
-        <rdf:rest>
-          <swrl:AtomList>
-            <rdf:rest>
-              <swrl:AtomList>
-                <rdf:first>
-                  <swrl:IndividualPropertyAtom>
-                    <swrl:propertyPredicate rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#hasPrecondition"/>
-                    <swrl:argument2 rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#cond"/>
-                    <swrl:argument1 rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#action"/>
-                  </swrl:IndividualPropertyAtom>
-                </rdf:first>
-                <rdf:rest>
-                  <swrl:AtomList>
-                    <rdf:first>
-                      <swrl:DatavaluedPropertyAtom>
-                        <swrl:propertyPredicate rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#performableTypeOfActions"/>
-                        <swrl:argument2 rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#performableActionType"/>
-                        <swrl:argument1 rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#actor"/>
-                      </swrl:DatavaluedPropertyAtom>
-                    </rdf:first>
-                    <rdf:rest>
-                      <swrl:AtomList>
-                        <rdf:first>
-                          <swrl:BuiltinAtom>
-                            <swrl:builtin rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.4/rdfb.owl#isClass"/>
-                            <swrl:arguments>
-                              <rdf:List>
-                                <rdf:first rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#action"/>
-                                <rdf:rest>
-                                  <rdf:List>
-                                    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
-                                    <rdf:first rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#performableActionType"/>
-                                  </rdf:List>
-                                </rdf:rest>
-                              </rdf:List>
-                            </swrl:arguments>
-                          </swrl:BuiltinAtom>
-                        </rdf:first>
-                        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
-                      </swrl:AtomList>
-                    </rdf:rest>
-                  </swrl:AtomList>
-                </rdf:rest>
-              </swrl:AtomList>
-            </rdf:rest>
-            <rdf:first>
-              <swrl:ClassAtom>
-                <swrl:classPredicate rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#RequiredActorCondition"/>
-                <swrl:argument1 rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#cond"/>
-              </swrl:ClassAtom>
-            </rdf:first>
-          </swrl:AtomList>
-        </rdf:rest>
-        <rdf:first>
-          <swrl:ClassAtom>
-            <swrl:classPredicate rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#Actor"/>
-            <swrl:argument1 rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#actor"/>
-          </swrl:ClassAtom>
-        </rdf:first>
-      </swrl:AtomList>
-    </rdf:rest>
-    <rdf:first>
-      <swrl:ClassAtom>
-        <swrl:classPredicate rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#Action"/>
-        <swrl:argument1 rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#action"/>
-      </swrl:ClassAtom>
-    </rdf:first>
-  </swrl:AtomList>
 </rdf:RDF>
 
 <!-- Created with Protege (with OWL Plugin 3.4.6, Build 613)  http://protege.stanford.edu -->
