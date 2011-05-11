@@ -96,11 +96,11 @@
     <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
     <rdfs:subClassOf>
       <owl:Restriction>
+        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >1</owl:cardinality>
         <owl:onProperty>
           <owl:FunctionalProperty rdf:ID="satisfied"/>
         </owl:onProperty>
-        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
-        >1</owl:cardinality>
       </owl:Restriction>
     </rdfs:subClassOf>
   </owl:Class>
@@ -155,11 +155,11 @@
         <owl:intersectionOf rdf:parseType="Collection">
           <owl:Class rdf:about="#Condition"/>
           <owl:Restriction>
+            <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean"
+            >true</owl:hasValue>
             <owl:onProperty>
               <owl:FunctionalProperty rdf:about="#satisfied"/>
             </owl:onProperty>
-            <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean"
-            >true</owl:hasValue>
           </owl:Restriction>
         </owl:intersectionOf>
       </owl:Class>
@@ -233,11 +233,11 @@
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:valuesFrom rdf:resource="#RequiredActorCondition"/>
-        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
-        >1</owl:cardinality>
         <owl:onProperty>
           <owl:ObjectProperty rdf:ID="hasPrecondition"/>
         </owl:onProperty>
+        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >1</owl:cardinality>
       </owl:Restriction>
     </rdfs:subClassOf>
   </owl:Class>
@@ -289,11 +289,11 @@
         <owl:intersectionOf rdf:parseType="Collection">
           <owl:Class rdf:about="#Action"/>
           <owl:Restriction>
-            <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean"
-            >true</owl:hasValue>
             <owl:onProperty>
               <owl:FunctionalProperty rdf:about="#available"/>
             </owl:onProperty>
+            <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean"
+            >true</owl:hasValue>
           </owl:Restriction>
         </owl:intersectionOf>
       </owl:Class>
@@ -319,11 +319,11 @@
   <owl:Class rdf:about="#PerformedAction">
     <owl:equivalentClass>
       <owl:Restriction>
-        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
-        >1</owl:cardinality>
         <owl:onProperty>
           <owl:FunctionalProperty rdf:ID="performed"/>
         </owl:onProperty>
+        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >1</owl:cardinality>
       </owl:Restriction>
     </owl:equivalentClass>
     <rdfs:comment xml:lang="en">&lt;p style="margin-top: 0"&gt;
@@ -539,13 +539,13 @@
     <rdfs:range>
       <owl:DataRange>
         <owl:oneOf rdf:parseType="Resource">
+          <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+          >Finished</rdf:first>
           <rdf:rest rdf:parseType="Resource">
             <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
             <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
             >Started</rdf:first>
           </rdf:rest>
-          <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-          >Finished</rdf:first>
         </owl:oneOf>
       </owl:DataRange>
     </rdfs:range>
@@ -653,40 +653,54 @@
     <rdfs:range rdf:resource="#Variable"/>
     <rdfs:domain rdf:resource="#System"/>
   </owl:InverseFunctionalProperty>
+  <swrl:DatavaluedPropertyAtom>
+    <swrl:propertyPredicate rdf:resource="#satisfied"/>
+    <swrl:argument1>
+      <swrl:Variable rdf:ID="cond"/>
+    </swrl:argument1>
+  </swrl:DatavaluedPropertyAtom>
+  <swrl:AtomList/>
   <swrl:AtomList>
     <rdf:first>
       <swrl:ClassAtom>
+        <swrl:classPredicate rdf:resource="#Action"/>
         <swrl:argument1>
           <swrl:Variable rdf:ID="action"/>
         </swrl:argument1>
-        <swrl:classPredicate rdf:resource="#Action"/>
       </swrl:ClassAtom>
     </rdf:first>
     <rdf:rest>
       <swrl:AtomList>
-        <rdf:first>
-          <swrl:ClassAtom>
-            <swrl:classPredicate rdf:resource="#Actor"/>
-            <swrl:argument1>
-              <swrl:Variable rdf:ID="actor"/>
-            </swrl:argument1>
-          </swrl:ClassAtom>
-        </rdf:first>
         <rdf:rest>
           <swrl:AtomList>
+            <rdf:first>
+              <swrl:ClassAtom>
+                <swrl:argument1 rdf:resource="#cond"/>
+                <swrl:classPredicate rdf:resource="#RequiredActorCondition"/>
+              </swrl:ClassAtom>
+            </rdf:first>
             <rdf:rest>
               <swrl:AtomList>
                 <rdf:first>
                   <swrl:IndividualPropertyAtom>
-                    <swrl:propertyPredicate rdf:resource="#hasPrecondition"/>
                     <swrl:argument1 rdf:resource="#action"/>
-                    <swrl:argument2>
-                      <swrl:Variable rdf:ID="cond"/>
-                    </swrl:argument2>
+                    <swrl:propertyPredicate rdf:resource="#hasPrecondition"/>
+                    <swrl:argument2 rdf:resource="#cond"/>
                   </swrl:IndividualPropertyAtom>
                 </rdf:first>
                 <rdf:rest>
                   <swrl:AtomList>
+                    <rdf:first>
+                      <swrl:DatavaluedPropertyAtom>
+                        <swrl:propertyPredicate rdf:resource="#performableTypeOfActions"/>
+                        <swrl:argument1>
+                          <swrl:Variable rdf:ID="actor"/>
+                        </swrl:argument1>
+                        <swrl:argument2>
+                          <swrl:Variable rdf:ID="performableActionType"/>
+                        </swrl:argument2>
+                      </swrl:DatavaluedPropertyAtom>
+                    </rdf:first>
                     <rdf:rest>
                       <swrl:AtomList>
                         <rdf:first>
@@ -694,15 +708,13 @@
                             <swrl:builtin rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.4/rdfb.owl#isClass"/>
                             <swrl:arguments>
                               <rdf:List>
-                                <rdf:first rdf:resource="#action"/>
                                 <rdf:rest>
                                   <rdf:List>
+                                    <rdf:first rdf:resource="#performableActionType"/>
                                     <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
-                                    <rdf:first>
-                                      <swrl:Variable rdf:ID="performableActionType"/>
-                                    </rdf:first>
                                   </rdf:List>
                                 </rdf:rest>
+                                <rdf:first rdf:resource="#action"/>
                               </rdf:List>
                             </swrl:arguments>
                           </swrl:BuiltinAtom>
@@ -710,29 +722,21 @@
                         <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
                       </swrl:AtomList>
                     </rdf:rest>
-                    <rdf:first>
-                      <swrl:DatavaluedPropertyAtom>
-                        <swrl:argument1 rdf:resource="#actor"/>
-                        <swrl:argument2 rdf:resource="#performableActionType"/>
-                        <swrl:propertyPredicate rdf:resource="#performableTypeOfActions"/>
-                      </swrl:DatavaluedPropertyAtom>
-                    </rdf:first>
                   </swrl:AtomList>
                 </rdf:rest>
               </swrl:AtomList>
             </rdf:rest>
-            <rdf:first>
-              <swrl:ClassAtom>
-                <swrl:classPredicate rdf:resource="#RequiredActorCondition"/>
-                <swrl:argument1 rdf:resource="#cond"/>
-              </swrl:ClassAtom>
-            </rdf:first>
           </swrl:AtomList>
         </rdf:rest>
+        <rdf:first>
+          <swrl:ClassAtom>
+            <swrl:argument1 rdf:resource="#actor"/>
+            <swrl:classPredicate rdf:resource="#Actor"/>
+          </swrl:ClassAtom>
+        </rdf:first>
       </swrl:AtomList>
     </rdf:rest>
   </swrl:AtomList>
-  <swrl:AtomList/>
   <swrl:Imp rdf:ID="Rule-RequiredActorCondition">
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Check if there is an actor that can perform an action</rdfs:comment>
@@ -742,25 +746,37 @@
       <swrl:AtomList>
         <rdf:rest>
           <swrl:AtomList>
+            <rdf:first>
+              <swrl:ClassAtom>
+                <swrl:argument1 rdf:resource="#action"/>
+                <swrl:classPredicate rdf:resource="#Action"/>
+              </swrl:ClassAtom>
+            </rdf:first>
             <rdf:rest>
               <swrl:AtomList>
+                <rdf:first>
+                  <swrl:IndividualPropertyAtom>
+                    <swrl:argument1 rdf:resource="#action"/>
+                    <swrl:argument2 rdf:resource="#cond"/>
+                    <swrl:propertyPredicate rdf:resource="#hasPrecondition"/>
+                  </swrl:IndividualPropertyAtom>
+                </rdf:first>
                 <rdf:rest>
                   <swrl:AtomList>
                     <rdf:rest>
                       <swrl:AtomList>
                         <rdf:rest>
                           <swrl:AtomList>
-                            <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
                             <rdf:first>
                               <swrl:BuiltinAtom>
                                 <swrl:arguments>
                                   <rdf:List>
                                     <rdf:rest>
                                       <rdf:List>
-                                        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
                                         <rdf:first>
                                           <swrl:Variable rdf:ID="performableType"/>
                                         </rdf:first>
+                                        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
                                       </rdf:List>
                                     </rdf:rest>
                                     <rdf:first rdf:resource="#action"/>
@@ -769,6 +785,7 @@
                                 <swrl:builtin rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.4/rdfb.owl#isClass"/>
                               </swrl:BuiltinAtom>
                             </rdf:first>
+                            <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
                           </swrl:AtomList>
                         </rdf:rest>
                         <rdf:first>
@@ -788,21 +805,8 @@
                     </rdf:first>
                   </swrl:AtomList>
                 </rdf:rest>
-                <rdf:first>
-                  <swrl:IndividualPropertyAtom>
-                    <swrl:propertyPredicate rdf:resource="#hasPrecondition"/>
-                    <swrl:argument1 rdf:resource="#action"/>
-                    <swrl:argument2 rdf:resource="#cond"/>
-                  </swrl:IndividualPropertyAtom>
-                </rdf:first>
               </swrl:AtomList>
             </rdf:rest>
-            <rdf:first>
-              <swrl:ClassAtom>
-                <swrl:argument1 rdf:resource="#action"/>
-                <swrl:classPredicate rdf:resource="#Action"/>
-              </swrl:ClassAtom>
-            </rdf:first>
           </swrl:AtomList>
         </rdf:rest>
         <rdf:first>
@@ -817,15 +821,15 @@
     >(12#(1))^(12)-(4)</swrla:hasRuleCategory>
     <swrl:head>
       <swrl:AtomList>
-        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
         <rdf:first>
           <swrl:DatavaluedPropertyAtom>
             <swrl:argument2 rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean"
             >true</swrl:argument2>
-            <swrl:argument1 rdf:resource="#cond"/>
             <swrl:propertyPredicate rdf:resource="#satisfied"/>
+            <swrl:argument1 rdf:resource="#cond"/>
           </swrl:DatavaluedPropertyAtom>
         </rdf:first>
+        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
       </swrl:AtomList>
     </swrl:head>
   </swrl:Imp>
@@ -834,65 +838,75 @@
       <swrl:AtomList>
         <rdf:first>
           <swrl:ClassAtom>
-            <swrl:argument1 rdf:resource="#action"/>
             <swrl:classPredicate rdf:resource="#UnavailableAction"/>
+            <swrl:argument1 rdf:resource="#action"/>
           </swrl:ClassAtom>
         </rdf:first>
         <rdf:rest>
           <swrl:AtomList>
-            <rdf:first>
-              <swrl:IndividualPropertyAtom>
-                <swrl:argument2>
-                  <swrl:Variable rdf:ID="cond1"/>
-                </swrl:argument2>
-                <swrl:argument1 rdf:resource="#action"/>
-                <swrl:propertyPredicate rdf:resource="#hasPrecondition"/>
-              </swrl:IndividualPropertyAtom>
-            </rdf:first>
             <rdf:rest>
               <swrl:AtomList>
-                <rdf:first>
-                  <swrl:IndividualPropertyAtom>
-                    <swrl:propertyPredicate rdf:resource="#hasPrecondition"/>
-                    <swrl:argument2>
-                      <swrl:Variable rdf:ID="cond2"/>
-                    </swrl:argument2>
-                    <swrl:argument1 rdf:resource="#action"/>
-                  </swrl:IndividualPropertyAtom>
-                </rdf:first>
                 <rdf:rest>
                   <swrl:AtomList>
                     <rdf:rest>
                       <swrl:AtomList>
+                        <rdf:first>
+                          <swrl:BuiltinAtom>
+                            <swrl:builtin rdf:resource="http://sqwrl.stanford.edu/ontologies/built-ins/3.4/sqwrl.owl#notEqual"/>
+                            <swrl:arguments>
+                              <rdf:List>
+                                <rdf:rest>
+                                  <rdf:List>
+                                    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                                    <rdf:first>
+                                      <swrl:Variable rdf:ID="cond2"/>
+                                    </rdf:first>
+                                  </rdf:List>
+                                </rdf:rest>
+                                <rdf:first>
+                                  <swrl:Variable rdf:ID="cond1"/>
+                                </rdf:first>
+                              </rdf:List>
+                            </swrl:arguments>
+                          </swrl:BuiltinAtom>
+                        </rdf:first>
                         <rdf:rest>
                           <swrl:AtomList>
-                            <rdf:first>
-                              <swrl:BuiltinAtom>
-                                <swrl:builtin rdf:resource="http://sqwrl.stanford.edu/ontologies/built-ins/3.4/sqwrl.owl#notEqual"/>
-                                <swrl:arguments>
-                                  <rdf:List>
-                                    <rdf:first rdf:resource="#cond1"/>
-                                    <rdf:rest>
-                                      <rdf:List>
-                                        <rdf:first>
-                                          <swrl:Variable rdf:ID="cond3"/>
-                                        </rdf:first>
-                                        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
-                                      </rdf:List>
-                                    </rdf:rest>
-                                  </rdf:List>
-                                </swrl:arguments>
-                              </swrl:BuiltinAtom>
-                            </rdf:first>
                             <rdf:rest>
                               <swrl:AtomList>
+                                <rdf:first>
+                                  <swrl:BuiltinAtom>
+                                    <swrl:builtin rdf:resource="http://sqwrl.stanford.edu/ontologies/built-ins/3.4/sqwrl.owl#notEqual"/>
+                                    <swrl:arguments>
+                                      <rdf:List>
+                                        <rdf:rest>
+                                          <rdf:List>
+                                            <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                                            <rdf:first>
+                                              <swrl:Variable rdf:ID="cond3"/>
+                                            </rdf:first>
+                                          </rdf:List>
+                                        </rdf:rest>
+                                        <rdf:first rdf:resource="#cond2"/>
+                                      </rdf:List>
+                                    </swrl:arguments>
+                                  </swrl:BuiltinAtom>
+                                </rdf:first>
                                 <rdf:rest>
                                   <swrl:AtomList>
+                                    <rdf:first>
+                                      <swrl:DatavaluedPropertyAtom>
+                                        <swrl:propertyPredicate rdf:resource="#satisfied"/>
+                                        <swrl:argument2 rdf:datatype=
+                                        "http://www.w3.org/2001/XMLSchema#boolean"
+                                        >true</swrl:argument2>
+                                        <swrl:argument1 rdf:resource="#cond1"/>
+                                      </swrl:DatavaluedPropertyAtom>
+                                    </rdf:first>
                                     <rdf:rest>
                                       <swrl:AtomList>
                                         <rdf:rest>
                                           <swrl:AtomList>
-                                            <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
                                             <rdf:first>
                                               <swrl:DatavaluedPropertyAtom>
                                                 <swrl:propertyPredicate rdf:resource="#satisfied"/>
@@ -903,12 +917,13 @@
                                                 <swrl:argument1 rdf:resource="#cond3"/>
                                               </swrl:DatavaluedPropertyAtom>
                                             </rdf:first>
+                                            <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
                                           </swrl:AtomList>
                                         </rdf:rest>
                                         <rdf:first>
                                           <swrl:DatavaluedPropertyAtom>
-                                            <swrl:argument1 rdf:resource="#cond2"/>
                                             <swrl:propertyPredicate rdf:resource="#satisfied"/>
+                                            <swrl:argument1 rdf:resource="#cond2"/>
                                             <swrl:argument2 rdf:datatype=
                                             "http://www.w3.org/2001/XMLSchema#boolean"
                                             >true</swrl:argument2>
@@ -916,99 +931,84 @@
                                         </rdf:first>
                                       </swrl:AtomList>
                                     </rdf:rest>
-                                    <rdf:first>
-                                      <swrl:DatavaluedPropertyAtom>
-                                        <swrl:propertyPredicate rdf:resource="#satisfied"/>
-                                        <swrl:argument1 rdf:resource="#cond1"/>
-                                        <swrl:argument2 rdf:datatype=
-                                        "http://www.w3.org/2001/XMLSchema#boolean"
-                                        >true</swrl:argument2>
-                                      </swrl:DatavaluedPropertyAtom>
-                                    </rdf:first>
                                   </swrl:AtomList>
                                 </rdf:rest>
-                                <rdf:first>
-                                  <swrl:BuiltinAtom>
-                                    <swrl:builtin rdf:resource="http://sqwrl.stanford.edu/ontologies/built-ins/3.4/sqwrl.owl#notEqual"/>
-                                    <swrl:arguments>
-                                      <rdf:List>
-                                        <rdf:first rdf:resource="#cond2"/>
-                                        <rdf:rest>
-                                          <rdf:List>
-                                            <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
-                                            <rdf:first rdf:resource="#cond3"/>
-                                          </rdf:List>
-                                        </rdf:rest>
-                                      </rdf:List>
-                                    </swrl:arguments>
-                                  </swrl:BuiltinAtom>
-                                </rdf:first>
                               </swrl:AtomList>
                             </rdf:rest>
+                            <rdf:first>
+                              <swrl:BuiltinAtom>
+                                <swrl:arguments>
+                                  <rdf:List>
+                                    <rdf:rest>
+                                      <rdf:List>
+                                        <rdf:first rdf:resource="#cond3"/>
+                                        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                                      </rdf:List>
+                                    </rdf:rest>
+                                    <rdf:first rdf:resource="#cond1"/>
+                                  </rdf:List>
+                                </swrl:arguments>
+                                <swrl:builtin rdf:resource="http://sqwrl.stanford.edu/ontologies/built-ins/3.4/sqwrl.owl#notEqual"/>
+                              </swrl:BuiltinAtom>
+                            </rdf:first>
                           </swrl:AtomList>
                         </rdf:rest>
-                        <rdf:first>
-                          <swrl:BuiltinAtom>
-                            <swrl:arguments>
-                              <rdf:List>
-                                <rdf:first rdf:resource="#cond1"/>
-                                <rdf:rest>
-                                  <rdf:List>
-                                    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
-                                    <rdf:first rdf:resource="#cond2"/>
-                                  </rdf:List>
-                                </rdf:rest>
-                              </rdf:List>
-                            </swrl:arguments>
-                            <swrl:builtin rdf:resource="http://sqwrl.stanford.edu/ontologies/built-ins/3.4/sqwrl.owl#notEqual"/>
-                          </swrl:BuiltinAtom>
-                        </rdf:first>
                       </swrl:AtomList>
                     </rdf:rest>
                     <rdf:first>
                       <swrl:IndividualPropertyAtom>
-                        <swrl:argument1 rdf:resource="#action"/>
-                        <swrl:argument2 rdf:resource="#cond3"/>
                         <swrl:propertyPredicate rdf:resource="#hasPrecondition"/>
+                        <swrl:argument2 rdf:resource="#cond3"/>
+                        <swrl:argument1 rdf:resource="#action"/>
                       </swrl:IndividualPropertyAtom>
                     </rdf:first>
                   </swrl:AtomList>
                 </rdf:rest>
+                <rdf:first>
+                  <swrl:IndividualPropertyAtom>
+                    <swrl:propertyPredicate rdf:resource="#hasPrecondition"/>
+                    <swrl:argument2 rdf:resource="#cond2"/>
+                    <swrl:argument1 rdf:resource="#action"/>
+                  </swrl:IndividualPropertyAtom>
+                </rdf:first>
               </swrl:AtomList>
             </rdf:rest>
+            <rdf:first>
+              <swrl:IndividualPropertyAtom>
+                <swrl:propertyPredicate rdf:resource="#hasPrecondition"/>
+                <swrl:argument2 rdf:resource="#cond1"/>
+                <swrl:argument1 rdf:resource="#action"/>
+              </swrl:IndividualPropertyAtom>
+            </rdf:first>
           </swrl:AtomList>
         </rdf:rest>
       </swrl:AtomList>
     </swrl:body>
     <swrl:head>
       <swrl:AtomList>
+        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
         <rdf:first>
           <swrl:DatavaluedPropertyAtom>
-            <swrl:argument1 rdf:resource="#action"/>
             <swrl:argument2 rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean"
             >true</swrl:argument2>
+            <swrl:argument1 rdf:resource="#action"/>
             <swrl:propertyPredicate rdf:resource="#available"/>
           </swrl:DatavaluedPropertyAtom>
         </rdf:first>
-        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
       </swrl:AtomList>
     </swrl:head>
   </swrl:Imp>
-  <swrl:DatavaluedPropertyAtom>
-    <swrl:propertyPredicate rdf:resource="#satisfied"/>
-    <swrl:argument1 rdf:resource="#cond"/>
-  </swrl:DatavaluedPropertyAtom>
   <swrl:Imp rdf:ID="Rule-PossibleActionsMapping">
     <swrl:head>
       <swrl:AtomList>
+        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
         <rdf:first>
           <swrl:IndividualPropertyAtom>
+            <swrl:propertyPredicate rdf:resource="#canPerform"/>
             <swrl:argument1 rdf:resource="#actor"/>
             <swrl:argument2 rdf:resource="#action"/>
-            <swrl:propertyPredicate rdf:resource="#canPerform"/>
           </swrl:IndividualPropertyAtom>
         </rdf:first>
-        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
       </swrl:AtomList>
     </swrl:head>
     <swrl:body>
@@ -1055,8 +1055,8 @@
             </rdf:rest>
             <rdf:first>
               <swrl:ClassAtom>
-                <swrl:classPredicate rdf:resource="#AvailableAction"/>
                 <swrl:argument1 rdf:resource="#action"/>
+                <swrl:classPredicate rdf:resource="#AvailableAction"/>
               </swrl:ClassAtom>
             </rdf:first>
           </swrl:AtomList>
