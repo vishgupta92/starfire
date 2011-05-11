@@ -5,7 +5,7 @@
     xmlns:swrlb="http://www.w3.org/2003/11/swrlb#"
     xmlns:pr-owl="http://www.pr-owl.org/pr-owl.owl#"
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-    xmlns:diagnosis="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#"
+    xmlns:diag="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#"
     xmlns:owl="http://www.w3.org/2002/07/owl#"
     xmlns:bayes-diag="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/BayesianDiagnosis.owl#"
     xmlns:sqwrl="http://sqwrl.stanford.edu/ontologies/built-ins/3.4/sqwrl.owl#"
