@@ -2,7 +2,7 @@
 <rdf:RDF
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
     xmlns:protege="http://protege.stanford.edu/plugins/owl/protege#"
-    xmlns:diagnosis="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#"
+    xmlns:diag="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/Diagnosis.owl#"
     xmlns:xsp="http://starfire.googlecode.com/svn/trunk/starfire/ontologies/2005/08/07/xsp.owl#"
     xmlns:owl="http://www.w3.org/2002/07/owl#"
     xmlns:sqwrl="http://sqwrl.stanford.edu/ontologies/built-ins/3.4/sqwrl.owl#"
