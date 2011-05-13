@@ -30,7 +30,7 @@ public class Main {
 //			FileReader owlfile = new FileReader(input);
 //			OWLModel owlModel = ProtegeOWL.createJenaOWLModelFromReader(owlfile);
 			
-			OWLModel owlModel = ProtegeOWL.createJenaOWLModelFromURI("http://starfire.googlecode.com/svn/trunk/starfire/plugins/edu.stanford.smi.protegex.owl/P2PDiagnosis.owl");
+			OWLModel owlModel = ProtegeOWL.createJenaOWLModelFromURI("http://starfire.googlecode.com/svn/trunk/starfire/plugins/edu.stanford.smi.protegex.owl/Diagnosis.owl");
 //			SWRLRuleEngineFactory.registerRuleEngine(JessNames.PluginName, new JessSWRLRuleEngineCreator());
 //			SWRLRuleEngine ruleEngine = SWRLRuleEngineFactory.create(JessNames.PluginName, owlModel);
 			
