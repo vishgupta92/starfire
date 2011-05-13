@@ -32,10 +32,10 @@ public class Main {
 			
 			OWLModel owlModel = ProtegeOWL.createJenaOWLModelFromURI("http://starfire.googlecode.com/svn/trunk/starfire/plugins/edu.stanford.smi.protegex.owl/Diagnosis.owl");
 //			SWRLRuleEngineFactory.registerRuleEngine(JessNames.PluginName, new JessSWRLRuleEngineCreator());
-//			SWRLRuleEngine ruleEngine = SWRLRuleEngineFactory.create(JessNames.PluginName, owlModel);
+			SWRLRuleEngine ruleEngine = SWRLRuleEngineFactory.create(JessNames.PluginName, owlModel);
 			
-			SWRLRuleEngineFactory.registerRuleEngine(DroolsNames.PluginName, new DroolsSWRLRuleEngineCreator());
-			SWRLRuleEngine ruleEngine = SWRLRuleEngineFactory.create(DroolsNames.PluginName, owlModel);
+//			SWRLRuleEngineFactory.registerRuleEngine(DroolsNames.PluginName, new DroolsSWRLRuleEngineCreator());
+//			SWRLRuleEngine ruleEngine = SWRLRuleEngineFactory.create(DroolsNames.PluginName, owlModel);
 			
 			ruleEngine.reset();
 			ruleEngine.importSWRLRulesAndOWLKnowledge();
