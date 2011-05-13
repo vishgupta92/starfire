@@ -2,11 +2,10 @@
 <rdf:RDF
     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
     xmlns:protege="http://protege.stanford.edu/plugins/owl/protege#"
-    xmlns:diag="http://starfire.googlecode.com/svn/trunk/starfire/plugins/edu.stanford.smi.protegex.owl/Diagnosis.owl#"
     xmlns:xsp="http://starfire.googlecode.com/svn/trunk/starfire/plugins/edu.stanford.smi.protegex.owl/2005/08/07/xsp.owl#"
     xmlns:owl="http://www.w3.org/2002/07/owl#"
     xmlns:sqwrl="http://sqwrl.stanford.edu/ontologies/built-ins/3.4/sqwrl.owl#"
-    xmlns:p2pdiag="http://starfire.googlecode.com/svn/trunk/starfire/plugins/edu.stanford.smi.protegex.owl/P2PDiagnosis.owl#"
+    xmlns:p2p-diag="http://starfire.googlecode.com/svn/trunk/starfire/plugins/edu.stanford.smi.protegex.owl/P2PDiagnosis.owl#"
     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
     xmlns:swrl="http://www.w3.org/2003/11/swrl#"
     xmlns:swrlb="http://www.w3.org/2003/11/swrlb#"
@@ -17,70 +16,42 @@
     <owl:imports rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/plugins/edu.stanford.smi.protegex.owl/BayesianDiagnosis.owl"/>
     <owl:imports rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/plugins/edu.stanford.smi.protegex.owl/Diagnosis.owl"/>
   </owl:Ontology>
-  <rdfs:Class rdf:about="http://www.pr-owl.org/pr-owl.owl#Node"/>
-  <owl:Class rdf:ID="ClientToRouter">
-    <rdfs:subClassOf>
-      <owl:Class rdf:ID="ConnectionFailure"/>
-    </rdfs:subClassOf>
-  </owl:Class>
   <owl:Class rdf:ID="ServerCPUFailure">
     <rdfs:subClassOf>
       <owl:Class rdf:ID="DeviceFailure"/>
     </rdfs:subClassOf>
   </owl:Class>
-  <owl:Class rdf:ID="KillProcess">
-    <rdfs:subClassOf rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/plugins/edu.stanford.smi.protegex.owl/Diagnosis.owl#HealingAction"/>
-    <rdfs:subClassOf>
-      <owl:Restriction>
-        <owl:onProperty>
-          <rdf:Property rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/plugins/edu.stanford.smi.protegex.owl/Diagnosis.owl#hasPrecondition"/>
-        </owl:onProperty>
-        <owl:valuesFrom>
-          <owl:Class rdf:ID="RequiredMinimumConfidenceCondition"/>
-        </owl:valuesFrom>
-        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
-        >1</owl:cardinality>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:ID="ConnectivityTestAction">
-    <rdfs:subClassOf rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/plugins/edu.stanford.smi.protegex.owl/Diagnosis.owl#TestAction"/>
-  </owl:Class>
   <owl:Class rdf:ID="RTPMonitoringAction">
     <rdfs:subClassOf rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/plugins/edu.stanford.smi.protegex.owl/Diagnosis.owl#MonitoringAction"/>
     <rdfs:subClassOf>
       <owl:Restriction>
+        <owl:onProperty rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/plugins/edu.stanford.smi.protegex.owl/Diagnosis.owl#hasPrecondition"/>
         <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
         >1</owl:cardinality>
-        <owl:onProperty rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/plugins/edu.stanford.smi.protegex.owl/Diagnosis.owl#hasPrecondition"/>
         <owl:valuesFrom>
           <owl:Class rdf:ID="RequiredStreamingSessionCondition"/>
         </owl:valuesFrom>
       </owl:Restriction>
     </rdfs:subClassOf>
   </owl:Class>
-  <owl:Class rdf:ID="RequiredDataCondition">
+  <owl:Class rdf:ID="IP">
+    <rdfs:subClassOf rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/plugins/edu.stanford.smi.protegex.owl/Diagnosis.owl#Variable"/>
+  </owl:Class>
+  <owl:Class rdf:ID="RequiredMinimumConfidenceCondition">
     <rdfs:subClassOf rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/plugins/edu.stanford.smi.protegex.owl/Diagnosis.owl#Condition"/>
   </owl:Class>
-  <owl:Class rdf:ID="UsageCPUTest">
+  <owl:Class rdf:ID="ClientToRouter">
     <rdfs:subClassOf>
-      <owl:Class rdf:ID="SystemTestAction"/>
+      <owl:Class rdf:ID="ConnectionFailure"/>
     </rdfs:subClassOf>
   </owl:Class>
-  <owl:Class rdf:about="#RequiredMinimumConfidenceCondition">
-    <rdfs:subClassOf rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/plugins/edu.stanford.smi.protegex.owl/Diagnosis.owl#Condition"/>
-  </owl:Class>
-  <owl:Class rdf:ID="UsageMemoryTest">
+  <owl:Class rdf:about="#ConnectionFailure">
+    <rdfs:subClassOf rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/plugins/edu.stanford.smi.protegex.owl/Diagnosis.owl#Failure"/>
     <rdfs:subClassOf>
-      <owl:Class rdf:about="#SystemTestAction"/>
-    </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:ID="PC">
-    <rdfs:subClassOf>
-      <rdf:Description rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/plugins/edu.stanford.smi.protegex.owl/Diagnosis.owl#Device">
-        <rdfs:subClassOf rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/plugins/edu.stanford.smi.protegex.owl/Diagnosis.owl#System"/>
-        <rdfs:subClassOf rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/plugins/edu.stanford.smi.protegex.owl/Diagnosis.owl#HardwareSystem"/>
-      </rdf:Description>
+      <owl:Restriction>
+        <owl:allValuesFrom rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/plugins/edu.stanford.smi.protegex.owl/Diagnosis.owl#Connection"/>
+        <owl:onProperty rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/plugins/edu.stanford.smi.protegex.owl/Diagnosis.owl#hasLocation"/>
+      </owl:Restriction>
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:ID="ServerMemoryFailure">
@@ -88,78 +59,207 @@
       <owl:Class rdf:about="#DeviceFailure"/>
     </rdfs:subClassOf>
   </owl:Class>
-  <owl:Class rdf:about="#RequiredStreamingSessionCondition">
-    <rdfs:subClassOf rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/plugins/edu.stanford.smi.protegex.owl/Diagnosis.owl#Condition"/>
+  <owl:Class rdf:ID="SmartPhone">
+    <rdfs:subClassOf rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/plugins/edu.stanford.smi.protegex.owl/Diagnosis.owl#Device"/>
   </owl:Class>
-  <owl:Class rdf:ID="RouterIP">
+  <owl:Class rdf:ID="UsageCPUTest">
     <rdfs:subClassOf>
-      <owl:Class rdf:ID="IP"/>
+      <owl:Class rdf:ID="SystemTestAction"/>
     </rdfs:subClassOf>
   </owl:Class>
-  <owl:Class rdf:ID="NetworkInterfaceRateTest">
+  <owl:Class rdf:ID="RouterIP">
+    <rdfs:subClassOf rdf:resource="#IP"/>
+  </owl:Class>
+  <owl:Class rdf:ID="KillProcess">
+    <rdfs:subClassOf rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/plugins/edu.stanford.smi.protegex.owl/Diagnosis.owl#HealingAction"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
+        >1</owl:cardinality>
+        <owl:onProperty rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/plugins/edu.stanford.smi.protegex.owl/Diagnosis.owl#hasPrecondition"/>
+        <owl:valuesFrom rdf:resource="#RequiredMinimumConfidenceCondition"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#DeviceFailure">
+    <rdfs:subClassOf rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/plugins/edu.stanford.smi.protegex.owl/Diagnosis.owl#Failure"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/plugins/edu.stanford.smi.protegex.owl/Diagnosis.owl#hasLocation"/>
+        <owl:allValuesFrom rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/plugins/edu.stanford.smi.protegex.owl/Diagnosis.owl#Device"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="RTPSession">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="Session"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="ConnectivityTestAction">
+    <rdfs:subClassOf rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/plugins/edu.stanford.smi.protegex.owl/Diagnosis.owl#TestAction"/>
+  </owl:Class>
+  <owl:Class rdf:ID="UsageMemoryTest">
     <rdfs:subClassOf>
       <owl:Class rdf:about="#SystemTestAction"/>
     </rdfs:subClassOf>
   </owl:Class>
-  <owl:Class rdf:about="#IP">
-    <rdfs:subClassOf rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/plugins/edu.stanford.smi.protegex.owl/Diagnosis.owl#Variable"/>
-  </owl:Class>
-  <owl:Class rdf:ID="Session"/>
-  <owl:Class rdf:ID="RTPSession">
-    <rdfs:subClassOf rdf:resource="#Session"/>
-  </owl:Class>
   <owl:Class rdf:about="#SystemTestAction">
     <rdfs:subClassOf rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/plugins/edu.stanford.smi.protegex.owl/Diagnosis.owl#TestAction"/>
-  </owl:Class>
-  <owl:Class rdf:ID="SmartPhone">
-    <rdfs:subClassOf rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/plugins/edu.stanford.smi.protegex.owl/Diagnosis.owl#Device"/>
   </owl:Class>
   <owl:Class rdf:ID="DetectedJitter">
     <rdfs:subClassOf rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/plugins/edu.stanford.smi.protegex.owl/Diagnosis.owl#Symptom"/>
   </owl:Class>
-  <owl:Class rdf:about="#DeviceFailure">
-    <rdfs:subClassOf rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/plugins/edu.stanford.smi.protegex.owl/Diagnosis.owl#Failure"/>
+  <owl:Class rdf:ID="PC">
+    <rdfs:subClassOf rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/plugins/edu.stanford.smi.protegex.owl/Diagnosis.owl#Device"/>
   </owl:Class>
-  <owl:Class rdf:ID="ClientAgent">
-    <rdfs:subClassOf rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/plugins/edu.stanford.smi.protegex.owl/Diagnosis.owl#Agent"/>
+  <owl:Class rdf:ID="NetworkInterfaceRateTest">
+    <rdfs:subClassOf rdf:resource="#SystemTestAction"/>
   </owl:Class>
-  <owl:Class rdf:about="#ConnectionFailure">
-    <rdfs:subClassOf rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/plugins/edu.stanford.smi.protegex.owl/Diagnosis.owl#Failure"/>
+  <owl:Class rdf:about="#RequiredStreamingSessionCondition">
+    <rdfs:subClassOf rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/plugins/edu.stanford.smi.protegex.owl/Diagnosis.owl#Condition"/>
+  </owl:Class>
+  <owl:Class rdf:ID="RequiredDataCondition">
+    <rdfs:subClassOf rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/plugins/edu.stanford.smi.protegex.owl/Diagnosis.owl#Condition"/>
   </owl:Class>
   <owl:ObjectProperty rdf:ID="hasServer">
     <rdfs:domain rdf:resource="#Session"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdfs:range rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/plugins/edu.stanford.smi.protegex.owl/Diagnosis.owl#SoftwareSystem"/>
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:ID="hasClient">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdfs:range rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/plugins/edu.stanford.smi.protegex.owl/Diagnosis.owl#SoftwareSystem"/>
     <rdfs:domain rdf:resource="#Session"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
   </owl:ObjectProperty>
-  <rdf:Property rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/plugins/edu.stanford.smi.protegex.owl/Diagnosis.owl#hasLocation"/>
-  <rdf:Property rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/plugins/edu.stanford.smi.protegex.owl/Diagnosis.owl#variableValue"/>
-  <rdf:Property rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/plugins/edu.stanford.smi.protegex.owl/Diagnosis.owl#possibleResults">
-    <rdfs:domain rdf:resource="#DetectedJitter"/>
-  </rdf:Property>
-  <rdf:Property rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/plugins/edu.stanford.smi.protegex.owl/Diagnosis.owl#id">
-    <rdfs:domain rdf:resource="#Session"/>
-  </rdf:Property>
-  <rdf:Property rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/plugins/edu.stanford.smi.protegex.owl/Diagnosis.owl#whenHasStarted">
-    <rdfs:domain rdf:resource="#Session"/>
-  </rdf:Property>
-  <rdf:Property rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/plugins/edu.stanford.smi.protegex.owl/Diagnosis.owl#whenHasFinished">
-    <rdfs:domain rdf:resource="#Session"/>
-  </rdf:Property>
-  <owl:DatatypeProperty rdf:ID="requiredDataType">
+  <owl:DatatypeProperty rdf:ID="threshold">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdfs:domain rdf:resource="#RequiredMinimumConfidenceCondition"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="requiredDataType">
     <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
     <rdfs:domain rdf:resource="#RequiredDataCondition"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
   </owl:DatatypeProperty>
-  <owl:FunctionalProperty rdf:ID="threshold">
-    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-    <rdfs:domain rdf:resource="#RequiredMinimumConfidenceCondition"/>
-  </owl:FunctionalProperty>
-  <swrl:Variable rdf:ID="varType"/>
-  <swrl:Imp rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/plugins/edu.stanford.smi.protegex.owl/Rule-RequiredMinimunConfidenceCondition">
+  <swrl:Imp rdf:about="Rule-RequiredMinimunConfidenceCondition">
+    <swrl:body>
+      <swrl:AtomList>
+        <rdf:first>
+          <swrl:ClassAtom>
+            <swrl:argument1>
+              <swrl:Variable rdf:about="action"/>
+            </swrl:argument1>
+            <swrl:classPredicate rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/plugins/edu.stanford.smi.protegex.owl/Diagnosis.owl#HealingAction"/>
+          </swrl:ClassAtom>
+        </rdf:first>
+        <rdf:rest>
+          <swrl:AtomList>
+            <rdf:rest>
+              <swrl:AtomList>
+                <rdf:rest>
+                  <swrl:AtomList>
+                    <rdf:rest>
+                      <swrl:AtomList>
+                        <rdf:first>
+                          <swrl:IndividualPropertyAtom>
+                            <swrl:propertyPredicate rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/plugins/edu.stanford.smi.protegex.owl/Diagnosis.owl#repairsFailure"/>
+                            <swrl:argument2>
+                              <swrl:Variable rdf:about="failure"/>
+                            </swrl:argument2>
+                            <swrl:argument1 rdf:resource="action"/>
+                          </swrl:IndividualPropertyAtom>
+                        </rdf:first>
+                        <rdf:rest>
+                          <swrl:AtomList>
+                            <rdf:rest>
+                              <swrl:AtomList>
+                                <rdf:rest>
+                                  <swrl:AtomList>
+                                    <rdf:rest>
+                                      <swrl:AtomList>
+                                        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                                        <rdf:first>
+                                          <swrl:BuiltinAtom>
+                                            <swrl:builtin rdf:resource="http://www.w3.org/2003/11/swrlb#greaterThanOrEqual"/>
+                                            <swrl:arguments>
+                                              <rdf:List>
+                                                <rdf:rest>
+                                                  <rdf:List>
+                                                    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                                                    <rdf:first>
+                                                      <swrl:Variable rdf:about="threshold"/>
+                                                    </rdf:first>
+                                                  </rdf:List>
+                                                </rdf:rest>
+                                                <rdf:first>
+                                                  <swrl:Variable rdf:about="conf"/>
+                                                </rdf:first>
+                                              </rdf:List>
+                                            </swrl:arguments>
+                                          </swrl:BuiltinAtom>
+                                        </rdf:first>
+                                      </swrl:AtomList>
+                                    </rdf:rest>
+                                    <rdf:first>
+                                      <swrl:DatavaluedPropertyAtom>
+                                        <swrl:propertyPredicate rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/plugins/edu.stanford.smi.protegex.owl/Diagnosis.owl#hypothesisConfidence"/>
+                                        <swrl:argument1>
+                                          <swrl:Variable rdf:about="hyp"/>
+                                        </swrl:argument1>
+                                        <swrl:argument2 rdf:resource="conf"/>
+                                      </swrl:DatavaluedPropertyAtom>
+                                    </rdf:first>
+                                  </swrl:AtomList>
+                                </rdf:rest>
+                                <rdf:first>
+                                  <swrl:IndividualPropertyAtom>
+                                    <swrl:propertyPredicate rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/plugins/edu.stanford.smi.protegex.owl/Diagnosis.owl#representsPossibleFailure"/>
+                                    <swrl:argument2 rdf:resource="failure"/>
+                                    <swrl:argument1 rdf:resource="hyp"/>
+                                  </swrl:IndividualPropertyAtom>
+                                </rdf:first>
+                              </swrl:AtomList>
+                            </rdf:rest>
+                            <rdf:first>
+                              <swrl:ClassAtom>
+                                <swrl:argument1 rdf:resource="hyp"/>
+                                <swrl:classPredicate rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/plugins/edu.stanford.smi.protegex.owl/Diagnosis.owl#Hypothesis"/>
+                              </swrl:ClassAtom>
+                            </rdf:first>
+                          </swrl:AtomList>
+                        </rdf:rest>
+                      </swrl:AtomList>
+                    </rdf:rest>
+                    <rdf:first>
+                      <swrl:DatavaluedPropertyAtom>
+                        <swrl:argument1>
+                          <swrl:Variable rdf:about="cond"/>
+                        </swrl:argument1>
+                        <swrl:argument2 rdf:resource="threshold"/>
+                        <swrl:propertyPredicate rdf:resource="#threshold"/>
+                      </swrl:DatavaluedPropertyAtom>
+                    </rdf:first>
+                  </swrl:AtomList>
+                </rdf:rest>
+                <rdf:first>
+                  <swrl:IndividualPropertyAtom>
+                    <swrl:propertyPredicate rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/plugins/edu.stanford.smi.protegex.owl/Diagnosis.owl#hasPrecondition"/>
+                    <swrl:argument2 rdf:resource="cond"/>
+                    <swrl:argument1 rdf:resource="action"/>
+                  </swrl:IndividualPropertyAtom>
+                </rdf:first>
+              </swrl:AtomList>
+            </rdf:rest>
+            <rdf:first>
+              <swrl:ClassAtom>
+                <swrl:argument1 rdf:resource="cond"/>
+                <swrl:classPredicate rdf:resource="#RequiredMinimumConfidenceCondition"/>
+              </swrl:ClassAtom>
+            </rdf:first>
+          </swrl:AtomList>
+        </rdf:rest>
+      </swrl:AtomList>
+    </swrl:body>
     <swrl:head>
       <swrl:AtomList>
         <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
@@ -167,32 +267,84 @@
           <swrl:DatavaluedPropertyAtom>
             <swrl:argument2 rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean"
             >true</swrl:argument2>
-            <swrl:argument1>
-              <swrl:Variable rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/plugins/edu.stanford.smi.protegex.owl/cond"/>
-            </swrl:argument1>
+            <swrl:argument1 rdf:resource="cond"/>
+            <swrl:propertyPredicate rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/plugins/edu.stanford.smi.protegex.owl/Diagnosis.owl#satisfied"/>
+          </swrl:DatavaluedPropertyAtom>
+        </rdf:first>
+      </swrl:AtomList>
+    </swrl:head>
+  </swrl:Imp>
+  <rdf:Description rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/plugins/edu.stanford.smi.protegex.owl/Diagnosis.owl#possibleResults">
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <rdf:Description rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/plugins/edu.stanford.smi.protegex.owl/Diagnosis.owl#TestAction"/>
+          <owl:Class rdf:about="#DetectedJitter"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/plugins/edu.stanford.smi.protegex.owl/Diagnosis.owl#whenHasStarted">
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <rdf:Description rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/plugins/edu.stanford.smi.protegex.owl/Diagnosis.owl#Diagnosis"/>
+          <owl:Class rdf:about="#Session"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/plugins/edu.stanford.smi.protegex.owl/Diagnosis.owl#whenHasFinished">
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <rdf:Description rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/plugins/edu.stanford.smi.protegex.owl/Diagnosis.owl#Diagnosis"/>
+          <owl:Class rdf:about="#Session"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/plugins/edu.stanford.smi.protegex.owl/Diagnosis.owl#id">
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <rdf:Description rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/plugins/edu.stanford.smi.protegex.owl/Diagnosis.owl#Actor"/>
+          <rdf:Description rdf:about="http://www.pr-owl.org/pr-owl.owl#Node"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+  </rdf:Description>
+  <swrl:Imp rdf:about="Rule-RequiredDataCondition">
+    <swrl:head>
+      <swrl:AtomList>
+        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+        <rdf:first>
+          <swrl:DatavaluedPropertyAtom>
+            <swrl:propertyPredicate rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/plugins/edu.stanford.smi.protegex.owl/Diagnosis.owl#satisfied"/>
+            <swrl:argument2 rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean"
+            >true</swrl:argument2>
+            <swrl:argument1 rdf:resource="cond"/>
           </swrl:DatavaluedPropertyAtom>
         </rdf:first>
       </swrl:AtomList>
     </swrl:head>
     <swrl:body>
       <swrl:AtomList>
+        <rdf:first>
+          <swrl:ClassAtom>
+            <swrl:classPredicate rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/plugins/edu.stanford.smi.protegex.owl/Diagnosis.owl#Action"/>
+            <swrl:argument1 rdf:resource="action"/>
+          </swrl:ClassAtom>
+        </rdf:first>
         <rdf:rest>
           <swrl:AtomList>
-            <rdf:first>
-              <swrl:ClassAtom>
-                <swrl:argument1 rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/plugins/edu.stanford.smi.protegex.owl/cond"/>
-                <swrl:classPredicate rdf:resource="#RequiredMinimumConfidenceCondition"/>
-              </swrl:ClassAtom>
-            </rdf:first>
             <rdf:rest>
               <swrl:AtomList>
                 <rdf:first>
                   <swrl:IndividualPropertyAtom>
                     <swrl:propertyPredicate rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/plugins/edu.stanford.smi.protegex.owl/Diagnosis.owl#hasPrecondition"/>
-                    <swrl:argument1>
-                      <swrl:Variable rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/plugins/edu.stanford.smi.protegex.owl/action"/>
-                    </swrl:argument1>
-                    <swrl:argument2 rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/plugins/edu.stanford.smi.protegex.owl/cond"/>
+                    <swrl:argument2 rdf:resource="cond"/>
+                    <swrl:argument1 rdf:resource="action"/>
                   </swrl:IndividualPropertyAtom>
                 </rdf:first>
                 <rdf:rest>
@@ -200,65 +352,45 @@
                     <rdf:rest>
                       <swrl:AtomList>
                         <rdf:first>
-                          <swrl:IndividualPropertyAtom>
-                            <swrl:argument2>
-                              <swrl:Variable rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/plugins/edu.stanford.smi.protegex.owl/failure"/>
-                            </swrl:argument2>
-                            <swrl:argument1 rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/plugins/edu.stanford.smi.protegex.owl/action"/>
-                          </swrl:IndividualPropertyAtom>
+                          <swrl:ClassAtom>
+                            <swrl:argument1>
+                              <swrl:Variable rdf:about="var"/>
+                            </swrl:argument1>
+                            <swrl:classPredicate rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/plugins/edu.stanford.smi.protegex.owl/Diagnosis.owl#Variable"/>
+                          </swrl:ClassAtom>
                         </rdf:first>
                         <rdf:rest>
                           <swrl:AtomList>
                             <rdf:first>
-                              <swrl:ClassAtom>
-                                <swrl:argument1>
-                                  <swrl:Variable rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/plugins/edu.stanford.smi.protegex.owl/hyp"/>
-                                </swrl:argument1>
-                              </swrl:ClassAtom>
+                              <swrl:DatavaluedPropertyAtom>
+                                <swrl:propertyPredicate rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/plugins/edu.stanford.smi.protegex.owl/Diagnosis.owl#variableType"/>
+                                <swrl:argument1 rdf:resource="var"/>
+                                <swrl:argument2>
+                                  <swrl:Variable rdf:about="varType"/>
+                                </swrl:argument2>
+                              </swrl:DatavaluedPropertyAtom>
                             </rdf:first>
                             <rdf:rest>
                               <swrl:AtomList>
-                                <rdf:rest>
-                                  <swrl:AtomList>
-                                    <rdf:first>
-                                      <swrl:DatavaluedPropertyAtom>
-                                        <swrl:argument1 rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/plugins/edu.stanford.smi.protegex.owl/hyp"/>
-                                        <swrl:argument2>
-                                          <swrl:Variable rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/plugins/edu.stanford.smi.protegex.owl/conf"/>
-                                        </swrl:argument2>
-                                      </swrl:DatavaluedPropertyAtom>
-                                    </rdf:first>
-                                    <rdf:rest>
-                                      <swrl:AtomList>
-                                        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
-                                        <rdf:first>
-                                          <swrl:BuiltinAtom>
-                                            <swrl:arguments>
-                                              <rdf:List>
-                                                <rdf:rest>
-                                                  <rdf:List>
-                                                    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
-                                                    <rdf:first>
-                                                      <swrl:Variable rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/plugins/edu.stanford.smi.protegex.owl/threshold"/>
-                                                    </rdf:first>
-                                                  </rdf:List>
-                                                </rdf:rest>
-                                                <rdf:first rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/plugins/edu.stanford.smi.protegex.owl/conf"/>
-                                              </rdf:List>
-                                            </swrl:arguments>
-                                            <swrl:builtin rdf:resource="http://www.w3.org/2003/11/swrlb#greaterThanOrEqual"/>
-                                          </swrl:BuiltinAtom>
-                                        </rdf:first>
-                                      </swrl:AtomList>
-                                    </rdf:rest>
-                                  </swrl:AtomList>
-                                </rdf:rest>
                                 <rdf:first>
-                                  <swrl:IndividualPropertyAtom>
-                                    <swrl:argument1 rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/plugins/edu.stanford.smi.protegex.owl/hyp"/>
-                                    <swrl:argument2 rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/plugins/edu.stanford.smi.protegex.owl/failure"/>
-                                  </swrl:IndividualPropertyAtom>
+                                  <swrl:BuiltinAtom>
+                                    <swrl:arguments>
+                                      <rdf:List>
+                                        <rdf:rest>
+                                          <rdf:List>
+                                            <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                                            <rdf:first>
+                                              <swrl:Variable rdf:about="reqType"/>
+                                            </rdf:first>
+                                          </rdf:List>
+                                        </rdf:rest>
+                                        <rdf:first rdf:resource="varType"/>
+                                      </rdf:List>
+                                    </swrl:arguments>
+                                    <swrl:builtin rdf:resource="http://sqwrl.stanford.edu/ontologies/built-ins/3.4/sqwrl.owl#equal"/>
+                                  </swrl:BuiltinAtom>
                                 </rdf:first>
+                                <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
                               </swrl:AtomList>
                             </rdf:rest>
                           </swrl:AtomList>
@@ -267,98 +399,110 @@
                     </rdf:rest>
                     <rdf:first>
                       <swrl:DatavaluedPropertyAtom>
-                        <swrl:argument1 rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/plugins/edu.stanford.smi.protegex.owl/cond"/>
-                        <swrl:propertyPredicate rdf:resource="#threshold"/>
-                        <swrl:argument2 rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/plugins/edu.stanford.smi.protegex.owl/threshold"/>
+                        <swrl:argument1 rdf:resource="cond"/>
+                        <swrl:argument2 rdf:resource="reqType"/>
+                        <swrl:propertyPredicate rdf:resource="#requiredDataType"/>
                       </swrl:DatavaluedPropertyAtom>
                     </rdf:first>
                   </swrl:AtomList>
                 </rdf:rest>
               </swrl:AtomList>
             </rdf:rest>
+            <rdf:first>
+              <swrl:ClassAtom>
+                <swrl:argument1 rdf:resource="cond"/>
+                <swrl:classPredicate rdf:resource="#RequiredDataCondition"/>
+              </swrl:ClassAtom>
+            </rdf:first>
           </swrl:AtomList>
         </rdf:rest>
-        <rdf:first>
-          <swrl:ClassAtom>
-            <swrl:argument1 rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/plugins/edu.stanford.smi.protegex.owl/action"/>
-          </swrl:ClassAtom>
-        </rdf:first>
       </swrl:AtomList>
     </swrl:body>
   </swrl:Imp>
-  <swrl:Variable rdf:ID="id"/>
-  <owl:DataRange>
-    <owl:oneOf rdf:parseType="Resource">
-      <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-      >VERDE</rdf:first>
-      <rdf:rest rdf:parseType="Resource">
-        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
-        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-        >ROJO</rdf:first>
-      </rdf:rest>
-    </owl:oneOf>
-  </owl:DataRange>
-  <swrl:Variable rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/plugins/edu.stanford.smi.protegex.owl/value"/>
-  <swrl:Imp rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/plugins/edu.stanford.smi.protegex.owl/Rule-RequiredStreamingSessionCondition">
-    <swrl:body>
+  <rdf:Description rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/plugins/edu.stanford.smi.protegex.owl/Diagnosis.owl#variableValue">
+    <rdfs:domain rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/plugins/edu.stanford.smi.protegex.owl/Diagnosis.owl#Variable"/>
+  </rdf:Description>
+  <swrl:Imp rdf:about="Rule-RequiredStreamingSessionCondition">
+    <swrl:head>
       <swrl:AtomList>
         <rdf:first>
-          <swrl:ClassAtom>
-            <swrl:classPredicate rdf:resource="#RTPMonitoringAction"/>
-            <swrl:argument1 rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/plugins/edu.stanford.smi.protegex.owl/action"/>
-          </swrl:ClassAtom>
+          <swrl:DatavaluedPropertyAtom>
+            <swrl:argument1>
+              <swrl:Variable rdf:about="condition"/>
+            </swrl:argument1>
+            <swrl:argument2 rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean"
+            >true</swrl:argument2>
+            <swrl:propertyPredicate rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/plugins/edu.stanford.smi.protegex.owl/Diagnosis.owl#satisfied"/>
+          </swrl:DatavaluedPropertyAtom>
         </rdf:first>
+        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+      </swrl:AtomList>
+    </swrl:head>
+    <swrl:body>
+      <swrl:AtomList>
         <rdf:rest>
           <swrl:AtomList>
-            <rdf:first>
-              <swrl:IndividualPropertyAtom>
-                <swrl:propertyPredicate rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/plugins/edu.stanford.smi.protegex.owl/Diagnosis.owl#hasPrecondition"/>
-                <swrl:argument1 rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/plugins/edu.stanford.smi.protegex.owl/action"/>
-                <swrl:argument2>
-                  <swrl:Variable rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/plugins/edu.stanford.smi.protegex.owl/condition"/>
-                </swrl:argument2>
-              </swrl:IndividualPropertyAtom>
-            </rdf:first>
             <rdf:rest>
               <swrl:AtomList>
+                <rdf:first>
+                  <swrl:ClassAtom>
+                    <swrl:argument1 rdf:resource="condition"/>
+                    <swrl:classPredicate rdf:resource="#RequiredStreamingSessionCondition"/>
+                  </swrl:ClassAtom>
+                </rdf:first>
                 <rdf:rest>
                   <swrl:AtomList>
                     <rdf:first>
                       <swrl:ClassAtom>
-                        <swrl:argument1>
-                          <swrl:Variable rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/plugins/edu.stanford.smi.protegex.owl/session"/>
-                        </swrl:argument1>
                         <swrl:classPredicate rdf:resource="#RTPSession"/>
+                        <swrl:argument1>
+                          <swrl:Variable rdf:about="session"/>
+                        </swrl:argument1>
                       </swrl:ClassAtom>
                     </rdf:first>
                     <rdf:rest>
                       <swrl:AtomList>
                         <rdf:first>
                           <swrl:DatavaluedPropertyAtom>
+                            <swrl:propertyPredicate>
+                              <rdf:Description rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/plugins/edu.stanford.smi.protegex.owl/Diagnosis.owl#status">
+                                <rdfs:domain>
+                                  <owl:Class>
+                                    <owl:unionOf rdf:parseType="Collection">
+                                      <rdf:Description rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/plugins/edu.stanford.smi.protegex.owl/Diagnosis.owl#Diagnosis"/>
+                                      <owl:Class rdf:about="#Session"/>
+                                    </owl:unionOf>
+                                  </owl:Class>
+                                </rdfs:domain>
+                              </rdf:Description>
+                            </swrl:propertyPredicate>
                             <swrl:argument2 rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
                             >Started</swrl:argument2>
-                            <swrl:argument1 rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/plugins/edu.stanford.smi.protegex.owl/session"/>
+                            <swrl:argument1 rdf:resource="session"/>
                           </swrl:DatavaluedPropertyAtom>
                         </rdf:first>
                         <rdf:rest>
                           <swrl:AtomList>
-                            <rdf:first>
-                              <swrl:IndividualPropertyAtom>
-                                <swrl:propertyPredicate rdf:resource="#hasClient"/>
-                                <swrl:argument2>
-                                  <swrl:Variable rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/plugins/edu.stanford.smi.protegex.owl/myClientSystem"/>
-                                </swrl:argument2>
-                                <swrl:argument1 rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/plugins/edu.stanford.smi.protegex.owl/session"/>
-                              </swrl:IndividualPropertyAtom>
-                            </rdf:first>
                             <rdf:rest>
                               <swrl:AtomList>
+                                <rdf:first>
+                                  <swrl:IndividualPropertyAtom>
+                                    <swrl:propertyPredicate rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/plugins/edu.stanford.smi.protegex.owl/Diagnosis.owl#isPartOf"/>
+                                    <swrl:argument2>
+                                      <swrl:Variable rdf:about="myClientSystem"/>
+                                    </swrl:argument2>
+                                    <swrl:argument1>
+                                      <swrl:Variable rdf:about="myDevice"/>
+                                    </swrl:argument1>
+                                  </swrl:IndividualPropertyAtom>
+                                </rdf:first>
                                 <rdf:rest>
                                   <swrl:AtomList>
                                     <rdf:first>
                                       <swrl:ClassAtom>
+                                        <swrl:classPredicate rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/plugins/edu.stanford.smi.protegex.owl/Diagnosis.owl#Agent"/>
                                         <swrl:argument1>
-                                          <swrl:Variable rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/plugins/edu.stanford.smi.protegex.owl/agent"/>
+                                          <swrl:Variable rdf:about="agent"/>
                                         </swrl:argument1>
                                       </swrl:ClassAtom>
                                     </rdf:first>
@@ -369,163 +513,58 @@
                                             <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
                                             <rdf:first>
                                               <swrl:IndividualPropertyAtom>
-                                                <swrl:argument2 rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/plugins/edu.stanford.smi.protegex.owl/action"/>
-                                                <swrl:argument1 rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/plugins/edu.stanford.smi.protegex.owl/agent"/>
+                                                <swrl:propertyPredicate rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/plugins/edu.stanford.smi.protegex.owl/Diagnosis.owl#canPerform"/>
+                                                <swrl:argument2 rdf:resource="action"/>
+                                                <swrl:argument1 rdf:resource="agent"/>
                                               </swrl:IndividualPropertyAtom>
                                             </rdf:first>
                                           </swrl:AtomList>
                                         </rdf:rest>
                                         <rdf:first>
                                           <swrl:IndividualPropertyAtom>
-                                            <swrl:argument1 rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/plugins/edu.stanford.smi.protegex.owl/agent"/>
-                                            <swrl:argument2>
-                                              <swrl:Variable rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/plugins/edu.stanford.smi.protegex.owl/myDevice"/>
-                                            </swrl:argument2>
+                                            <swrl:argument2 rdf:resource="myDevice"/>
+                                            <swrl:argument1 rdf:resource="agent"/>
+                                            <swrl:propertyPredicate rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/plugins/edu.stanford.smi.protegex.owl/Diagnosis.owl#isExecutingIn"/>
                                           </swrl:IndividualPropertyAtom>
                                         </rdf:first>
                                       </swrl:AtomList>
                                     </rdf:rest>
                                   </swrl:AtomList>
                                 </rdf:rest>
-                                <rdf:first>
-                                  <swrl:IndividualPropertyAtom>
-                                    <swrl:argument2 rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/plugins/edu.stanford.smi.protegex.owl/myClientSystem"/>
-                                    <swrl:argument1 rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/plugins/edu.stanford.smi.protegex.owl/myDevice"/>
-                                  </swrl:IndividualPropertyAtom>
-                                </rdf:first>
                               </swrl:AtomList>
                             </rdf:rest>
-                          </swrl:AtomList>
-                        </rdf:rest>
-                      </swrl:AtomList>
-                    </rdf:rest>
-                  </swrl:AtomList>
-                </rdf:rest>
-                <rdf:first>
-                  <swrl:ClassAtom>
-                    <swrl:argument1 rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/plugins/edu.stanford.smi.protegex.owl/condition"/>
-                    <swrl:classPredicate rdf:resource="#RequiredStreamingSessionCondition"/>
-                  </swrl:ClassAtom>
-                </rdf:first>
-              </swrl:AtomList>
-            </rdf:rest>
-          </swrl:AtomList>
-        </rdf:rest>
-      </swrl:AtomList>
-    </swrl:body>
-    <swrl:head>
-      <swrl:AtomList>
-        <rdf:first>
-          <swrl:DatavaluedPropertyAtom>
-            <swrl:argument2 rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean"
-            >true</swrl:argument2>
-            <swrl:argument1 rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/plugins/edu.stanford.smi.protegex.owl/condition"/>
-          </swrl:DatavaluedPropertyAtom>
-        </rdf:first>
-        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
-      </swrl:AtomList>
-    </swrl:head>
-  </swrl:Imp>
-  <swrl:Imp rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/plugins/edu.stanford.smi.protegex.owl/Rule-RequiredDataCondition">
-    <swrl:body>
-      <swrl:AtomList>
-        <rdf:rest>
-          <swrl:AtomList>
-            <rdf:first>
-              <swrl:ClassAtom>
-                <swrl:classPredicate rdf:resource="#RequiredDataCondition"/>
-                <swrl:argument1 rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/plugins/edu.stanford.smi.protegex.owl/cond"/>
-              </swrl:ClassAtom>
-            </rdf:first>
-            <rdf:rest>
-              <swrl:AtomList>
-                <rdf:first>
-                  <swrl:IndividualPropertyAtom>
-                    <swrl:argument1 rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/plugins/edu.stanford.smi.protegex.owl/action"/>
-                    <swrl:argument2 rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/plugins/edu.stanford.smi.protegex.owl/cond"/>
-                    <swrl:propertyPredicate rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/plugins/edu.stanford.smi.protegex.owl/Diagnosis.owl#hasPrecondition"/>
-                  </swrl:IndividualPropertyAtom>
-                </rdf:first>
-                <rdf:rest>
-                  <swrl:AtomList>
-                    <rdf:rest>
-                      <swrl:AtomList>
-                        <rdf:first>
-                          <swrl:ClassAtom>
-                            <swrl:argument1>
-                              <swrl:Variable rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/plugins/edu.stanford.smi.protegex.owl/var"/>
-                            </swrl:argument1>
-                          </swrl:ClassAtom>
-                        </rdf:first>
-                        <rdf:rest>
-                          <swrl:AtomList>
                             <rdf:first>
-                              <swrl:DatavaluedPropertyAtom>
-                                <swrl:argument2>
-                                  <swrl:Variable rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/plugins/edu.stanford.smi.protegex.owl/varType"/>
-                                </swrl:argument2>
-                                <swrl:argument1 rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/plugins/edu.stanford.smi.protegex.owl/var"/>
-                              </swrl:DatavaluedPropertyAtom>
+                              <swrl:IndividualPropertyAtom>
+                                <swrl:propertyPredicate rdf:resource="#hasClient"/>
+                                <swrl:argument2 rdf:resource="myClientSystem"/>
+                                <swrl:argument1 rdf:resource="session"/>
+                              </swrl:IndividualPropertyAtom>
                             </rdf:first>
-                            <rdf:rest>
-                              <swrl:AtomList>
-                                <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
-                                <rdf:first>
-                                  <swrl:BuiltinAtom>
-                                    <swrl:arguments>
-                                      <rdf:List>
-                                        <rdf:first rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/plugins/edu.stanford.smi.protegex.owl/varType"/>
-                                        <rdf:rest>
-                                          <rdf:List>
-                                            <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
-                                            <rdf:first>
-                                              <swrl:Variable rdf:about="http://starfire.googlecode.com/svn/trunk/starfire/plugins/edu.stanford.smi.protegex.owl/reqType"/>
-                                            </rdf:first>
-                                          </rdf:List>
-                                        </rdf:rest>
-                                      </rdf:List>
-                                    </swrl:arguments>
-                                    <swrl:builtin rdf:resource="http://sqwrl.stanford.edu/ontologies/built-ins/3.4/sqwrl.owl#equal"/>
-                                  </swrl:BuiltinAtom>
-                                </rdf:first>
-                              </swrl:AtomList>
-                            </rdf:rest>
                           </swrl:AtomList>
                         </rdf:rest>
                       </swrl:AtomList>
                     </rdf:rest>
-                    <rdf:first>
-                      <swrl:DatavaluedPropertyAtom>
-                        <swrl:argument1 rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/plugins/edu.stanford.smi.protegex.owl/cond"/>
-                        <swrl:argument2 rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/plugins/edu.stanford.smi.protegex.owl/reqType"/>
-                        <swrl:propertyPredicate rdf:resource="#requiredDataType"/>
-                      </swrl:DatavaluedPropertyAtom>
-                    </rdf:first>
                   </swrl:AtomList>
                 </rdf:rest>
               </swrl:AtomList>
             </rdf:rest>
+            <rdf:first>
+              <swrl:IndividualPropertyAtom>
+                <swrl:argument1 rdf:resource="action"/>
+                <swrl:argument2 rdf:resource="condition"/>
+                <swrl:propertyPredicate rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/plugins/edu.stanford.smi.protegex.owl/Diagnosis.owl#hasPrecondition"/>
+              </swrl:IndividualPropertyAtom>
+            </rdf:first>
           </swrl:AtomList>
         </rdf:rest>
         <rdf:first>
           <swrl:ClassAtom>
-            <swrl:argument1 rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/plugins/edu.stanford.smi.protegex.owl/action"/>
+            <swrl:argument1 rdf:resource="action"/>
+            <swrl:classPredicate rdf:resource="#RTPMonitoringAction"/>
           </swrl:ClassAtom>
         </rdf:first>
       </swrl:AtomList>
     </swrl:body>
-    <swrl:head>
-      <swrl:AtomList>
-        <rdf:first>
-          <swrl:DatavaluedPropertyAtom>
-            <swrl:argument1 rdf:resource="http://starfire.googlecode.com/svn/trunk/starfire/plugins/edu.stanford.smi.protegex.owl/cond"/>
-            <swrl:argument2 rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean"
-            >true</swrl:argument2>
-          </swrl:DatavaluedPropertyAtom>
-        </rdf:first>
-        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
-      </swrl:AtomList>
-    </swrl:head>
   </swrl:Imp>
 </rdf:RDF>
 
