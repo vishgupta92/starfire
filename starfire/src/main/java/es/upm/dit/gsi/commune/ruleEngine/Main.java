@@ -1,9 +1,7 @@
-package ruleEngine;
+package es.upm.dit.gsi.commune.ruleEngine;
 
 import java.io.File;
 import java.io.FileReader;
-
-import org.drools.reteoo.Rete;
 
 import edu.stanford.smi.protegex.owl.ProtegeOWL;
 import edu.stanford.smi.protegex.owl.model.OWLModel;
