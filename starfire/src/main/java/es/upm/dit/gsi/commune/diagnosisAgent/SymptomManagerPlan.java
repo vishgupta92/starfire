@@ -1,6 +1,8 @@
 package es.upm.dit.gsi.commune.diagnosisAgent;
 
+import edu.stanford.smi.protegex.owl.model.OWLModel;
 import javaOntology.Diagnosis;
+import javaOntology.MyFactory;
 import javaOntology.Symptom;
 import jadex.bdi.runtime.Plan;
 
@@ -27,6 +29,16 @@ public class SymptomManagerPlan extends Plan {
 		
 		//Actualiza la ontología con el nuevo diagnóstico y el síntoma recibido
 		updateOntology(diagnosis,symptom);
+		
+		//Crear los individuos de todas las acciones
+		OWLModel owlModel = (OWLModel) getBeliefbase().getBelief("ontology").getFact();
+		MyFactory myFactory = new MyFactory(owlModel);		
+		
+		myFactory.createRTPMonitoringAction(name);
+		myFactory.createConnectivityTestAction(name);
+		myFactory.createNetworkInterfaceRateTest(name);
+		myFactory.createUsageCPUTest(name);
+		myFactory.createUsageMemoryTest(name);
 
 		//Lanza DiagnosisLoopPlan
 		throwDiagnosisLoopPlan();
