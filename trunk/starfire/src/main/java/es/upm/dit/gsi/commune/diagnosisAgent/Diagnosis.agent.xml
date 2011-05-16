@@ -30,9 +30,9 @@
 		<!-- Belief con el modelo, la ontología -->
 		<belief name="ontology" class="OWLModel"/>	
 		<!-- Belief con el ArrayList de nodos obervación -->
-		<belief name="observation_nodes" class="ArrayList"/> <!-- Poner ArraylistObservation -->
+<!--		<belief name="observation_nodes" class="ArrayList"/>  Poner ArraylistObservation -->
 		<!-- Belief con el ArrayList de nodos hipótesis -->
-		<belief name="hypothesis_nodes" class="ArrayList"/> <!-- Poner ArraylistHypothesis -->
+<!--		<belief name="hypothesis_nodes" class="ArrayList"/>  Poner ArraylistHypothesis -->
 	
 	
 		<belief name="evidences" class="HashMap">
@@ -84,26 +84,29 @@
 		<!-- Passive plan for executing the diagnosis loop.
 			Reacts when the diagnosis goal is thrown. -->
 		<plan name="make_diagnosis_loop">
+			<parameter name="hypothesesTargetState" class="String">
+				<value>"YES"</value>
+			</parameter>
 			<body class="DiagnosisLoopPlan"/>
 			<trigger>
 				<goal ref="make_diagnosis_loop_goal"/>
 			</trigger>
 		</plan>
-		<plan name="reason">
-			<parameter name="observations" class="HashMap">
-				<value>$beliefbase.evidences</value>
-			</parameter>
-			<parameter name="hypothesesSet" class="HashMap">
-				<value>$beliefbase.hypotheses</value>
-			</parameter>
-			<parameter name="hypothesesTargetState" class="String">
-				<value>"YES"</value>
-			</parameter>
-			<body class="ReasonerPlan" />
-		  	<trigger>
-				<goal ref="perform_inference" />
-			</trigger>
-		</plan>	
+<!--		<plan name="reason">-->
+<!--			<parameter name="hypothesesTargetState" class="String">-->
+<!--				<value>"YES"</value>-->
+<!--			</parameter>-->
+<!--			<parameter name="observations" class="HashMap">-->
+<!--				<value>$beliefbase.evidences</value>-->
+<!--			</parameter>-->
+<!--			<parameter name="hypothesesSet" class="HashMap">-->
+<!--				<value>$beliefbase.hypotheses</value>-->
+<!--			</parameter>-->
+<!--			<body class="ReasonerPlan" />-->
+<!--		  	<trigger>-->
+<!--				<goal ref="perform_inference" />-->
+<!--			</trigger>-->
+<!--		</plan>	-->
 	</plans>
 	
 	<events>
