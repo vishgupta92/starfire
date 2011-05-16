@@ -5,4 +5,42 @@
   <version>0.0.1-SNAPSHOT</version>
   <name>StarFire</name>
   <description>Diagnosis Framework with Multi-Agent Systems</description>
+  <dependencies>
+  
+  	<dependency>
+  		<groupId>net.sourceforge.jadex</groupId>
+  		<artifactId>jadex-platform-standalone</artifactId>
+  		<version>2.0-rc6</version>
+  		<type>jar</type>
+  		<scope>compile</scope>
+  	</dependency>
+  	<dependency>
+  		<groupId>net.sourceforge.jadex</groupId>
+  		<artifactId>jadex-runtimetools</artifactId>
+  		<version>2.0-rc6</version>
+  		<type>jar</type>
+  		<scope>compile</scope>
+  	</dependency>
+  	<dependency>
+  		<groupId>net.sourceforge.jadex</groupId>
+  		<artifactId>jadex-kernel-micro</artifactId>
+  		<version>2.0-rc6</version>
+  		<type>jar</type>
+  		<scope>compile</scope>
+  	</dependency>
+  	<dependency>
+  		<groupId>net.sourceforge.jadex</groupId>
+  		<artifactId>jadex-kernel-bdibpmn</artifactId>
+  		<version>2.0-rc6</version>
+  		<type>jar</type>
+  		<scope>compile</scope>
+  	</dependency>
+  	<dependency>
+  		<groupId>es.upm.dit.gsi.commune</groupId>
+  		<artifactId>communeOntology</artifactId>
+  		<version>0.0.1-SNAPSHOT</version>
+  		<scope>compile</scope>
+  	</dependency>
+  
+  </dependencies>
 </project>

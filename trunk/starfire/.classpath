@@ -42,5 +42,6 @@
 	<classpathentry kind="lib" path="C:/Program Files/Protege_3.4.6/plugins/edu.stanford.smi.protegex.owl/xml-apis.jar"/>
 	<classpathentry kind="lib" path="I:/FINDE-beca/Jess71p2/lib/jess.jar"/>
 	<classpathentry kind="lib" path="I:/FINDE-beca/Jess71p2/lib/jsr94.jar"/>
+	<classpathentry kind="lib" path="I:/BECA_LSINT/unbbayes-4.0.0.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
