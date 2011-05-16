@@ -56,7 +56,7 @@ public class DiagnosisLoopPlan extends Plan {
 	
 				//Aplica algoritmo "CDF distance". Media de todas las combinaciones de las distribuciones de probabilidad de un nodo.
 				//Devuelve un HashMap con <ObservationNode, expectedBenefit>
-				HashMap<ObservationNode,Float> expectedBenefits = applyCDFAlgorithm(hypothesis);	//Lo hace Jaime
+				HashMap<ProbabilisticNode,Double> expectedBenefits = calculateNodeCDFs(new ProbabilisticNode());	//ProbalNode de la Hypothesis //Lo hace Jaime
 			
 				//Actualiza el parámetro de las acciones de test "expectedBenefit" dentro de la belief ontología meterlo en el
 				updateExpectedBenefit(expectedBenefits);
@@ -216,27 +216,13 @@ public class DiagnosisLoopPlan extends Plan {
 		return moreLikelyHypothesis;
 	}
 	
-	private HashMap<ObservationNode, Float> applyCDFAlgorithm(Hypothesis hypothesis) {
-		List<Node> nodeList = this.net.getNodes();
-		
-		Failure failure = hypothesis.getRepresentsPossibleFailure();
-		Class c = failure.getClass();
-		String className = c.toString();
-		
-		ProbabilisticNode node = (ProbabilisticNode) net.getNode(className); 
-		
-		calculateNodeCDFs(node);
-		
-		return null;
-	}
-	
 	/**
 	 * calculateNodeCDFs: Calculates the node cdf
 	 * 
 	 * @param node
 	 * @return Returns a hashmap with the parents nodes and the correspondent cdf value
 	 */
-	private HashMap<ProbabilisticNode, Double> calculateNodeCDFs(ProbabilisticNode node){
+	private HashMap<ProbabilisticNode,Double> calculateNodeCDFs(ProbabilisticNode node){
 		System.out.println("--------------------> Calculate CDF for node: "+node.getName());
 		PotentialTable table = node.getProbabilityFunction();
 		HashMap<ProbabilisticNode, Double> cdfHashMap = new HashMap<ProbabilisticNode, Double>();
@@ -369,28 +355,28 @@ public class DiagnosisLoopPlan extends Plan {
 
 	}
 	
-	private void updateExpectedBenefit(HashMap<ObservationNode, Float> expectedBenefits) {
-		Set<ObservationNode> observationNodes = expectedBenefits.keySet();
+	private void updateExpectedBenefit(HashMap<ProbabilisticNode,Double> expectedBenefits) {
+		Set<ProbabilisticNode> probabilisticNodes = expectedBenefits.keySet();
 		Set<Observation> observations = myFactory.getAllObservationInstances();
 		Set<TestAction> testActions = myFactory.getAllTestActionInstances();
 		
-		for(ObservationNode on: observationNodes) {
-			
-			Observation observation = null;
-			
-			for(Observation o: observations) {
-				if(o.getHasBayesianObservation().equals(on)) {
-					observation = o;
-				}
-			}
-			
-			for(TestAction ta: testActions) {
-				if(ta.) {
-					
-				}
-			}
-			
-		}
+//		for(ProbabilisticNode on: probabilisticNodes) {
+//			
+//			Observation observation = null;
+//			
+//			for(Observation o: observations) {
+//				if(o.getHasBayesianObservation().equals(on)) {
+//					observation = o;
+//				}
+//			}
+//			
+//			for(TestAction ta: testActions) {
+//				if(ta.) {
+//					
+//				}
+//			}
+//			
+//		}
 	}
 	
 	private void evaluateConditions() {
