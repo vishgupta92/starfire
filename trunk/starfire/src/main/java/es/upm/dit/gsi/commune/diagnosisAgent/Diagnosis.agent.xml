@@ -35,16 +35,16 @@
 <!--		<belief name="hypothesis_nodes" class="ArrayList"/>  Poner ArraylistHypothesis -->
 	
 	
-		<belief name="evidences" class="HashMap">
-			<fact>
-				new HashMap()
-			</fact>
-		</belief>
-		<belief name="hypotheses" class="HashMap">
-			<fact>
-				new HashMap()
-			</fact>
-		</belief>
+<!--		<belief name="evidences" class="HashMap">-->
+<!--			<fact>-->
+<!--				new HashMap()-->
+<!--			</fact>-->
+<!--		</belief>-->
+<!--		<belief name="hypotheses" class="HashMap">-->
+<!--			<fact>-->
+<!--				new HashMap()-->
+<!--			</fact>-->
+<!--		</belief>-->
 		<belief name="address" class="String">
 			<fact>
 				"/home/jero.perez/Jadex/jadex-2.0-rc6/sources/reasoningAgent/Example/net/PruebaLLuvia.net"

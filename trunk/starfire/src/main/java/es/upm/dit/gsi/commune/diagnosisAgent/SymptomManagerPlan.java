@@ -1,9 +1,9 @@
 package es.upm.dit.gsi.commune.diagnosisAgent;
 
 import edu.stanford.smi.protegex.owl.model.OWLModel;
-import javaOntology.Diagnosis;
-import javaOntology.MyFactory;
-import javaOntology.Symptom;
+import communeOntology.Diagnosis;
+import communeOntology.MyFactory;
+import communeOntology.Symptom;
 import jadex.bdi.runtime.Plan;
 
 public class SymptomManagerPlan extends Plan {
@@ -26,9 +26,7 @@ public class SymptomManagerPlan extends Plan {
 			
 		//Creo el diagnóstico comenzado por este síntoma
 		Diagnosis diagnosis = createDiagnosis(symptom);
-		
-		//poner identificador al diagnóstico con timestamp, nombre del agente, nombre de la máquina
-		
+				
 		//Actualiza la ontología con el nuevo diagnóstico y el síntoma recibido
 		updateOntology(diagnosis,symptom);
 		
@@ -58,6 +56,9 @@ public class SymptomManagerPlan extends Plan {
 		//Creo el diagnóstico comenzado por el síntoma
 			//Diagnosis diagnosis = new Diagnosis(...);
 		//Pongo la relación entre el diagnóstico y el síntoma de empezado por
+		
+		//poner identificador al diagnóstico con timestamp, nombre del agente, nombre de la máquina
+
 		
 		return null;
 	}
