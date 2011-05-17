@@ -13,7 +13,7 @@
 	xsi:schemaLocation="http://jadex.sourceforge.net/jadex-bdi
 	                    http://jadex.sourceforge.net/jadex-bdi-2.0.xsd"
 	name="Diagnosis"
-	package="es.upm.dit.gsi.commune.diagnosisAgent">
+	package="es.upm.dit.gsi.starfire.diagnosisAgent">
 
 	<imports>
 		<import>java.util.logging.*</import>
@@ -56,9 +56,11 @@
 	
 	<goals>
 		<!-- Include make diagnosis loop goal type. -->
-		<performgoal name="make_diagnosis_loop_goal" />
+		<performgoal name="make_diagnosis_loop_goal" >
+			<parameter name="diagnosisID" class="String" />
+		</performgoal>
 		<!-- Include perform inference goal type -->
-		<performgoal name="perform_inference" />
+<!--		<performgoal name="perform_inference" /> -->
 	</goals>
 	
 	<plans>
@@ -66,19 +68,28 @@
 		<!-- Passive plan for managing a new symptom.
 			Reacts on the creation of a new symptom. -->
 		<plan name="manage_symptom">
-			<parameter name="symptom" class="Symptom" />
+			<parameter name="symptom" class="Symptom" >
+           		<goalmapping ref="new_symptom.content" />
+        	</parameter>			
 			<body class="SymptomManagerPlan"/>
 			<trigger>
 				<!-- Check that there is a new symptom -->
+				<internalevent ref="new_symptom"/>
 			</trigger>
 		</plan>
 		<!-- Passive plan for managing a new observation.
 			Reacts on the creation of a new observation. -->
 		<plan name="manage_observation">
-			<parameter name="observation" class="Observation" />
+			<parameter name="diagnosisID" class="String" >
+           		<goalmapping ref="new_observation.diagnosisID" />
+        	</parameter>
+			<parameter name="observation" class="Observation" >
+           		<goalmapping ref="new_observation.content" />
+        	</parameter>
 			<body class="ObservationManagerPlan"/>
 			<trigger>
 				<!-- Check that there is a new observation -->
+				<internalevent ref="new_observation"/>
 			</trigger>
 		</plan>
 		<!-- Passive plan for executing the diagnosis loop.
@@ -111,6 +122,15 @@
 	</plans>
 	
 	<events>
+		<!-- Specifies an internal event for a new symptom -->
+        <internalevent name="new_symptom">
+            <parameter name="content" class="Symptom"/>
+        </internalevent>
+        <!-- Specifies an internal event for a new observation -->
+        <internalevent name="new_observation">
+        	<parameter name="diagnosisID" class="String" />
+            <parameter name="content" class="Observation"/>
+        </internalevent>
 	</events>
 	
 	<properties>
