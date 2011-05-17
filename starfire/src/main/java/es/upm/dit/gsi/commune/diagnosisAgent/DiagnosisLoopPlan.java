@@ -15,13 +15,12 @@ import unbbayes.prs.bn.PotentialTable;
 import unbbayes.prs.bn.ProbabilisticNetwork;
 import unbbayes.prs.bn.ProbabilisticNode;
 
-import javaOntology.Action;
-import javaOntology.Failure;
-import javaOntology.Hypothesis;
-import javaOntology.MyFactory;
-import javaOntology.Observation;
-import javaOntology.ObservationNode;
-import javaOntology.TestAction;
+import communeOntology.Action;
+import communeOntology.Failure;
+import communeOntology.Hypothesis;
+import communeOntology.MyFactory;
+import communeOntology.Observation;
+import communeOntology.TestAction;
 import jadex.bdi.runtime.Plan;
 
 public class DiagnosisLoopPlan extends Plan {
@@ -56,7 +55,7 @@ public class DiagnosisLoopPlan extends Plan {
 	
 				//Aplica algoritmo "CDF distance". Media de todas las combinaciones de las distribuciones de probabilidad de un nodo.
 				//Devuelve un HashMap con <ObservationNode, expectedBenefit>
-				HashMap<ProbabilisticNode,Double> expectedBenefits = calculateNodeCDFs(new ProbabilisticNode());	//ProbalNode de la Hypothesis //Lo hace Jaime
+				HashMap<ProbabilisticNode,Double> expectedBenefits = calculateNodeCDFs(hypothesis);	//ProbalNode de la Hypothesis //Lo hace Jaime
 			
 				//Actualiza el parámetro de las acciones de test "expectedBenefit" dentro de la belief ontología meterlo en el
 				updateExpectedBenefit(expectedBenefits);
@@ -222,7 +221,10 @@ public class DiagnosisLoopPlan extends Plan {
 	 * @param node
 	 * @return Returns a hashmap with the parents nodes and the correspondent cdf value
 	 */
-	private HashMap<ProbabilisticNode,Double> calculateNodeCDFs(ProbabilisticNode node){
+	private HashMap<ProbabilisticNode,Double> calculateNodeCDFs(Hypothesis hypothesis){
+		String nodeName = hypothesis.getHasBayesianNode();		
+		ProbabilisticNode node = (ProbabilisticNode)net.getNode(nodeName); 
+		
 		System.out.println("--------------------> Calculate CDF for node: "+node.getName());
 		PotentialTable table = node.getProbabilityFunction();
 		HashMap<ProbabilisticNode, Double> cdfHashMap = new HashMap<ProbabilisticNode, Double>();

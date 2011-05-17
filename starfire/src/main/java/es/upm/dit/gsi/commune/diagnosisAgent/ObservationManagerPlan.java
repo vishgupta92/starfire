@@ -1,6 +1,6 @@
 package es.upm.dit.gsi.commune.diagnosisAgent;
 
-import javaOntology.Observation;
+import communeOntology.Observation;
 import jadex.bdi.runtime.Plan;
 
 public class ObservationManagerPlan extends Plan {
