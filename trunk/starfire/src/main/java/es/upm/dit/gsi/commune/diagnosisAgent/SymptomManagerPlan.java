@@ -27,6 +27,8 @@ public class SymptomManagerPlan extends Plan {
 		//Creo el diagnóstico comenzado por este síntoma
 		Diagnosis diagnosis = createDiagnosis(symptom);
 		
+		//poner identificador al diagnóstico con timestamp, nombre del agente, nombre de la máquina
+		
 		//Actualiza la ontología con el nuevo diagnóstico y el síntoma recibido
 		updateOntology(diagnosis,symptom);
 		
@@ -34,11 +36,12 @@ public class SymptomManagerPlan extends Plan {
 		OWLModel owlModel = (OWLModel) getBeliefbase().getBelief("ontology").getFact();
 		MyFactory myFactory = new MyFactory(owlModel);		
 		
-		myFactory.createRTPMonitoringAction(name);
-		myFactory.createConnectivityTestAction(name);
-		myFactory.createNetworkInterfaceRateTest(name);
-		myFactory.createUsageCPUTest(name);
-		myFactory.createUsageMemoryTest(name);
+		//TODO: Crear dinámicamente un individuo de cada tipo de acción
+		myFactory.createRTPMonitoringAction(null);
+		myFactory.createConnectivityTestAction(null);
+		myFactory.createNetworkInterfaceRateTest(null);
+		myFactory.createUsageCPUTest(null);
+		myFactory.createUsageMemoryTest(null);
 
 		//Lanza DiagnosisLoopPlan
 		throwDiagnosisLoopPlan();
