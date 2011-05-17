@@ -1,4 +1,4 @@
-package es.upm.dit.gsi.commune.ruleEngine;
+package es.upm.dit.gsi.starfire.ruleEngine;
 
 import java.io.File;
 import java.io.FileReader;
