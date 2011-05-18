@@ -23,10 +23,10 @@
   <owl:Class rdf:ID="Observation"/>
   <owl:Class rdf:ID="MonitoringAction">
     <owl:disjointWith>
-      <owl:Class rdf:ID="TestAction"/>
+      <owl:Class rdf:ID="HealingAction"/>
     </owl:disjointWith>
     <owl:disjointWith>
-      <owl:Class rdf:ID="HealingAction"/>
+      <owl:Class rdf:ID="TestAction"/>
     </owl:disjointWith>
     <rdfs:subClassOf>
       <owl:Class rdf:ID="EnvironmentAction"/>
@@ -57,10 +57,10 @@
     <rdfs:comment xml:lang="en">&lt;p style="margin-top: 0"&gt;
       This class represents an action that can test a device, a systems, etc.
     &lt;/p&gt;</rdfs:comment>
-    <owl:disjointWith rdf:resource="#MonitoringAction"/>
     <owl:disjointWith>
       <owl:Class rdf:about="#HealingAction"/>
     </owl:disjointWith>
+    <owl:disjointWith rdf:resource="#MonitoringAction"/>
     <rdfs:subClassOf>
       <owl:Class rdf:about="#EnvironmentAction"/>
     </rdfs:subClassOf>
@@ -95,11 +95,11 @@
     </rdfs:subClassOf>
     <owl:equivalentClass>
       <owl:Restriction>
+        <owl:onProperty>
+          <owl:DatatypeProperty rdf:ID="performed"/>
+        </owl:onProperty>
         <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
         >1</owl:cardinality>
-        <owl:onProperty>
-          <owl:FunctionalProperty rdf:ID="performed"/>
-        </owl:onProperty>
       </owl:Restriction>
     </owl:equivalentClass>
   </owl:Class>
@@ -107,8 +107,8 @@
     <rdfs:subClassOf>
       <owl:Class rdf:about="#EnvironmentAction"/>
     </rdfs:subClassOf>
-    <owl:disjointWith rdf:resource="#MonitoringAction"/>
     <owl:disjointWith rdf:resource="#TestAction"/>
+    <owl:disjointWith rdf:resource="#MonitoringAction"/>
     <rdfs:comment xml:lang="en">&lt;p style="margin-top: 0"&gt;
       This class represents an action that can repair a failure.
     &lt;/p&gt;</rdfs:comment>
@@ -127,22 +127,22 @@
       <owl:Restriction>
         <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
         >1</owl:cardinality>
-        <owl:onProperty>
-          <owl:FunctionalProperty rdf:ID="available"/>
-        </owl:onProperty>
-      </owl:Restriction>
-    </rdfs:subClassOf>
-    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
-    <rdfs:subClassOf>
-      <owl:Restriction>
         <owl:valuesFrom>
           <owl:Class rdf:ID="RequiredActorCondition"/>
         </owl:valuesFrom>
         <owl:onProperty>
           <owl:ObjectProperty rdf:ID="hasPrecondition"/>
         </owl:onProperty>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
         <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
         >1</owl:cardinality>
+        <owl:onProperty>
+          <owl:DatatypeProperty rdf:ID="available"/>
+        </owl:onProperty>
       </owl:Restriction>
     </rdfs:subClassOf>
     <rdfs:comment xml:lang="en">&lt;p style="margin-top: 0"&gt;
@@ -216,7 +216,7 @@
             <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean"
             >true</owl:hasValue>
             <owl:onProperty>
-              <owl:FunctionalProperty rdf:ID="successfullyPerformed"/>
+              <owl:DatatypeProperty rdf:ID="successfullyPerformed"/>
             </owl:onProperty>
           </owl:Restriction>
         </owl:intersectionOf>
@@ -238,11 +238,11 @@
         <owl:intersectionOf rdf:parseType="Collection">
           <owl:Class rdf:about="#Action"/>
           <owl:Restriction>
+            <owl:onProperty>
+              <owl:DatatypeProperty rdf:about="#available"/>
+            </owl:onProperty>
             <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean"
             >true</owl:hasValue>
-            <owl:onProperty>
-              <owl:FunctionalProperty rdf:about="#available"/>
-            </owl:onProperty>
           </owl:Restriction>
         </owl:intersectionOf>
       </owl:Class>
@@ -303,7 +303,7 @@
           <owl:Class rdf:about="#Condition"/>
           <owl:Restriction>
             <owl:onProperty>
-              <owl:FunctionalProperty rdf:ID="satisfied"/>
+              <owl:DatatypeProperty rdf:ID="satisfied"/>
             </owl:onProperty>
             <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean"
             >true</owl:hasValue>
@@ -335,38 +335,20 @@
     &lt;/p&gt;</rdfs:comment>
   </owl:Class>
   <owl:Class rdf:about="#Condition">
-    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
     <rdfs:subClassOf>
       <owl:Restriction>
         <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#int"
         >1</owl:cardinality>
         <owl:onProperty>
-          <owl:FunctionalProperty rdf:about="#satisfied"/>
+          <owl:DatatypeProperty rdf:about="#satisfied"/>
         </owl:onProperty>
       </owl:Restriction>
     </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
     <rdfs:comment xml:lang="en">&lt;p style="margin-top: 0"&gt;
       This class represents conditions of actions.
     &lt;/p&gt;</rdfs:comment>
   </owl:Class>
-  <owl:ObjectProperty rdf:ID="performedMonitoringAction">
-    <rdfs:subPropertyOf>
-      <owl:ObjectProperty rdf:ID="performedAction"/>
-    </rdfs:subPropertyOf>
-    <rdfs:range>
-      <owl:Class>
-        <owl:intersectionOf rdf:parseType="Collection">
-          <owl:Class rdf:about="#MonitoringAction"/>
-          <owl:Class rdf:about="#PerformedAction"/>
-        </owl:intersectionOf>
-      </owl:Class>
-    </rdfs:range>
-  </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:about="#hasPrecondition">
-    <rdfs:subPropertyOf>
-      <owl:ObjectProperty rdf:ID="hasCondition"/>
-    </rdfs:subPropertyOf>
-  </owl:ObjectProperty>
   <owl:ObjectProperty rdf:ID="hasPerformed">
     <rdfs:range rdf:resource="#PerformedAction"/>
     <rdfs:domain rdf:resource="#Actor"/>
@@ -374,36 +356,18 @@
       <owl:ObjectProperty rdf:ID="hasBeenPerformedBy"/>
     </owl:inverseOf>
   </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:ID="hasHypothesis">
-    <rdfs:range rdf:resource="#Hypothesis"/>
-    <rdfs:domain rdf:resource="#Diagnosis"/>
-  </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:ID="performedTestAction">
-    <rdfs:range>
-      <owl:Class>
-        <owl:intersectionOf rdf:parseType="Collection">
-          <owl:Class rdf:about="#TestAction"/>
-          <owl:Class rdf:about="#PerformedAction"/>
-        </owl:intersectionOf>
-      </owl:Class>
-    </rdfs:range>
-    <rdfs:subPropertyOf>
-      <owl:ObjectProperty rdf:about="#performedAction"/>
-    </rdfs:subPropertyOf>
-  </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:ID="startedBySymptom">
+  <owl:ObjectProperty rdf:ID="hasFailure">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
+    <rdfs:domain rdf:resource="#System"/>
+    <rdfs:range rdf:resource="#Failure"/>
     <owl:inverseOf>
-      <owl:ObjectProperty rdf:ID="startsDiagnosis"/>
+      <owl:ObjectProperty rdf:ID="hasLocation"/>
     </owl:inverseOf>
-    <rdfs:range rdf:resource="#Symptom"/>
-    <rdfs:domain rdf:resource="#Diagnosis"/>
   </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:ID="canBeRepairedWith">
-    <rdfs:range rdf:resource="#HealingAction"/>
-    <owl:inverseOf>
-      <owl:ObjectProperty rdf:ID="repairsFailure"/>
-    </owl:inverseOf>
-    <rdfs:domain rdf:resource="#Failure"/>
+  <owl:ObjectProperty rdf:ID="representsPossibleFailure">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdfs:range rdf:resource="#Failure"/>
+    <rdfs:domain rdf:resource="#Hypothesis"/>
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:ID="isComposedBy">
     <owl:inverseOf>
@@ -424,6 +388,14 @@
     <rdfs:range rdf:resource="#Device"/>
     <rdfs:domain rdf:resource="#Connection"/>
   </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="belongsToNetwork">
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:ID="hasDevice"/>
+    </owl:inverseOf>
+    <rdfs:range rdf:resource="#Network"/>
+    <rdfs:domain rdf:resource="#Device"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
+  </owl:ObjectProperty>
   <owl:ObjectProperty rdf:ID="isPartOfNetwork">
     <rdfs:domain rdf:resource="#Connection"/>
     <rdfs:range rdf:resource="#Network"/>
@@ -436,17 +408,146 @@
     <rdfs:range rdf:resource="#Connection"/>
     <rdfs:domain rdf:resource="#Device"/>
   </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:ID="hasPostcondition">
-    <rdfs:subPropertyOf>
-      <owl:ObjectProperty rdf:about="#hasCondition"/>
-    </rdfs:subPropertyOf>
-  </owl:ObjectProperty>
   <owl:ObjectProperty rdf:ID="canPerform">
     <rdfs:range rdf:resource="#Action"/>
     <owl:inverseOf>
       <owl:ObjectProperty rdf:ID="canBePerformedBy"/>
     </owl:inverseOf>
     <rdfs:domain rdf:resource="#Actor"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="residesIn">
+    <rdfs:domain rdf:resource="#Variable"/>
+    <rdfs:range rdf:resource="#System"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:ID="hasData"/>
+    </owl:inverseOf>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#hasLocation">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Failure"/>
+          <owl:Class rdf:about="#Symptom"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+    <owl:inverseOf rdf:resource="#hasFailure"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="repairsFailure">
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:ID="canBeRepairedWith"/>
+    </owl:inverseOf>
+    <rdfs:domain rdf:resource="#HealingAction"/>
+    <rdfs:range rdf:resource="#Failure"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#hasDevice">
+    <rdfs:domain rdf:resource="#Network"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <owl:inverseOf rdf:resource="#belongsToNetwork"/>
+    <rdfs:range rdf:resource="#Device"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#hasBeenPerformedBy">
+    <rdfs:domain rdf:resource="#PerformedAction"/>
+    <owl:inverseOf rdf:resource="#hasPerformed"/>
+    <rdfs:range rdf:resource="#Actor"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#canBePerformedBy">
+    <rdfs:domain rdf:resource="#Action"/>
+    <rdfs:range rdf:resource="#Actor"/>
+    <owl:inverseOf rdf:resource="#canPerform"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#hasData">
+    <rdfs:domain rdf:resource="#System"/>
+    <rdfs:range rdf:resource="#Variable"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
+    <owl:inverseOf rdf:resource="#residesIn"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="hasCondition">
+    <rdfs:domain rdf:resource="#Action"/>
+    <rdfs:range rdf:resource="#Condition"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="hasPossibleActionsToPerform">
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:ID="belongsToDiagnosis"/>
+    </owl:inverseOf>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
+    <rdfs:range rdf:resource="#EnvironmentAction"/>
+    <rdfs:domain rdf:resource="#Diagnosis"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="startsDiagnosis">
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:ID="startedBySymptom"/>
+    </owl:inverseOf>
+    <rdfs:domain rdf:resource="#Symptom"/>
+    <rdfs:range rdf:resource="#Diagnosis"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="observationResult">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#TestAction"/>
+          <owl:Class rdf:about="#Symptom"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+    <rdfs:range rdf:resource="#Observation"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="performedMonitoringAction">
+    <rdfs:subPropertyOf>
+      <owl:ObjectProperty rdf:ID="performedAction"/>
+    </rdfs:subPropertyOf>
+    <rdfs:range>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#MonitoringAction"/>
+          <owl:Class rdf:about="#PerformedAction"/>
+        </owl:intersectionOf>
+      </owl:Class>
+    </rdfs:range>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#hasPrecondition">
+    <rdfs:subPropertyOf rdf:resource="#hasCondition"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="hasHypothesis">
+    <rdfs:range rdf:resource="#Hypothesis"/>
+    <rdfs:domain rdf:resource="#Diagnosis"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="isExecutingIn">
+    <rdfs:range rdf:resource="#System"/>
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:ID="hasAgentResiding"/>
+    </owl:inverseOf>
+    <rdfs:domain rdf:resource="#Agent"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#startedBySymptom">
+    <owl:inverseOf rdf:resource="#startsDiagnosis"/>
+    <rdfs:range rdf:resource="#Symptom"/>
+    <rdfs:domain rdf:resource="#Diagnosis"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="performedTestAction">
+    <rdfs:range>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#TestAction"/>
+          <owl:Class rdf:about="#PerformedAction"/>
+        </owl:intersectionOf>
+      </owl:Class>
+    </rdfs:range>
+    <rdfs:subPropertyOf>
+      <owl:ObjectProperty rdf:about="#performedAction"/>
+    </rdfs:subPropertyOf>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#canBeRepairedWith">
+    <rdfs:range rdf:resource="#HealingAction"/>
+    <owl:inverseOf rdf:resource="#repairsFailure"/>
+    <rdfs:domain rdf:resource="#Failure"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="hasPostcondition">
+    <rdfs:subPropertyOf rdf:resource="#hasCondition"/>
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:about="#hasConnection">
     <owl:inverseOf rdf:resource="#isPartOfNetwork"/>
@@ -461,11 +562,6 @@
     <rdfs:domain rdf:resource="#MonitoringAction"/>
     <rdfs:range rdf:resource="#Symptom"/>
   </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:about="#repairsFailure">
-    <owl:inverseOf rdf:resource="#canBeRepairedWith"/>
-    <rdfs:domain rdf:resource="#HealingAction"/>
-    <rdfs:range rdf:resource="#Failure"/>
-  </owl:ObjectProperty>
   <owl:ObjectProperty rdf:ID="performedHealingAction">
     <rdfs:subPropertyOf rdf:resource="#performedAction"/>
     <rdfs:range>
@@ -477,145 +573,72 @@
       </owl:Class>
     </rdfs:range>
   </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:about="#hasBeenPerformedBy">
-    <rdfs:domain rdf:resource="#PerformedAction"/>
-    <owl:inverseOf rdf:resource="#hasPerformed"/>
-    <rdfs:range rdf:resource="#Actor"/>
+  <owl:ObjectProperty rdf:about="#belongsToDiagnosis">
+    <rdfs:range rdf:resource="#Diagnosis"/>
+    <owl:inverseOf rdf:resource="#hasPossibleActionsToPerform"/>
+    <rdfs:domain rdf:resource="#EnvironmentAction"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
   </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:about="#canBePerformedBy">
-    <rdfs:domain rdf:resource="#Action"/>
-    <rdfs:range rdf:resource="#Actor"/>
-    <owl:inverseOf rdf:resource="#canPerform"/>
-  </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:about="#hasCondition">
-    <rdfs:domain rdf:resource="#Action"/>
-    <rdfs:range rdf:resource="#Condition"/>
-  </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:ID="hasAgentResiding">
+  <owl:ObjectProperty rdf:about="#hasAgentResiding">
     <rdfs:domain rdf:resource="#System"/>
     <rdfs:range rdf:resource="#Agent"/>
-    <owl:inverseOf>
-      <owl:FunctionalProperty rdf:ID="isExecutingIn"/>
-    </owl:inverseOf>
+    <owl:inverseOf rdf:resource="#isExecutingIn"/>
   </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:about="#startsDiagnosis">
-    <owl:inverseOf rdf:resource="#startedBySymptom"/>
-    <rdfs:domain rdf:resource="#Symptom"/>
-    <rdfs:range rdf:resource="#Diagnosis"/>
-  </owl:ObjectProperty>
+  <owl:DatatypeProperty rdf:ID="hypothesisConfidence">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdfs:domain rdf:resource="#Hypothesis"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="whenHasBeenPerformed">
+    <rdfs:domain rdf:resource="#PerformedAction"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="whenHasFinished">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:about="#satisfied">
+    <rdfs:domain rdf:resource="#Condition"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="expectedBenefit">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    <rdfs:domain rdf:resource="#TestAction"/>
+  </owl:DatatypeProperty>
   <owl:DatatypeProperty rdf:ID="performableTypeOfActions">
     <rdfs:domain rdf:resource="#Actor"/>
     <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
   </owl:DatatypeProperty>
-  <owl:DatatypeProperty rdf:ID="hasBayesianNode">
-    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-    <rdfs:domain>
-      <owl:Class>
-        <owl:unionOf rdf:parseType="Collection">
-          <owl:Class rdf:about="#Observation"/>
-          <owl:Class rdf:about="#Hypothesis"/>
-          <owl:Class rdf:about="#TestAction"/>
-        </owl:unionOf>
-      </owl:Class>
-    </rdfs:domain>
+  <owl:DatatypeProperty rdf:ID="variableValue">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="observationType">
+    <rdfs:domain rdf:resource="#Observation"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
   </owl:DatatypeProperty>
   <owl:DatatypeProperty rdf:ID="possibleResults">
     <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
   </owl:DatatypeProperty>
-  <owl:FunctionalProperty rdf:ID="whenHasBeenPerformed">
-    <rdfs:domain rdf:resource="#PerformedAction"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
-  </owl:FunctionalProperty>
-  <owl:FunctionalProperty rdf:ID="hypothesisConfidence">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-    <rdfs:domain rdf:resource="#Hypothesis"/>
-    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
-  </owl:FunctionalProperty>
-  <owl:FunctionalProperty rdf:ID="observationResult">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:domain>
-      <owl:Class>
-        <owl:unionOf rdf:parseType="Collection">
-          <owl:Class rdf:about="#TestAction"/>
-          <owl:Class rdf:about="#Symptom"/>
-        </owl:unionOf>
-      </owl:Class>
-    </rdfs:domain>
-    <rdfs:range rdf:resource="#Observation"/>
-  </owl:FunctionalProperty>
-  <owl:FunctionalProperty rdf:ID="whenHasFinished">
-    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-  </owl:FunctionalProperty>
-  <owl:FunctionalProperty rdf:about="#isExecutingIn">
-    <rdfs:range rdf:resource="#System"/>
-    <owl:inverseOf rdf:resource="#hasAgentResiding"/>
-    <rdfs:domain rdf:resource="#Agent"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-  </owl:FunctionalProperty>
-  <owl:FunctionalProperty rdf:ID="expectedBenefit">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
-    <rdfs:domain rdf:resource="#TestAction"/>
-  </owl:FunctionalProperty>
-  <owl:FunctionalProperty rdf:about="#satisfied">
-    <rdfs:domain rdf:resource="#Condition"/>
+  <owl:DatatypeProperty rdf:about="#performed">
     <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-  </owl:FunctionalProperty>
-  <owl:FunctionalProperty rdf:ID="variableValue">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-  </owl:FunctionalProperty>
-  <owl:FunctionalProperty rdf:ID="representsPossibleFailure">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:range rdf:resource="#Failure"/>
-    <rdfs:domain rdf:resource="#Hypothesis"/>
-  </owl:FunctionalProperty>
-  <owl:FunctionalProperty rdf:ID="observationType">
-    <rdfs:domain rdf:resource="#Observation"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-  </owl:FunctionalProperty>
-  <owl:FunctionalProperty rdf:about="#performed">
-    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
     <rdfs:domain rdf:resource="#Action"/>
-  </owl:FunctionalProperty>
-  <owl:FunctionalProperty rdf:about="#successfullyPerformed">
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:about="#successfullyPerformed">
     <rdfs:domain rdf:resource="#PerformedAction"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
     <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
-  </owl:FunctionalProperty>
-  <owl:FunctionalProperty rdf:ID="variableType">
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="variableType">
     <rdfs:domain rdf:resource="#Variable"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
     <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-  </owl:FunctionalProperty>
-  <owl:FunctionalProperty rdf:ID="residesIn">
-    <rdfs:domain rdf:resource="#Variable"/>
-    <rdfs:range rdf:resource="#System"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <owl:inverseOf>
-      <owl:InverseFunctionalProperty rdf:ID="hasData"/>
-    </owl:inverseOf>
-  </owl:FunctionalProperty>
-  <owl:FunctionalProperty rdf:ID="hasLocation">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:domain>
-      <owl:Class>
-        <owl:unionOf rdf:parseType="Collection">
-          <owl:Class rdf:about="#Failure"/>
-          <owl:Class rdf:about="#Symptom"/>
-        </owl:unionOf>
-      </owl:Class>
-    </rdfs:domain>
-    <owl:inverseOf>
-      <owl:InverseFunctionalProperty rdf:ID="hasFailure"/>
-    </owl:inverseOf>
-  </owl:FunctionalProperty>
-  <owl:FunctionalProperty rdf:ID="status">
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="status">
     <rdfs:range>
       <owl:DataRange>
         <owl:oneOf rdf:parseType="Resource">
@@ -629,26 +652,10 @@
         </owl:oneOf>
       </owl:DataRange>
     </rdfs:range>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-  </owl:FunctionalProperty>
-  <owl:FunctionalProperty rdf:ID="hasDevice">
-    <rdfs:domain rdf:resource="#Network"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <owl:inverseOf>
-      <owl:InverseFunctionalProperty rdf:ID="belongsToNetwork"/>
-    </owl:inverseOf>
-    <rdfs:range rdf:resource="#Device"/>
-  </owl:FunctionalProperty>
-  <owl:FunctionalProperty rdf:ID="belongsToDiagnosis">
-    <rdfs:range rdf:resource="#Diagnosis"/>
-    <owl:inverseOf>
-      <owl:InverseFunctionalProperty rdf:ID="hasPossibleActionsToPerform"/>
-    </owl:inverseOf>
-    <rdfs:domain rdf:resource="#EnvironmentAction"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-  </owl:FunctionalProperty>
-  <owl:FunctionalProperty rdf:ID="id">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="id">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
     <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
     <rdfs:domain>
       <owl:Class>
@@ -658,139 +665,60 @@
         </owl:unionOf>
       </owl:Class>
     </rdfs:domain>
-  </owl:FunctionalProperty>
-  <owl:FunctionalProperty rdf:ID="whenHasStarted">
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="whenHasStarted">
     <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-  </owl:FunctionalProperty>
-  <owl:FunctionalProperty rdf:ID="observationValue">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:ID="observationValue">
     <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
     <rdfs:domain rdf:resource="#Observation"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-  </owl:FunctionalProperty>
-  <owl:FunctionalProperty rdf:about="#available">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+  </owl:DatatypeProperty>
+  <owl:DatatypeProperty rdf:about="#available">
     <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
     <rdfs:domain rdf:resource="#Action"/>
+  </owl:DatatypeProperty>
+  <owl:FunctionalProperty rdf:ID="hasBayesianNode">
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#Observation"/>
+          <owl:Class rdf:about="#Hypothesis"/>
+          <owl:Class rdf:about="#TestAction"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:domain>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
   </owl:FunctionalProperty>
-  <owl:InverseFunctionalProperty rdf:about="#hasFailure">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:domain rdf:resource="#System"/>
-    <rdfs:range rdf:resource="#Failure"/>
-    <owl:inverseOf rdf:resource="#hasLocation"/>
-  </owl:InverseFunctionalProperty>
-  <owl:InverseFunctionalProperty rdf:about="#belongsToNetwork">
-    <owl:inverseOf rdf:resource="#hasDevice"/>
-    <rdfs:range rdf:resource="#Network"/>
-    <rdfs:domain rdf:resource="#Device"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-  </owl:InverseFunctionalProperty>
-  <owl:InverseFunctionalProperty rdf:about="#hasData">
-    <rdfs:domain rdf:resource="#System"/>
-    <rdfs:range rdf:resource="#Variable"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <owl:inverseOf rdf:resource="#residesIn"/>
-  </owl:InverseFunctionalProperty>
-  <owl:InverseFunctionalProperty rdf:about="#hasPossibleActionsToPerform">
-    <owl:inverseOf rdf:resource="#belongsToDiagnosis"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:range rdf:resource="#EnvironmentAction"/>
-    <rdfs:domain rdf:resource="#Diagnosis"/>
-  </owl:InverseFunctionalProperty>
-  <swrl:AtomList>
-    <rdf:rest>
-      <swrl:AtomList>
-        <rdf:first>
-          <swrl:ClassAtom>
-            <swrl:classPredicate rdf:resource="#Actor"/>
-            <swrl:argument1>
-              <swrl:Variable rdf:ID="actor"/>
-            </swrl:argument1>
-          </swrl:ClassAtom>
-        </rdf:first>
-        <rdf:rest>
-          <swrl:AtomList>
-            <rdf:first>
-              <swrl:ClassAtom>
-                <swrl:argument1>
-                  <swrl:Variable rdf:ID="cond"/>
-                </swrl:argument1>
-                <swrl:classPredicate rdf:resource="#RequiredActorCondition"/>
-              </swrl:ClassAtom>
-            </rdf:first>
-            <rdf:rest>
-              <swrl:AtomList>
-                <rdf:first>
-                  <swrl:IndividualPropertyAtom>
-                    <swrl:argument2 rdf:resource="#cond"/>
-                    <swrl:argument1>
-                      <swrl:Variable rdf:ID="action"/>
-                    </swrl:argument1>
-                    <swrl:propertyPredicate rdf:resource="#hasPrecondition"/>
-                  </swrl:IndividualPropertyAtom>
-                </rdf:first>
-                <rdf:rest>
-                  <swrl:AtomList>
-                    <rdf:first>
-                      <swrl:DatavaluedPropertyAtom>
-                        <swrl:argument2>
-                          <swrl:Variable rdf:ID="performableActionType"/>
-                        </swrl:argument2>
-                        <swrl:propertyPredicate rdf:resource="#performableTypeOfActions"/>
-                        <swrl:argument1 rdf:resource="#actor"/>
-                      </swrl:DatavaluedPropertyAtom>
-                    </rdf:first>
-                    <rdf:rest>
-                      <swrl:AtomList>
-                        <rdf:first>
-                          <swrl:BuiltinAtom>
-                            <swrl:builtin rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.4/rdfb.owl#isClass"/>
-                            <swrl:arguments>
-                              <rdf:List>
-                                <rdf:first rdf:resource="#action"/>
-                                <rdf:rest>
-                                  <rdf:List>
-                                    <rdf:first rdf:resource="#performableActionType"/>
-                                    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
-                                  </rdf:List>
-                                </rdf:rest>
-                              </rdf:List>
-                            </swrl:arguments>
-                          </swrl:BuiltinAtom>
-                        </rdf:first>
-                        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
-                      </swrl:AtomList>
-                    </rdf:rest>
-                  </swrl:AtomList>
-                </rdf:rest>
-              </swrl:AtomList>
-            </rdf:rest>
-          </swrl:AtomList>
-        </rdf:rest>
-      </swrl:AtomList>
-    </rdf:rest>
-    <rdf:first>
-      <swrl:ClassAtom>
-        <swrl:classPredicate rdf:resource="#Action"/>
-        <swrl:argument1 rdf:resource="#action"/>
-      </swrl:ClassAtom>
-    </rdf:first>
-  </swrl:AtomList>
   <swrl:Imp rdf:ID="Rule-AvailableActions-3Precond">
     <swrl:body>
       <swrl:AtomList>
         <rdf:rest>
           <swrl:AtomList>
+            <rdf:first>
+              <swrl:IndividualPropertyAtom>
+                <swrl:argument2>
+                  <swrl:Variable rdf:ID="cond1"/>
+                </swrl:argument2>
+                <swrl:argument1>
+                  <swrl:Variable rdf:ID="action"/>
+                </swrl:argument1>
+                <swrl:propertyPredicate rdf:resource="#hasPrecondition"/>
+              </swrl:IndividualPropertyAtom>
+            </rdf:first>
             <rdf:rest>
               <swrl:AtomList>
                 <rdf:rest>
                   <swrl:AtomList>
                     <rdf:first>
                       <swrl:IndividualPropertyAtom>
+                        <swrl:argument1 rdf:resource="#action"/>
                         <swrl:argument2>
                           <swrl:Variable rdf:ID="cond3"/>
                         </swrl:argument2>
-                        <swrl:argument1 rdf:resource="#action"/>
                         <swrl:propertyPredicate rdf:resource="#hasPrecondition"/>
                       </swrl:IndividualPropertyAtom>
                     </rdf:first>
@@ -802,7 +730,6 @@
                               <swrl:AtomList>
                                 <rdf:first>
                                   <swrl:BuiltinAtom>
-                                    <swrl:builtin rdf:resource="http://sqwrl.stanford.edu/ontologies/built-ins/3.4/sqwrl.owl#notEqual"/>
                                     <swrl:arguments>
                                       <rdf:List>
                                         <rdf:first>
@@ -810,48 +737,47 @@
                                         </rdf:first>
                                         <rdf:rest>
                                           <rdf:List>
-                                            <rdf:first rdf:resource="#cond3"/>
                                             <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                                            <rdf:first rdf:resource="#cond3"/>
                                           </rdf:List>
                                         </rdf:rest>
                                       </rdf:List>
                                     </swrl:arguments>
+                                    <swrl:builtin rdf:resource="http://sqwrl.stanford.edu/ontologies/built-ins/3.4/sqwrl.owl#notEqual"/>
                                   </swrl:BuiltinAtom>
                                 </rdf:first>
                                 <rdf:rest>
                                   <swrl:AtomList>
                                     <rdf:first>
                                       <swrl:DatavaluedPropertyAtom>
+                                        <swrl:propertyPredicate rdf:resource="#satisfied"/>
                                         <swrl:argument2 rdf:datatype=
                                         "http://www.w3.org/2001/XMLSchema#boolean"
                                         >true</swrl:argument2>
-                                        <swrl:argument1>
-                                          <swrl:Variable rdf:ID="cond1"/>
-                                        </swrl:argument1>
-                                        <swrl:propertyPredicate rdf:resource="#satisfied"/>
+                                        <swrl:argument1 rdf:resource="#cond1"/>
                                       </swrl:DatavaluedPropertyAtom>
                                     </rdf:first>
                                     <rdf:rest>
                                       <swrl:AtomList>
                                         <rdf:first>
                                           <swrl:DatavaluedPropertyAtom>
-                                            <swrl:argument1 rdf:resource="#cond2"/>
+                                            <swrl:propertyPredicate rdf:resource="#satisfied"/>
                                             <swrl:argument2 rdf:datatype=
                                             "http://www.w3.org/2001/XMLSchema#boolean"
                                             >true</swrl:argument2>
-                                            <swrl:propertyPredicate rdf:resource="#satisfied"/>
+                                            <swrl:argument1 rdf:resource="#cond2"/>
                                           </swrl:DatavaluedPropertyAtom>
                                         </rdf:first>
                                         <rdf:rest>
                                           <swrl:AtomList>
                                             <rdf:first>
                                               <swrl:DatavaluedPropertyAtom>
-                                                <swrl:propertyPredicate rdf:resource="#satisfied"/>
-                                                <swrl:argument1 rdf:resource="#cond3"/>
                                                 <swrl:argument2
                                                  rdf:datatype=
                                                 "http://www.w3.org/2001/XMLSchema#boolean"
                                                 >true</swrl:argument2>
+                                                <swrl:argument1 rdf:resource="#cond3"/>
+                                                <swrl:propertyPredicate rdf:resource="#satisfied"/>
                                               </swrl:DatavaluedPropertyAtom>
                                             </rdf:first>
                                             <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
@@ -871,8 +797,8 @@
                                     <rdf:first rdf:resource="#cond1"/>
                                     <rdf:rest>
                                       <rdf:List>
-                                        <rdf:first rdf:resource="#cond3"/>
                                         <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                                        <rdf:first rdf:resource="#cond3"/>
                                       </rdf:List>
                                     </rdf:rest>
                                   </rdf:List>
@@ -885,13 +811,13 @@
                           <swrl:BuiltinAtom>
                             <swrl:arguments>
                               <rdf:List>
+                                <rdf:first rdf:resource="#cond1"/>
                                 <rdf:rest>
                                   <rdf:List>
-                                    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
                                     <rdf:first rdf:resource="#cond2"/>
+                                    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
                                   </rdf:List>
                                 </rdf:rest>
-                                <rdf:first rdf:resource="#cond1"/>
                               </rdf:List>
                             </swrl:arguments>
                             <swrl:builtin rdf:resource="http://sqwrl.stanford.edu/ontologies/built-ins/3.4/sqwrl.owl#notEqual"/>
@@ -903,26 +829,19 @@
                 </rdf:rest>
                 <rdf:first>
                   <swrl:IndividualPropertyAtom>
-                    <swrl:argument2 rdf:resource="#cond2"/>
                     <swrl:propertyPredicate rdf:resource="#hasPrecondition"/>
                     <swrl:argument1 rdf:resource="#action"/>
+                    <swrl:argument2 rdf:resource="#cond2"/>
                   </swrl:IndividualPropertyAtom>
                 </rdf:first>
               </swrl:AtomList>
             </rdf:rest>
-            <rdf:first>
-              <swrl:IndividualPropertyAtom>
-                <swrl:argument1 rdf:resource="#action"/>
-                <swrl:argument2 rdf:resource="#cond1"/>
-                <swrl:propertyPredicate rdf:resource="#hasPrecondition"/>
-              </swrl:IndividualPropertyAtom>
-            </rdf:first>
           </swrl:AtomList>
         </rdf:rest>
         <rdf:first>
           <swrl:ClassAtom>
-            <swrl:argument1 rdf:resource="#action"/>
             <swrl:classPredicate rdf:resource="#UnavailableAction"/>
+            <swrl:argument1 rdf:resource="#action"/>
           </swrl:ClassAtom>
         </rdf:first>
       </swrl:AtomList>
@@ -932,9 +851,9 @@
         <rdf:first>
           <swrl:DatavaluedPropertyAtom>
             <swrl:propertyPredicate rdf:resource="#available"/>
-            <swrl:argument1 rdf:resource="#action"/>
             <swrl:argument2 rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean"
             >true</swrl:argument2>
+            <swrl:argument1 rdf:resource="#action"/>
           </swrl:DatavaluedPropertyAtom>
         </rdf:first>
         <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
@@ -956,14 +875,17 @@
             </rdf:first>
             <rdf:rest>
               <swrl:AtomList>
+                <rdf:first>
+                  <swrl:IndividualPropertyAtom>
+                    <swrl:argument1 rdf:resource="#action"/>
+                    <swrl:argument2>
+                      <swrl:Variable rdf:ID="cond"/>
+                    </swrl:argument2>
+                    <swrl:propertyPredicate rdf:resource="#hasPrecondition"/>
+                  </swrl:IndividualPropertyAtom>
+                </rdf:first>
                 <rdf:rest>
                   <swrl:AtomList>
-                    <rdf:first>
-                      <swrl:ClassAtom>
-                        <swrl:argument1 rdf:resource="#cond"/>
-                        <swrl:classPredicate rdf:resource="#RequiredActorCondition"/>
-                      </swrl:ClassAtom>
-                    </rdf:first>
                     <rdf:rest>
                       <swrl:AtomList>
                         <rdf:rest>
@@ -974,6 +896,7 @@
                                 <swrl:builtin rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.4/rdfb.owl#isClass"/>
                                 <swrl:arguments>
                                   <rdf:List>
+                                    <rdf:first rdf:resource="#action"/>
                                     <rdf:rest>
                                       <rdf:List>
                                         <rdf:first>
@@ -982,7 +905,6 @@
                                         <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
                                       </rdf:List>
                                     </rdf:rest>
-                                    <rdf:first rdf:resource="#action"/>
                                   </rdf:List>
                                 </swrl:arguments>
                               </swrl:BuiltinAtom>
@@ -992,29 +914,30 @@
                         <rdf:first>
                           <swrl:DatavaluedPropertyAtom>
                             <swrl:propertyPredicate rdf:resource="#performableTypeOfActions"/>
+                            <swrl:argument1>
+                              <swrl:Variable rdf:ID="actor"/>
+                            </swrl:argument1>
                             <swrl:argument2 rdf:resource="#performableType"/>
-                            <swrl:argument1 rdf:resource="#actor"/>
                           </swrl:DatavaluedPropertyAtom>
                         </rdf:first>
                       </swrl:AtomList>
                     </rdf:rest>
+                    <rdf:first>
+                      <swrl:ClassAtom>
+                        <swrl:argument1 rdf:resource="#cond"/>
+                        <swrl:classPredicate rdf:resource="#RequiredActorCondition"/>
+                      </swrl:ClassAtom>
+                    </rdf:first>
                   </swrl:AtomList>
                 </rdf:rest>
-                <rdf:first>
-                  <swrl:IndividualPropertyAtom>
-                    <swrl:propertyPredicate rdf:resource="#hasPrecondition"/>
-                    <swrl:argument2 rdf:resource="#cond"/>
-                    <swrl:argument1 rdf:resource="#action"/>
-                  </swrl:IndividualPropertyAtom>
-                </rdf:first>
               </swrl:AtomList>
             </rdf:rest>
           </swrl:AtomList>
         </rdf:rest>
         <rdf:first>
           <swrl:ClassAtom>
-            <swrl:classPredicate rdf:resource="#Actor"/>
             <swrl:argument1 rdf:resource="#actor"/>
+            <swrl:classPredicate rdf:resource="#Actor"/>
           </swrl:ClassAtom>
         </rdf:first>
       </swrl:AtomList>
@@ -1026,10 +949,10 @@
         <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
         <rdf:first>
           <swrl:DatavaluedPropertyAtom>
+            <swrl:propertyPredicate rdf:resource="#satisfied"/>
             <swrl:argument2 rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean"
             >true</swrl:argument2>
             <swrl:argument1 rdf:resource="#cond"/>
-            <swrl:propertyPredicate rdf:resource="#satisfied"/>
           </swrl:DatavaluedPropertyAtom>
         </rdf:first>
       </swrl:AtomList>
@@ -1037,31 +960,33 @@
     <swrla:hasRuleCategory rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >(12#(1))^(12)-(4)</swrla:hasRuleCategory>
   </swrl:Imp>
-  <swrl:AtomList/>
   <swrl:Imp rdf:ID="Rule-PossibleActionsMapping">
     <swrl:body>
       <swrl:AtomList>
+        <rdf:first>
+          <swrl:ClassAtom>
+            <swrl:classPredicate rdf:resource="#Actor"/>
+            <swrl:argument1 rdf:resource="#actor"/>
+          </swrl:ClassAtom>
+        </rdf:first>
         <rdf:rest>
           <swrl:AtomList>
-            <rdf:first>
-              <swrl:ClassAtom>
-                <swrl:classPredicate rdf:resource="#AvailableAction"/>
-                <swrl:argument1 rdf:resource="#action"/>
-              </swrl:ClassAtom>
-            </rdf:first>
             <rdf:rest>
               <swrl:AtomList>
                 <rdf:first>
                   <swrl:DatavaluedPropertyAtom>
-                    <swrl:propertyPredicate rdf:resource="#performableTypeOfActions"/>
                     <swrl:argument1 rdf:resource="#actor"/>
-                    <swrl:argument2 rdf:resource="#performableActionType"/>
+                    <swrl:argument2>
+                      <swrl:Variable rdf:ID="performableActionType"/>
+                    </swrl:argument2>
+                    <swrl:propertyPredicate rdf:resource="#performableTypeOfActions"/>
                   </swrl:DatavaluedPropertyAtom>
                 </rdf:first>
                 <rdf:rest>
                   <swrl:AtomList>
                     <rdf:first>
                       <swrl:BuiltinAtom>
+                        <swrl:builtin rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.4/rdfb.owl#isClass"/>
                         <swrl:arguments>
                           <rdf:List>
                             <rdf:first rdf:resource="#action"/>
@@ -1073,10 +998,92 @@
                             </rdf:rest>
                           </rdf:List>
                         </swrl:arguments>
-                        <swrl:builtin rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.4/rdfb.owl#isClass"/>
                       </swrl:BuiltinAtom>
                     </rdf:first>
                     <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                  </swrl:AtomList>
+                </rdf:rest>
+              </swrl:AtomList>
+            </rdf:rest>
+            <rdf:first>
+              <swrl:ClassAtom>
+                <swrl:classPredicate rdf:resource="#AvailableAction"/>
+                <swrl:argument1 rdf:resource="#action"/>
+              </swrl:ClassAtom>
+            </rdf:first>
+          </swrl:AtomList>
+        </rdf:rest>
+      </swrl:AtomList>
+    </swrl:body>
+    <swrl:head>
+      <swrl:AtomList>
+        <rdf:first>
+          <swrl:IndividualPropertyAtom>
+            <swrl:argument1 rdf:resource="#actor"/>
+            <swrl:argument2 rdf:resource="#action"/>
+            <swrl:propertyPredicate rdf:resource="#canPerform"/>
+          </swrl:IndividualPropertyAtom>
+        </rdf:first>
+        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+      </swrl:AtomList>
+    </swrl:head>
+  </swrl:Imp>
+  <swrl:AtomList>
+    <rdf:first>
+      <swrl:ClassAtom>
+        <swrl:argument1 rdf:resource="#action"/>
+        <swrl:classPredicate rdf:resource="#Action"/>
+      </swrl:ClassAtom>
+    </rdf:first>
+    <rdf:rest>
+      <swrl:AtomList>
+        <rdf:rest>
+          <swrl:AtomList>
+            <rdf:first>
+              <swrl:ClassAtom>
+                <swrl:classPredicate rdf:resource="#RequiredActorCondition"/>
+                <swrl:argument1 rdf:resource="#cond"/>
+              </swrl:ClassAtom>
+            </rdf:first>
+            <rdf:rest>
+              <swrl:AtomList>
+                <rdf:first>
+                  <swrl:IndividualPropertyAtom>
+                    <swrl:propertyPredicate rdf:resource="#hasPrecondition"/>
+                    <swrl:argument2 rdf:resource="#cond"/>
+                    <swrl:argument1 rdf:resource="#action"/>
+                  </swrl:IndividualPropertyAtom>
+                </rdf:first>
+                <rdf:rest>
+                  <swrl:AtomList>
+                    <rdf:first>
+                      <swrl:DatavaluedPropertyAtom>
+                        <swrl:propertyPredicate rdf:resource="#performableTypeOfActions"/>
+                        <swrl:argument1 rdf:resource="#actor"/>
+                        <swrl:argument2 rdf:resource="#performableActionType"/>
+                      </swrl:DatavaluedPropertyAtom>
+                    </rdf:first>
+                    <rdf:rest>
+                      <swrl:AtomList>
+                        <rdf:first>
+                          <swrl:BuiltinAtom>
+                            <swrl:builtin rdf:resource="http://swrl.stanford.edu/ontologies/built-ins/3.4/rdfb.owl#isClass"/>
+                            <swrl:arguments>
+                              <rdf:List>
+                                <rdf:first rdf:resource="#action"/>
+                                <rdf:rest>
+                                  <rdf:List>
+                                    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                                    <rdf:first rdf:resource="#performableActionType"/>
+                                  </rdf:List>
+                                </rdf:rest>
+                              </rdf:List>
+                            </swrl:arguments>
+                          </swrl:BuiltinAtom>
+                        </rdf:first>
+                        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                      </swrl:AtomList>
+                    </rdf:rest>
                   </swrl:AtomList>
                 </rdf:rest>
               </swrl:AtomList>
@@ -1090,20 +1097,9 @@
           </swrl:ClassAtom>
         </rdf:first>
       </swrl:AtomList>
-    </swrl:body>
-    <swrl:head>
-      <swrl:AtomList>
-        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
-        <rdf:first>
-          <swrl:IndividualPropertyAtom>
-            <swrl:argument2 rdf:resource="#action"/>
-            <swrl:argument1 rdf:resource="#actor"/>
-            <swrl:propertyPredicate rdf:resource="#canPerform"/>
-          </swrl:IndividualPropertyAtom>
-        </rdf:first>
-      </swrl:AtomList>
-    </swrl:head>
-  </swrl:Imp>
+    </rdf:rest>
+  </swrl:AtomList>
+  <swrl:AtomList/>
   <swrl:DatavaluedPropertyAtom>
     <swrl:argument1 rdf:resource="#cond"/>
     <swrl:propertyPredicate rdf:resource="#satisfied"/>
