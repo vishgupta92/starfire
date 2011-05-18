@@ -1,6 +1,7 @@
 package es.upm.dit.gsi.starfire.diagnosisAgent;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
@@ -15,11 +16,13 @@ import unbbayes.prs.bn.PotentialTable;
 import unbbayes.prs.bn.ProbabilisticNetwork;
 import unbbayes.prs.bn.ProbabilisticNode;
 
+import communeOntology.Diagnosis;
 import communeOntology.EnvironmentAction;
 import communeOntology.Failure;
 import communeOntology.Hypothesis;
 import communeOntology.MyFactory;
 import communeOntology.Observation;
+import communeOntology.TestAction;
 import jadex.bdi.runtime.Plan;
 
 public class DiagnosisLoopPlan extends Plan {
@@ -68,14 +71,12 @@ public class DiagnosisLoopPlan extends Plan {
 	
 	//Analiza las evidencias y las actualiza
 	private void makeInferences() {
-//		HashMap evidences = (HashMap) getBeliefbase().getBelief("evidences").getFact();		
 		Set<Observation> observations = myFactory.getAllObservationInstances();
 		
 		JunctionTreeAlgorithm alg = new JunctionTreeAlgorithm();
 		alg.setNetwork(net);
 		alg.run();
 		
-//		Set<String> evidenceSet = evidences.keySet();
 		List<Node> nodeList = net.getNodes();
 		
 		for (Observation o : observations) {
@@ -106,30 +107,6 @@ public class DiagnosisLoopPlan extends Plan {
 			}
 		}
 		
-//		for (String ev : evidenceSet) {
-//			for (Node node : nodeList) {
-//				String nstring = node.getName();
-//				if (ev.equals(nstring)) {
-//					int size = node.getStatesSize();
-//					String targetEvidenceState = (String) evidences.get(ev);
-//					boolean foundState = false;
-//					for (int i = 0; i < size; i++) {
-//						String state = node.getStateAt(i);
-//						if (state.equals(targetEvidenceState)) {
-//							ProbabilisticNode probNode = (ProbabilisticNode) node;
-//							probNode.addFinding(i);
-//							foundState = true;
-//							break;
-//						}
-//					}
-//					if (!foundState) {
-//						getLogger().warning("State not found in node: "+ node.getName() + " State: " + targetEvidenceState);
-//					}
-//					
-//				}
-//				
-//			}
-//		}
 		
         getLogger().info("evidences, already in the network, are fixed");
 		// propagate evidence
@@ -148,10 +125,8 @@ public class DiagnosisLoopPlan extends Plan {
 	//Actualiza la propiedad confidence de las hipótesis
 	private void updateHypotheses() {
 		
-//		HashMap hypotheses = (HashMap) getBeliefbase().getBelief("hypotheses").getFact();
 		Set<Hypothesis> hypotheses = myFactory.getAllHypothesisInstances();
 		
-//			Set<String> hypothesesSet = hypotheses.keySet();
 			List<Node> nodeList = this.net.getNodes();
 
 			String targetState = (String) getParameter("hypTargetState").getValue();
@@ -176,22 +151,6 @@ public class DiagnosisLoopPlan extends Plan {
 				}
 			}
 						
-//			for (String hypothesis : hypothesesSet) {
-//				for (Node node : nodeList) {
-//					String nstring = node.getName();
-//					if (hypothesis.equals(nstring)) {
-//						for (int i = 0; i < node.getStatesSize(); i++) {
-//							String nodeStateName = node.getStateAt(i);
-//							if (nodeStateName.equals(targetState)) {
-//								hypotheses.put(hypothesis,
-//										(float) ((ProbabilisticNode) node)
-//										.getMarginalAt(i));
-//							}
-//						}
-//					}
-//
-//				}
-//			}
 						
 			getLogger().info("hypotheses have been updated.");
 			/*IGoal print2 = createGoal("show_hypotheses");
@@ -356,40 +315,37 @@ public class DiagnosisLoopPlan extends Plan {
 	}
 	
 	private void updateExpectedBenefit(HashMap<ProbabilisticNode,Double> expectedBenefits) {
-		Set<ProbabilisticNode> probabilisticNodes = expectedBenefits.keySet();
-		Set<Observation> observations = myFactory.getAllObservationInstances();
-		Set<EnvironmentAction> environmentActions = myFactory.getAllEnvironmentActionInstances();
-		//Coger síntoma con el identificador que hay en el parámetro del plan
-		//Coger todas las environmentActions
-		//Filtrar las testActions
+		//Coger todas las acciones correspondientes a este diagnóstico
+		//Quedarme sólo con las TestAction
+		//Actualizar los expectedBenefits a partir de sus probabilisticNodes
 		
-		for(ProbabilisticNode pn: probabilisticNodes) {
-
-			for(Observation o: observations) {
-				if(o.getHasBayesianNode().equals(pn.getName())) {
-					for(EnvironmentAction ea: environmentActions) {
-						if((ea.getClass().toString()+"Observation").equals(o.getClass().toString())) {
-							ea.setExp
-						}
+		String diagnosisID = (String)getParameter("diagnosisID").getValue();
+		Diagnosis diagnosis = getDiagnosis(diagnosisID);
+		
+		Set<ProbabilisticNode> probabilisticNodes = expectedBenefits.keySet();
+		@SuppressWarnings("unchecked")
+		Set<EnvironmentAction> environmentActions = diagnosis.getHasPossibleActionsToPerform();
+		
+		for(EnvironmentAction ea: environmentActions) {
+			if(ea instanceof TestAction) {
+				for(ProbabilisticNode pn:probabilisticNodes) {
+					if((pn.getName()).endsWith(((TestAction)ea).getHasBayesianNode())) {						
+						((TestAction)ea).setExpectedBenefit((expectedBenefits.get(pn)).floatValue());
 					}
 				}
 			}
-//			
-//			Observation observation = null;
-//			
-//			for(Observation o: observations) {
-//				if(o.getHasBayesianObservation().equals(on)) {
-//					observation = o;
-//				}
-//			}
-//			
-//			for(TestAction ta: testActions) {
-//				if(ta.) {
-//					
-//				}
-//			}
-//			
 		}
+		
+	}
+	
+	private Diagnosis getDiagnosis(String diagnosisID) {
+		Set<Diagnosis> diagnoses = myFactory.getAllDiagnosisInstances();
+		for(Diagnosis d:diagnoses) {
+			if((d.getId()).equals(diagnosisID)) {
+				return d;
+			}
+		}
+		return null;
 	}
 	
 	private void evaluateConditions() {

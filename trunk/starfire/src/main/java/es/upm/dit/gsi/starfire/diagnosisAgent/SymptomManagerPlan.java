@@ -7,11 +7,17 @@ import java.util.HashSet;
 import java.util.Set;
 
 import edu.stanford.smi.protegex.owl.model.OWLModel;
+import communeOntology.ConnectivityTestAction;
 import communeOntology.Diagnosis;
 import communeOntology.EnvironmentAction;
 import communeOntology.MyFactory;
+import communeOntology.NetworkInterfaceRateTest;
+import communeOntology.Observation;
+import communeOntology.RTPMonitoringAction;
 import communeOntology.Symptom;
-import jadex.bdi.runtime.IGoal;
+import communeOntology.UsageCPUTest;
+import communeOntology.UsageMemoryTest;
+import jadex.bdi.runtime.IInternalEvent;
 import jadex.bdi.runtime.Plan;
 
 public class SymptomManagerPlan extends Plan {
@@ -39,16 +45,13 @@ public class SymptomManagerPlan extends Plan {
 		Diagnosis diagnosis = createDiagnosis(symptom);
 				
 		//Actualiza la ontología con el nuevo diagnóstico y el síntoma recibido
-		updateOntology(diagnosis,symptom);
+		Observation observation = updateOntology(diagnosis,symptom);
 		
 		//Crear los individuos de todas las acciones
-		createActionIndividuals(diagnosis);
-
-//		//Lanza DiagnosisLoopPlan
-//		//poner el id del diagnóstico en el parámetro
-//		throwDiagnosisLoopPlan(diagnosis);
+		createActionIndividuals(diagnosis,symptom);
 		
 		//Generar evento interno con la observation
+		throwInternalEvent(observation);
 	}
 
 	private Diagnosis createDiagnosis(Symptom symptom) {				
@@ -66,7 +69,7 @@ public class SymptomManagerPlan extends Plan {
 		return diagnosis;
 	}
 	
-	private void updateOntology(Diagnosis diagnosis, Symptom symptom) {
+	private Observation updateOntology(Diagnosis diagnosis, Symptom symptom) {
 		//Pongo la relación entre el diagnóstico y el síntoma de empezado por
 		Set<Symptom> symptoms = new HashSet<Symptom>();
 		symptoms.add(symptom);
@@ -75,35 +78,45 @@ public class SymptomManagerPlan extends Plan {
 		diagnoses.add(diagnosis);
 		symptom.setStartsDiagnosis(diagnoses);
 		//Debo crear ahora el observation del tipo RTPMonitoringActionObservation y definir sus relaciones con síntoma
-		
-		//Debe retornar una observation para lanzare el evento interno
+		Observation observation = myFactory.createRTPMonitoringActionObservation(null);
+		observation.setObservationType("RTPMonitoringAction");
+		symptom.setObservationResult(observation);
+		return observation;
 	}
 	
-	private void createActionIndividuals(Diagnosis diagnosis) {
+	private void createActionIndividuals(Diagnosis diagnosis,Symptom symptom) {
 		Set<EnvironmentAction> environmentActions = new HashSet<EnvironmentAction>();
 		//TODO: Crear dinámicamente un individuo de cada tipo de acción
-		EnvironmentAction ea1 = myFactory.createRTPMonitoringAction(null);
-		EnvironmentAction ea2 = myFactory.createConnectivityTestAction(null);
-		EnvironmentAction ea3 = myFactory.createNetworkInterfaceRateTest(null);
-		EnvironmentAction ea4 = myFactory.createUsageCPUTest(null);
-		EnvironmentAction ea5 = myFactory.createUsageMemoryTest(null);
-		ea1.setBelongsToDiagnosis(diagnosis);
-		ea2.setBelongsToDiagnosis(diagnosis);
-		ea3.setBelongsToDiagnosis(diagnosis);
-		ea4.setBelongsToDiagnosis(diagnosis);
-		ea5.setBelongsToDiagnosis(diagnosis);
-		environmentActions.add(ea1);
-		environmentActions.add(ea2);
-		environmentActions.add(ea3);
-		environmentActions.add(ea4);
-		environmentActions.add(ea5);
+		RTPMonitoringAction a1 = myFactory.createRTPMonitoringAction(null);
+		Set<Symptom> symptoms = new HashSet<Symptom>();
+		symptoms.add(symptom);
+		a1.setResultSymptom(symptoms);
+		ConnectivityTestAction a2 = myFactory.createConnectivityTestAction(null);
+		a2.setHasBayesianNode("ConnectivityTest");
+		NetworkInterfaceRateTest a3 = myFactory.createNetworkInterfaceRateTest(null);
+		a3.setHasBayesianNode("NetworkInterfaceRateTest");
+		UsageCPUTest a4 = myFactory.createUsageCPUTest(null);
+		a4.setHasBayesianNode("UsageCPUTest");
+		UsageMemoryTest a5 = myFactory.createUsageMemoryTest(null);
+		a5.setHasBayesianNode("UsageMemoryTest");
+		
+		a1.setBelongsToDiagnosis(diagnosis);
+		a2.setBelongsToDiagnosis(diagnosis);
+		a3.setBelongsToDiagnosis(diagnosis);
+		a4.setBelongsToDiagnosis(diagnosis);
+		a5.setBelongsToDiagnosis(diagnosis);
+		environmentActions.add(a1);
+		environmentActions.add(a2);
+		environmentActions.add(a3);
+		environmentActions.add(a4);
+		environmentActions.add(a5);
 		diagnosis.setHasPossibleActionsToPerform(environmentActions);
 	}
 	
-	private void throwDiagnosisLoopPlan(Diagnosis diagnosis) {
-		IGoal goal = createGoal("make_diagnosis_loop_goal");
-		goal.getParameter("diagnosisID").setValue(diagnosis.getId());
-		getLogger().info("Starting a diagnosis loop"); 
-		dispatchSubgoalAndWait(goal);
+	private void throwInternalEvent(Observation observation) {
+	    IInternalEvent event = createInternalEvent("new_observation");
+	    // Setting the content parameter
+	    event.getParameter("content").setValue(observation);
+	    dispatchInternalEvent(event);
 	}
 }

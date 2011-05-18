@@ -1,5 +1,7 @@
 package es.upm.dit.gsi.starfire.diagnosisAgent;
 
+import java.util.Set;
+
 import communeOntology.Diagnosis;
 import communeOntology.MyFactory;
 import communeOntology.Observation;
@@ -24,14 +26,14 @@ public class ObservationManagerPlan extends Plan {
 		//Plan sensible a observaciones resultado de acciones de test realizadas
 		//Extraigo observaciones
 		
-		//Obtengo la obsservación 
+		//Obtengo la observación 
 		Observation observation = (Observation)getParameter("observation").getValue();
 		
 		//Actualiza la ontología con la observación recibida
 		updateOntology(observation);
 		
-		String dignosisID = (String)getParameter("diagnosisID").getValue();
-		Diagnosis diagnosis = MyFactory.getDiagnosis(diagnosisID);
+		String diagnosisID = (String)getParameter("diagnosisID").getValue();
+		Diagnosis diagnosis = getDiagnosis(diagnosisID);
 
 		//Lanza DiagnosisLoopPlan
 		//poner el id del diagnóstico en el parámetro
@@ -41,6 +43,16 @@ public class ObservationManagerPlan extends Plan {
 	private void updateOntology(Observation observation) {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	private Diagnosis getDiagnosis(String diagnosisID) {
+		Set<Diagnosis> diagnoses = myFactory.getAllDiagnosisInstances();
+		for(Diagnosis d:diagnoses) {
+			if((d.getId()).equals(diagnosisID)) {
+				return d;
+			}
+		}
+		return null;
 	}
 	
 	private void throwDiagnosisLoopPlan(Diagnosis diagnosis) {
