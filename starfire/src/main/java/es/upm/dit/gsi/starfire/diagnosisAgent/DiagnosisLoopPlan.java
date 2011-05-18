@@ -320,15 +320,15 @@ public class DiagnosisLoopPlan extends Plan {
 		
 		String diagnosisID = (String)getParameter("diagnosisID").getValue();
 		Diagnosis diagnosis = getDiagnosis(diagnosisID);
-		
-		Set<ProbabilisticNode> probabilisticNodes = expectedBenefits.keySet();
 		@SuppressWarnings("unchecked")
 		Set<EnvironmentAction> environmentActions = diagnosis.getHasPossibleActionsToPerform();
+		
+		Set<ProbabilisticNode> probabilisticNodes = expectedBenefits.keySet();
 		
 		for(EnvironmentAction ea: environmentActions) {
 			if(ea instanceof TestAction) {
 				for(ProbabilisticNode pn:probabilisticNodes) {
-					if((pn.getName()).endsWith(((TestAction)ea).getHasBayesianNode())) {						
+					if((pn.getName()).equals(((TestAction)ea).getHasBayesianNode())) {						
 						((TestAction)ea).setExpectedBenefit((expectedBenefits.get(pn)).floatValue());
 					}
 				}

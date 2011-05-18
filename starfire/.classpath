@@ -48,5 +48,7 @@
 	<classpathentry kind="lib" path="/home/jlgonzalez/Escritorio/Jess71p2/lib/jess.jar"/>
 	<classpathentry kind="lib" path="/home/jlgonzalez/Escritorio/Jess71p2/lib/jsr94.jar"/>
 	<classpathentry kind="lib" path="/home/jlgonzalez/.m2/repository/br/unb/cic/unbbayes/4.0.0/unbbayes-4.0.0.jar"/>
+	<classpathentry kind="lib" path="/home/jlgonzalez/Escritorio/sigar.jar"/>
+	<classpathentry kind="lib" path="/home/jlgonzalez/Escritorio/jpcap-0.7/usr/java/packages/lib/ext/jpcap.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

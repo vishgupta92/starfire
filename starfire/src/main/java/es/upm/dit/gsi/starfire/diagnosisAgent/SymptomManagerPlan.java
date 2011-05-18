@@ -1,24 +1,25 @@
 package es.upm.dit.gsi.starfire.diagnosisAgent;
 
+import jadex.bdi.runtime.IInternalEvent;
+import jadex.bdi.runtime.Plan;
+
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.Calendar;
 import java.util.HashSet;
 import java.util.Set;
 
-import edu.stanford.smi.protegex.owl.model.OWLModel;
 import communeOntology.ConnectivityTestAction;
 import communeOntology.Diagnosis;
 import communeOntology.EnvironmentAction;
 import communeOntology.MyFactory;
 import communeOntology.NetworkInterfaceRateTest;
 import communeOntology.Observation;
-import communeOntology.RTPMonitoringAction;
 import communeOntology.Symptom;
 import communeOntology.UsageCPUTest;
 import communeOntology.UsageMemoryTest;
-import jadex.bdi.runtime.IInternalEvent;
-import jadex.bdi.runtime.Plan;
+
+import edu.stanford.smi.protegex.owl.model.OWLModel;
 
 public class SymptomManagerPlan extends Plan {
 
@@ -48,7 +49,7 @@ public class SymptomManagerPlan extends Plan {
 		Observation observation = updateOntology(diagnosis,symptom);
 		
 		//Crear los individuos de todas las acciones
-		createActionIndividuals(diagnosis,symptom);
+		createActionIndividuals(diagnosis);
 		
 		//Generar evento interno con la observation
 		throwInternalEvent(observation);
@@ -84,13 +85,13 @@ public class SymptomManagerPlan extends Plan {
 		return observation;
 	}
 	
-	private void createActionIndividuals(Diagnosis diagnosis,Symptom symptom) {
+	private void createActionIndividuals(Diagnosis diagnosis) {
 		Set<EnvironmentAction> environmentActions = new HashSet<EnvironmentAction>();
 		//TODO: Crear dinámicamente un individuo de cada tipo de acción
-		RTPMonitoringAction a1 = myFactory.createRTPMonitoringAction(null);
-		Set<Symptom> symptoms = new HashSet<Symptom>();
-		symptoms.add(symptom);
-		a1.setResultSymptom(symptoms);
+		//RTPMonitoringAction a1 = myFactory.createRTPMonitoringAction(null);
+		//Set<Symptom> symptoms = new HashSet<Symptom>();
+		//symptoms.add(symptom);
+		//a1.setResultSymptom(symptoms);
 		ConnectivityTestAction a2 = myFactory.createConnectivityTestAction(null);
 		a2.setHasBayesianNode("ConnectivityTest");
 		NetworkInterfaceRateTest a3 = myFactory.createNetworkInterfaceRateTest(null);
@@ -100,12 +101,12 @@ public class SymptomManagerPlan extends Plan {
 		UsageMemoryTest a5 = myFactory.createUsageMemoryTest(null);
 		a5.setHasBayesianNode("UsageMemoryTest");
 		
-		a1.setBelongsToDiagnosis(diagnosis);
+		//a1.setBelongsToDiagnosis(diagnosis);
 		a2.setBelongsToDiagnosis(diagnosis);
 		a3.setBelongsToDiagnosis(diagnosis);
 		a4.setBelongsToDiagnosis(diagnosis);
 		a5.setBelongsToDiagnosis(diagnosis);
-		environmentActions.add(a1);
+		//environmentActions.add(a1);
 		environmentActions.add(a2);
 		environmentActions.add(a3);
 		environmentActions.add(a4);
