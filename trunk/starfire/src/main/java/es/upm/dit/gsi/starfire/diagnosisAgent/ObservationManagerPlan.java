@@ -42,7 +42,7 @@ public class ObservationManagerPlan extends Plan {
 
 	private void updateOntology(Observation observation) {
 		// TODO Auto-generated method stub
-		
+		//enganchar donde sea: antes o después
 	}
 	
 	private Diagnosis getDiagnosis(String diagnosisID) {
