@@ -44,9 +44,11 @@ public class SymptomManagerPlan extends Plan {
 		//Crear los individuos de todas las acciones
 		createActionIndividuals(diagnosis);
 
-		//Lanza DiagnosisLoopPlan
-		//poner el id del diagnóstico en el parámetro
-		throwDiagnosisLoopPlan(diagnosis);
+//		//Lanza DiagnosisLoopPlan
+//		//poner el id del diagnóstico en el parámetro
+//		throwDiagnosisLoopPlan(diagnosis);
+		
+		//Generar evento interno con la observation
 	}
 
 	private Diagnosis createDiagnosis(Symptom symptom) {				
@@ -72,6 +74,9 @@ public class SymptomManagerPlan extends Plan {
 		Set<Diagnosis> diagnoses = new HashSet<Diagnosis>();
 		diagnoses.add(diagnosis);
 		symptom.setStartsDiagnosis(diagnoses);
+		//Debo crear ahora el observation del tipo RTPMonitoringActionObservation y definir sus relaciones con síntoma
+		
+		//Debe retornar una observation para lanzare el evento interno
 	}
 	
 	private void createActionIndividuals(Diagnosis diagnosis) {
