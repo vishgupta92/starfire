@@ -29,10 +29,12 @@ import edu.stanford.smi.protegex.owl.model.OWLNamedClass;
 import communeOntology.MyFactory;
 
 public class VlcLauncherPlan extends Plan implements ActionListener{
+//public class VlcLauncherPlan extends Plan {
 
+	
 	private static final long serialVersionUID = -597969293105340110L;
 
-    private String serverIp ="";
+	private String serverIp ="";
 	private String file="";
 	private String port="";
 	protected JButton button;
@@ -179,11 +181,11 @@ public class VlcLauncherPlan extends Plan implements ActionListener{
 //			    OWLNamedClass rtpSessionClass = owlModel.getOWLNamedClass("http://www.owl-ontologies.com/P2PDiagnosis.owl#RTPSession");
 //				rtpSessionClass.createInstance("rtpSession");
 				MyFactory myFactory = new MyFactory(owlModel);
-				myFactory.createRTPSession("rtpSession");
-				getLogger().info("VlcPlan: Session instance created");
-				getLogger().info("VlcPlan: Start monitoring");
-				IGoal searchRTP = createGoal("monitorizeRTP");
-				dispatchSubgoalAndWait(searchRTP);	
+//				myFactory.createRTPSession("rtpSession");
+//				getLogger().info("VlcPlan: Session instance created");
+//				getLogger().info("VlcPlan: Start monitoring");
+//				IGoal searchRTP = createGoal("monitorizeRTP");
+//				dispatchSubgoalAndWait(searchRTP);	
 				
 
 

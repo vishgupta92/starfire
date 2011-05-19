@@ -1,0 +1,8 @@
+es.upm.dit.gsi.commune.agent.connectivityTestAgent
+es.upm.dit.gsi.commune.agent.rtcpMonitorAgent
+es.upm.dit.gsi.commune.agent.rtcpMonitorAgent.rtcpMonitor
+es.upm.dit.gsi.commune.agent.systemMonitorAgent
+es.upm.dit.gsi.commune.agent.vlcLauncherAgent
+es.upm.dit.gsi.commune.capability.connectivityTest
+es.upm.dit.gsi.commune.capability.systemMonitor
+es.upm.dit.gsi.commune.unbbayes.modules.cdf
