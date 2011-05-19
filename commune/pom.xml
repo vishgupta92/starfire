@@ -191,5 +191,11 @@
 			<type>jar</type>
 			<scope>compile</scope>
 		</dependency>
+		<dependency>
+			<groupId>es.upm.dit.gsi</groupId>
+			<artifactId>communeOntology</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+			<scope>compile</scope>
+		</dependency>
 	</dependencies>
 </project>
