@@ -1,0 +1,90 @@
+net
+{
+     node_size = (0 0);
+     name = "New BN";
+     tree = "(C0,C1,C2,C3)";
+     UnBBayes_Color_Probabilistic_Description = "-256";
+     UnBBayes_Color_Probabilistic_Explanation = "-16711936";
+}
+
+node Weather
+{
+     label = "C0";
+     position = (217 72);
+     color = (-256);
+     states = ("Rainy" "Sunny");
+}
+
+node Players
+{
+     label = "C1";
+     position = (481 94);
+     color = (-256);
+     states = ("Yes" "No");
+}
+
+node Soccer
+{
+     label = "C2";
+     position = (456 283);
+     color = (-256);
+     states = ("Yes" "No");
+}
+
+node wet
+{
+     label = "C3";
+     position = (119 192);
+     color = (-256);
+     states = ("Yes" "No");
+}
+
+node C4
+{
+     label = "C4";
+     position = (734 162);
+     color = (-256);
+     states = ("State 0" "State 1" "State 2" "State 3");
+}
+
+potential (Weather)
+{
+ data = ( 0.2 0.8 );
+}
+
+potential (Players)
+{
+ data = ( 0.5 0.5 );
+}
+
+potential (Soccer | Players Weather C4)
+{
+ data = (((( 0.1 0.9 )
+( 0.01 0.99 ))
+(( 0.95 0.05 )
+( 0.1 0.9 )))
+((( 0.2 0.8 )
+( 0.02 0.98 ))
+(( 0.96 0.04 )
+( 0.2 0.8 )))
+((( 0.3 0.7 )
+( 0.03 0.97 ))
+(( 0.97 0.03 )
+( 0.3 0.7 )))
+((( 0.4 0.6 )
+( 0.04 0.96 ))
+(( 0.98 0.02 )
+( 0.4 0.6 ))));
+}
+
+potential (wet | Weather)
+{
+ data = (( 0.8 0.2 )
+( 0.3 0.7 ));
+}
+
+potential (C4)
+{
+ data = ( 0.05 0.2 0.4 0.35 );
+}
+
