@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	<H3>ConnectivityTestAgent</H3>
+	Connectivity capability
+	<H4>Explanation</H4>
+	Searches the gateway IP and pings to check if connection is available
+-->
+
+<agent xmlns="http://jadex.sourceforge.net/jadex-bdi"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://jadex.sourceforge.net/jadex-bdi
+	                    http://jadex.sourceforge.net/jadex-bdi-2.0.xsd"
+	name="RtcpMonitor"
+	package="es.upm.dit.gsi.commune.agent.connectivityTestAgent">
+	
+	<imports>
+		<import>jadex.planlib.*</import>
+		<import>jadex.base.fipa.*</import>
+		<import>java.util.logging.*</import>
+		<import>jadex.commons.*</import>
+		<import>jadex.commons.service.*</import>
+	</imports>
+	
+	<capabilities>
+	    <capability name="dfcap" file="jadex.bdi.planlib.df.DF"/>	
+	</capabilities>
+	
+	
+	<beliefs>
+		<belief name="isConnected" class="boolean">
+			<fact>false</fact>
+		</belief>
+		
+		<belief name="gatewayIP" class="String">
+			<fact>"192.168.0.1"</fact>
+		</belief>
+	</beliefs>
+	
+	<goals>
+	</goals>
+	
+	<plans>
+		<plan name="connectivity_test_plan">
+			<body class="ConnectivityTestPlan"/>
+		</plan>
+		
+	</plans>
+
+	
+ 	<events>
+  	</events>
+	
+	<properties>
+		<!-- Only log outputs >= level are printed. -->
+		<property name="logging.level">Level.INFO</property>
+		<!-- The debugging flag is set to false. -->
+		<property name="debugging">false</property>
+    </properties>
+	
+	<configurations>
+		<configuration name="default">
+			<plans>
+			 <initialplan ref="connectivity_test_plan"/>
+			</plans>
+		</configuration>
+	</configurations>
+
+</agent>

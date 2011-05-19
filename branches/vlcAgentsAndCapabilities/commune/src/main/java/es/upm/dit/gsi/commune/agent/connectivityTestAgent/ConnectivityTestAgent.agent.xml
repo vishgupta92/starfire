@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+-->
+
+<agent xmlns="http://jadex.sourceforge.net/jadex-bdi"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://jadex.sourceforge.net/jadex-bdi
+	                    http://jadex.sourceforge.net/jadex-bdi-2.0.xsd"
+	name="ConnectivityTestAgent"
+	package="es.upm.dit.gsi.commune.agent.connectivityTestAgent">
+	
+	<imports>
+		<import>jadex.planlib.*</import>
+		<import>java.util.logging.*</import>
+		<import>jadex.commons.*</import>
+		<import>jadex.commons.service.*</import>
+		<import>es.upm.dit.gsi.commune.capability.connectivityTest.*</import>
+		
+	</imports>
+	
+	<capabilities>
+		<!-- Referencing a capability using a filename. -->
+        <capability name="connectivityCapability" file="ConnectivityTest.capability.xml"/>
+	</capabilities>
+	
+	<plans>
+		<plan name="connectivity_plan">
+			<body class="ConnectivityPlan"/>
+		</plan>
+	</plans>
+	
+	<properties>
+		<!-- Only log outputs >= level are printed. -->
+		<property name="logging.level">Level.INFO</property>
+		<!-- The debugging flag is set to false. -->
+		<property name="debugging">false</property>
+    </properties>
+	
+	<configurations>
+		<configuration name="default">
+			<plans>
+				<initialplan ref="connectivity_plan"/>
+			</plans>
+		</configuration>
+	</configurations>
+
+</agent>
