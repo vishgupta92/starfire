@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	<H3>RtcpMonitorAgent</H3>
+	Creates an initial plan.
+	<H4>Explanation</H4>
+	The agent has one initial plan (created when the agent is born)
+-->
+
+<agent xmlns="http://jadex.sourceforge.net/jadex-bdi"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://jadex.sourceforge.net/jadex-bdi
+	                    http://jadex.sourceforge.net/jadex-bdi-2.0.xsd"
+	name="RtcpTest"
+	package="es.upm.dit.gsi.commune.agent.vlcLauncherAgent">
+	
+	<imports>
+		<import>jadex.planlib.*</import>
+		<import>java.util.logging.*</import>
+		<import>jadex.base.fipa.*</import>
+		<import>jadex.commons.*</import>
+		<import>jadex.commons.service.*</import>
+	</imports>
+	
+	<capabilities>
+		<!-- Include the protocols cap. -->
+		<capability name="procap" file="jadex.bdi.planlib.protocols.request.Request"/>
+		<!-- Include the df cap. -->
+		<capability name="dfcap" file="jadex.bdi.planlib.df.DF"/>
+	</capabilities>
+	
+	<beliefs>
+	</beliefs>
+	
+	<goals>
+			<!-- Include rp_initiate goal type from procap. -->
+		<achievegoalref name="rp_initiate">
+			<concrete ref="procap.rp_initiate"/>
+		</achievegoalref>
+		<!-- Include df search goal type from dfcap. -->
+		<achievegoalref name="df_search">
+			<concrete ref="dfcap.df_search"/>
+		</achievegoalref>
+	</goals>
+	
+	<plans>
+		<plan name="rtcp_search_plan">
+			<body class="RtcpSearchPlan"/>
+		</plan>
+		<plan name="rtcp_test_plan">
+			<body class="RtcpTestPlan"/>
+			<trigger>
+				<messageevent ref="rtcp_inform"/>
+			</trigger>
+		</plan>
+	</plans>
+	
+ 	<events>
+		<messageevent name="rtcp_inform" direction="receive" type="fipa">
+			<parameter name="performative" class="String" direction="fixed">
+				<value>SFipa.INFORM</value>
+			</parameter>
+		</messageevent>
+  	</events>
+	
+	<properties>
+		<!-- Only log outputs >= level are printed. -->
+		<property name="logging.level">Level.INFO</property>
+		<!-- The debugging flag is set to false. -->
+		<property name="debugging">false</property>
+    </properties>
+	
+	<configurations>
+		<configuration name="default">
+			<plans>
+				<initialplan ref="rtcp_search_plan"/>
+			</plans>
+		</configuration>
+	</configurations>
+
+</agent>

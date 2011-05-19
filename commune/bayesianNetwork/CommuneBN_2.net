@@ -1,0 +1,154 @@
+net
+{
+     node_size = (0 0);
+     name = "Parseado";
+     tree = "()";
+     UnBBayes_Color_Probabilistic_Description = "-256";
+     UnBBayes_Color_Probabilistic_Explanation = "-16711936";
+}
+
+node ServerMemoryFailure
+{
+     label = "";
+     position = (0 551);
+     color = (-256);
+     states = ("YES" "NO");
+}
+
+node PacketLossPercentage
+{
+     label = "";
+     position = (653 31);
+     color = (-256);
+     states = ("High" "Medium" "Low" "None");
+}
+
+node ServerCpuUsage
+{
+     label = "";
+     position = (651 509);
+     color = (-256);
+     states = ("HighUsage" "MediumUsage" "LowUsage");
+}
+
+node ConnectionClientToRouter
+{
+     label = "";
+     position = (299 185);
+     color = (-256);
+     states = ("OK" "Broken" "NOK");
+}
+
+node NetworkInterfaceRate
+{
+     label = "";
+     position = (646 265);
+     color = (-256);
+     states = ("HighUsage" "MediumUsage" "LowUsage" "ZeroUsage");
+}
+
+node ConnectionClientToRouterFailure
+{
+     label = "";
+     position = (0 194);
+     color = (-256);
+     states = ("YES" "NO");
+}
+
+node ConnectionTest
+{
+     label = "";
+     position = (648 169);
+     color = (-256);
+     states = ("Passed" "Failed");
+}
+
+node ServerMemoryUsage
+{
+     label = "";
+     position = (653 626);
+     color = (-256);
+     states = ("HighUsage" "MediumUsage" "LowUsage");
+}
+
+node DetectedJitter
+{
+     label = "";
+     position = (648 396);
+     color = (-256);
+     states = ("High" "Low" "Medium");
+}
+
+node ServerCpuFailure
+{
+     label = "";
+     position = (0 414);
+     color = (-256);
+     states = ("YES" "NO");
+}
+
+potential (ServerMemoryFailure | DetectedJitter)
+{
+ data = (( 0.7 0.3 )
+( 0.3 0.7 )
+( 0.5 0.5 ));
+}
+
+potential (PacketLossPercentage | ConnectionClientToRouter)
+{
+ data = (( 0.0073869117 0.02954755 0.3246198 0.63844573 )
+( 0.0049186256 0.0024592006 0.0024629522 0.9901592 )
+( 0.42891783 0.42682847 0.11355658 0.030697113 ));
+}
+
+potential (ServerCpuUsage | ServerCpuFailure)
+{
+ data = (( 0.6 0.3 0.1 )
+( 0.1 0.3 0.6 ));
+}
+
+potential (ConnectionClientToRouter | ConnectionClientToRouterFailure)
+{
+ data = (( 0.0058798757 0.2564385 0.7376816 )
+( 0.91834676 0.011779114 0.069874145 ));
+}
+
+potential (NetworkInterfaceRate | ConnectionClientToRouter)
+{
+ data = (( 0.016619988 0.8026659 0.13042913 0.050284993 )
+( 0.01325198 0.45310324 0.013253425 0.52039135 )
+( 0.37740427 0.58207715 0.0322757 0.008242892 ));
+}
+
+potential (ConnectionClientToRouterFailure)
+{
+ data = ( 0.41769767 0.58230233 );
+}
+
+potential (ConnectionTest | ConnectionClientToRouter)
+{
+ data = (( 0.9528646 0.047135387 )
+( 0.02353594 0.97646403 )
+( 0.9421812 0.05781878 ));
+}
+
+potential (ServerMemoryUsage | ServerMemoryFailure)
+{
+ data = (( 0.6 0.3 0.1 )
+( 0.1 0.3 0.6 ));
+}
+
+potential (DetectedJitter | ConnectionClientToRouter)
+{
+ data = (( 0.2 0.5 0.3 )
+( 0.3 0.375 0.325 )
+( 0.44614005 0.25403666 0.29982328 ));
+}
+
+potential (ServerCpuFailure | DetectedJitter)
+{
+ data = (( 0.7 0.3 )
+( 0.3 0.7 )
+( 0.5 0.5 ));
+}
+
