@@ -26,7 +26,7 @@ import edu.stanford.smi.protegex.owl.*;
 import edu.stanford.smi.protegex.owl.model.OWLModel;
 import edu.stanford.smi.protegex.owl.model.OWLNamedClass;
 
-import es.upm.dit.gsi.commune.ontology.MyFactory;
+import communeOntology.MyFactory;
 
 public class VlcLauncherPlan extends Plan implements ActionListener{
 
