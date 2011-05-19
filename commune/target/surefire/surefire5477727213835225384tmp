@@ -1,0 +1,5 @@
+#surefire
+#Thu May 19 20:21:40 CEST 2011
+user.dir=/home/jlgonzalez/workspaceAgenteDiagnostico/commune
+localRepository=/home/jlgonzalez/.m2/repository
+basedir=/home/jlgonzalez/workspaceAgenteDiagnostico/commune
