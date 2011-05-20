@@ -49,6 +49,9 @@ mvn install:install-file -DgroupId=edu.stanford -DartifactId=wstx-asl -Dversion=
 mvn install:install-file -DgroupId=edu.stanford -DartifactId=xercesImpl -Dversion=3.4.6 -Dpackaging=jar -Dfile=xercesImpl.jar
 mvn install:install-file -DgroupId=edu.stanford -DartifactId=xml-apis -Dversion=3.4.6 -Dpackaging=jar -Dfile=xml-apis.jar
 
+mvn install:install-file -DgroupId=edu.stanford -DartifactId=jpcap -Dversion=3.4.6 -Dpackaging=jar -Dfile=jpcap.jar
+mvn install:install-file -DgroupId=edu.stanford -DartifactId=sigar -Dversion=3.4.6 -Dpackaging=jar -Dfile=sigar.jar
+
 echo "Waiting 20s to let you read..."
 sleep 20
 echo "Ready?"
