@@ -360,5 +360,6 @@ public class DiagnosisLoopPlan extends Plan {
 		//Acción de recuperación(las acciones de recuperación tienen preferencia)
 		
 		//Acción de test. Selecciona acción disponible con mayor influencia
+		
 	}
 }
