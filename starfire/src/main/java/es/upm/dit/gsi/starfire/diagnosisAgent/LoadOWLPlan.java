@@ -28,11 +28,11 @@ public class LoadOWLPlan extends Plan {
 		getLogger().info("LoadOWLPlan: Plan begins");
 
 		setUp();
-		
+
 		getLogger().info("LoadOWLPlan: Setup done");
 
 		loadOWLModel();
-		
+
 		getLogger().info("LoadOWLPlan: Owl model loaded");
 
 		boolean isAgentInModel = checkID();
@@ -50,32 +50,26 @@ public class LoadOWLPlan extends Plan {
 		Properties props = new Properties();
 
 		try { // try retrieve data from file
-			props.load(new FileInputStream(
-					"config/setup.properties"));
+			props.load(new FileInputStream("config/setup.properties"));
 
 			getLogger().info("LoadOWLPlan: Owl uri: " + props.getProperty(OWL_URI));
-			
-			getBeliefbase().getBelief("owl_uri").setFact(
-					props.getProperty(OWL_URI));
-			
+
+			getBeliefbase().getBelief("owl_uri").setFact(props.getProperty(OWL_URI));
+
 			getLogger().info("LoadOWLPlan: Agent ID: " + props.getProperty(AGENT_ID));
-			
-			getBeliefbase().getBelief("agent_ID").setFact(
-					props.getProperty(AGENT_ID));
-		} catch (IOException e) { // catch exception in case properties file
-									// does not exist
+
+			getBeliefbase().getBelief("agent_ID").setFact(props.getProperty(AGENT_ID));
+		} catch (IOException e) { // catch exception in case properties file does not exist
 			e.printStackTrace();
 		}
 	}
 
 	private void loadOWLModel() {
 		try {
-			String owlUri = (String) getBeliefbase().getBelief("owl_uri")
-					.getFact();
-			
-			JenaOWLModel ontology = ProtegeOWL
-					.createJenaOWLModelFromURI(owlUri);
-			
+			String owlUri = (String) getBeliefbase().getBelief("owl_uri").getFact();
+
+			JenaOWLModel ontology = ProtegeOWL.createJenaOWLModelFromURI(owlUri);
+
 			getBeliefbase().getBelief("ontology").setFact(ontology);
 		} catch (OntologyLoadException e) {
 			e.printStackTrace();
@@ -83,11 +77,11 @@ public class LoadOWLPlan extends Plan {
 	}
 
 	private boolean checkID() {
-		JenaOWLModel ontology = (JenaOWLModel)getBeliefbase().getBelief("ontology").getFact();
+		JenaOWLModel ontology = (JenaOWLModel) getBeliefbase().getBelief("ontology").getFact();
 		MyFactory myFactory = new MyFactory(ontology);
 		Set<Agent> agents = myFactory.getAllAgentInstances();
-		for(Agent a: agents) {
-			if((a.getId()).equals((String)getBeliefbase().getBelief("agent_ID").getFact())) {
+		for (Agent a : agents) {
+			if ((a.getId()).equals((String) getBeliefbase().getBelief("agent_ID").getFact())) {
 				return true;
 			}
 		}
