@@ -523,5 +523,21 @@
 			<type>jar</type>
 			<scope>compile</scope>
 		</dependency>
+		
+		<dependency>
+			<groupId>edu.stanford</groupId>
+			<artifactId>jpcap</artifactId>
+			<version>3.4.6</version>
+			<type>jar</type>
+			<scope>compile</scope>
+		</dependency>
+		
+		<dependency>
+			<groupId>edu.stanford</groupId>
+			<artifactId>sigar</artifactId>
+			<version>3.4.6</version>
+			<type>jar</type>
+			<scope>compile</scope>
+		</dependency>
 	</dependencies>
 </project>
