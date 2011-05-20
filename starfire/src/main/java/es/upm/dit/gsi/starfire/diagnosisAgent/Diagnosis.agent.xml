@@ -22,6 +22,11 @@
 	</imports>
 	
 	<capabilities>
+		<!-- Include the protocols cap. -->
+		<capability name="procap"
+			file="jadex.bdi.planlib.protocols.request.Request" />
+		<!-- Include the df cap. -->
+		<capability name="dfcap" file="jadex.bdi.planlib.df.DF" />
 	</capabilities>
 	
 	<beliefs>
@@ -31,6 +36,9 @@
 		<belief name="agent_ID" class ="String" />	
 		<!-- Belief con el modelo, la ontología -->
 		<belief name="ontology" class="JenaOWLModel" />	
+		
+		<belief name="serverIP" class="String" />
+		<belief name="file" class="String" />
 	
 <!--		<belief name="address" class="String">-->
 <!--			<fact>-->
@@ -39,17 +47,50 @@
 <!--		</belief>-->
 	</beliefs>
 	
-<!--	<goals>-->
+	<goals>
+		<achievegoal name="launch_vlc" />
+		
+		<achievegoal name="monitorizeRTP" />
+		
+		<!-- Include rp_initiate goal type from procap. -->
+		<achievegoalref name="rp_initiate">
+			<concrete ref="procap.rp_initiate" />
+		</achievegoalref>
+
+		<!-- Include df search goal type from dfcap. -->
+		<achievegoalref name="df_search">
+			<concrete ref="dfcap.df_search" />
+		</achievegoalref>
+		
 <!--		 Include make diagnosis loop goal type. -->
 <!--		<performgoal name="make_diagnosis_loop_goal" >-->
 <!--			<parameter name="diagnosisID" class="String" />-->
 <!--		</performgoal>-->
-<!--	</goals>-->
+	</goals>
 	
 	<plans>
 		<plan name="load_owl">
 			<body class="LoadOWLPlan" />
 		</plan>
+		<plan name="vlc_launcher_plan">
+			<body class="VlcLauncherPlan" />
+			<trigger>
+				<goal ref="launch_vlc" />
+			</trigger>
+		</plan>
+		<plan name="rtcp_search_plan">
+			<body class="RtcpSearchPlan" />
+			<trigger>
+				<goal ref="monitorizeRTP" />
+			</trigger>
+		</plan>
+		<plan name="rtcp_test_plan">
+			<body class="RtcpTestPlan" />
+			<trigger>
+				<messageevent ref="rtcp_inform" />
+			</trigger>
+		</plan>
+		
 		<!-- Plan que se lanza cuando hay un nuevo síntoma. Parámetro nuevo síntoma(se puede hacer con una referencia, URI) -->
 		<!-- Passive plan for managing a new symptom. -->
 <!--			Reacts on the creation of a new symptom. -->
@@ -92,7 +133,13 @@
 <!--		</plan>-->
 	</plans>
 	
-<!--	<events>-->
+	<events>
+		<messageevent name="rtcp_inform" direction="receive"
+			type="fipa">
+			<parameter name="performative" class="String" direction="fixed">
+				<value>SFipa.INFORM</value>
+			</parameter>
+		</messageevent>
 <!--		 Specifies an internal event for a new symptom -->
 <!--        <internalevent name="new_symptom">-->
 <!--            <parameter name="content" class="Symptom"/>-->
@@ -102,7 +149,7 @@
 <!--        	<parameter name="diagnosisID" class="String" />-->
 <!--            <parameter name="content" class="Observation"/>-->
 <!--        </internalevent>-->
-<!--	</events>-->
+	</events>
 	
 	<properties>
 		<!-- Only log outputs >= level are printed. -->

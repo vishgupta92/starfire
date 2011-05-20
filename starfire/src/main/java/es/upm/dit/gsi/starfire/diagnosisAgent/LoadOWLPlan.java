@@ -1,5 +1,6 @@
 package es.upm.dit.gsi.starfire.diagnosisAgent;
 
+import jadex.bdi.runtime.IGoal;
 import jadex.bdi.runtime.Plan;
 
 import java.io.FileInputStream;
@@ -37,12 +38,15 @@ public class LoadOWLPlan extends Plan {
 
 		boolean isAgentInModel = checkID();
 
-		if (isAgentInModel) {
-			//Lanzar meta para crear sesión RTP
-		} else {
-			//Lanza excepción
-			getLogger().info("LoadOWLPlan: Agent not found in the model");
-		}
+//		if (isAgentInModel) {
+//			//Lanzar meta para crear sesión RTP
+			IGoal goal = createGoal("launch_vlc");
+			getLogger().info("Starting a VlcLauncherPlan"); 
+			dispatchSubgoalAndWait(goal);
+//		} else {
+//			//Lanza excepción
+//			getLogger().info("LoadOWLPlan: Agent not found in the model");
+//		}
 	}
 
 	private void setUp() {
