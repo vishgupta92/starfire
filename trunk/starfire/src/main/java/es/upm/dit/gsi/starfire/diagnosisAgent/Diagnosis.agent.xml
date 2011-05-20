@@ -18,120 +18,91 @@
 	<imports>
 		<import>java.util.logging.*</import>
 		<import>java.util.ArrayList</import>
-		<import>edu.stanford.smi.protegex.owl.model.OWLModel</import>
-		<import>javaOntology.ObservationNode</import>
-		<import>javaOntology.Hypothesis</import>
+		<import>edu.stanford.smi.protegex.owl.jena.JenaOWLModel</import>
 	</imports>
 	
 	<capabilities>
 	</capabilities>
 	
 	<beliefs>
+		<!-- Belief con la uri del fichero owl -->
+		<belief name="owl_uri" class ="String" />
+		<!-- Belief con el ID del agente -->
+		<belief name="agent_ID" class ="String" />	
 		<!-- Belief con el modelo, la ontología -->
-		<belief name="ontology" class="OWLModel"/>	
-		<!-- Belief con el ArrayList de nodos obervación -->
-<!--		<belief name="observation_nodes" class="ArrayList"/>  Poner ArraylistObservation -->
-		<!-- Belief con el ArrayList de nodos hipótesis -->
-<!--		<belief name="hypothesis_nodes" class="ArrayList"/>  Poner ArraylistHypothesis -->
+		<belief name="ontology" class="JenaOWLModel" />	
 	
-	
-<!--		<belief name="evidences" class="HashMap">-->
+<!--		<belief name="address" class="String">-->
 <!--			<fact>-->
-<!--				new HashMap()-->
+<!--				"/home/jero.perez/Jadex/jadex-2.0-rc6/sources/reasoningAgent/Example/net/PruebaLLuvia.net"-->
 <!--			</fact>-->
 <!--		</belief>-->
-<!--		<belief name="hypotheses" class="HashMap">-->
-<!--			<fact>-->
-<!--				new HashMap()-->
-<!--			</fact>-->
-<!--		</belief>-->
-		<belief name="address" class="String">
-			<fact>
-				"/home/jero.perez/Jadex/jadex-2.0-rc6/sources/reasoningAgent/Example/net/PruebaLLuvia.net"
-			</fact>
-		</belief>
-		
-	
 	</beliefs>
 	
-	<goals>
-		<!-- Include make diagnosis loop goal type. -->
-		<performgoal name="make_diagnosis_loop_goal" >
-			<parameter name="diagnosisID" class="String" />
-		</performgoal>
-		<!-- Include perform inference goal type -->
-<!--		<performgoal name="perform_inference" /> -->
-	</goals>
+<!--	<goals>-->
+<!--		 Include make diagnosis loop goal type. -->
+<!--		<performgoal name="make_diagnosis_loop_goal" >-->
+<!--			<parameter name="diagnosisID" class="String" />-->
+<!--		</performgoal>-->
+<!--	</goals>-->
 	
 	<plans>
+		<plan name="load_owl">
+			<body class="LoadOWLPlan" />
+		</plan>
 		<!-- Plan que se lanza cuando hay un nuevo síntoma. Parámetro nuevo síntoma(se puede hacer con una referencia, URI) -->
-		<!-- Passive plan for managing a new symptom.
-			Reacts on the creation of a new symptom. -->
-		<plan name="manage_symptom">
-			<parameter name="symptom" class="Symptom" >
-           		<goalmapping ref="new_symptom.content" />
-        	</parameter>			
-			<body class="SymptomManagerPlan"/>
-			<trigger>
-				<!-- Check that there is a new symptom -->
-				<internalevent ref="new_symptom"/>
-			</trigger>
-		</plan>
-		<!-- Passive plan for managing a new observation.
-			Reacts on the creation of a new observation. -->
-		<plan name="manage_observation">
-			<parameter name="diagnosisID" class="String" >
-           		<goalmapping ref="new_observation.diagnosisID" />
-        	</parameter>
-			<parameter name="observation" class="Observation" >
-           		<goalmapping ref="new_observation.content" />
-        	</parameter>
-			<body class="ObservationManagerPlan"/>
-			<trigger>
-				<!-- Check that there is a new observation -->
-				<internalevent ref="new_observation"/>
-			</trigger>
-		</plan>
-		<!-- Passive plan for executing the diagnosis loop.
-			Reacts when the diagnosis goal is thrown. -->
-		<plan name="make_diagnosis_loop">
-			<parameter name="hypothesesTargetState" class="String">
-				<value>"YES"</value>
-			</parameter>
-			<parameter name="diagnosisID" class="String" />	<!-- Rellenar al lanzar el plan -->
-			<body class="DiagnosisLoopPlan"/>
-			<trigger>
-				<goal ref="make_diagnosis_loop_goal"/>
-			</trigger>
-		</plan>
-<!--		<plan name="reason">-->
+		<!-- Passive plan for managing a new symptom. -->
+<!--			Reacts on the creation of a new symptom. -->
+<!--		<plan name="manage_symptom">-->
+<!--			<parameter name="symptom" class="Symptom" >-->
+<!--           		<goalmapping ref="new_symptom.content" />-->
+<!--        	</parameter>			-->
+<!--			<body class="SymptomManagerPlan"/>-->
+<!--			<trigger>-->
+<!--				 Check that there is a new symptom -->
+<!--				<internalevent ref="new_symptom"/>-->
+<!--			</trigger>-->
+<!--		</plan>-->
+<!--		 Passive plan for managing a new observation.-->
+<!--			Reacts on the creation of a new observation. -->
+<!--		<plan name="manage_observation">-->
+<!--			<parameter name="diagnosisID" class="String" >-->
+<!--           		<goalmapping ref="new_observation.diagnosisID" />-->
+<!--        	</parameter>-->
+<!--			<parameter name="observation" class="Observation" >-->
+<!--           		<goalmapping ref="new_observation.content" />-->
+<!--        	</parameter>-->
+<!--			<body class="ObservationManagerPlan"/>-->
+<!--			<trigger>-->
+<!--				 Check that there is a new observation -->
+<!--				<internalevent ref="new_observation"/>-->
+<!--			</trigger>-->
+<!--		</plan>-->
+<!--		 Passive plan for executing the diagnosis loop.-->
+<!--			Reacts when the diagnosis goal is thrown. -->
+<!--		<plan name="make_diagnosis_loop">-->
 <!--			<parameter name="hypothesesTargetState" class="String">-->
 <!--				<value>"YES"</value>-->
 <!--			</parameter>-->
-<!--			<parameter name="observations" class="HashMap">-->
-<!--				<value>$beliefbase.evidences</value>-->
-<!--			</parameter>-->
-<!--			<parameter name="hypothesesSet" class="HashMap">-->
-<!--				<value>$beliefbase.hypotheses</value>-->
-<!--			</parameter>-->
-<!--			<body class="ReasonerPlan" />-->
-<!--		  	<trigger>-->
-<!--				<goal ref="perform_inference" />-->
+<!--			<parameter name="diagnosisID" class="String" />	 Rellenar al lanzar el plan -->
+<!--			<body class="DiagnosisLoopPlan"/>-->
+<!--			<trigger>-->
+<!--				<goal ref="make_diagnosis_loop_goal"/>-->
 <!--			</trigger>-->
-<!--		</plan>	-->
+<!--		</plan>-->
 	</plans>
 	
-	<events>
-		<!-- Specifies an internal event for a new symptom -->
-        <internalevent name="new_symptom">
-            <parameter name="content" class="Symptom"/>
-        </internalevent>
-        <!-- Specifies an internal event for a new observation -->
-        <internalevent name="new_observation">
-        	<parameter name="diagnosisID" class="String" />
-            <parameter name="content" class="Observation"/>
-        </internalevent>
-	</events>
+<!--	<events>-->
+<!--		 Specifies an internal event for a new symptom -->
+<!--        <internalevent name="new_symptom">-->
+<!--            <parameter name="content" class="Symptom"/>-->
+<!--        </internalevent>-->
+<!--         Specifies an internal event for a new observation -->
+<!--        <internalevent name="new_observation">-->
+<!--        	<parameter name="diagnosisID" class="String" />-->
+<!--            <parameter name="content" class="Observation"/>-->
+<!--        </internalevent>-->
+<!--	</events>-->
 	
 	<properties>
 		<!-- Only log outputs >= level are printed. -->
@@ -141,6 +112,11 @@
     </properties>
     
     <configurations>
+    	<configuration name="default">
+              <plans>
+                  <initialplan ref="load_owl"/>
+              </plans>
+          </configuration>
 	</configurations>
 
 </agent>
