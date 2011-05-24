@@ -22,16 +22,16 @@ import jadex.commons.service.SServiceProvider;
 			 * Create a new plan.
 			 */
 			public RtcpSearchPlan() {
-				getLogger().info("RSearchPlan: Created: " + this);
+				getLogger().info("RtcpSearchPlan: Created: " + this);
 				
 			}
 			
 			public void body(){
-				getLogger().info("RSearchPlan: Plan begins");
+				getLogger().info("RtcpSearchPlan: Plan begins");
 				// The agent looks for the other agent's identifier
 				this.a = this.getIComponentIdentifier("rtcp_monitor");
 
-				getLogger().info("RSearchPlan: The rtcp monitor has been found: " + a);
+				getLogger().info("RtcpSearchPlan: The rtcp monitor has been found: " + a);
 
 				// The response
 				String response = null;
@@ -41,17 +41,17 @@ import jadex.commons.service.SServiceProvider;
 					// This method will create a rp_initiate goal, this goal will trigger a plan.
 					// In this plan a request will be sent and the time server's response will
 					// be received. There is a timeout of 60*1000 mills, in other words 1 minute.
-					getLogger().info("RSearchPlan: The request is going to be sent");
+					getLogger().info("RtcpSearchPlan: The request is going to be sent");
 					response=(String)sendRequestAndGetResponse("RTCP", this.a, actReqTimeout);
-					getLogger().info("RSearchPlan: The request has been sent and the response has arrived");
-					getLogger().info("RSearchPlan: The rtcp server's response was: "+response);
+					getLogger().info("RtcpSearchPlan: The request has been sent and the response has arrived");
+					getLogger().info("RtcpSearchPlan: The rtcp server's response was: "+response);
 
 				}
 				catch(GoalFailureException gfe)
 				{
-					getLogger().info("RSearchPlan: Failure in the fipa-request protocol "+gfe);
+					getLogger().info("RtcpSearchPlan: Failure in the fipa-request protocol "+gfe);
 				}
-				getLogger().info("RSearchPlan: Plan ends");
+				getLogger().info("RtcpSearchPlan: Plan ends");
 				
 			}
 
@@ -64,30 +64,30 @@ import jadex.commons.service.SServiceProvider;
 			 *  @return the identifiers of the first agent who offers the service.
 			 */
 			protected IComponentIdentifier getIComponentIdentifier(String type, long timeout, long periodBetweenRequests) {
-				
+								
 				// The agent's identifier
 				IComponentIdentifier a = null;
-				
+								
 				// The current time
 				long referenceTime = System.currentTimeMillis();
-				
+								
 				// Search an agent of type type.
 				while(a==null && (System.currentTimeMillis()<(referenceTime+timeout) || timeout<=0))
-				{
+				{					
 					IDF	dfservice = (IDF)SServiceProvider.getService(getScope().getServiceProvider(), IDF.class).get(this);
-					
+										
 					// Create a service description to search for.
 					IDFServiceDescription sd = dfservice.createDFServiceDescription(null, type, null);
 					IDFComponentDescription ad = dfservice.createDFComponentDescription(null, sd);
-
+					
 					// Use a subgoal to search for a translation agent
 					IGoal ft = createGoal("df_search");
 		            ft.getParameter("description").setValue(ad);
-
+		            
 					dispatchSubgoalAndWait(ft);
 		            //Object result = ft.getResult();
 		            IDFComponentDescription[] result = (IDFComponentDescription[])ft.getParameterSet("result").getValues();
-
+		            
 					if(result.length>0)
 					{
 						a = result[0].getName();
@@ -99,6 +99,7 @@ import jadex.commons.service.SServiceProvider;
 						//System.out.println("No translation agent found.");
 						waitFor(periodBetweenRequests);
 					}
+					
 				}
 				
 				// Return the agent's identifier
