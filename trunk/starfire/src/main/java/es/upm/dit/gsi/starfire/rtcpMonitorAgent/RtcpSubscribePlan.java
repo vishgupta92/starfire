@@ -39,7 +39,6 @@ public class RtcpSubscribePlan extends Plan {
 				iciList = new ArrayList<IComponentIdentifier>();
 			else iciList = (List<IComponentIdentifier>) listBelief.getFact();
 			startMonitoring=false;
-			
 		}
 		
 		public void body(){

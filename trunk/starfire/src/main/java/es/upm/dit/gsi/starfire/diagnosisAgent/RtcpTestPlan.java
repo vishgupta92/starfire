@@ -8,10 +8,7 @@ import jadex.bdi.runtime.Plan;
 
 	public class RtcpTestPlan  extends Plan {
 			
-
 			private static final long serialVersionUID = -597969299500340110L;
-
-
 
 			/**
 			 * Create a new plan.

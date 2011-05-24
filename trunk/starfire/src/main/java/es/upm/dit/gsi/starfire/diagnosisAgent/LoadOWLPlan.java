@@ -6,10 +6,10 @@ import jadex.bdi.runtime.Plan;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
-import java.util.Set;
-
-import communeOntology.Agent;
-import communeOntology.MyFactory;
+//import java.util.Set;
+//
+//import communeOntology.Agent;
+//import communeOntology.MyFactory;
 
 import edu.stanford.smi.protege.exception.OntologyLoadException;
 import edu.stanford.smi.protegex.owl.ProtegeOWL;
@@ -36,7 +36,7 @@ public class LoadOWLPlan extends Plan {
 
 		getLogger().info("LoadOWLPlan: Owl model loaded");
 
-		boolean isAgentInModel = checkID();
+//		boolean isAgentInModel = checkID();
 
 //		if (isAgentInModel) {
 //			//Lanzar meta para crear sesión RTP
@@ -80,15 +80,15 @@ public class LoadOWLPlan extends Plan {
 		}
 	}
 
-	private boolean checkID() {
-		JenaOWLModel ontology = (JenaOWLModel) getBeliefbase().getBelief("ontology").getFact();
-		MyFactory myFactory = new MyFactory(ontology);
-		Set<Agent> agents = myFactory.getAllAgentInstances();
-		for (Agent a : agents) {
-			if ((a.getId()).equals((String) getBeliefbase().getBelief("agent_ID").getFact())) {
-				return true;
-			}
-		}
-		return false;
-	}
+//	private boolean checkID() {
+//		JenaOWLModel ontology = (JenaOWLModel) getBeliefbase().getBelief("ontology").getFact();
+//		MyFactory myFactory = new MyFactory(ontology);
+//		Set<Agent> agents = myFactory.getAllAgentInstances();
+//		for (Agent a : agents) {
+//			if ((a.getId()).equals((String) getBeliefbase().getBelief("agent_ID").getFact())) {
+//				return true;
+//			}
+//		}
+//		return false;
+//	}
 }
