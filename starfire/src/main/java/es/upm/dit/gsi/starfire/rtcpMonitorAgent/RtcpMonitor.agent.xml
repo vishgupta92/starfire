@@ -45,19 +45,14 @@
 			<fact>0.1</fact>
 		</belief>
 	
-		<belief name="iciList" class="List">
-		</belief>
+		<belief name="iciList" class="List" />
 		
 		<belief name ="monitoring" class="boolean">
 			<fact>false</fact>
 		</belief>
 	</beliefs>
 	
-	<goals>
-		<achievegoalref name="df_register">
-        	<concrete ref="dfcap.df_register"/>
-    	</achievegoalref>
-    
+	<goals>  
 <!-- <maintaingoal name="keepMonitoring" exclude="never">
     	<maintaincondition language ="jcl">
     	    $beliefbase.iciList.size() == 0 
@@ -87,9 +82,7 @@
     			<goal ref="keepMonitoring"/>
   			</trigger>  			
 		</plan>
-		
 	</plans>
-
 	
  	<events>
 		<messageevent name="rtcp_request" direction="receive" type="fipa">
@@ -123,7 +116,7 @@
 	<configurations>
 		<configuration name="default">
 			<goals>
-            	<initialgoal ref="df_register">
+            	<initialgoal ref="dfcap.df_register">
                		<parameter ref="description">
                     	<value>
 							$propertybase.getProperty("dfservice")

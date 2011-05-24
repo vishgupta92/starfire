@@ -10,13 +10,6 @@ package es.upm.dit.gsi.starfire.diagnosisAgent;
  * 
  */
 
-import java.net.InetAddress;
-import java.awt.*;
-import java.awt.event.KeyEvent;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import javax.swing.*;
-
 import jadex.bdi.runtime.IBelief;
 import jadex.bdi.runtime.IGoal;
 import jadex.bdi.runtime.Plan;

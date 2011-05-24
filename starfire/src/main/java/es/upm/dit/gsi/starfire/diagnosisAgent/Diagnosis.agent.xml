@@ -52,16 +52,6 @@
 		
 		<achievegoal name="monitorizeRTP" />
 		
-		<!-- Include rp_initiate goal type from procap. -->
-		<achievegoalref name="rp_initiate">
-			<concrete ref="procap.rp_initiate" />
-		</achievegoalref>
-
-		<!-- Include df search goal type from dfcap. -->
-		<achievegoalref name="df_search">
-			<concrete ref="dfcap.df_search" />
-		</achievegoalref>
-		
 <!--		 Include make diagnosis loop goal type. -->
 <!--		<performgoal name="make_diagnosis_loop_goal" >-->
 <!--			<parameter name="diagnosisID" class="String" />-->
