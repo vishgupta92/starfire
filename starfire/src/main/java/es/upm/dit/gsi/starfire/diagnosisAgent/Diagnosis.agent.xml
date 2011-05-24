@@ -1,26 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-	<H3>Diagnosis</H3>
-	It has a monitoring plan.
-	It has a symptom manager plan.
-	It has an observation manager plan.
-	It has a diagnosis loop manager plan.
-	<H4>Explanation</H4>
-	The agent makes diagnosis when a symptom is received.  
--->
-<agent xmlns="http://jadex.sourceforge.net/jadex-bdi"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<!-- <H3>Diagnosis</H3> It has a monitoring plan. It has a symptom manager 
+	plan. It has an observation manager plan. It has a diagnosis loop manager 
+	plan. <H4>Explanation</H4> The agent makes diagnosis when a symptom is received. -->
+<agent xmlns="http://jadex.sourceforge.net/jadex-bdi" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://jadex.sourceforge.net/jadex-bdi
 	                    http://jadex.sourceforge.net/jadex-bdi-2.0.xsd"
-	name="Diagnosis"
-	package="es.upm.dit.gsi.starfire.diagnosisAgent">
+	name="Diagnosis" package="es.upm.dit.gsi.starfire.diagnosisAgent">
 
 	<imports>
 		<import>java.util.logging.*</import>
 		<import>java.util.ArrayList</import>
+		<import>jadex.base.fipa.*</import>
 		<import>edu.stanford.smi.protegex.owl.jena.JenaOWLModel</import>
 	</imports>
-	
+
 	<capabilities>
 		<!-- Include the protocols cap. -->
 		<capability name="procap"
@@ -28,36 +21,36 @@
 		<!-- Include the df cap. -->
 		<capability name="dfcap" file="jadex.bdi.planlib.df.DF" />
 	</capabilities>
-	
+
 	<beliefs>
 		<!-- Belief con la uri del fichero owl -->
-		<belief name="owl_uri" class ="String" />
+		<belief name="owl_uri" class="String" />
 		<!-- Belief con el ID del agente -->
-		<belief name="agent_ID" class ="String" />	
+		<belief name="agent_ID" class="String" />
 		<!-- Belief con el modelo, la ontología -->
-		<belief name="ontology" class="JenaOWLModel" />	
-		
+		<belief name="ontology" class="JenaOWLModel" />
+
 		<belief name="serverIP" class="String" />
 		<belief name="file" class="String" />
-	
-<!--		<belief name="address" class="String">-->
-<!--			<fact>-->
-<!--				"/home/jero.perez/Jadex/jadex-2.0-rc6/sources/reasoningAgent/Example/net/PruebaLLuvia.net"-->
-<!--			</fact>-->
-<!--		</belief>-->
+
+		<!-- <belief name="address" class="String"> -->
+		<!-- <fact> -->
+		<!-- "/home/jero.perez/Jadex/jadex-2.0-rc6/sources/reasoningAgent/Example/net/PruebaLLuvia.net" -->
+		<!-- </fact> -->
+		<!-- </belief> -->
 	</beliefs>
-	
+
 	<goals>
 		<achievegoal name="launch_vlc" />
-		
+
 		<achievegoal name="monitorizeRTP" />
-		
-<!--		 Include make diagnosis loop goal type. -->
-<!--		<performgoal name="make_diagnosis_loop_goal" >-->
-<!--			<parameter name="diagnosisID" class="String" />-->
-<!--		</performgoal>-->
+
+		<!-- Include make diagnosis loop goal type. -->
+		<!-- <performgoal name="make_diagnosis_loop_goal" > -->
+		<!-- <parameter name="diagnosisID" class="String" /> -->
+		<!-- </performgoal> -->
 	</goals>
-	
+
 	<plans>
 		<plan name="load_owl">
 			<body class="LoadOWLPlan" />
@@ -80,80 +73,81 @@
 				<messageevent ref="rtcp_inform" />
 			</trigger>
 		</plan>
-		
-		<!-- Plan que se lanza cuando hay un nuevo síntoma. Parámetro nuevo síntoma(se puede hacer con una referencia, URI) -->
+
+		<!-- Plan que se lanza cuando hay un nuevo síntoma. Parámetro nuevo síntoma(se 
+			puede hacer con una referencia, URI) -->
 		<!-- Passive plan for managing a new symptom. -->
-<!--			Reacts on the creation of a new symptom. -->
-<!--		<plan name="manage_symptom">-->
-<!--			<parameter name="symptom" class="Symptom" >-->
-<!--           		<goalmapping ref="new_symptom.content" />-->
-<!--        	</parameter>			-->
-<!--			<body class="SymptomManagerPlan"/>-->
-<!--			<trigger>-->
-<!--				 Check that there is a new symptom -->
-<!--				<internalevent ref="new_symptom"/>-->
-<!--			</trigger>-->
-<!--		</plan>-->
-<!--		 Passive plan for managing a new observation.-->
-<!--			Reacts on the creation of a new observation. -->
-<!--		<plan name="manage_observation">-->
-<!--			<parameter name="diagnosisID" class="String" >-->
-<!--           		<goalmapping ref="new_observation.diagnosisID" />-->
-<!--        	</parameter>-->
-<!--			<parameter name="observation" class="Observation" >-->
-<!--           		<goalmapping ref="new_observation.content" />-->
-<!--        	</parameter>-->
-<!--			<body class="ObservationManagerPlan"/>-->
-<!--			<trigger>-->
-<!--				 Check that there is a new observation -->
-<!--				<internalevent ref="new_observation"/>-->
-<!--			</trigger>-->
-<!--		</plan>-->
-<!--		 Passive plan for executing the diagnosis loop.-->
-<!--			Reacts when the diagnosis goal is thrown. -->
-<!--		<plan name="make_diagnosis_loop">-->
-<!--			<parameter name="hypothesesTargetState" class="String">-->
-<!--				<value>"YES"</value>-->
-<!--			</parameter>-->
-<!--			<parameter name="diagnosisID" class="String" />	 Rellenar al lanzar el plan -->
-<!--			<body class="DiagnosisLoopPlan"/>-->
-<!--			<trigger>-->
-<!--				<goal ref="make_diagnosis_loop_goal"/>-->
-<!--			</trigger>-->
-<!--		</plan>-->
+		<!-- Reacts on the creation of a new symptom. -->
+		<!-- <plan name="manage_symptom"> -->
+		<!-- <parameter name="symptom" class="Symptom" > -->
+		<!-- <goalmapping ref="new_symptom.content" /> -->
+		<!-- </parameter> -->
+		<!-- <body class="SymptomManagerPlan"/> -->
+		<!-- <trigger> -->
+		<!-- Check that there is a new symptom -->
+		<!-- <internalevent ref="new_symptom"/> -->
+		<!-- </trigger> -->
+		<!-- </plan> -->
+		<!-- Passive plan for managing a new observation. -->
+		<!-- Reacts on the creation of a new observation. -->
+		<!-- <plan name="manage_observation"> -->
+		<!-- <parameter name="diagnosisID" class="String" > -->
+		<!-- <goalmapping ref="new_observation.diagnosisID" /> -->
+		<!-- </parameter> -->
+		<!-- <parameter name="observation" class="Observation" > -->
+		<!-- <goalmapping ref="new_observation.content" /> -->
+		<!-- </parameter> -->
+		<!-- <body class="ObservationManagerPlan"/> -->
+		<!-- <trigger> -->
+		<!-- Check that there is a new observation -->
+		<!-- <internalevent ref="new_observation"/> -->
+		<!-- </trigger> -->
+		<!-- </plan> -->
+		<!-- Passive plan for executing the diagnosis loop. -->
+		<!-- Reacts when the diagnosis goal is thrown. -->
+		<!-- <plan name="make_diagnosis_loop"> -->
+		<!-- <parameter name="hypothesesTargetState" class="String"> -->
+		<!-- <value>"YES"</value> -->
+		<!-- </parameter> -->
+		<!-- <parameter name="diagnosisID" class="String" /> Rellenar al lanzar 
+			el plan -->
+		<!-- <body class="DiagnosisLoopPlan"/> -->
+		<!-- <trigger> -->
+		<!-- <goal ref="make_diagnosis_loop_goal"/> -->
+		<!-- </trigger> -->
+		<!-- </plan> -->
 	</plans>
-	
+
 	<events>
-		<messageevent name="rtcp_inform" direction="receive"
-			type="fipa">
+		<messageevent name="rtcp_inform" direction="receive" type="fipa">
 			<parameter name="performative" class="String" direction="fixed">
 				<value>SFipa.INFORM</value>
 			</parameter>
 		</messageevent>
-<!--		 Specifies an internal event for a new symptom -->
-<!--        <internalevent name="new_symptom">-->
-<!--            <parameter name="content" class="Symptom"/>-->
-<!--        </internalevent>-->
-<!--         Specifies an internal event for a new observation -->
-<!--        <internalevent name="new_observation">-->
-<!--        	<parameter name="diagnosisID" class="String" />-->
-<!--            <parameter name="content" class="Observation"/>-->
-<!--        </internalevent>-->
+		<!-- Specifies an internal event for a new symptom -->
+		<!-- <internalevent name="new_symptom"> -->
+		<!-- <parameter name="content" class="Symptom"/> -->
+		<!-- </internalevent> -->
+		<!-- Specifies an internal event for a new observation -->
+		<!-- <internalevent name="new_observation"> -->
+		<!-- <parameter name="diagnosisID" class="String" /> -->
+		<!-- <parameter name="content" class="Observation"/> -->
+		<!-- </internalevent> -->
 	</events>
-	
+
 	<properties>
 		<!-- Only log outputs >= level are printed. -->
 		<property name="logging.level">Level.INFO</property>
 		<!-- The debugging flag is set to false. -->
 		<property name="debugging">false</property>
-    </properties>
-    
-    <configurations>
-    	<configuration name="default">
-              <plans>
-                  <initialplan ref="load_owl"/>
-              </plans>
-          </configuration>
+	</properties>
+
+	<configurations>
+		<configuration name="default">
+			<plans>
+				<initialplan ref="load_owl" />
+			</plans>
+		</configuration>
 	</configurations>
 
 </agent>
