@@ -54,9 +54,9 @@
 	</beliefs>
 	
 	<goals>
-		<maintaingoalref name="df_keep_registered">
-        	<concrete ref="dfcap.df_keep_registered"/>
-    	</maintaingoalref>
+		<achievegoalref name="df_register">
+        	<concrete ref="dfcap.df_register"/>
+    	</achievegoalref>
     
 <!-- <maintaingoal name="keepMonitoring" exclude="never">
     	<maintaincondition language ="jcl">
@@ -70,9 +70,7 @@
 
 	</maintaingoal>	 -->
 	
-	<performgoal name ="keepMonitoring">
-	</performgoal>
-	
+		<performgoal name ="keepMonitoring" />
 	</goals>
 	
 	<plans>
@@ -125,7 +123,7 @@
 	<configurations>
 		<configuration name="default">
 			<goals>
-            	<initialgoal ref="df_keep_registered">
+            	<initialgoal ref="df_register">
                		<parameter ref="description">
                     	<value>
 							$propertybase.getProperty("dfservice")
