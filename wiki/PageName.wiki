@@ -25,7 +25,18 @@ associated to each bayesian network.
 3.When the new values are learnt, the knowledge agent distribute them to all
 the diagnosis agents
 
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
+
+=CONFIGURABLE PARAMETERS=
+
+− It's important to set the paths to your configuration files properly. The path to
+the files .properties (SelfLearning and SelfLearningDB) has to be specified in the
+_target.xml file. The paths to the bayesian networks directory have to set up in
+SelfLearning.properties.
+
+− In order to self learn periodically, set DO_SELF_LEARNING to YES (in
+SelfLearning.properties)
+
+− The period can also be changed in the properties file (at least, it has to have time to
+finish the process before it starts again).
+
+− *IMPORTANT*: The bayesian network must have the same name as the scene_id.
