@@ -8,7 +8,7 @@ diagnosis Bayesian knowledge, is introduced.
 
 
 
-==1.1 Self-learning functionality==
+=1.1 Self-learning functionality=
         
 The properties file, SelfLearning.properties, has to be configured for each HAN.
 
