@@ -1,6 +1,6 @@
 #summary The explain of self-learning integration
 
-= OVERVIEW =
+= Overview =
 A good fault diagnosis depends on a reliable BN. Even though the initials BN are made manually
 by service operators, it's difficult to make them work accurately in every HAN. In order to improve
 the diagnosis, the Knowledge Agent, which is the responsible for learning and updating the
@@ -28,7 +28,7 @@ the diagnosis agents
 
 
 
-=CONFIGURABLE PARAMETERS=
+=Configurable Parametres=
 
 − It's important to set the paths to your configuration files properly. The path to
 the files .properties (SelfLearning and SelfLearningDB) has to be specified in the
@@ -45,7 +45,7 @@ finish the process before it starts again).
 
 
 
-=ANNEX I: TO-DO LIST=
+=ANNEX I: To-Do List=
 
 − In each self learn process, just use the new validated reports.
 
@@ -54,7 +54,7 @@ process.
 
 
 
-=ANNEX II: SMILE LIBRARY=
+=ANNEX II: Smile Library=
 
 The learning process is perform by the jsmile library. In order to work, the .jar has to be
 in magneto/lib folder and the libjsmile.so has to be in the java library path (in ubuntu,
