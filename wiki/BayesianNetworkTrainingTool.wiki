@@ -58,7 +58,33 @@ The Bayesian network has to be saved in .xdsl or .net format.
 == 4. Test ==
 In order to test the tool, we have used the grass wet example (can be found in http://en.wikipedia.org/wiki/Bayesian_network). Follows the next diagram:
 
-COMPLETAR CON LAS TABLAS
+=== _TEST.01_ ===
+|| *Description* ||Test functionality of training file.||
+|| *Objectives* ||The aim of this test is to check that the system works.||
+|| *Pre-conditions* ||Generate the training xml file with cases using weight, training_list and training_not.||
+|| *Expected results and evaluation criteria* ||The number of lines in the .data file generated should correspond to the .xml training file.||
+
+
+
+=== _TEST.02_ ===
+|| *Description* ||First test of the example.||
+|| *Objectives* ||The aim of this test is to compare the results of the tool with the original Bayesian network||
+|| *Pre-conditions* ||Generate the training xml file with 5 cases:||
+
+||        || Rain  || Sprinkler || Grasswet ||
+|| Case 1 || False ||  True     ||    *     ||
+|| Case 2 || True  ||	*	||   True   ||
+|| Case 3 ||  *	   ||  True	||   True   ||
+|| Case 4 || False ||  False	||   False  ||
+|| Case 5 || True  ||  False    ||     *    ||
+
+|| *Expected results and evaluation criteria* ||The relations between nodes have to work similar but since we are using just 5 cases the probabilities may differ.||
+
+
+
+=== _TEST.03_ ===
+
+TERMINAR DE AÑADIR LAS TABLAS
 
 
 
@@ -67,4 +93,3 @@ COMPLETAR CON LAS TABLAS
 == 5. Results ==
 
 COMPLETAR CON LA TABLAS
-
