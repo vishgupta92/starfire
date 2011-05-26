@@ -64,8 +64,7 @@ In order to test the tool, we have used the grass wet example (can be found in h
 || *Pre-conditions* ||Generate the training xml file with cases using weight, training_list and training_not.||
 || *Expected results and evaluation criteria* ||The number of lines in the .data file generated should correspond to the .xml training file.||
 
-
-
+ 
 === _TEST.02_ ===
 || *Description* ||First test of the example.||
 || *Objectives* ||The aim of this test is to compare the results of the tool with the original Bayesian network||
@@ -80,8 +79,7 @@ In order to test the tool, we have used the grass wet example (can be found in h
 
 || *Expected results and evaluation criteria* ||The relations between nodes have to work similar but since we are using just 5 cases the probabilities may differ.||
 
-
-
+ 
 === _TEST.03_ ===
 
 TERMINAR DE AÑADIR LAS TABLAS
