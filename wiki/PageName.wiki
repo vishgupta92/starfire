@@ -1,4 +1,4 @@
-#summary Self-learnign integration
+#summary Self-learning integration
 
 = OVERVIEW =
 A good fault diagnosis depends on a reliable BN. Even though the initials BN are made manually
