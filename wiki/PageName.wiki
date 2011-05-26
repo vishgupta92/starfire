@@ -1,0 +1,15 @@
+#summary Self-learnign integration
+
+= Introduction =
+A good fault diagnosis depends on a reliable BN. Even though the initials BN are made manually
+by service operators, it's difficult to make them work accurately in every HAN. In order to improve
+the diagnosis, the Knowledge Agent, which is the responsible for learning and updating the
+diagnosis Bayesian knowledge, is introduced.
+
+
+= Details =
+
+Add your content here.  Format your content with:
+  * Text in *bold* or _italic_
+  * Headings, paragraphs, and lists
+  * Automatic links to other wiki pages
