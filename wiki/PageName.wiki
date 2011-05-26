@@ -7,6 +7,7 @@ the diagnosis, the Knowledge Agent, which is the responsible for learning and up
 diagnosis Bayesian knowledge, is introduced.
 
 
+
 =1.1 Self-learning functionality =
         
 The properties file, SelfLearning.properties, has to be configured for each HAN.
@@ -26,6 +27,7 @@ associated to each bayesian network.
 the diagnosis agents
 
 
+
 =CONFIGURABLE PARAMETERS=
 
 − It's important to set the paths to your configuration files properly. The path to
@@ -40,3 +42,20 @@ SelfLearning.properties)
 finish the process before it starts again).
 
 − *IMPORTANT*: The bayesian network must have the same name as the scene_id.
+
+
+
+=ANNEX I: TO-DO LIST=
+
+− In each self learn process, just use the new validated reports.
+
+− Instead of using always the initial BN, use the previous one for further learning
+process.
+
+
+
+=ANNEX II: SMILE LIBRARY=
+
+The learning process is perform by the jsmile library. In order to work, the .jar has to be
+in magneto/lib folder and the libjsmile.so has to be in the java library path (in ubuntu,
+/usr/lib/jvm/jdk1.6.0_22/jre/lib/ ).
