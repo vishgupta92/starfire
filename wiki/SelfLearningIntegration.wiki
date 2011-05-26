@@ -14,7 +14,7 @@ The properties file, SelfLearning.properties, has to be configured for each HAN.
 
 Self learning steps:
 
-#1.OSGI interface agents send diagnosis operation reports to a storage agent,
+1.OSGI interface agents send diagnosis operation reports to a storage agent,
 which is responsible for their storage in a database.
 
 2.The knowledge agent starts the self learning process periodically (it can be
@@ -24,7 +24,7 @@ with the initial BN and confidence file. It's necessary to have a confidence val
 associated to each bayesian network.
 
 3.When the new values are learnt, the knowledge agent distribute them to all
-the diagnosis agents#
+the diagnosis agents
 
 
 
