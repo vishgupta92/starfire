@@ -1,0 +1,13 @@
+net
+{
+     node_size = (0 0);
+     name = "ejemplo";
+     UnBBayes_Color_Probabilistic_Description = "-256";
+     UnBBayes_Color_Probabilistic_Explanation = "-16711936";
+}
+
+node Aspersor
+{
+     label = "";
+     position = (0 0);
+     color = (-256);
