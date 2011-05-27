@@ -23,7 +23,7 @@ import edu.stanford.smi.protegex.owl.ProtegeOWL;
 import edu.stanford.smi.protegex.owl.jena.JenaOWLModel;
 import edu.stanford.smi.protegex.owl.model.RDFSLiteral;
 import edu.stanford.smi.protegex.owl.model.impl.DefaultOWLIndividual;
-import es.upm.dit.gsi.net2prOwl.BayesianTranslator;
+import es.upm.dit.gsi.net2prOwl.BayesianTranslatorNet2OWL;
 import es.upm.dit.gsi.ontology.Domain_MFrag;
 import es.upm.dit.gsi.ontology.Domain_Res;
 import es.upm.dit.gsi.ontology.MFrag;
@@ -37,9 +37,9 @@ import es.upm.dit.gsi.ontology.impl.DefaultCategoricalRVStates;
  * Class that seeks to convert a file. owl in a file. net
  * @author Jeronimo Fco Perez Regidor
  */
-public class UnBBayesTranslator {
+public class UnBBayesTranslatorOWL2Net {
 
-	private Logger logger = Logger.getLogger(UnBBayesTranslator.class.toString());
+	private Logger logger = Logger.getLogger(UnBBayesTranslatorOWL2Net.class.toString());
 	private String uriOwl;
 	private MyFactory myFactory;
 	public static JenaOWLModel owlModel;
@@ -52,7 +52,7 @@ public class UnBBayesTranslator {
 	 * @param uriOwl where is the file. owl turn
 	 * @param nameNet Name the network will
 	 */
-	public UnBBayesTranslator(String uriOwl) {
+	public UnBBayesTranslatorOWL2Net(String uriOwl) {
 
 		// create Owl
 		this.uriOwl = uriOwl;

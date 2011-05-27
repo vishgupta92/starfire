@@ -13,7 +13,7 @@ public class RunBayesianTranslator {
 		// TODO Auto-generated method stub
 		String uriOwl = "/home/jero.perez/workspaceCOMMUNE/bayesianTranslator/Example/owl/EmptyBN.owl";
 		String uriNet = "/home/jero.perez/workspaceCOMMUNE/bayesianTranslator/Example/net/PruebaLLuviaEstados.net";
-		BayesianTranslator bT = new BayesianTranslator(uriNet,uriOwl);
+		BayesianTranslatorNet2OWL bT = new BayesianTranslatorNet2OWL(uriNet,uriOwl);
 
                 bT.convertNet2Owl();
 
