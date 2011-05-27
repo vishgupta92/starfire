@@ -12,7 +12,7 @@ public class RunUnBBayesTranslator {
 		// TODO Auto-generated method stub
 		String uriOwl = "/home/jero.perez/workspaceCOMMUNE/bayesianTranslator/PruebaLLuviaEstados.owl";
 		String nameNet = "NetworkName";
-                UnBBayesTranslator aux = new UnBBayesTranslator(uriOwl);
+                UnBBayesTranslatorOWL2Net aux = new UnBBayesTranslatorOWL2Net(uriOwl);
 		aux.convertOwlToNet();
 
 

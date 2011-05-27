@@ -15,18 +15,18 @@ import unbbayes.prs.bn.ProbabilisticNetwork;
 import unbbayes.prs.bn.ProbabilisticNode;
 import edu.stanford.smi.protegex.owl.ProtegeOWL;
 import edu.stanford.smi.protegex.owl.jena.JenaOWLModel;
-import es.upm.dit.gsi.net2prOwl.BayesianTranslator;
+import es.upm.dit.gsi.net2prOwl.BayesianTranslatorNet2OWL;
 import es.upm.dit.gsi.ontology.Domain_Res;
 import es.upm.dit.gsi.ontology.MyFactory;
 import es.upm.dit.gsi.ontology.PR_OWLTable;
-import es.upm.dit.gsi.prOwl2net.UnBBayesTranslator;
+import es.upm.dit.gsi.prOwl2net.UnBBayesTranslatorOWL2Net;
 import junit.framework.TestCase;
 
 public class Test extends TestCase {
 
 	
-	private UnBBayesTranslator bbT;
-	private BayesianTranslator bayesT;
+	private UnBBayesTranslatorOWL2Net bbT;
+	private BayesianTranslatorNet2OWL bayesT;
 	private ProbabilisticNetwork netBefore;
 	private ProbabilisticNetwork netAfter;
 	public static JenaOWLModel owlModel;
@@ -42,8 +42,8 @@ public class Test extends TestCase {
 		uriOwl = "";
 		uriOwlEmpty = "";
 		nameNet = "";
-		bayesT = new BayesianTranslator(uriNet, uriOwlEmpty);
-		bbT = new UnBBayesTranslator(uriOwl, nameNet);
+		bayesT = new BayesianTranslatorNet2OWL(uriNet, uriOwlEmpty);
+		bbT = new UnBBayesTranslatorOWL2Net(uriOwl, nameNet);
 
 		
 		String aux = Definitions.uriNet;

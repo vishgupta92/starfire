@@ -40,8 +40,8 @@ import es.upm.dit.gsi.ontology.ProbAssign;
  * This class tries to convert a. net to a file. owl
  * @author Jeronimo Fco Perez Regidor
  */
-public class BayesianTranslator {
-	Logger logger = Logger.getLogger(BayesianTranslator.class.toString());
+public class BayesianTranslatorNet2OWL {
+	Logger logger = Logger.getLogger(BayesianTranslatorNet2OWL.class.toString());
 
 	private LoadNetwork load = new LoadNetwork();
 	private ProbabilisticNetwork net;
@@ -56,7 +56,7 @@ public class BayesianTranslator {
          * @param uriNet where the file to convert
          * @param uriOwl where is the file. owl base / empty
          */
-	public BayesianTranslator(String uriNet, String uriOwlEmpty) {
+	public BayesianTranslatorNet2OWL(String uriNet, String uriOwlEmpty) {
 		// load net
 		this.uriNet = uriNet;
 		loadNet();
