@@ -1,0 +1,30 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>es.upm.dit.gsi</groupId>
+  <artifactId>bayesianTranslator</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <name>bayesian translator</name>
+  <description>Tool to translate Bayes2OWL and viceversa</description>
+  <dependencies>
+  	<dependency>
+  		<groupId>br.unb.cic</groupId>
+  		<artifactId>unbbayes</artifactId>
+  		<version>4.2.1</version>
+  		<scope>compile</scope>
+  	</dependency>
+  	<dependency>
+  		<groupId>com.hp.hpl.jena</groupId>
+  		<artifactId>jena</artifactId>
+  		<version>2.6.4</version>
+  		<type>jar</type>
+  		<scope>compile</scope>
+  	</dependency>
+  	<dependency>
+  		<groupId>jdom</groupId>
+  		<artifactId>jdom</artifactId>
+  		<version>1.1</version>
+  		<type>jar</type>
+  		<scope>compile</scope>
+  	</dependency>
+  </dependencies>
+</project>
