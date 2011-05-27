@@ -3,9 +3,6 @@ package es.upm.dit.gsi.prOwl2net;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.lang.reflect.Array;
-import java.net.URI;
-import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Set;
 import java.util.logging.Logger;
@@ -13,20 +10,16 @@ import java.util.logging.Logger;
 import tools.CreateTables;
 import unbbayes.io.NetIO;
 import unbbayes.prs.Edge;
-import unbbayes.prs.bn.JunctionTreeAlgorithm;
 import unbbayes.prs.bn.PotentialTable;
 import unbbayes.prs.bn.ProbabilisticNetwork;
 import unbbayes.prs.bn.ProbabilisticNode;
-import unbbayes.prs.bn.ProbabilisticTable;
 import unbbayes.prs.exception.InvalidParentException;
 import edu.stanford.smi.protegex.owl.ProtegeOWL;
 import edu.stanford.smi.protegex.owl.jena.JenaOWLModel;
 import edu.stanford.smi.protegex.owl.model.RDFSLiteral;
 import edu.stanford.smi.protegex.owl.model.impl.DefaultOWLIndividual;
-import es.upm.dit.gsi.net2prOwl.BayesianTranslatorNet2OWL;
 import es.upm.dit.gsi.ontology.Domain_MFrag;
 import es.upm.dit.gsi.ontology.Domain_Res;
-import es.upm.dit.gsi.ontology.MFrag;
 import es.upm.dit.gsi.ontology.MyFactory;
 import es.upm.dit.gsi.ontology.PR_OWLTable;
 import es.upm.dit.gsi.ontology.ProbAssign;
@@ -40,9 +33,10 @@ import es.upm.dit.gsi.ontology.impl.DefaultCategoricalRVStates;
 public class UnBBayesTranslatorOWL2Net {
 
 	private Logger logger = Logger.getLogger(UnBBayesTranslatorOWL2Net.class.toString());
-	private String uriOwl;
+//	private File owlFile;
+	private String netDirectoryUri;
 	private MyFactory myFactory;
-	public static JenaOWLModel owlModel;
+	public static JenaOWLModel OWL_MODEL;
 	private ProbabilisticNetwork net;
 	private String nameNet;
 
@@ -52,14 +46,15 @@ public class UnBBayesTranslatorOWL2Net {
 	 * @param uriOwl where is the file. owl turn
 	 * @param nameNet Name the network will
 	 */
-	public UnBBayesTranslatorOWL2Net(String uriOwl) {
+	public UnBBayesTranslatorOWL2Net(File owlFile, String netDirectoryUri) {
 
 		// create Owl
-		this.uriOwl = uriOwl;
+//		this.owlFile = owlFile;
+		this.netDirectoryUri = netDirectoryUri;
 		try {
-			FileReader owlFile = new FileReader(uriOwl);
-			owlModel = ProtegeOWL.createJenaOWLModelFromReader(owlFile);
-			//owlModel.getNamespaceManager().setDefaultNamespace("http://www.gsi.upm.es/Commune.owl#");
+			FileReader owlFileReader = new FileReader(owlFile);
+			OWL_MODEL = ProtegeOWL.createJenaOWLModelFromReader(owlFileReader);
+			//OWL_MODEL.getNamespaceManager().setDefaultNamespace("http://www.gsi.upm.es/Commune.owl#");
 
 		} catch (Exception oe) {
 			oe.printStackTrace();
@@ -67,7 +62,7 @@ public class UnBBayesTranslatorOWL2Net {
 		}
 
 		// create myFactory.
-		this.myFactory = new MyFactory(this.owlModel);
+		this.myFactory = new MyFactory(UnBBayesTranslatorOWL2Net.OWL_MODEL);
 
 		//create Net          
 		Set<Domain_MFrag> mFragSet =  myFactory.getAllDomain_MFragInstances();
@@ -112,6 +107,7 @@ public class UnBBayesTranslatorOWL2Net {
 		//add states
 		for(Domain_Res res: nodesOwl) {
 			String nameRes = res.getLocalName();
+			@SuppressWarnings("unchecked")
 			Set<DefaultCategoricalRVStates> states = (Set<DefaultCategoricalRVStates>)res.getHasPossibleValues();
 			for(DefaultCategoricalRVStates state : states) {
 
@@ -330,7 +326,8 @@ public class UnBBayesTranslatorOWL2Net {
 			if(net == null) {
 				System.out.println("the network is null");
 			}
-			io.save(new File(name), this.net);
+			
+			io.save(new File(netDirectoryUri + "/" + name), this.net);
 			
 		} catch (FileNotFoundException e) {
 			
