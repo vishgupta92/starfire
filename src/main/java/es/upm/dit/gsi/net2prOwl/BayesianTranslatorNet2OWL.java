@@ -246,7 +246,7 @@ public class BayesianTranslatorNet2OWL {
 								double value = hashMapTable2D.get(prob
 										.getPrefixedName());// get value of key
 								// RDFSLiteral literal = new DefaultRDFSLiteral(
-								// owlModel, new Double(value).toString());
+								// OWL_MODEL, new Double(value).toString());
 								//
 								RDFSDatatype dateType = owlModel
 										.getRDFSDatatypeByName("xsd:decimal");

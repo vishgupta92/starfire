@@ -1240,25 +1240,25 @@ public class MyFactory {
 
 //    public RDFSNamedClass getEntityClass() {
 //        final String uri = "http://swrl.stanford.edu/ontologies/3.3/swrla.owl#Entity";
-//        final String name = owlModel.getResourceNameForURI(uri);
-//        return owlModel.getRDFSNamedClass(name);
+//        final String name = OWL_MODEL.getResourceNameForURI(uri);
+//        return OWL_MODEL.getRDFSNamedClass(name);
 //    }
 //
 //    public Entity createEntity(String name) {
 //        final RDFSNamedClass cls = getEntityClass();
 //        if (name == null) {
-//            name = owlModel.getNextAnonymousResourceName();
+//            name = OWL_MODEL.getNextAnonymousResourceName();
 //        }
-//        return  new DefaultEntity(owlModel, cls.createInstance(name).getFrameID());
+//        return  new DefaultEntity(OWL_MODEL, cls.createInstance(name).getFrameID());
 //    }
 //
 //    public Entity getEntity(String name) {
-//        RDFResource res = owlModel.getRDFResource(OWLUtil.getInternalFullName(owlModel, name));
+//        RDFResource res = OWL_MODEL.getRDFResource(OWLUtil.getInternalFullName(OWL_MODEL, name));
 //        if (res == null) {return null;}
 //        if (res instanceof Entity) {
 //            return (Entity) res;
 //        } else if (res.hasProtegeType(getEntityClass())) {
-//            return new DefaultEntity(owlModel, res.getFrameID());
+//            return new DefaultEntity(OWL_MODEL, res.getFrameID());
 //        }
 //        return null;
 //    }
@@ -1273,7 +1273,7 @@ public class MyFactory {
 //        RDFResource owlIndividual;
 //        for (Iterator it = cls.getInstances(transitive).iterator();it.hasNext();) {
 //            owlIndividual = (RDFResource) it.next();
-//            result.add(new DefaultEntity(owlModel, owlIndividual.getFrameID()));
+//            result.add(new DefaultEntity(OWL_MODEL, owlIndividual.getFrameID()));
 //        }
 //        return result;
 //    }
