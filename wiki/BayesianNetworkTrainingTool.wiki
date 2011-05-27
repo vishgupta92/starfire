@@ -3,10 +3,8 @@
 = Bayesian Network training tool: =
 
 == 1. Objectives ==
-The aim of this tool is to generate a BN from cases stored in an xml file, using the Smile library. An initial BN (in .xdsl or .net format) is needed to get the nodes and possible states. The tool follows the next use case diagram.
+The aim of this tool is to generate a BN from cases stored in an xml file, using the Smile library. An initial BN (in .xdsl or .net format) is needed to get the nodes and possible states.
 
-
-FALTA COMPLETAR CON EL DIBUJO
 
 == 2. Installation ==
 This tool uses the jsmile library (http://genie.sis.pitt.edu/download/software.html). In order to work, put this library on your Java Library Path. It also uses the jdom library to read xml files (http://www.jdom.org).
