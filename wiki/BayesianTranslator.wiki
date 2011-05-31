@@ -1,0 +1,21 @@
+#summary This tool translate Bayesian networks into the OWL-Ontology, and OWL-Ontology into Bayesian Network
+
+= Objetives =
+The aim of this tool, is to translate a Bayesian network (giving its .net file) into a OWL-Ontology file (.owl file). The tool can make the reverse change (.owl file into a .net file).
+
+= Process =
+== Bayesian Network to OWL-Ontology ==
+The process follows the next points:
+  # First, write in the program the directory of the .net file that you want to convert.
+  # Then the program reads the network structure (nodes, node status, relations between nodes, etc) 
+  # To create the marginal tables (in Owl) we use the CreateTable class. This class allows you to create tables which contains the nodes names and their respective marginal value.
+  # Once these tables were been created, they are added to the OwlModel and they take a name ie (Node1-Family, Node2-Father, Node3-Mother). Then the program assign a value to each node.
+  # Finally, the program save the OwlModel and create the .owl file.
+
+== OWL-Ontology to Bayesian Network ==
+This process is a bit complex than the other. The process follows the next points:
+  # First read the nodes, add them, put the arrows that connect parents to childrens and create the structure.
+  # Secondly the program calls to CreateTable class in order to create a table which contains the names saved in the .owl file.
+  # Then, once qe have the names in the table. All ProbAssign take their value from the marginal and is added to Bayesian Network.
+  # Finally, the program saves the Bayesian Network in a .net file with the name that we assign it.
+
