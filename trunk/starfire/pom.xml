@@ -209,6 +209,7 @@
 			<groupId>es.upm.dit.gsi</groupId>
 			<artifactId>communeOntology</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
+			<type>jar</type>
 			<scope>compile</scope>
 		</dependency>
 		
