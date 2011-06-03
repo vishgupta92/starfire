@@ -6,7 +6,6 @@
       # Download and install Java JDK 6: [http://www.oracle.com/technetwork/java/javase/downloads/index.html JDK6]
       # Set 'JAVA_HOME' environment variable to point to installation directory. _For example: 'C:\Program Files\Java\jdk1.6.0_25'._
       # Add '%JAVA_HOME%\bin' to 'path' environment variable.
-
     === Ubuntu: ===
       # Uninstall Open JDK if it's installed in your system.
       # Download and install Java JDK 6: [http://www.oracle.com/technetwork/java/javase/downloads/index.html JDK6]
