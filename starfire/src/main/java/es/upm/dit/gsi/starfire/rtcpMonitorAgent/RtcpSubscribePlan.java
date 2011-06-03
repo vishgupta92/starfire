@@ -14,7 +14,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import jadex.base.fipa.SFipa;
+import jadex.bdi.runtime.GoalFailureException;
 import jadex.bdi.runtime.IBelief;
+import jadex.bdi.runtime.IGoal;
 import jadex.bdi.runtime.IMessageEvent;
 import jadex.bdi.runtime.Plan;
 import jadex.bridge.IComponentIdentifier;
@@ -55,25 +57,25 @@ public class RtcpSubscribePlan extends Plan {
 		sendMessage(msgResp);
 		getLogger().info("RSubscribePlan: Rtcp ack sent");
 
-//		IBelief monitoring = getBeliefbase().getBelief("monitoring");
-//		boolean isMonitoring = (Boolean) monitoring.getFact();
-//		getLogger().info("RSubscribePlan: Monitoring fact is:"+isMonitoring);
-//		
+		IBelief monitoring = getBeliefbase().getBelief("monitoring");
+		boolean isMonitoring = (Boolean) monitoring.getFact();
+		getLogger().info("RSubscribePlan: Monitoring fact is:"+isMonitoring);
+		
 //		endAtomic();
-//		waitFor(100);
-//		if (!isMonitoring && !startMonitoring) {
-//			getLogger().info("RSubscribePlan: Not monitoring, starting the plan");
-//			startMonitoring = true;
-//			IGoal goal = createGoal("keepMonitoring");
-//			try {
-//				this.dispatchTopLevelGoal(goal);
-//				getLogger().info("RSubscribePlan: GOAL: " + goal);
-//				startMonitoring = false;
-//			} catch (GoalFailureException e) {
-//				e.printStackTrace();
-//				getLogger().info("Goal exception ");
-//			}
-//		}
-//		getLogger().info("RSubscribePlan: Plan ends");
+		waitFor(100);
+		if (!isMonitoring && !startMonitoring) {
+			getLogger().info("RSubscribePlan: Not monitoring, starting the plan");
+			startMonitoring = true;
+			IGoal goal = createGoal("keepMonitoring");
+			try {
+				this.dispatchTopLevelGoal(goal);
+				getLogger().info("RSubscribePlan: GOAL: " + goal);
+				startMonitoring = false;
+			} catch (GoalFailureException e) {
+				e.printStackTrace();
+				getLogger().info("Goal exception ");
+			}
+		}
+		getLogger().info("RSubscribePlan: Plan ends");
 	}
 }

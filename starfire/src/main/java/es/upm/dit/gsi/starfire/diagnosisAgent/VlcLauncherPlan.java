@@ -21,6 +21,12 @@ import communeOntology.MyFactory;
 public class VlcLauncherPlan extends Plan /*implements ActionListener*/ {
 
 	private static final long serialVersionUID = -597969293105340110L;
+	
+//	private static final String DIR_IP = "138.4.3.247";
+	private static final String DIR_IP = "192.168.177.1";
+	private static final String VIDEO = "bunny.ts";
+	
+	private boolean isLinux = false;
 
 //	private String serverIp = "";
 //	private String file = "";
@@ -43,7 +49,7 @@ public class VlcLauncherPlan extends Plan /*implements ActionListener*/ {
 //			while (windowCreated)
 //				waitFor(10000);
 //		}
-		startVLC("138.4.3.247", "", "bunny.ts");
+		startVLC(DIR_IP, "", VIDEO);
 		
 		openSessionInstance();
 		
@@ -110,9 +116,14 @@ public class VlcLauncherPlan extends Plan /*implements ActionListener*/ {
 	 */
 	private void openVlc(String serverIp, String port, String file) {
 		try {
-			if (port.equals(""))
-				port = "8554";
-			String url = "rtsp://" + serverIp + ":" + port + "/" + file;
+			String url = null;
+			if(isLinux) {
+				if (port.equals(""))
+					port = "8554";
+				url = "rtsp://" + serverIp + ":" + port + "/" + file;
+			} else {
+				url = "rtsp://" + serverIp + "/" + file;
+			}
 			getLogger().info("VLCPlan: Opening VLC with url: " + url);
 			Runtime.getRuntime().exec("vlc " + url);
 		} catch (Exception e) {

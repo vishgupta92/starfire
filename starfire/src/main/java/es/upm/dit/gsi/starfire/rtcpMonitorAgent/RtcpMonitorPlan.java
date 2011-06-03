@@ -56,14 +56,14 @@ public class RtcpMonitorPlan extends Plan {
 			while(!rtcpMonitor.searchForRTCPStream()){
 				getLogger().info("RMPlan: RTCP stream not found, trying again in 10000 ms");
 				
-//				String info = "NOK:RTCP stream not found";
-//				msgResp = getEventbase().createMessageEvent("rtcp_inform");
-//				Iterator<IComponentIdentifier> iciIterator = iciList.iterator();
-//				while(iciIterator.hasNext())
-//					msgResp.getParameterSet(SFipa.RECEIVERS).addValue(iciIterator.next());
-//				msgResp.getParameter(SFipa.CONTENT).setValue(info);
-//				sendMessage(msgResp);		
-//				getLogger().info("RA: Rtcp response sent: " + info);
+				String info = "NOK:RTCP stream not found";
+				IMessageEvent msgResp = getEventbase().createMessageEvent("rtcp_inform");
+				Iterator<IComponentIdentifier> iciIterator = iciList.iterator();
+				while(iciIterator.hasNext())
+					msgResp.getParameterSet(SFipa.RECEIVERS).addValue(iciIterator.next());
+				msgResp.getParameter(SFipa.CONTENT).setValue(info);
+				sendMessage(msgResp);		
+				getLogger().info("RA: Rtcp response sent: " + info);
 				waitFor(10000);
 			}
 			
