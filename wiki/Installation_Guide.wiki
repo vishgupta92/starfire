@@ -1,11 +1,25 @@
 #summary Installation of all needed tool to allow develop this project.
 
 = Starfire Installation =
+  == Install Java JDK6 ==
+    === Windows: ===
+      # Download and install Java JDK 6: [http://www.oracle.com/technetwork/java/javase/downloads/index.html JDK6]
+      # Set 'JAVA_HOME' environment variable to point to installation directory. _For example: 'C:\Program Files\Java\jdk1.6.0_25'._
+      # Add '%JAVA_HOME%\bin' to 'path' environment variable.
+
+    === Ubuntu: ===
+      # Uninstall Open JDK if it's installed in your system.
+      # Download and install Java JDK 6: [http://www.oracle.com/technetwork/java/javase/downloads/index.html JDK6]
+      # Add this location to the path by modifying '.bashrc' file located in your home folder. For example, the following lines could be added to '.bashrc' file:
+{{{
+export JAVA_HOME=/home/username/Descargas/JAVA/jdk1.6.0_23
+export PATH=$JAVA_HOME/bin:$PATH
+}}}
   == Install Maven ==
     === Windows: ===
       # Download the last version of Maven2 .zip from [http://maven.apache.org/download.html#Maven_2.2.1 Maven_2.2.1].
       # Unzip it in the location where you want to have it installed.
-      # Modify the path by adding the location of the bin directory located inside the unzipped folder.
+      # Modify the path by adding the location of the bin directory located inside the unzipped folder. _For example: C:\Program Files\apache-maven-2.2.1\bin._
       # Test Maven2 runs correctly by writing 'mvn' in the console.
     === Ubuntu: ===
       Go to Synaptics Package Manager and install _Maven2_.
