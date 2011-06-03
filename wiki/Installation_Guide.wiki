@@ -16,8 +16,7 @@ Short guide for installing the project and develop.
     Go to Synaptics Package Manager and install _Maven2_.
   # Install Eclipse and proper plugins
     # Download and install Eclipse Classic: [http://www.eclipse.org/downloads/ Eclipse]
-    # Set in .ini file in eclipse folder, the launching option 
-{{{-vm
+    # Set in .ini file in eclipse folder, the launching option {{{-vm
 C:/...path_to_java_jdk.../bin}}}
     # Install *Subclipse_1.4* plugin: [http://subclipse.tigris.org/ Subclipse_1.4]
     # Install *m2eclipse* plugin: [http://m2eclipse.sonatype.org/installing-m2eclipse.html m2eclipse]
