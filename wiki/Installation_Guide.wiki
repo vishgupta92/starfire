@@ -1,7 +1,3 @@
-= Introduction =
-Short guide for installing the project and develop.
-----
-
 = Starfire Installation =
   == Install Maven ==
     === Windows: ===
@@ -10,7 +6,7 @@ Short guide for installing the project and develop.
       # Modify the path by adding the location of the bin directory located inside the unzipped folder.
       # Test Maven2 runs correctly by writing 'mvn' in the console.
     === Ubuntu: ===
-    Go to Synaptics Package Manager and install _Maven2_.
+      Go to Synaptics Package Manager and install _Maven2_.
 
   == Install Eclipse and proper plugins ==
       # Download and install Eclipse Classic: [http://www.eclipse.org/downloads/ Eclipse]
@@ -26,3 +22,6 @@ Short guide for installing the project and develop.
       # Download this project from svn.
       # Run 'Installer.java' class located in {{{installer}}} package. _Note: Maybe it's needed to comment all dependencies in 'pom.xml' file to allow compilation. Uncomment them after running 'Installer.java'._
       # Execute 'Maven Install' over the whole project.
+
+  == Install Jpcap
+      Download Jpcap 0.7: [http://netresearch.ics.uci.edu/kfujii/Jpcap/doc/download.html Jpcap_0.7]. _Note: *x32 achictecture needed*._
