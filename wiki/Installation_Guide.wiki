@@ -1,3 +1,5 @@
+#summary Installation of all needed tool to allow develop this project.
+
 = Starfire Installation =
   == Install Maven ==
     === Windows: ===
