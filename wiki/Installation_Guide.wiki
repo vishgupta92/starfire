@@ -1,7 +1,8 @@
 = Introduction =
 Short guide for installing the project and develop.
+----
 
-
+= Starfire Installation =
 == Install Maven ==
 === Windows: ===
   # Download the last version of Maven2 .zip from [http://maven.apache.org/download.html#Maven_2.2.1 Maven_2.2.1].
@@ -24,3 +25,4 @@ C:/...path_to_java_jdk.../bin
 == Prepare the project and install dependencies: ==
   # Download this project from svn.
   # Run 'Installer.java' class located in {{{installer}}} package. _Note: Maybe it's needed to comment all dependencies in 'pom.xml' file to allow compilation. Uncomment them after running 'Installer.java'._
+  # Execute 'Maven Install' over the whole project.
