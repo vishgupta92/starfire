@@ -94,11 +94,11 @@
 			</parameter>
 		</messageevent>
 		
-<!-- 		<messageevent name="rtcp_inform" direction="send" type="fipa"> -->
-<!-- 			<parameter name="performative" class="String" direction="fixed"> -->
-<!-- 				<value>SFipa.INFORM</value> -->
-<!-- 			</parameter> -->
-<!-- 		</messageevent> -->
+		<messageevent name="rtcp_inform" direction="send" type="fipa">
+			<parameter name="performative" class="String" direction="fixed">
+				<value>SFipa.INFORM</value>
+			</parameter>
+		</messageevent>
   	</events>
 	
 	<properties>

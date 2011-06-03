@@ -57,18 +57,25 @@ public class RTCPMonitor {
 
 			try {
 				logger.info("RM: Start capture on "+devices[i].name +" device number: "+i);
-				JpcapCaptor captor=JpcapCaptor.openDevice(devices[i], 65535, false, 40);
+				JpcapCaptor captor = JpcapCaptor.openDevice(devices[i], 65535, false, 40);
+//				logger.info("1");
 				captor.setFilter("udp", true);
+//				logger.info("2");
 				Packet p = captor.getPacket();
+//				logger.info("3");
 				if (p == null) {
 					captor.close();
+//					logger.info("4");
 					continue;
 				}
 				for(int j  = 0; j< 10000; j++){
 					try{
 					if(isRTCPReceiverReportPacket(p)){
+//						logger.info("A");
 						interfaceName = devices[i].name;
+//						logger.info("B");
 						UDPPacket udp = (UDPPacket) p;
+//						logger.info("C");
 						port = udp.dst_port;
 						logger.info("RM: RTCP Port = "+port);
 						captor.close();
@@ -78,9 +85,8 @@ public class RTCPMonitor {
 					}catch(Exception e){
 						e.printStackTrace();
 					}
-					
-					
 				}
+				logger.info("5");
 
 				captor.close();
 
@@ -172,18 +178,23 @@ public class RTCPMonitor {
 			//System.out.println("Total length: "+p.len);
 			//System.out.println("data Length: "+p.data.length);
 			//System.out.println("header length "+p.header.length);
+//			logger.info("AA");
 			byte[] packetData = p.data;
-
+//			logger.info("BB");
 			
 			//Parse the packet to integer as a binary
 			int counter = 0;
 			int[] packetDataBinary = new int[p.data.length];
+//			logger.info("CC");
 			for (byte b : packetData){
 				//logger.finest(Integer.toBinaryString(b&0xff) + ":");
 				packetDataBinary[counter] = Integer.parseInt(Integer.toBinaryString(b&0xff));
+//				logger.info("DD");
 				counter++;
 			}
 
+//			logger.info("A");
+			
 			//Checks the content of the packet
 			if(packetDataBinary.length >= 4){
 				//Check if the packet is a receiver report rtcp packet (RFC 3550)
@@ -193,6 +204,7 @@ public class RTCPMonitor {
 				}
 			}
 
+//			logger.info("B");
 		}
 		return false;
 	}
