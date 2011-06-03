@@ -6,7 +6,7 @@ Short guide for installing the project and develop.
 
 = Details =
 
-# Install Maven:
+  # Install Maven:
   * Windows:
     Download the last version of Maven2 .zip from [http://maven.apache.org/download.html#Maven_2.2.1 Maven_2.2.1]
     Unzip it in the location where you want to have it installed.
