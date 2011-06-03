@@ -3,7 +3,7 @@ Short guide for installing the project and develop.
 ----
 
 = Starfire Installation =
-== Install Maven ==
+  == Install Maven ==
 === Windows: ===
   # Download the last version of Maven2 .zip from [http://maven.apache.org/download.html#Maven_2.2.1 Maven_2.2.1].
   # Unzip it in the location where you want to have it installed.
@@ -12,7 +12,7 @@ Short guide for installing the project and develop.
 === Ubuntu: ===
 Go to Synaptics Package Manager and install _Maven2_.
 
-== Install Eclipse and proper plugins ==
+  == Install Eclipse and proper plugins ==
   # Download and install Eclipse Classic: [http://www.eclipse.org/downloads/ Eclipse]
   # Set in .ini file in eclipse folder, the launching option
 {{{
@@ -22,7 +22,7 @@ C:/...path_to_java_jdk.../bin
   # Install *Subclipse_1.4* plugin: [http://subclipse.tigris.org/ Subclipse_1.4]
   # Install *m2eclipse* plugin: [http://m2eclipse.sonatype.org/installing-m2eclipse.html m2eclipse]
 
-== Prepare the project and install dependencies: ==
+  == Prepare the project and install dependencies: ==
   # Download this project from svn.
   # Run 'Installer.java' class located in {{{installer}}} package. _Note: Maybe it's needed to comment all dependencies in 'pom.xml' file to allow compilation. Uncomment them after running 'Installer.java'._
   # Execute 'Maven Install' over the whole project.
