@@ -13,7 +13,7 @@ Short guide for installing the project and develop.
       # Modify the path by adding the location of the bin directory located inside the unzipped folder.
       # Test Maven2 runs correctly by writing {{{mvn}}} in the console.
     * Ubuntu:
-    Go to Synaptics Package Manager and install _Maven2_.
+        Go to Synaptics Package Manager and install _Maven2_.
   # Install Eclipse and proper plugins
     # Download and install Eclipse Classic: [http://www.eclipse.org/downloads/ Eclipse]
     # Set in .ini file in eclipse folder, the launching option
@@ -23,4 +23,5 @@ C:/...path_to_java_jdk.../bin
 }}}
     # Install *Subclipse_1.4* plugin: [http://subclipse.tigris.org/ Subclipse_1.4]
     # Install *m2eclipse* plugin: [http://m2eclipse.sonatype.org/installing-m2eclipse.html m2eclipse]
-  # Run Install class
+  # Download this project from svn.
+  # Run {{{Installer.java}}} class located in {{{installer}}} folder. _Note:_ Maybe it's needed to comment all dependencies in 'pom.xml' file to allow compiling.
