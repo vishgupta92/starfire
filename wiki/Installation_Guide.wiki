@@ -6,7 +6,7 @@ Short guide for installing the project and develop.
 
 = Details =
 
- # Install Maven:
+  # Install Maven:
   * Windows:
     Download the last version of Maven2 .zip from [http://maven.apache.org/download.html#Maven_2.2.1 Maven_2.2.1]
     Unzip it in the location where you want to have it installed.
@@ -15,8 +15,3 @@ Short guide for installing the project and develop.
     
   * Ubuntu:
     Go to Synaptics Package Manager and install _Maven2_.
-
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
