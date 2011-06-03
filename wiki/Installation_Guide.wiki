@@ -24,4 +24,4 @@ C:/...path_to_java_jdk.../bin
     # Install *Subclipse_1.4* plugin: [http://subclipse.tigris.org/ Subclipse_1.4]
     # Install *m2eclipse* plugin: [http://m2eclipse.sonatype.org/installing-m2eclipse.html m2eclipse]
   # Download this project from svn.
-  # Run {{{Installer.java}}} class located in {{{installer}}} folder. _Note:_ Maybe it's needed to comment all dependencies in 'pom.xml' file to allow compiling.
+  # Run {{{Installer.java}}} class located in {{{installer}}} package. _Note: Maybe it's needed to comment all dependencies in 'pom.xml' file to allow compiling._
