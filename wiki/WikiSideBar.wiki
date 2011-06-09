@@ -1,5 +1,5 @@
 #sidebar WikiSideBar
 
-Articles
+* Articles
  * SelfLearningIntegration
  * BayesianTranslator
