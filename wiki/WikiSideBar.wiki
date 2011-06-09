@@ -1,6 +1,5 @@
 #sidebar WikiSideBar
 
-* Articles
-   * SelfLearningIntegration
-   * BayesianTranslator
-* Examples
+Articles
+ * SelfLearningIntegration
+ * BayesianTranslator
