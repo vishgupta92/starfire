@@ -1,7 +1,7 @@
 In the wiki we have the follow information:
-===Tools===
+*Tools*
   * SelfLearningIntegration 
   * BayesianTranslator 
   * BayesianNetworkTrainingTool 
-===Installation===
+*Installation*
   * Installation_Guide
