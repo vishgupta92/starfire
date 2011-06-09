@@ -4,4 +4,5 @@
 SelfLearningIntegration
 BayesianTranslator
 Installation_Guide
+BayesianNetworkTrainingTool
  
