@@ -1,5 +1,8 @@
 #sidebar WikiSideBar
 
-====SelfLearningIntegration====
-====BayesianTranslator====
-====Installation_Guide====
+SelfLearningIntegration
+ 
+BayesianTranslator
+ 
+Installation_Guide
+ 
