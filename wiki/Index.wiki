@@ -5,5 +5,3 @@
 
 *Installation*
    * Installation_Guide
-
-`*`
