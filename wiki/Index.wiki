@@ -1,9 +1,9 @@
 In the wiki we have the follow information:
 
 *Tools*
-   *SelfLearningIntegration 
-   *BayesianTranslator 
-   *BayesianNetworkTrainingTool 
+   * SelfLearningIntegration 
+   * BayesianTranslator 
+   * BayesianNetworkTrainingTool 
 
 *Installation*
-   *Installation_Guide
+   * Installation_Guide
