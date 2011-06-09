@@ -1,8 +1,0 @@
-#sidebar WikiSideBar
-
-
-SelfLearningIntegration
-BayesianTranslator
-Installation_Guide
-BayesianNetworkTrainingTool
- 
