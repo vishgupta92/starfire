@@ -1,4 +1,7 @@
 #sidebar WikiSideBar
 
+* Tools
  * SelfLearningIntegration
  * BayesianTranslator
+* Installation
+ * Installation_Guide
