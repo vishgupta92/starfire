@@ -1,7 +1,8 @@
 #sidebar WikiSideBar
 
-* Tools
- * SelfLearningIntegration
- * BayesianTranslator
-* Installation
- * Installation_Guide
+The following is:
+  * A list
+  * Of bulleted items
+    # This is a numbered sublist
+    # Which is done by indenting further
+  * And back to the main bulleted list
