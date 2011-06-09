@@ -1,7 +1,4 @@
-
-
-This page organize the information in the Wiki and make easy the navigation. 
- In the wiki we have the follow information:
+In the wiki we have the follow information:
  * Tools
      * SelfLearningIntegration 
      * BayesianTranslator 
