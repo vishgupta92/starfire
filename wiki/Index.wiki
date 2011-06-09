@@ -1,5 +1,3 @@
-In the wiki we have the follow information:
-
 *Tools*
    * SelfLearningIntegration 
    * BayesianTranslator 
