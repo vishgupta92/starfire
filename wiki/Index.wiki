@@ -4,5 +4,6 @@ In the wiki we have the follow information:
   * SelfLearningIntegration 
   * BayesianTranslator 
   * BayesianNetworkTrainingTool 
+
 *Installation*
   * Installation_Guide
