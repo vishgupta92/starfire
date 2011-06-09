@@ -1,4 +1,4 @@
-#summary Installation of all needed tool to allow develop this project.
+#summary Installation of all needed tools to allow develop this project.
 
 = Starfire Installation =
   == 1. Install Java JDK6 ==
