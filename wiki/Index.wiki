@@ -1,8 +1,10 @@
+
+
 This page organize the information in the Wiki and make easy the navigation. 
-
-#sidebar Index
-
-SelfLearningIntegration `*`
-BayesianTranslator `*`
-Installation_Guide `*`
-BayesianNetworkTrainingTool `*`
+ In the wiki we have the follow information:
+ * Tools
+     * SelfLearningIntegration 
+     * BayesianTranslator 
+     * BayesianNetworkTrainingTool 
+ * Installation
+     * Installation_Guide
