@@ -1,6 +1,6 @@
 #sidebar WikiSideBar
 
- * SelfLearningIntegration
- * BayesianTranslator
-    * Prueba1
-    * Prueba2
+* Articles
+  * SelfLearningIntegration
+  * BayesianTranslator
+    
