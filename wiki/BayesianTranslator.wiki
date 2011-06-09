@@ -13,7 +13,7 @@ The process follows the next points:
   # Finally, the program save the OwlModel and create the .owl file.
 
 == OWL-Ontology to Bayesian Network ==
-This process is a bit complex than the other.If you want to convert your own Owl file, you have to be carefully with the names of the objects(nodes, probassign,...). The names have to follow the nexts stuctures depeding the type of the objecto:
+This process is a bit complex than the other.If you want to convert your own Owl file, you have to be carefully with the names of the objects(nodes, probassign,...). The names have to follow the nexts stuctures depeding the type of the object:
  * PR-OWLTable : NodeName_Table
  * Domain_Res : NodeName
  * Domain_MFrag : NetworkName_Mfrag
