@@ -1,5 +1,4 @@
 #summary This tool translate Bayesian networks into the OWL-Ontology, and OWL-Ontology into Bayesian Network
-#labels Phase-Implementation
 
 = Objetives =
 The aim of this tool, is to translate a Bayesian network (giving its .net file) into a OWL-Ontology file (.owl file). The tool can make the reverse change (.owl file into a .net file).
