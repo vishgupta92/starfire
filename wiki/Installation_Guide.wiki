@@ -1,7 +1,5 @@
 #summary Installation of all needed tools to allow develop this project.
 
-<wiki:toc max_depth="2" />
-
 = Starfire Installation =
   == 1. Install Java JDK6 ==
     === Windows: ===
