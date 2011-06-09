@@ -1,5 +1,7 @@
 #summary The explain of self-learning integration
 
+#sidebar WikiSideBar
+
 = Overview =
 A good fault diagnosis depends on a reliable BN. Even though the initials BN are made manually
 by service operators, it's difficult to make them work accurately in every HAN. In order to improve
