@@ -47,5 +47,6 @@ export PATH=$JAVA_HOME/bin:$PATH
   == 6. Install Jpcap ==
     === Windows: ===
       # Download WinPcap: [http://www.winpcap.org/install/default.htm WinPcap].
-      # Download Jpcap 0.7: [http://netresearch.ics.uci.edu/kfujii/Jpcap/doc/download.html Jpcap_0.7]. _Note: *x32 achictecture needed*._
+      # Download Jpcap 0.7: [http://netresearch.ics.uci.edu/kfujii/Jpcap/doc/download.html Jpcap_0.7].
     === Ubuntu: ===
+      # Download Jpcap 0.7: [http://netresearch.ics.uci.edu/kfujii/Jpcap/doc/download.html Jpcap_0.7]. _Note: *x86 archictecture needed*._
