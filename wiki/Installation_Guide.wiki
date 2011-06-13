@@ -52,4 +52,4 @@ export PATH=$JAVA_HOME/bin:$PATH
       # Download Jpcap 0.7: [http://netresearch.ics.uci.edu/kfujii/Jpcap/doc/download.html Jpcap_0.7]. _Note: *x86 archictecture needed*._
 
   == 7. Install VLC media player ==
-      # Download and install [http://www.videolan.org/vlc/ VLC]
+      # Download and install [http://www.videolan.org/vlc/ VLC].
