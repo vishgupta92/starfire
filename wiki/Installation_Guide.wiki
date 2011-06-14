@@ -23,13 +23,7 @@ export PATH=$JAVA_HOME/bin:$PATH
     === Ubuntu: ===
       Go to Synaptics Package Manager and install _maven2_.
 
-  == 3. Install Subversion ==
-    === Windows: ===
-      [http://subversion.apache.org/packages.html Binary packages]
-    === Ubuntu: ===
-      Go to Synaptics Package Manager and install _subversion_.
-
-  == 4. Install Eclipse and proper plugins ==
+  == 3. Install Eclipse and proper plugins ==
       # Download and install Eclipse Classic: [http://www.eclipse.org/downloads/ Eclipse]
       # Set in .ini file in eclipse folder, the launching option
     {{{
@@ -39,12 +33,12 @@ export PATH=$JAVA_HOME/bin:$PATH
       # Install *Subclipse_1.4* plugin: [http://subclipse.tigris.org/ Subclipse_1.4]
       # Install *m2eclipse* plugin: [http://m2eclipse.sonatype.org/installing-m2eclipse.html m2eclipse]
 
-  == 5. Prepare the project and install dependencies: ==
+  == 4. Prepare the project and install dependencies: ==
       # Download this project from svn.
       # Run 'Installer.java' class located in {{{installer}}} package. _Note: Maybe it's needed to comment all dependencies in 'pom.xml' file to allow compilation. Uncomment them after running 'Installer.java'._
       # Execute 'Maven Install' over the whole project.
 
-  == 6. Install Jpcap ==
+  == 5. Install Jpcap ==
     === Windows: ===
       # Download WinPcap: [http://www.winpcap.org/install/default.htm WinPcap].
       # Download Jpcap 0.7: [http://netresearch.ics.uci.edu/kfujii/Jpcap/doc/download.html Jpcap_0.7].
@@ -53,5 +47,5 @@ export PATH=$JAVA_HOME/bin:$PATH
       # Download Jpcap 0.7: [http://netresearch.ics.uci.edu/kfujii/Jpcap/doc/download.html Jpcap_0.7]. _Note: *x86 archictecture needed*._
       # The application jar has to be executed with sudo, since it needs privileges.
 
-  == 7. Install VLC media player ==
+  == 6. Install VLC media player ==
       # Download and install [http://www.videolan.org/vlc/ VLC].
