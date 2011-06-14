@@ -49,6 +49,7 @@ export PATH=$JAVA_HOME/bin:$PATH
       # Download WinPcap: [http://www.winpcap.org/install/default.htm WinPcap].
       # Download Jpcap 0.7: [http://netresearch.ics.uci.edu/kfujii/Jpcap/doc/download.html Jpcap_0.7].
     === Ubuntu: ===
+      # Go to Synaptics Package Manager and install _libpcap_.
       # Download Jpcap 0.7: [http://netresearch.ics.uci.edu/kfujii/Jpcap/doc/download.html Jpcap_0.7]. _Note: *x86 archictecture needed*._
 
   == 7. Install VLC media player ==
