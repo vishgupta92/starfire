@@ -113,6 +113,8 @@
 	<configurations>
 		<configuration name="default">
 			<goals>
+				<!-- In linux df_register is not enough. We need to use keep_registering goal, since
+				DFagent doesn't work well. -->
             	<initialgoal ref="dfcap.df_register">
                		<parameter ref="description">
                     	<value>

@@ -49,8 +49,10 @@ mvn install:install-file -DgroupId=edu.stanford -DartifactId=wstx-asl -Dversion=
 mvn install:install-file -DgroupId=edu.stanford -DartifactId=xercesImpl -Dversion=3.4.6 -Dpackaging=jar -Dfile=xercesImpl.jar
 mvn install:install-file -DgroupId=edu.stanford -DartifactId=xml-apis -Dversion=3.4.6 -Dpackaging=jar -Dfile=xml-apis.jar
 
-mvn install:install-file -DgroupId=edu.stanford -DartifactId=jpcap -Dversion=3.4.6 -Dpackaging=jar -Dfile=jpcap.jar
-mvn install:install-file -DgroupId=edu.stanford -DartifactId=sigar -Dversion=3.4.6 -Dpackaging=jar -Dfile=sigar.jar
+mvn install:install-file -DgroupId=edu.stanford -DartifactId=jpcap -Dversion=3.4.6 -Dpackaging=jar -Dfile=jpcap-3.4.6.jar
+mvn install:install-file -DgroupId=edu.stanford -DartifactId=sigar -Dversion=3.4.6 -Dpackaging=jar -Dfile=sigar-3.4.6.jar
+
+mvn install:install-file -DgroupId=es.upm.dit.gsi -DartifactId=communeOntology -Dversion=0.0.1-SNAPSHOT -Dpackaging=jar -Dfile=communeOntology-0.0.1-SNAPSHOT.jar
 
 echo "Waiting 20s to let you read..."
 sleep 20
