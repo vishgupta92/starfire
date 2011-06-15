@@ -9,7 +9,7 @@ import java.io.InputStreamReader;
 public class Installer {
 	
 	public static boolean isLinux = false;
-	public static String MAVEN_LOCAL_PATH = "C:\\Productos\\apache-maven-2.2.1\\bin\\mvn.bat";
+	public static String MAVEN_LOCAL_PATH = "C:\\Program Files\\apache-maven-2.2.1\\bin\\mvn.bat";
 
 	/**
 	 * @param args
