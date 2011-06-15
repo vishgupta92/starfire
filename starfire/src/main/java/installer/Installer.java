@@ -8,6 +8,7 @@ import java.io.InputStreamReader;
 
 public class Installer {
 	
+	public static boolean isLinux = false;
 	public static String MAVEN_LOCAL_PATH = "C:\\Productos\\apache-maven-2.2.1\\bin\\mvn.bat";
 
 	/**
@@ -26,12 +27,17 @@ public class Installer {
 		   
 		    
 		    while ((command = reader.readLine()) != null) {
-		    	 Process process = runtime.exec(MAVEN_LOCAL_PATH+command.replaceFirst("mvn",""), null, file);
-		    	 BufferedReader in = new BufferedReader(new InputStreamReader(process.getInputStream()));
-		    	 String line = null;
-		    	 while((line = in.readLine()) != null) {
-		    		 System.out.println(line);
-		    	 }
+		    	Process process;
+		    	if(isLinux) {
+		    		process = runtime.exec(command, null, file);
+		    	} else {
+		    		process = runtime.exec(MAVEN_LOCAL_PATH+command.replaceFirst("mvn",""), null, file);
+		    	}
+				BufferedReader in = new BufferedReader(new InputStreamReader(process.getInputStream()));
+				String line = null;
+				while((line = in.readLine()) != null) {
+					System.out.println(line);
+				}
 		    }
 		    reader.close();	
 		}
