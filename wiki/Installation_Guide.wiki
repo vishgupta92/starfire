@@ -52,4 +52,4 @@ export PATH=$JAVA_HOME/bin:$PATH
 
   == 7. Changes in the project ==
       In es.upm.dit.gsi.starfire.diagnosisAgent there is VlcLauncherPlan.java.
-      You nees to set the values of the following variables: server ip address, video name, and operative system (Windows or Linux).
+      You need to set the values of the following variables: server ip address, video name, and operative system (Windows or Linux).
