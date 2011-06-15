@@ -1,4 +1,4 @@
-package common;
+package es.upm.dit.gsi.starfire.common;
 
 import jadex.base.fipa.IDF;
 import jadex.base.fipa.IDFComponentDescription;

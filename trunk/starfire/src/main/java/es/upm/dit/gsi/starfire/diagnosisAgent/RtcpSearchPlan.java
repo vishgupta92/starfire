@@ -1,6 +1,6 @@
 package es.upm.dit.gsi.starfire.diagnosisAgent;
 
-import common.CommunicationPlan;
+import es.upm.dit.gsi.starfire.common.*;
 
 import jadex.bdi.runtime.GoalFailureException;
 import jadex.bridge.IComponentIdentifier;
