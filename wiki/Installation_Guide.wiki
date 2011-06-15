@@ -48,4 +48,4 @@ export PATH=$JAVA_HOME/bin:$PATH
       # The application jar has to be executed with sudo, since it needs privileges.
 
   == 6. Install VLC media player ==
-      # Download and install [http://www.videolan.org/vlc/ VLC].
+      # Download and install [http://www.videolan.org/vlc/ VLC]. Path variable needs to be changed to run from console.
