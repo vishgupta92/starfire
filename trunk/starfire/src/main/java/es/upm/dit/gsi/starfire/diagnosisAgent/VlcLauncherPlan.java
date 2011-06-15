@@ -23,10 +23,11 @@ public class VlcLauncherPlan extends Plan /*implements ActionListener*/ {
 	private static final long serialVersionUID = -597969293105340110L;
 	
 //	private static final String DIR_IP = "138.4.3.247";
-	private static final String DIR_IP = "192.168.177.1";
+//	private static final String DIR_IP = "192.168.177.1";
+	private static final String DIR_IP = "192.168.0.197";
 	private static final String VIDEO = "bunny.ts";
 	
-	private boolean isLinux = false;
+	private boolean isLinuxServer = true;
 
 //	private String serverIp = "";
 //	private String file = "";
@@ -103,9 +104,11 @@ public class VlcLauncherPlan extends Plan /*implements ActionListener*/ {
 		IBelief server = getBeliefbase().getBelief("serverIP"); //save the server ip as a believe
 		server.setFact(serverIp);
 		getLogger().warning("VLCPlan: Server IP: "+serverIp);
+		
 		IBelief beliefFile = getBeliefbase().getBelief("file"); //save the file name as a believe
 		beliefFile.setFact(file);
 		getLogger().warning("VLCPlan: File: "+file);
+		
 		openVlc(serverIp, port, file);
 		getLogger().warning("VLCPlan: Vlc is opened");
 	}
@@ -117,7 +120,7 @@ public class VlcLauncherPlan extends Plan /*implements ActionListener*/ {
 	private void openVlc(String serverIp, String port, String file) {
 		try {
 			String url = null;
-			if(isLinux) {
+			if(isLinuxServer) {
 				if (port.equals(""))
 					port = "8554";
 				url = "rtsp://" + serverIp + ":" + port + "/" + file;
@@ -126,8 +129,9 @@ public class VlcLauncherPlan extends Plan /*implements ActionListener*/ {
 			}
 			getLogger().info("VLCPlan: Opening VLC with url: " + url);
 			Runtime.getRuntime().exec("vlc " + url);
+			getLogger().info("VLCPlan: VLC is opened");
 		} catch (Exception e) {
-			e.printStackTrace();
+			getLogger().info("VLCPlan: VLC couldn't be opened");
 		}
 	}
 

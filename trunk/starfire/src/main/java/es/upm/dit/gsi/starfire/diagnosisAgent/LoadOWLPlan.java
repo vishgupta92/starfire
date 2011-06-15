@@ -39,7 +39,7 @@ public class LoadOWLPlan extends Plan {
 //		boolean isAgentInModel = checkID();
 
 //		if (isAgentInModel) {
-//			//Lanzar meta para crear sesión RTP
+			//Lanzar meta para crear sesión RTP
 			IGoal goal = createGoal("launch_vlc");
 			getLogger().info("Starting a VlcLauncherPlan"); 
 			dispatchSubgoalAndWait(goal);
