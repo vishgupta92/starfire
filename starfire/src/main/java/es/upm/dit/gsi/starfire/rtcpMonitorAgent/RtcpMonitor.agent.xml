@@ -28,6 +28,9 @@
 	</imports>
 	
 	<capabilities>
+		<!-- Include the protocols cap. -->
+		<capability name="procap" file="jadex.bdi.planlib.protocols.request.Request" />
+		<!-- Include the df cap. -->
 	    <capability name="dfcap" file="jadex.bdi.planlib.df.DF"/>	
 	</capabilities>
 	
@@ -93,12 +96,6 @@
 				<value>SFipa.INFORM</value>
 			</parameter>
 		</messageevent>
-		
-		<messageevent name="rtcp_inform" direction="send" type="fipa">
-			<parameter name="performative" class="String" direction="fixed">
-				<value>SFipa.INFORM</value>
-			</parameter>
-		</messageevent>
   	</events>
 	
 	<properties>
@@ -113,9 +110,8 @@
 	<configurations>
 		<configuration name="default">
 			<goals>
-				<!-- In linux df_register is not enough. We need to use keep_registering goal, since
-				DFagent doesn't work well. -->
-            	<initialgoal ref="dfcap.df_register">
+				<!--  df_register should be enough, but it's not. -->
+            	<initialgoal ref="dfcap.df_keep_registered">
                		<parameter ref="description">
                     	<value>
 							$propertybase.getProperty("dfservice")

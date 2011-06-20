@@ -68,14 +68,11 @@ public class RTCPMonitor {
 //					logger.info("4");
 					continue;
 				}
-				for(int j  = 0; j< 10000; j++){
+				for(int j  = 0; j< 10000; j++){					//???
 					try{
 					if(isRTCPReceiverReportPacket(p)){
-//						logger.info("A");
 						interfaceName = devices[i].name;
-//						logger.info("B");
 						UDPPacket udp = (UDPPacket) p;
-//						logger.info("C");
 						port = udp.dst_port;
 						logger.info("RM: RTCP Port = "+port);
 						captor.close();
@@ -86,7 +83,7 @@ public class RTCPMonitor {
 						e.printStackTrace();
 					}
 				}
-				logger.info("5");
+//				logger.info("5");
 
 				captor.close();
 
@@ -178,22 +175,17 @@ public class RTCPMonitor {
 			//System.out.println("Total length: "+p.len);
 			//System.out.println("data Length: "+p.data.length);
 			//System.out.println("header length "+p.header.length);
-//			logger.info("AA");
 			byte[] packetData = p.data;
-//			logger.info("BB");
 			
 			//Parse the packet to integer as a binary
 			int counter = 0;
 			int[] packetDataBinary = new int[p.data.length];
-//			logger.info("CC");
 			for (byte b : packetData){
 				//logger.finest(Integer.toBinaryString(b&0xff) + ":");
 				packetDataBinary[counter] = Integer.parseInt(Integer.toBinaryString(b&0xff));
-//				logger.info("DD");
 				counter++;
 			}
 
-//			logger.info("A");
 			
 			//Checks the content of the packet
 			if(packetDataBinary.length >= 4){
@@ -204,7 +196,6 @@ public class RTCPMonitor {
 				}
 			}
 
-//			logger.info("B");
 		}
 		return false;
 	}

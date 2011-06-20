@@ -11,13 +11,13 @@
 		<import>java.util.logging.*</import>
 		<import>java.util.ArrayList</import>
 		<import>jadex.base.fipa.*</import>
+		<import>communeOntology.Symptom</import>
 		<import>edu.stanford.smi.protegex.owl.jena.JenaOWLModel</import>
 	</imports>
 
 	<capabilities>
 		<!-- Include the protocols cap. -->
-		<capability name="procap"
-			file="jadex.bdi.planlib.protocols.request.Request" />
+		<capability name="procap" file="jadex.bdi.planlib.protocols.request.Request" />
 		<!-- Include the df cap. -->
 		<capability name="dfcap" file="jadex.bdi.planlib.df.DF" />
 	</capabilities>
@@ -68,9 +68,9 @@
 			</trigger>
 		</plan>
 		<plan name="rtcp_test_plan">
-			<body class="RtcpTestPlan" />
+			<body class="MonitorRequestProcessorPlan" />
 			<trigger>
-				<messageevent ref="rtcp_inform" />
+				<messageevent ref="monitor_request" />
 			</trigger>
 		</plan>
 
@@ -78,16 +78,16 @@
 			puede hacer con una referencia, URI) -->
 		<!-- Passive plan for managing a new symptom. -->
 		<!-- Reacts on the creation of a new symptom. -->
-		<!-- <plan name="manage_symptom"> -->
-		<!-- <parameter name="symptom" class="Symptom" > -->
-		<!-- <goalmapping ref="new_symptom.content" /> -->
-		<!-- </parameter> -->
-		<!-- <body class="SymptomManagerPlan"/> -->
-		<!-- <trigger> -->
-		<!-- Check that there is a new symptom -->
-		<!-- <internalevent ref="new_symptom"/> -->
-		<!-- </trigger> -->
-		<!-- </plan> -->
+		<plan name="manage_symptom">
+			<parameter name="symptom" class="Symptom" >
+				<goalmapping ref="new_symptom.content" />
+			</parameter>
+			<body class="SymptomManagerPlan"/>
+			<trigger>
+				<!--  Check that there is a new symptom -->
+				<internalevent ref="new_symptom"/>
+			</trigger>
+		</plan>
 		<!-- Passive plan for managing a new observation. -->
 		<!-- Reacts on the creation of a new observation. -->
 		<!-- <plan name="manage_observation"> -->
@@ -119,15 +119,15 @@
 	</plans>
 
 	<events>
-		<messageevent name="rtcp_inform" direction="receive" type="fipa">
+		<messageevent name="monitor_request" direction="receive" type="fipa">
 			<parameter name="performative" class="String" direction="fixed">
-				<value>SFipa.INFORM</value>
+				<value>SFipa.REQUEST</value>
 			</parameter>
 		</messageevent>
 		<!-- Specifies an internal event for a new symptom -->
-		<!-- <internalevent name="new_symptom"> -->
-		<!-- <parameter name="content" class="Symptom"/> -->
-		<!-- </internalevent> -->
+		<internalevent name="new_symptom">
+			<parameter name="content" class="Symptom"/>
+		</internalevent>
 		<!-- Specifies an internal event for a new observation -->
 		<!-- <internalevent name="new_observation"> -->
 		<!-- <parameter name="diagnosisID" class="String" /> -->
