@@ -6,22 +6,22 @@ import jadex.base.fipa.SFipa;
 import jadex.bdi.runtime.IMessageEvent;
 import jadex.bdi.runtime.Plan;
 
-	public class RtcpTestPlan  extends Plan {
+	public class MonitorRequestProcessorPlan  extends Plan {
 			
 			private static final long serialVersionUID = -597969299500340110L;
 
 			/**
 			 * Create a new plan.
 			 */
-			public RtcpTestPlan() {
-				getLogger().info("RTA: Created: " + this);
+			public MonitorRequestProcessorPlan() {
+				getLogger().info("MRPA: Created: " + this);
 				
 			}
 			
 			public void body(){
-				getLogger().info("RTA: Plan begins");
+				getLogger().info("MRPA: Plan begins");
 				IMessageEvent req = (IMessageEvent) getReason();
-				getLogger().info("RTA: Rtcp request received: " + req.getParameter(SFipa.CONTENT).getValue());
+				getLogger().info("MRPA: Rtcp request received: " + req.getParameter(SFipa.CONTENT).getValue());
 				String message = (String) req.getParameter(SFipa.CONTENT).getValue();
 				
 				HashMap<String,String> info = parseMessageToHashMap(message);
@@ -29,9 +29,9 @@ import jadex.bdi.runtime.Plan;
 				int packetsLost = Integer.parseInt(info.get("lost"));				
 				double lostPercentage = Double.parseDouble(info.get("percentage"));
 				
-				getLogger().info("RTA: Jitter = "+jitter+" Packets Lost = "+packetsLost+" Lost Percentage = "+lostPercentage);
+				getLogger().info("MRPA: Jitter = "+jitter+" Packets Lost = "+packetsLost+" Lost Percentage = "+lostPercentage);
 				
-				getLogger().info("RTA: Plan ends");
+				getLogger().info("MRPA: Plan ends");
 				
 			}
 

@@ -17,22 +17,22 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import jadex.base.fipa.SFipa;
 import jadex.bdi.runtime.IBelief;
-import jadex.bdi.runtime.IMessageEvent;
-import jadex.bdi.runtime.Plan;
 import jadex.bridge.IComponentIdentifier;
 
 import jpcap.packet.Packet;
 
+import es.upm.dit.gsi.starfire.common.CommunicationPlan;
 import es.upm.dit.gsi.starfire.rtcpMonitorAgent.rtcpMonitor.RTCPPacket;
 import es.upm.dit.gsi.starfire.rtcpMonitorAgent.rtcpMonitor.RTCPMonitor;
 
 
-public class RtcpMonitorPlan extends Plan {
+public class RtcpMonitorPlan extends CommunicationPlan {
 		
 
 		private static final long serialVersionUID = -597969299500340110L;
+		private static final long monReqTimeout = (long)60000;					// A minute
+
 		private RTCPMonitor rtcpMonitor;
 		private List<IComponentIdentifier> iciList ;
 		
@@ -56,14 +56,14 @@ public class RtcpMonitorPlan extends Plan {
 			while(!rtcpMonitor.searchForRTCPStream()){
 				getLogger().info("RMPlan: RTCP stream not found, trying again in 10000 ms");
 				
-				String info = "NOK:RTCP stream not found";
-				IMessageEvent msgResp = getEventbase().createMessageEvent("rtcp_inform");
-				Iterator<IComponentIdentifier> iciIterator = iciList.iterator();
-				while(iciIterator.hasNext())
-					msgResp.getParameterSet(SFipa.RECEIVERS).addValue(iciIterator.next());
-				msgResp.getParameter(SFipa.CONTENT).setValue(info);
-				sendMessage(msgResp);		
-				getLogger().info("RA: Rtcp response sent: " + info);
+				//String info = "NOK:RTCP stream not found";
+				//IMessageEvent msgResp = getEventbase().createMessageEvent("rtcp_inform");
+				//Iterator<IComponentIdentifier> iciIterator = iciList.iterator();
+				//while(iciIterator.hasNext())
+					//msgResp.getParameterSet(SFipa.RECEIVERS).addValue(iciIterator.next());
+				//msgResp.getParameter(SFipa.CONTENT).setValue(info);
+				//sendMessage(msgResp);		
+				//getLogger().info("RA: Rtcp response sent: " + info);
 				waitFor(10000);
 			}
 			
@@ -72,40 +72,49 @@ public class RtcpMonitorPlan extends Plan {
 			while(!rtcpMonitor.isTimeout()){ //If a timeout occurs, the plan finishes
 				waitFor(100);
 				p = rtcpMonitor.getRTCPPacket();
-			if(p != null){
-				RTCPPacket rtcp = new RTCPPacket(p);
-				long jitter = rtcp.getJITTER();
-				long packetsLost = rtcp.getPACKETS_LOST();
-				double lostPercentage = rtcp.getLOST_PERCENTAGE();
-				if(!checkIfRTPTransmissionOK(jitter,lostPercentage)){
-					getLogger().info("RMPlan: Transmission not ok, create event");
+				if(p != null){
+					RTCPPacket rtcp = new RTCPPacket(p);
+					long jitter = rtcp.getJITTER();
+					long packetsLost = rtcp.getPACKETS_LOST();
+					double lostPercentage = rtcp.getLOST_PERCENTAGE();
+					if(!checkIfRTPTransmissionOK(jitter,lostPercentage)){
+						getLogger().info("RMPlan: Transmission not ok, create event");
+	
+						String resp = "jitter::"+ jitter + "::lost::" + packetsLost + "::percentage::" + lostPercentage;
+	
+//						IMessageEvent msgResp = getEventbase().createMessageEvent("rtcp_inform");
+//						//get the list of rtcp monitor subscribed agents
+//						IBelief iciBelief = getBeliefbase().getBelief("iciList"); 	//get the list of subsribed agents
+//						iciList = (List<IComponentIdentifier>) iciBelief.getFact();
+//						getLogger().info("RMPlan: Rtcp request Ici list: " + iciList.size());
+//	
+//						Iterator<IComponentIdentifier> iciIterator = iciList.iterator();
+//	
+//						while(iciIterator.hasNext())
+//							msgResp.getParameterSet(SFipa.RECEIVERS).addValue(iciIterator.next());
+//						msgResp.getParameter(SFipa.CONTENT).setValue(resp);
+//						sendMessage(msgResp);		
+						
+						IBelief iciBelief = getBeliefbase().getBelief("iciList"); 	//get the list of subsribed agents
+						iciList = (List<IComponentIdentifier>) iciBelief.getFact();						
+						getLogger().info("RMPlan: Rtcp request Ici list: " + iciList.size());
+						Iterator<IComponentIdentifier> iciIterator = iciList.iterator();
 
-					String resp = "jitter::"+ jitter + "::lost::" + packetsLost + "::percentage::" + lostPercentage;
+						while(iciIterator.hasNext())
+							sendRequestAndGetResponse(resp, iciIterator.next(), monReqTimeout);
+						
+						getLogger().info("RMPlan: Rtcp response sent: " + resp); //send the message to all receivers
 
-					IMessageEvent msgResp = getEventbase().createMessageEvent("rtcp_inform");
-					//get the list of rtcp monitor subscribed agents
-					IBelief iciBelief = getBeliefbase().getBelief("iciList"); 	//get the list of subsribed agents
-					iciList = (List<IComponentIdentifier>) iciBelief.getFact();
-					getLogger().info("RMPlan: Rtcp request Ici list: " + iciList.size());
-
-					Iterator<IComponentIdentifier> iciIterator = iciList.iterator();
-
-					while(iciIterator.hasNext())
-						msgResp.getParameterSet(SFipa.RECEIVERS).addValue(iciIterator.next());
-					msgResp.getParameter(SFipa.CONTENT).setValue(resp);
-					sendMessage(msgResp);		
-					getLogger().info("RMPlan: Rtcp response sent: " + resp); //send the message to all receivers
-
-					startAtomic(); //Start atomic block
-					iciBelief.setFact(new ArrayList<IComponentIdentifier>());	//removes the agents that received the message. If an agent wants more messages, it has to subscribe to monitor agent again
+						startAtomic(); //Start atomic block
+						iciBelief.setFact(new ArrayList<IComponentIdentifier>());	//removes the agents that received the message. If an agent wants more messages, it has to subscribe to monitor agent again
 					
-					monitoringBelief =  getBeliefbase().getBelief("monitoring");
-					monitoringBelief.setFact(false);
+						monitoringBelief =  getBeliefbase().getBelief("monitoring");
+						monitoringBelief.setFact(false);
 
-					endAtomic();	//end atomic block
-					break;
+						endAtomic();	//end atomic block
+						break;
+					}
 				}
-			}
 			}
 			getLogger().info("RMPlan: Plan ends");
 			
