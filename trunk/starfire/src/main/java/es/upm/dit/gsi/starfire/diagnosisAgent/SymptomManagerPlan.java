@@ -1,6 +1,6 @@
 package es.upm.dit.gsi.starfire.diagnosisAgent;
 
-import jadex.bdi.runtime.IInternalEvent;
+import jadex.bdi.runtime.IGoal;
 import jadex.bdi.runtime.Plan;
 
 import java.net.InetAddress;
@@ -14,7 +14,6 @@ import communeOntology.Diagnosis;
 import communeOntology.EnvironmentAction;
 import communeOntology.MyFactory;
 import communeOntology.NetworkInterfaceRateTest;
-import communeOntology.Observation;
 import communeOntology.Symptom;
 import communeOntology.UsageCPUTest;
 import communeOntology.UsageMemoryTest;
@@ -29,6 +28,14 @@ public class SymptomManagerPlan extends Plan {
 	private static final long serialVersionUID = -8174299593349854500L;
 	private MyFactory myFactory;
 
+	/**
+	 * Create a new plan.
+	 */
+	public SymptomManagerPlan() {
+		getLogger().info("SMPA: Created: " + this);
+		
+	}
+	
 	@Override
 	public void body() {
 		
@@ -46,13 +53,16 @@ public class SymptomManagerPlan extends Plan {
 		Diagnosis diagnosis = createDiagnosis(symptom);
 				
 		//Actualiza la ontología con el nuevo diagnóstico y el síntoma recibido
-		Observation observation = updateOntology(diagnosis,symptom);
+		updateOntology(diagnosis,symptom);
 		
 		//Crear los individuos de todas las acciones
 		createActionIndividuals(diagnosis);
 		
-		//Generar evento interno con la observation
-		throwInternalEvent(observation);
+		//Lanza DiagnosisLoopPlan
+		//poner el id del diagnóstico en el parámetro
+		throwDiagnosisLoopPlan(diagnosis);
+		
+		getLogger().info("SMPA: Plan ends");
 	}
 
 	private Diagnosis createDiagnosis(Symptom symptom) {				
@@ -70,7 +80,7 @@ public class SymptomManagerPlan extends Plan {
 		return diagnosis;
 	}
 	
-	private Observation updateOntology(Diagnosis diagnosis, Symptom symptom) {
+	private void updateOntology(Diagnosis diagnosis, Symptom symptom) {
 		//Pongo la relación entre el diagnóstico y el síntoma de empezado por
 		Set<Symptom> symptoms = new HashSet<Symptom>();
 		symptoms.add(symptom);
@@ -78,11 +88,6 @@ public class SymptomManagerPlan extends Plan {
 		Set<Diagnosis> diagnoses = new HashSet<Diagnosis>();
 		diagnoses.add(diagnosis);
 		symptom.setStartsDiagnosis(diagnoses);
-		//Debo crear ahora el observation del tipo RTPMonitoringActionObservation y definir sus relaciones con síntoma
-		Observation observation = myFactory.createRTPMonitoringActionObservation(null);
-		observation.setObservationType("RTPMonitoringAction");
-		symptom.setObservationResult(observation);
-		return observation;
 	}
 	
 	private void createActionIndividuals(Diagnosis diagnosis) {
@@ -114,10 +119,10 @@ public class SymptomManagerPlan extends Plan {
 		diagnosis.setHasPossibleActionsToPerform(environmentActions);
 	}
 	
-	private void throwInternalEvent(Observation observation) {
-	    IInternalEvent event = createInternalEvent("new_observation");
-	    // Setting the content parameter
-	    event.getParameter("content").setValue(observation);
-	    dispatchInternalEvent(event);
+	private void throwDiagnosisLoopPlan(Diagnosis diagnosis) {
+		IGoal goal = createGoal("make_diagnosis_loop_goal");
+		goal.getParameter("diagnosisID").setValue(diagnosis.getId());
+		getLogger().info("Starting a diagnosis loop"); 
+		dispatchSubgoalAndWait(goal);
 	}
 }
