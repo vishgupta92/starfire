@@ -46,9 +46,9 @@
 		<achievegoal name="monitorizeRTP" />
 
 		<!-- Include make diagnosis loop goal type. -->
-		<!-- <performgoal name="make_diagnosis_loop_goal" > -->
-		<!-- <parameter name="diagnosisID" class="String" /> -->
-		<!-- </performgoal> -->
+		<performgoal name="make_diagnosis_loop_goal" >
+			<parameter name="diagnosisID" class="String" />
+		</performgoal>
 	</goals>
 
 	<plans>
@@ -80,7 +80,7 @@
 		<!-- Reacts on the creation of a new symptom. -->
 		<plan name="manage_symptom">
 			<parameter name="symptom" class="Symptom" >
-				<goalmapping ref="new_symptom.content" />
+				<internaleventmapping ref="new_symptom.content" />
 			</parameter>
 			<body class="SymptomManagerPlan"/>
 			<trigger>
@@ -88,6 +88,19 @@
 				<internalevent ref="new_symptom"/>
 			</trigger>
 		</plan>
+		<plan name="make_diagnosis_loop">
+			<parameter name="hypothesesTargetState" class="String">
+				<value>"YES"</value>
+			</parameter>
+			<parameter name="diagnosisID" class="String">
+				<goalmapping ref="make_diagnosis_loop_goal.diagnosisID" />
+			</parameter>
+			<body class="DiagnosisLoopPlan"/>
+			<trigger>
+				<goal ref="make_diagnosis_loop_goal"/>
+			</trigger>
+		</plan>
+	</plans>
 		<!-- Passive plan for managing a new observation. -->
 		<!-- Reacts on the creation of a new observation. -->
 		<!-- <plan name="manage_observation"> -->
@@ -105,18 +118,7 @@
 		<!-- </plan> -->
 		<!-- Passive plan for executing the diagnosis loop. -->
 		<!-- Reacts when the diagnosis goal is thrown. -->
-		<!-- <plan name="make_diagnosis_loop"> -->
-		<!-- <parameter name="hypothesesTargetState" class="String"> -->
-		<!-- <value>"YES"</value> -->
-		<!-- </parameter> -->
-		<!-- <parameter name="diagnosisID" class="String" /> Rellenar al lanzar 
-			el plan -->
-		<!-- <body class="DiagnosisLoopPlan"/> -->
-		<!-- <trigger> -->
-		<!-- <goal ref="make_diagnosis_loop_goal"/> -->
-		<!-- </trigger> -->
-		<!-- </plan> -->
-	</plans>
+	
 
 	<events>
 		<messageevent name="monitor_request" direction="receive" type="fipa">
@@ -129,10 +131,10 @@
 			<parameter name="content" class="Symptom"/>
 		</internalevent>
 		<!-- Specifies an internal event for a new observation -->
-		<!-- <internalevent name="new_observation"> -->
-		<!-- <parameter name="diagnosisID" class="String" /> -->
-		<!-- <parameter name="content" class="Observation"/> -->
-		<!-- </internalevent> -->
+<!-- 		<internalevent name="new_observation"> -->
+<!-- 			<parameter name="diagnosisID" class="String" /> -->
+<!-- 			<parameter name="content" class="Observation"/> -->
+<!-- 		</internalevent> -->
 	</events>
 
 	<properties>

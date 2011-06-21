@@ -1,5 +1,6 @@
 package es.upm.dit.gsi.starfire.diagnosisAgent;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -8,6 +9,8 @@ import java.util.logging.Logger;
 
 import edu.stanford.smi.protegex.owl.model.OWLModel;
 
+import unbbayes.io.BaseIO;
+import unbbayes.io.NetIO;
 import unbbayes.prs.INode;
 import unbbayes.prs.Node;
 import unbbayes.prs.bn.JunctionTreeAlgorithm;
@@ -40,6 +43,9 @@ public class DiagnosisLoopPlan extends Plan {
 		
 		//Realiza inferencia con los datos disponibles
 			
+			//Cargamos la red bayesiana
+			loadBayesianNetwork();
+		
 			//Lanza meta de realizar inferencia y espera a que termine
 			makeInferences();
 			
@@ -67,6 +73,17 @@ public class DiagnosisLoopPlan extends Plan {
 			//Fija una acción objetivo para realizar
 			setAnActionGoalToPerform();
 	}
+	
+	private void loadBayesianNetwork() {
+		try {
+            BaseIO io = new NetIO();
+//            net = (ProbabilisticNetwork) io.load(new File(uri));
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.exit(1);
+        }
+    }
 	
 	//Analiza las evidencias y las actualiza
 	private void makeInferences() {

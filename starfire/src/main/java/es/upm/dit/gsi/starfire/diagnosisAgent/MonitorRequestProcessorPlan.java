@@ -2,13 +2,21 @@ package es.upm.dit.gsi.starfire.diagnosisAgent;
 
 import java.util.HashMap;
 
+import communeOntology.MyFactory;
+import communeOntology.RTPMonitoringActionObservation;
+import communeOntology.Symptom;
+
+import edu.stanford.smi.protegex.owl.model.OWLModel;
+
 import jadex.base.fipa.SFipa;
+import jadex.bdi.runtime.IInternalEvent;
 import jadex.bdi.runtime.IMessageEvent;
 import jadex.bdi.runtime.Plan;
 
 	public class MonitorRequestProcessorPlan  extends Plan {
 			
 			private static final long serialVersionUID = -597969299500340110L;
+			private MyFactory myFactory;
 
 			/**
 			 * Create a new plan.
@@ -19,6 +27,9 @@ import jadex.bdi.runtime.Plan;
 			}
 			
 			public void body(){
+				OWLModel owlModel = (OWLModel) getBeliefbase().getBelief("ontology").getFact();
+				myFactory = new MyFactory(owlModel);
+
 				getLogger().info("MRPA: Plan begins");
 				IMessageEvent req = (IMessageEvent) getReason();
 				getLogger().info("MRPA: Rtcp request received: " + req.getParameter(SFipa.CONTENT).getValue());
@@ -31,8 +42,13 @@ import jadex.bdi.runtime.Plan;
 				
 				getLogger().info("MRPA: Jitter = "+jitter+" Packets Lost = "+packetsLost+" Lost Percentage = "+lostPercentage);
 				
-				getLogger().info("MRPA: Plan ends");
+				//Crear el síntoma y las relaciones
+				Symptom symptom = createSymptom(message);
 				
+				//Generar evento interno con el síntoma
+				throwInternalEvent(symptom);
+				
+				getLogger().info("MRPA: Plan ends");
 			}
 
 			/**
@@ -51,5 +67,25 @@ import jadex.bdi.runtime.Plan;
 				return info;
 			}
 			
+			private Symptom createSymptom(String message) {
+				Symptom symptom = myFactory.createSymptom(null);
+//				try {
+//					symptom.setHasLocation(InetAddress.getLocalHost().getHostName());
+//				} catch (UnknownHostException e) {
+//					e.printStackTrace();
+//				}
+				RTPMonitoringActionObservation observation = myFactory.createRTPMonitoringActionObservation(null);
+				observation.setObservationType("RTPMonitoringAction");
+				observation.setObservationValue(message);
+				symptom.setObservationResult(observation);
+				return symptom;
+			}
+			
+			private void throwInternalEvent(Symptom symptom) {
+				IInternalEvent event = createInternalEvent("new_symptom");
+			    // Setting the content parameter
+			    event.getParameter("content").setValue(symptom);
+			    dispatchInternalEvent(event);
+			}
 	}
 
