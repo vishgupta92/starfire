@@ -1,0 +1,55 @@
+net
+{
+     node_size = (0 0);
+     name = "New BN";
+     tree = "(C0,C1,C2)";
+     UnBBayes_Color_Probabilistic_Description = "-256";
+     UnBBayes_Color_Probabilistic_Explanation = "-16711936";
+}
+
+node Lluvia
+{
+     label = "C0";
+     position = (26 55);
+     color = (-256);
+     states = ("YES" "NO" "State");
+}
+
+node Aspersor
+{
+     label = "C1";
+     position = (336 68);
+     color = (-256);
+     states = ("YES" "NO");
+}
+
+node Cesped
+{
+     label = "C2";
+     position = (195 266);
+     color = (-256);
+     states = ("YES" "NO");
+}
+
+potential (Lluvia)
+{
+ data = ( 0.5 0.4 0.1 );
+}
+
+potential (Aspersor | Lluvia)
+{
+ data = (( 0.8 0.2 )
+( 0.7 0.3 )
+( 0.6 0.4 ));
+}
+
+potential (Cesped | Lluvia Aspersor)
+{
+ data = ((( 0.9 0.1 )
+( 0.8 0.2 ))
+(( 0.7 0.3 )
+( 0.6 0.4 ))
+(( 0.5 0.5 )
+( 0.4 0.6 )));
+}
+
