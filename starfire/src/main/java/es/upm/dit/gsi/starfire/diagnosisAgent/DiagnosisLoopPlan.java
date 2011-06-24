@@ -1,9 +1,11 @@
 package es.upm.dit.gsi.starfire.diagnosisAgent;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Properties;
 import java.util.Set;
 import java.util.logging.Logger;
 
@@ -35,6 +37,12 @@ public class DiagnosisLoopPlan extends Plan {
 	private static final long serialVersionUID = 2633687897926958529L;
 	private MyFactory myFactory;
 	private ProbabilisticNetwork net; //Red bayesiana
+	private static final String NET_URI = "net_uri";
+	
+	public DiagnosisLoopPlan() {
+		getLogger().info("DiagnosisLoopPlan: Created: " + this);
+	}
+	
 	@Override
 	public void body() {
 		
@@ -72,16 +80,21 @@ public class DiagnosisLoopPlan extends Plan {
 				
 			//Fija una acción objetivo para realizar
 			setAnActionGoalToPerform();
+			
+			getLogger().info("DiagnosisLoopPlan: Plan ends");
+
 	}
 	
 	private void loadBayesianNetwork() {
 		try {
-            BaseIO io = new NetIO();
-//            net = (ProbabilisticNetwork) io.load(new File(uri));
+			Properties props = new Properties();
+			props.load(new FileInputStream("config/setup.properties"));
+			BaseIO io = new NetIO();
+			getLogger().info(props.getProperty(NET_URI));
+            net = (ProbabilisticNetwork) io.load(new File(props.getProperty(NET_URI)));
 
         } catch (Exception e) {
             e.printStackTrace();
-            System.exit(1);
         }
     }
 	
