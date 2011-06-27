@@ -18,12 +18,12 @@ public class LoadNetwork {
 	 * 
 	 * @return net , is a ProbalisticNetwork
 	 */
-	public ProbabilisticNetwork load(String uri) {
+	public ProbabilisticNetwork load(File uriNet) {
 		ProbabilisticNetwork net = null;
 
 		try {
 			BaseIO io = new NetIO();
-			net = (ProbabilisticNetwork) io.load(new File(uri));
+			net = (ProbabilisticNetwork) io.load(uriNet);
 
 		} catch (Exception e) {
 			e.printStackTrace();

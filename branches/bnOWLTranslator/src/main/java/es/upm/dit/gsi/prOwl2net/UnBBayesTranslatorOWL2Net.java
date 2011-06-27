@@ -3,7 +3,9 @@ package es.upm.dit.gsi.prOwl2net;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Set;
 import java.util.logging.Logger;
 
@@ -18,13 +20,17 @@ import edu.stanford.smi.protegex.owl.ProtegeOWL;
 import edu.stanford.smi.protegex.owl.jena.JenaOWLModel;
 import edu.stanford.smi.protegex.owl.model.RDFSLiteral;
 import edu.stanford.smi.protegex.owl.model.impl.DefaultOWLIndividual;
+import edu.stanford.smi.protegex.owl.model.impl.DefaultRDFIndividual;
+import es.upm.dit.gsi.ontology.CategoricalRVState;
 import es.upm.dit.gsi.ontology.Domain_MFrag;
 import es.upm.dit.gsi.ontology.Domain_Res;
 import es.upm.dit.gsi.ontology.MyFactory;
 import es.upm.dit.gsi.ontology.PR_OWLTable;
 import es.upm.dit.gsi.ontology.ProbAssign;
 import es.upm.dit.gsi.ontology.Resident;
-import es.upm.dit.gsi.ontology.impl.DefaultCategoricalRVStates;
+import es.upm.dit.gsi.ontology.impl.DefaultCategoricalRVState;
+import es.upm.dit.gsi.ontology.impl.DefaultResident;
+
 
 /**
  * Class that seeks to convert a file. owl in a file. net
@@ -64,8 +70,9 @@ public class UnBBayesTranslatorOWL2Net {
 		// create myFactory.
 		this.myFactory = new MyFactory(UnBBayesTranslatorOWL2Net.OWL_MODEL);
 
-		//create Net          
-		Set<Domain_MFrag> mFragSet =  myFactory.getAllDomain_MFragInstances();
+		//create Net   
+//cambiado
+		Collection<Domain_MFrag> mFragSet =   myFactory.getAllDomain_MFragInstances();
 		if(mFragSet.size() == 1) {
 			for(Domain_MFrag mFrag : mFragSet) {
 				String nameMfrag = mFrag.getLocalName();
@@ -90,7 +97,8 @@ public class UnBBayesTranslatorOWL2Net {
 	private void createStructureNet() {
 
 		//Add nodes to .net
-		Set<Domain_Res> nodesOwl= myFactory.getAllDomain_ResInstances();
+//cambiado
+		Set<Domain_Res> nodesOwl= (Set<Domain_Res>) myFactory.getAllDomain_ResInstances();
 		
 		ArrayList<ProbabilisticNode> nodeListNet = new ArrayList<ProbabilisticNode>();
 		for(Domain_Res res: nodesOwl) {
@@ -107,21 +115,41 @@ public class UnBBayesTranslatorOWL2Net {
 		//add states
 		for(Domain_Res res: nodesOwl) {
 			String nameRes = res.getLocalName();
-			@SuppressWarnings("unchecked")
-			Set<DefaultCategoricalRVStates> states = (Set<DefaultCategoricalRVStates>)res.getHasPossibleValues();
-			for(DefaultCategoricalRVStates state : states) {
-
-				String stateS = state.getLocalName();
-				for(ProbabilisticNode node :nodeListNet) {
-
-					if(node.getName().equals(nameRes)) {
-
-						node.appendState(stateS);
-					}
-
-				}
-			}
-		}
+			Set<DefaultRDFIndividual> states = res.getHasPossibleValues();
+			
+			for(DefaultRDFIndividual state : states) {
+				
+								String stateS = state.getLocalName();
+								for(ProbabilisticNode node :nodeListNet) {
+				
+									if(node.getName().equals(nameRes)) {
+					
+										node.appendState(stateS);
+									}
+				
+								}
+							}
+						}
+	
+//// Cambiado 
+//			//Collection states = res.getHasPossibleValues();
+//			//Set states =  res.getHasPossibleValues();
+//			Set<DefaultCategoricalRVState> states = res.getHasPossibleValues();
+//			
+//
+//			for(DefaultCategoricalRVState state : states) {
+//
+//				String stateS = state.getLocalName();
+//				for(ProbabilisticNode node :nodeListNet) {
+//
+//					if(node.getName().equals(nameRes)) {
+//
+//						node.appendState(stateS);
+//					}
+//
+//				}
+//			}
+//		}
 
 		//add nodes to net
 		for(ProbabilisticNode node: nodeListNet) {
@@ -158,10 +186,12 @@ public class UnBBayesTranslatorOWL2Net {
 	private void addTablesToNet() {
 
 		CreateTables createTables = new CreateTables();
-		Set<ProbAssign> probAssing = myFactory.getAllProbAssignInstances();
-		Set<PR_OWLTable> tables = myFactory.getAllPR_OWLTableInstances();
+		Set<ProbAssign> probAssing = (Set<ProbAssign>) myFactory.getAllProbAssignInstances();
+		Set<PR_OWLTable> tables = (Set<PR_OWLTable>) myFactory.getAllPR_OWLTableInstances();
 		for(PR_OWLTable table : tables) {
-			Resident res = table.getIsProbDistOf();
+//			Set<DefaultResident> residents = (Set<DefaultResident>)  table.getIsProbDistOf();
+			DefaultResident res = (DefaultResident) table.getIsProbDistOf();
+//			for(DefaultResident res : residents) {
 			String nameNode = res.getLocalName();
 
 			ProbabilisticNode nodeNet = (ProbabilisticNode) net.getNode(nameNode);
@@ -214,6 +244,7 @@ public class UnBBayesTranslatorOWL2Net {
 					}
 				}
 			}
+			
 
 
 			if(table1D != null) {
@@ -275,11 +306,12 @@ public class UnBBayesTranslatorOWL2Net {
 				}
 
 			}
+			}
 
+			}
+//		}
 
-		}
-
-	}
+	
 
 	/**
 	 * Compares if two string arrays are equal

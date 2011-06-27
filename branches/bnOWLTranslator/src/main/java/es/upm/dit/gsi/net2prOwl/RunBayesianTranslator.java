@@ -1,4 +1,7 @@
 package es.upm.dit.gsi.net2prOwl;
+
+import java.io.File;
+
 /**
  * Class to run to create a. owl from a file. net
  * @author Jeronimo Fco Perez Regidor
@@ -11,9 +14,9 @@ public class RunBayesianTranslator {
 	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		String uriOwl = "/home/jero.perez/workspaceCOMMUNE/bayesianTranslator/Example/owl/EmptyBN.owl";
-		String uriNet = "/home/jero.perez/workspaceCOMMUNE/bayesianTranslator/Example/net/PruebaLLuviaEstados.net";
-		BayesianTranslatorNet2OWL bT = new BayesianTranslatorNet2OWL(uriNet,uriOwl);
+		String uriOwlEmpty = "./Example/owl/EmptyBN.owl";
+		String uriNet = "./Example/net/PruebaLLuviaEstados.net";
+		BayesianTranslatorNet2OWL bT = new BayesianTranslatorNet2OWL(new File(uriNet),new File(uriOwlEmpty));
 
                 bT.convertNet2Owl();
 
