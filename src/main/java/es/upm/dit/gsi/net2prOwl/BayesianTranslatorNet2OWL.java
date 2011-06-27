@@ -1,6 +1,8 @@
 package es.upm.dit.gsi.net2prOwl;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -8,6 +10,7 @@ import java.io.OutputStream;
 import java.io.Writer;
 import java.net.URI;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
@@ -30,12 +33,13 @@ import edu.stanford.smi.protegex.owl.ProtegeOWL;
 import edu.stanford.smi.protegex.owl.jena.JenaOWLModel;
 import edu.stanford.smi.protegex.owl.model.RDFSDatatype;
 import edu.stanford.smi.protegex.owl.model.RDFSLiteral;
-import es.upm.dit.gsi.ontology.CategoricalRVStates;
+import es.upm.dit.gsi.ontology.CategoricalRVState;
 import es.upm.dit.gsi.ontology.CondRelationship;
 import es.upm.dit.gsi.ontology.Domain_Res;
 import es.upm.dit.gsi.ontology.MyFactory;
 import es.upm.dit.gsi.ontology.PR_OWLTable;
 import es.upm.dit.gsi.ontology.ProbAssign;
+import es.upm.dit.gsi.ontology.impl.DefaultCategoricalRVState;
 /**
  * This class tries to convert a. net to a file. owl
  * @author Jeronimo Fco Perez Regidor
@@ -46,8 +50,8 @@ public class BayesianTranslatorNet2OWL {
 	private LoadNetwork load = new LoadNetwork();
 	private ProbabilisticNetwork net;
 	private MyFactory myFactory;
-	private String uriNet;
-	private String uriOwl;
+	private File uriNet;
+	private File uriOwl;
 	public static JenaOWLModel owlModel;
 
 
@@ -56,15 +60,15 @@ public class BayesianTranslatorNet2OWL {
          * @param uriNet where the file to convert
          * @param uriOwl where is the file. owl base / empty
          */
-	public BayesianTranslatorNet2OWL(String uriNet, String uriOwlEmpty) {
+	public BayesianTranslatorNet2OWL(File netFile, File owlEmptyFile) {
 		// load net
-		this.uriNet = uriNet;
+		this.uriNet = netFile;
 		loadNet();
 
 		// create Owl
-		this.uriOwl = uriOwl;
+		this.uriOwl = owlEmptyFile;
 		try {
-			FileReader owlFile = new FileReader(uriOwl);
+			FileReader owlFile = new FileReader(this.uriOwl);
 			owlModel = ProtegeOWL.createJenaOWLModelFromReader(owlFile);
 			owlModel.getNamespaceManager().setDefaultNamespace(
 					"http://www.gsi.upm.es/Commune.owl#");
@@ -124,18 +128,22 @@ public class BayesianTranslatorNet2OWL {
 			int stateSize = nodesNet.get(i).getStatesSize();
 			for (int k = 0; k < stateSize; k++) {
 				String nameState = nodesNet.get(i).getStateAt(k);
-
+				
+				
+					
+				
 				// pruebo si no esta añadido en categorical states
-				CategoricalRVStates categorical = myFactory
-						.getCategoricalRVStates(nameState);
+				CategoricalRVState categorical = myFactory
+						.getCategoricalRVState(nameState);
+				
 				if (categorical == null) {
 					logger.info("the state is null");
-					myFactory.createCategoricalRVStates(nameState);
+					myFactory.createCategoricalRVState(nameState);		
 
 				}
 
 				domain_Res.addHasPossibleValues(myFactory
-						.getCategoricalRVStates(nameState));
+						.getCategoricalRVState(nameState));
 			}
 
 			// add to owl the PR_table node
@@ -176,8 +184,8 @@ public class BayesianTranslatorNet2OWL {
 				for (int t = 0; t < table1DS.length; t++) {
 					myFactory.createProbAssign(table1DS[t]);
 				}
-
-				Set<ProbAssign> allProbAssing = myFactory
+//cambiado
+				Collection<ProbAssign> allProbAssing =  myFactory
 						.getAllProbAssignInstances();
 				for (ProbAssign prob : allProbAssing) {
 					for (int t = 0; t < table1DS.length; t++) {
@@ -197,8 +205,8 @@ public class BayesianTranslatorNet2OWL {
 							String[] brokenChain = prob.getPrefixedName()
 									.split("_");
 							String nameState = brokenChain[1];
-							CategoricalRVStates hasStateName = myFactory
-									.getCategoricalRVStates(nameState);
+							CategoricalRVState hasStateName = myFactory
+									.getCategoricalRVState(nameState);
 							prob.setHasStateName(hasStateName);
 
 							// Dont have conditionants because dont have parents
@@ -234,8 +242,8 @@ public class BayesianTranslatorNet2OWL {
 
 					}
 				}
-
-				Set<ProbAssign> allProbAssing = myFactory
+//cambiado de set
+				Collection<ProbAssign> allProbAssing =  myFactory
 						.getAllProbAssignInstances();
 				for (ProbAssign prob : allProbAssing) {
 					for (int w = 0; w < parentsCel; w++) {
@@ -265,8 +273,8 @@ public class BayesianTranslatorNet2OWL {
 								String name = brokenChain[0];
 								String[] brokenName = name.split("_");
 								String nameState = brokenName[1];
-								CategoricalRVStates hasStateName = myFactory
-										.getCategoricalRVStates(nameState);
+								CategoricalRVState hasStateName = myFactory
+										.getCategoricalRVState(nameState);
 								prob.setHasStateName(hasStateName);
 
 								// create conditionant
@@ -293,7 +301,7 @@ public class BayesianTranslatorNet2OWL {
 											.getDomain_Res(parentPlusState[0]));
 									hasConditionant
 											.setHasParentState(myFactory
-													.getCategoricalRVStates(parentPlusState[1]));
+													.getCategoricalRVState(parentPlusState[1]));
 									prob.addHasConditionant(hasConditionant);
 
 								}
@@ -311,7 +319,8 @@ public class BayesianTranslatorNet2OWL {
 	 * Add ProbAssing to PR-OWLTable and to add this table to Resident
 	 */
 	private void addProbAssingToPROWLTable() {
-		Set<ProbAssign> allProbAssign = myFactory.getAllProbAssignInstances();
+		//cambiado
+		Collection<ProbAssign> allProbAssign =  myFactory.getAllProbAssignInstances();
 
 		for (ProbAssign prob : allProbAssign) {
 
@@ -324,8 +333,8 @@ public class BayesianTranslatorNet2OWL {
 			table.addHasProbAssign(prob);
 
 		}
-
-		Set<PR_OWLTable> tables = myFactory.getAllPR_OWLTableInstances();
+//cambiado de set
+		Collection<PR_OWLTable> tables =  myFactory.getAllPR_OWLTableInstances();
 		for (PR_OWLTable table : tables) {
 			String nameTable = table.getPrefixedName();
 			String[] brokenNameTable = nameTable.split("_");
@@ -342,8 +351,12 @@ public class BayesianTranslatorNet2OWL {
 	private void saveOwlModel() {
 		try {
 			String name = net.getId() + ".owl";
+	
+	
 			URI saveUri = (new File(name).toURI());
+	
 			owlModel.save(saveUri);
+					
 	
 			String uri = "http://www.gsi.dit.upm.es/Commune";
 
@@ -389,6 +402,10 @@ public class BayesianTranslatorNet2OWL {
 		}
 
 	}
+	
+
+
+
 
         /**
          * Public method that it does is convert a. net to. owl
@@ -399,8 +416,9 @@ public class BayesianTranslatorNet2OWL {
 		createTablesOWL();//
 		System.out.println("created tables");
 		addProbAssingToPROWLTable();
-                System.out.println("added the probAssing");
+        System.out.println("added the probAssing");
 		saveOwlModel();
+		
 		System.out.println("the file. owl has been created and updated");
         }
 

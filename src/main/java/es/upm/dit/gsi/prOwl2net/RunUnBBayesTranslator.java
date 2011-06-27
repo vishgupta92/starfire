@@ -15,8 +15,8 @@ public class RunUnBBayesTranslator {
 		// TODO Auto-generated method stub
 //		String uriOwl = "/home/jero.perez/workspaceCOMMUNE/bayesianTranslator/PruebaLLuviaEstados.owl";
 //		String uriOwl = "PruebaLLuviaEstados.owl";
-		String uriOwl = "OWL/PruebaLLuviaEstados.owl";
-		String uriNet = "NET/Generated";
+		String uriOwl = "./OWL/diagnosis5Test.owl";
+		String uriNet = "./NET/Generated";
 
                 UnBBayesTranslatorOWL2Net aux = new UnBBayesTranslatorOWL2Net(new File(uriOwl), uriNet);
 		aux.convertOwlToNet();
