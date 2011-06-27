@@ -35,9 +35,9 @@ export PATH=$JAVA_HOME/bin:$PATH
 
   == 4. Prepare the project and install dependencies: ==
       # Download dependenciesInstaller project from svn.
-      # Run 'Installer.java' class located in 'installer' package. _Note: Modify class attributes according to your system and maven location._
+      # Run `Installer.java` class located in `installer` package. _Note: Modify class attributes according to your system and maven location._
       # Download starfire project from svn.
-      # Execute 'Maven Install' over the whole project.
+      # Execute `Maven Install` over the whole project.
 
   == 5. Install Jpcap ==
     === Windows: ===
