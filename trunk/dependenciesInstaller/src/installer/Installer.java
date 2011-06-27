@@ -45,7 +45,6 @@ public class Installer {
 		catch (IOException e)
 		{
 			System.err.println ("Unable to read from file");
-			System.exit(-1);
 		}
 	}
 
