@@ -22,8 +22,6 @@ public class VlcLauncherPlan extends Plan /*implements ActionListener*/ {
 
 	private static final long serialVersionUID = -597969293105340110L;
 	
-//	private static final String DIR_IP = "138.4.3.247";
-//	private static final String DIR_IP = "192.168.177.1";
 	private static final String DIR_IP = "192.168.0.197";
 	private static final String VIDEO = "bunny.ts";
 	
