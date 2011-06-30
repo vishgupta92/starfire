@@ -3,7 +3,6 @@ package es.upm.dit.gsi.prOwl2net;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Set;
@@ -21,14 +20,11 @@ import edu.stanford.smi.protegex.owl.jena.JenaOWLModel;
 import edu.stanford.smi.protegex.owl.model.RDFSLiteral;
 import edu.stanford.smi.protegex.owl.model.impl.DefaultOWLIndividual;
 import edu.stanford.smi.protegex.owl.model.impl.DefaultRDFIndividual;
-import es.upm.dit.gsi.ontology.CategoricalRVState;
 import es.upm.dit.gsi.ontology.Domain_MFrag;
 import es.upm.dit.gsi.ontology.Domain_Res;
 import es.upm.dit.gsi.ontology.MyFactory;
 import es.upm.dit.gsi.ontology.PR_OWLTable;
 import es.upm.dit.gsi.ontology.ProbAssign;
-import es.upm.dit.gsi.ontology.Resident;
-import es.upm.dit.gsi.ontology.impl.DefaultCategoricalRVState;
 import es.upm.dit.gsi.ontology.impl.DefaultResident;
 
 
@@ -115,6 +111,7 @@ public class UnBBayesTranslatorOWL2Net {
 		//add states
 		for(Domain_Res res: nodesOwl) {
 			String nameRes = res.getLocalName();
+			@SuppressWarnings("unchecked")
 			Set<DefaultRDFIndividual> states = res.getHasPossibleValues();
 			
 			for(DefaultRDFIndividual state : states) {
@@ -282,7 +279,10 @@ public class UnBBayesTranslatorOWL2Net {
 					double value = value1D[i];
 					float valueF = (float) value;
 					tableNet.addValueAt(i, valueF);
+					
 				}
+//check this is important
+				tableNet.setTableSize(tableNet.tableSize()/2);
 			}
 
 			if(value2D != null) {
@@ -295,7 +295,7 @@ public class UnBBayesTranslatorOWL2Net {
 				int counter = 0;
 				PotentialTable tableNet = nodeNet.getProbabilityFunction();
 				tableNet.addVariable(nodeNet);
-				for(int f = 0; f<parentsCel ; f ++) {
+				for(int f = 0; f < parentsCel ; f ++) {
 					for(int c = 0; c<nodeNet.getStatesSize(); c++) {
 						double value = value2D[c][f];
 						float valueF = (float) value;
@@ -304,6 +304,9 @@ public class UnBBayesTranslatorOWL2Net {
 
 					}
 				}
+//check this is important
+				tableNet.setTableSize(tableNet.tableSize()/2);
+			
 
 			}
 			}
@@ -352,7 +355,7 @@ public class UnBBayesTranslatorOWL2Net {
 	 */
 	private void save() {
 		NetIO io = new NetIO();
-                String name = this.nameNet + ".net";
+		   String name = this.nameNet + ".net";
 		try {
 
 			if(net == null) {
@@ -365,7 +368,15 @@ public class UnBBayesTranslatorOWL2Net {
 			
 			e.printStackTrace();
 		}
+
+
 	}
+
+		
+	
+	
+	
+	
 	/**
 	 * Convert a method to get .owl to a .net step correctly
 	 */

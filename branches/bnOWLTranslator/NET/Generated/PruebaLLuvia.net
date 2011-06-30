@@ -1,7 +1,7 @@
 net
 {
      node_size = (0 0);
-     name = "ejemplo";
+     name = "PruebaLLuvia";
      UnBBayes_Color_Probabilistic_Description = "-256";
      UnBBayes_Color_Probabilistic_Explanation = "-16711936";
 }
@@ -19,7 +19,7 @@ node Lluvia
      label = "";
      position = (0 0);
      color = (-256);
-     states = ("YES" "NO" "State");
+     states = ("YES" "NO");
 }
 
 node Cesped
@@ -32,33 +32,20 @@ node Cesped
 
 potential (Aspersor | Lluvia)
 {
- data = (( 0.8 0.2 
- 0.7)( 0.3 
- 0.6 0.4 ));
-( 0.0 0.0 
- 0.0)( 0.0 
- 0.0 0.0 ));
+ data = (( 0.2 0.8 )
+( 0.6 0.4 ));
 }
 
 potential (Lluvia)
 {
- data = ( 0.5 0.4 0.1 );
- 0.0 0.0 0.0 );
+ data = ( 0.5 0.5 );
 }
 
 potential (Cesped | Aspersor Lluvia)
 {
- data = ((( 0.9 0.1 )
-( 0.7 0.3 )
-( 0.5 0.5 ))
-(( 0.8 0.2 )
-( 0.6 0.4 )
-( 0.4 0.6 )));
-(( 0.0 0.0 )
-( 0.0 0.0 )
-( 0.0 0.0 ))
-(( 0.0 0.0 )
-( 0.0 0.0 )
-( 0.0 0.0 )));
+ data = ((( 1.0 0.0 )
+( 0.9 0.1 ))
+(( 1.0 0.0 )
+( 0.0 1.0 )));
 }
 

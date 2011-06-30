@@ -11,7 +11,9 @@ import edu.stanford.smi.protegex.owl.model.RDFProperty;
  */
 public interface Finding_MFrag extends MFrag {
 
-    // Property http://www.pr-owl.org/pr-owl.owl#hasInputNode
+    /**
+     *  Property http://www.pr-owl.org/pr-owl.owl#hasInputNode
+     */
 
     Set<Finding_input> getHasInputNode();
 
@@ -22,7 +24,9 @@ public interface Finding_MFrag extends MFrag {
     void setHasInputNode(Finding_input newHasInputNode);
 
 
-    // Property http://www.pr-owl.org/pr-owl.owl#hasResidentNode
+    /**
+     *  Property http://www.pr-owl.org/pr-owl.owl#hasResidentNode
+     */
 
     Set<Finding_res> getHasResidentNode();
 

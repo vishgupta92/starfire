@@ -1,14 +1,11 @@
 package test;
 
 import java.io.File;
-import java.io.FileReader;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
+
+import junit.framework.TestCase;
 
 import org.apache.log4j.Logger;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import unbbayes.io.BaseIO;
@@ -17,14 +14,9 @@ import unbbayes.prs.Node;
 import unbbayes.prs.bn.PotentialTable;
 import unbbayes.prs.bn.ProbabilisticNetwork;
 import unbbayes.prs.bn.ProbabilisticNode;
-import edu.stanford.smi.protegex.owl.ProtegeOWL;
 import edu.stanford.smi.protegex.owl.jena.JenaOWLModel;
 import es.upm.dit.gsi.net2prOwl.BayesianTranslatorNet2OWL;
-import es.upm.dit.gsi.ontology.Domain_Res;
-import es.upm.dit.gsi.ontology.MyFactory;
-import es.upm.dit.gsi.ontology.PR_OWLTable;
 import es.upm.dit.gsi.prOwl2net.UnBBayesTranslatorOWL2Net;
-import junit.framework.TestCase;
 
 public class TestBnOwlTranslatorRandom extends TestCase {
 	Logger logger = Logger.getLogger(TestBnOwlTranslatorRandom.class);
@@ -39,7 +31,7 @@ public class TestBnOwlTranslatorRandom extends TestCase {
 	private static ProbabilisticNetwork netBefore;
 	private static ProbabilisticNetwork netAfter;
 	public static JenaOWLModel owlModel;
-	private MyFactory myFactory;
+	
 
 	public static void loadFiles() throws Exception{
 

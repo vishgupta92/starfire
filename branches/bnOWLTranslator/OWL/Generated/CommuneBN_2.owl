@@ -1,0 +1,941 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:protege="http://protege.stanford.edu/plugins/owl/protege#" xmlns:xsp="http://www.owl-ontologies.com/2005/08/07/xsp.owl#" xmlns="http://www.gsi.upm.es/Commune.owl#" xmlns:owl="http://www.w3.org/2002/07/owl#" xmlns:xsd="http://www.w3.org/2001/XMLSchema#" xmlns:swrl="http://www.w3.org/2003/11/swrl#" xmlns:swrlb="http://www.w3.org/2003/11/swrlb#" xmlns:pr-owl="http://www.pr-owl.org/pr-owl.owl#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xml:base="http://www.gsi.dit.upm.es/Commune">
+  <owl:Ontology rdf:about="http://www.gsi.dit.upm.es/Commune#">
+    <owl:imports rdf:resource="http://www.pr-owl.org/pr-owl.owl" />
+  </owl:Ontology>
+  <pr-owl:ProbAssign rdf:ID="PacketLossPercentage_Medium-ConnectionClientToRouter_OK">
+    <pr-owl:hasConditionant>
+      <pr-owl:CondRelationship rdf:ID="cond_ConnectionClientToRouter_OK">
+        <pr-owl:isConditionantOf>
+          <pr-owl:ProbAssign rdf:ID="PacketLossPercentage_High-ConnectionClientToRouter_OK">
+            <pr-owl:hasStateName>
+              <pr-owl:CategoricalRVState rdf:ID="High">
+                <pr-owl:isPossibleValueOf>
+                  <pr-owl:Domain_Res rdf:ID="DetectedJitter">
+                    <pr-owl:isNodeFrom>
+                      <pr-owl:Domain_MFrag rdf:ID="CommuneBN_2_Mfrag">
+                        <pr-owl:hasResidentNode>
+                          <pr-owl:Domain_Res rdf:ID="PacketLossPercentage">
+                            <pr-owl:hasProbDist>
+                              <pr-owl:PR-OWLTable rdf:ID="PacketLossPercentage_Table">
+                                <pr-owl:hasProbAssign>
+                                  <pr-owl:ProbAssign rdf:ID="PacketLossPercentage_Low-ConnectionClientToRouter_OK">
+                                    <pr-owl:isProbAssignIn rdf:resource="#PacketLossPercentage_Table" />
+                                    <pr-owl:hasStateProb rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.3246197998523712</pr-owl:hasStateProb>
+                                    <pr-owl:hasConditionant rdf:resource="#cond_ConnectionClientToRouter_OK" />
+                                    <pr-owl:hasStateName>
+                                      <pr-owl:CategoricalRVState rdf:ID="Low">
+                                        <pr-owl:isPossibleValueOf rdf:resource="#DetectedJitter" />
+                                        <pr-owl:isPossibleValueOf rdf:resource="#PacketLossPercentage" />
+                                      </pr-owl:CategoricalRVState>
+                                    </pr-owl:hasStateName>
+                                  </pr-owl:ProbAssign>
+                                </pr-owl:hasProbAssign>
+                                <pr-owl:hasProbAssign>
+                                  <pr-owl:ProbAssign rdf:ID="PacketLossPercentage_Low-ConnectionClientToRouter_NOK">
+                                    <pr-owl:hasConditionant>
+                                      <pr-owl:CondRelationship rdf:ID="cond_ConnectionClientToRouter_NOK">
+                                        <pr-owl:isConditionantOf>
+                                          <pr-owl:ProbAssign rdf:ID="DetectedJitter_High-ConnectionClientToRouter_NOK">
+                                            <pr-owl:isProbAssignIn>
+                                              <pr-owl:PR-OWLTable rdf:ID="DetectedJitter_Table">
+                                                <pr-owl:hasProbAssign>
+                                                  <pr-owl:ProbAssign rdf:ID="DetectedJitter_Medium-ConnectionClientToRouter_NOK">
+                                                    <pr-owl:hasStateProb rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.2998232841491699</pr-owl:hasStateProb>
+                                                    <pr-owl:hasConditionant rdf:resource="#cond_ConnectionClientToRouter_NOK" />
+                                                    <pr-owl:hasStateName>
+                                                      <pr-owl:CategoricalRVState rdf:ID="Medium">
+                                                        <pr-owl:isPossibleValueOf rdf:resource="#DetectedJitter" />
+                                                        <pr-owl:isPossibleValueOf rdf:resource="#PacketLossPercentage" />
+                                                      </pr-owl:CategoricalRVState>
+                                                    </pr-owl:hasStateName>
+                                                    <pr-owl:isProbAssignIn rdf:resource="#DetectedJitter_Table" />
+                                                  </pr-owl:ProbAssign>
+                                                </pr-owl:hasProbAssign>
+                                                <pr-owl:isProbDistOf rdf:resource="#DetectedJitter" />
+                                                <pr-owl:hasProbAssign>
+                                                  <pr-owl:ProbAssign rdf:ID="DetectedJitter_Medium-ConnectionClientToRouter_Broken">
+                                                    <pr-owl:hasStateProb rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.32499998807907104</pr-owl:hasStateProb>
+                                                    <pr-owl:hasConditionant>
+                                                      <pr-owl:CondRelationship rdf:ID="cond_ConnectionClientToRouter_Broken">
+                                                        <pr-owl:isConditionantOf>
+                                                          <pr-owl:ProbAssign rdf:ID="PacketLossPercentage_Medium-ConnectionClientToRouter_Broken">
+                                                            <pr-owl:isProbAssignIn rdf:resource="#PacketLossPercentage_Table" />
+                                                            <pr-owl:hasConditionant rdf:resource="#cond_ConnectionClientToRouter_Broken" />
+                                                            <pr-owl:hasStateName rdf:resource="#Medium" />
+                                                            <pr-owl:hasStateProb rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.0024592005647718906</pr-owl:hasStateProb>
+                                                          </pr-owl:ProbAssign>
+                                                        </pr-owl:isConditionantOf>
+                                                        <pr-owl:isConditionantOf>
+                                                          <pr-owl:ProbAssign rdf:ID="NetworkInterfaceRate_HighUsage-ConnectionClientToRouter_Broken">
+                                                            <pr-owl:hasStateProb rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.01325197983533144</pr-owl:hasStateProb>
+                                                            <pr-owl:hasConditionant rdf:resource="#cond_ConnectionClientToRouter_Broken" />
+                                                            <pr-owl:isProbAssignIn>
+                                                              <pr-owl:PR-OWLTable rdf:ID="NetworkInterfaceRate_Table">
+    <pr-owl:hasProbAssign>
+      <pr-owl:ProbAssign rdf:ID="NetworkInterfaceRate_MediumUsage-ConnectionClientToRouter_NOK">
+        <pr-owl:isProbAssignIn rdf:resource="#NetworkInterfaceRate_Table" />
+        <pr-owl:hasConditionant rdf:resource="#cond_ConnectionClientToRouter_NOK" />
+        <pr-owl:hasStateName>
+          <pr-owl:CategoricalRVState rdf:ID="MediumUsage">
+            <pr-owl:isPossibleValueOf>
+              <pr-owl:Domain_Res rdf:ID="ServerMemoryUsage">
+                <pr-owl:isResidentNodeIn rdf:resource="#CommuneBN_2_Mfrag" />
+                <pr-owl:hasParent>
+                  <pr-owl:Domain_Res rdf:ID="ServerMemoryFailure">
+                    <pr-owl:isNodeFrom rdf:resource="#CommuneBN_2_Mfrag" />
+                    <pr-owl:isParentOf rdf:resource="#ServerMemoryUsage" />
+                    <pr-owl:hasProbDist>
+                      <pr-owl:PR-OWLTable rdf:ID="ServerMemoryFailure_Table">
+                        <pr-owl:isProbDistOf rdf:resource="#ServerMemoryFailure" />
+                        <pr-owl:hasProbAssign>
+                          <pr-owl:ProbAssign rdf:ID="ServerMemoryFailure_NO-DetectedJitter_High">
+                            <pr-owl:hasConditionant>
+                              <pr-owl:CondRelationship rdf:ID="cond_DetectedJitter_High">
+                                <pr-owl:isConditionantOf>
+                                  <pr-owl:ProbAssign rdf:ID="ServerCpuFailure_YES-DetectedJitter_High">
+                                    <pr-owl:hasConditionant rdf:resource="#cond_DetectedJitter_High" />
+                                    <pr-owl:hasStateName>
+                                      <pr-owl:CategoricalRVState rdf:ID="YES">
+                                        <pr-owl:isPossibleValueOf>
+                                          <pr-owl:Domain_Res rdf:ID="ServerCpuFailure">
+                                            <pr-owl:hasProbDist>
+                                              <pr-owl:PR-OWLTable rdf:ID="ServerCpuFailure_Table">
+                                                <pr-owl:hasProbAssign>
+                                                  <pr-owl:ProbAssign rdf:ID="ServerCpuFailure_YES-DetectedJitter_Medium">
+                                                    <pr-owl:hasStateName rdf:resource="#YES" />
+                                                    <pr-owl:isProbAssignIn rdf:resource="#ServerCpuFailure_Table" />
+                                                    <pr-owl:hasConditionant>
+                                                      <pr-owl:CondRelationship rdf:ID="cond_DetectedJitter_Medium">
+                                                        <pr-owl:hasParentState rdf:resource="#Medium" />
+                                                        <pr-owl:isConditionantOf rdf:resource="#ServerCpuFailure_YES-DetectedJitter_Medium" />
+                                                        <pr-owl:isConditionantOf>
+                                                          <pr-owl:ProbAssign rdf:ID="ServerCpuFailure_NO-DetectedJitter_Medium">
+                                                            <pr-owl:hasStateName>
+                                                              <pr-owl:CategoricalRVState rdf:ID="NO">
+    <pr-owl:isPossibleValueOf rdf:resource="#ServerCpuFailure" />
+    <pr-owl:isPossibleValueOf>
+      <pr-owl:Domain_Res rdf:ID="ConnectionClientToRouterFailure">
+        <pr-owl:hasPossibleValues rdf:resource="#NO" />
+        <pr-owl:hasPossibleValues rdf:resource="#YES" />
+        <pr-owl:hasProbDist>
+          <pr-owl:PR-OWLTable rdf:ID="ConnectionClientToRouterFailure_Table">
+            <pr-owl:isProbDistOf rdf:resource="#ConnectionClientToRouterFailure" />
+            <pr-owl:hasProbAssign>
+              <pr-owl:ProbAssign rdf:ID="ConnectionClientToRouterFailure_NO">
+                <pr-owl:isProbAssignIn rdf:resource="#ConnectionClientToRouterFailure_Table" />
+                <pr-owl:hasStateName rdf:resource="#NO" />
+                <pr-owl:hasStateProb rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.5823023319244385</pr-owl:hasStateProb>
+              </pr-owl:ProbAssign>
+            </pr-owl:hasProbAssign>
+            <pr-owl:hasProbAssign>
+              <pr-owl:ProbAssign rdf:ID="ConnectionClientToRouterFailure_YES">
+                <pr-owl:hasStateName rdf:resource="#YES" />
+                <pr-owl:hasStateProb rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.4176976680755615</pr-owl:hasStateProb>
+                <pr-owl:isProbAssignIn rdf:resource="#ConnectionClientToRouterFailure_Table" />
+              </pr-owl:ProbAssign>
+            </pr-owl:hasProbAssign>
+          </pr-owl:PR-OWLTable>
+        </pr-owl:hasProbDist>
+        <pr-owl:isResidentNodeIn rdf:resource="#CommuneBN_2_Mfrag" />
+        <pr-owl:isNodeFrom rdf:resource="#CommuneBN_2_Mfrag" />
+        <pr-owl:isParentOf>
+          <pr-owl:Domain_Res rdf:ID="ConnectionClientToRouter">
+            <pr-owl:isParentOf>
+              <pr-owl:Domain_Res rdf:ID="NetworkInterfaceRate">
+                <pr-owl:hasPossibleValues>
+                  <pr-owl:CategoricalRVState rdf:ID="ZeroUsage">
+                    <pr-owl:isPossibleValueOf rdf:resource="#NetworkInterfaceRate" />
+                  </pr-owl:CategoricalRVState>
+                </pr-owl:hasPossibleValues>
+                <pr-owl:hasPossibleValues>
+                  <pr-owl:CategoricalRVState rdf:ID="LowUsage">
+                    <pr-owl:isPossibleValueOf rdf:resource="#ServerMemoryUsage" />
+                    <pr-owl:isPossibleValueOf rdf:resource="#NetworkInterfaceRate" />
+                    <pr-owl:isPossibleValueOf>
+                      <pr-owl:Domain_Res rdf:ID="ServerCpuUsage">
+                        <pr-owl:isNodeFrom rdf:resource="#CommuneBN_2_Mfrag" />
+                        <pr-owl:hasPossibleValues rdf:resource="#LowUsage" />
+                        <pr-owl:hasPossibleValues rdf:resource="#MediumUsage" />
+                        <pr-owl:hasPossibleValues>
+                          <pr-owl:CategoricalRVState rdf:ID="HighUsage">
+                            <pr-owl:isPossibleValueOf rdf:resource="#ServerMemoryUsage" />
+                            <pr-owl:isPossibleValueOf rdf:resource="#NetworkInterfaceRate" />
+                            <pr-owl:isPossibleValueOf rdf:resource="#ServerCpuUsage" />
+                          </pr-owl:CategoricalRVState>
+                        </pr-owl:hasPossibleValues>
+                        <pr-owl:hasParent rdf:resource="#ServerCpuFailure" />
+                        <pr-owl:hasProbDist>
+                          <pr-owl:PR-OWLTable rdf:ID="ServerCpuUsage_Table">
+                            <pr-owl:isProbDistOf rdf:resource="#ServerCpuUsage" />
+                            <pr-owl:hasProbAssign>
+                              <pr-owl:ProbAssign rdf:ID="ServerCpuUsage_HighUsage-ServerCpuFailure_YES">
+                                <pr-owl:isProbAssignIn rdf:resource="#ServerCpuUsage_Table" />
+                                <pr-owl:hasConditionant>
+                                  <pr-owl:CondRelationship rdf:ID="cond_ServerCpuFailure_YES">
+                                    <pr-owl:isConditionantOf>
+                                      <pr-owl:ProbAssign rdf:ID="ServerCpuUsage_MediumUsage-ServerCpuFailure_YES">
+                                        <pr-owl:hasStateProb rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.30000001192092896</pr-owl:hasStateProb>
+                                        <pr-owl:hasStateName rdf:resource="#MediumUsage" />
+                                        <pr-owl:hasConditionant rdf:resource="#cond_ServerCpuFailure_YES" />
+                                        <pr-owl:isProbAssignIn rdf:resource="#ServerCpuUsage_Table" />
+                                      </pr-owl:ProbAssign>
+                                    </pr-owl:isConditionantOf>
+                                    <pr-owl:isConditionantOf rdf:resource="#ServerCpuUsage_HighUsage-ServerCpuFailure_YES" />
+                                    <pr-owl:isConditionantOf>
+                                      <pr-owl:ProbAssign rdf:ID="ServerCpuUsage_LowUsage-ServerCpuFailure_YES">
+                                        <pr-owl:hasStateName rdf:resource="#LowUsage" />
+                                        <pr-owl:hasConditionant rdf:resource="#cond_ServerCpuFailure_YES" />
+                                        <pr-owl:hasStateProb rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.10000000149011612</pr-owl:hasStateProb>
+                                        <pr-owl:isProbAssignIn rdf:resource="#ServerCpuUsage_Table" />
+                                      </pr-owl:ProbAssign>
+                                    </pr-owl:isConditionantOf>
+                                    <pr-owl:hasParentState rdf:resource="#YES" />
+                                    <pr-owl:hasParentName rdf:resource="#ServerCpuFailure" />
+                                  </pr-owl:CondRelationship>
+                                </pr-owl:hasConditionant>
+                                <pr-owl:hasStateProb rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.6000000238418579</pr-owl:hasStateProb>
+                                <pr-owl:hasStateName rdf:resource="#HighUsage" />
+                              </pr-owl:ProbAssign>
+                            </pr-owl:hasProbAssign>
+                            <pr-owl:hasProbAssign rdf:resource="#ServerCpuUsage_MediumUsage-ServerCpuFailure_YES" />
+                            <pr-owl:hasProbAssign>
+                              <pr-owl:ProbAssign rdf:ID="ServerCpuUsage_HighUsage-ServerCpuFailure_NO">
+                                <pr-owl:hasStateName rdf:resource="#HighUsage" />
+                                <pr-owl:hasConditionant>
+                                  <pr-owl:CondRelationship rdf:ID="cond_ServerCpuFailure_NO">
+                                    <pr-owl:hasParentState rdf:resource="#NO" />
+                                    <pr-owl:isConditionantOf rdf:resource="#ServerCpuUsage_HighUsage-ServerCpuFailure_NO" />
+                                    <pr-owl:isConditionantOf>
+                                      <pr-owl:ProbAssign rdf:ID="ServerCpuUsage_MediumUsage-ServerCpuFailure_NO">
+                                        <pr-owl:isProbAssignIn rdf:resource="#ServerCpuUsage_Table" />
+                                        <pr-owl:hasConditionant rdf:resource="#cond_ServerCpuFailure_NO" />
+                                        <pr-owl:hasStateName rdf:resource="#MediumUsage" />
+                                        <pr-owl:hasStateProb rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.30000001192092896</pr-owl:hasStateProb>
+                                      </pr-owl:ProbAssign>
+                                    </pr-owl:isConditionantOf>
+                                    <pr-owl:isConditionantOf>
+                                      <pr-owl:ProbAssign rdf:ID="ServerCpuUsage_LowUsage-ServerCpuFailure_NO">
+                                        <pr-owl:hasStateProb rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.6000000238418579</pr-owl:hasStateProb>
+                                        <pr-owl:hasStateName rdf:resource="#LowUsage" />
+                                        <pr-owl:isProbAssignIn rdf:resource="#ServerCpuUsage_Table" />
+                                        <pr-owl:hasConditionant rdf:resource="#cond_ServerCpuFailure_NO" />
+                                      </pr-owl:ProbAssign>
+                                    </pr-owl:isConditionantOf>
+                                    <pr-owl:hasParentName rdf:resource="#ServerCpuFailure" />
+                                  </pr-owl:CondRelationship>
+                                </pr-owl:hasConditionant>
+                                <pr-owl:hasStateProb rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.10000000149011612</pr-owl:hasStateProb>
+                                <pr-owl:isProbAssignIn rdf:resource="#ServerCpuUsage_Table" />
+                              </pr-owl:ProbAssign>
+                            </pr-owl:hasProbAssign>
+                            <pr-owl:hasProbAssign rdf:resource="#ServerCpuUsage_LowUsage-ServerCpuFailure_YES" />
+                            <pr-owl:hasProbAssign rdf:resource="#ServerCpuUsage_LowUsage-ServerCpuFailure_NO" />
+                            <pr-owl:hasProbAssign rdf:resource="#ServerCpuUsage_MediumUsage-ServerCpuFailure_NO" />
+                          </pr-owl:PR-OWLTable>
+                        </pr-owl:hasProbDist>
+                        <pr-owl:isResidentNodeIn rdf:resource="#CommuneBN_2_Mfrag" />
+                      </pr-owl:Domain_Res>
+                    </pr-owl:isPossibleValueOf>
+                  </pr-owl:CategoricalRVState>
+                </pr-owl:hasPossibleValues>
+                <pr-owl:hasPossibleValues rdf:resource="#MediumUsage" />
+                <pr-owl:hasPossibleValues rdf:resource="#HighUsage" />
+                <pr-owl:hasParent rdf:resource="#ConnectionClientToRouter" />
+                <pr-owl:isNodeFrom rdf:resource="#CommuneBN_2_Mfrag" />
+                <pr-owl:isResidentNodeIn rdf:resource="#CommuneBN_2_Mfrag" />
+                <pr-owl:hasProbDist rdf:resource="#NetworkInterfaceRate_Table" />
+              </pr-owl:Domain_Res>
+            </pr-owl:isParentOf>
+            <pr-owl:isParentOf>
+              <pr-owl:Domain_Res rdf:ID="ConnectionTest">
+                <pr-owl:hasProbDist>
+                  <pr-owl:PR-OWLTable rdf:ID="ConnectionTest_Table">
+                    <pr-owl:isProbDistOf rdf:resource="#ConnectionTest" />
+                    <pr-owl:hasProbAssign>
+                      <pr-owl:ProbAssign rdf:ID="ConnectionTest_Passed-ConnectionClientToRouter_OK">
+                        <pr-owl:hasStateProb rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.9528645873069763</pr-owl:hasStateProb>
+                        <pr-owl:hasStateName>
+                          <pr-owl:CategoricalRVState rdf:ID="Passed">
+                            <pr-owl:isPossibleValueOf rdf:resource="#ConnectionTest" />
+                          </pr-owl:CategoricalRVState>
+                        </pr-owl:hasStateName>
+                        <pr-owl:isProbAssignIn rdf:resource="#ConnectionTest_Table" />
+                        <pr-owl:hasConditionant rdf:resource="#cond_ConnectionClientToRouter_OK" />
+                      </pr-owl:ProbAssign>
+                    </pr-owl:hasProbAssign>
+                    <pr-owl:hasProbAssign>
+                      <pr-owl:ProbAssign rdf:ID="ConnectionTest_Failed-ConnectionClientToRouter_Broken">
+                        <pr-owl:isProbAssignIn rdf:resource="#ConnectionTest_Table" />
+                        <pr-owl:hasConditionant rdf:resource="#cond_ConnectionClientToRouter_Broken" />
+                        <pr-owl:hasStateName>
+                          <pr-owl:CategoricalRVState rdf:ID="Failed">
+                            <pr-owl:isPossibleValueOf rdf:resource="#ConnectionTest" />
+                          </pr-owl:CategoricalRVState>
+                        </pr-owl:hasStateName>
+                        <pr-owl:hasStateProb rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.976464033126831</pr-owl:hasStateProb>
+                      </pr-owl:ProbAssign>
+                    </pr-owl:hasProbAssign>
+                    <pr-owl:hasProbAssign>
+                      <pr-owl:ProbAssign rdf:ID="ConnectionTest_Passed-ConnectionClientToRouter_Broken">
+                        <pr-owl:hasConditionant rdf:resource="#cond_ConnectionClientToRouter_Broken" />
+                        <pr-owl:hasStateProb rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.023535940796136856</pr-owl:hasStateProb>
+                        <pr-owl:isProbAssignIn rdf:resource="#ConnectionTest_Table" />
+                        <pr-owl:hasStateName rdf:resource="#Passed" />
+                      </pr-owl:ProbAssign>
+                    </pr-owl:hasProbAssign>
+                    <pr-owl:hasProbAssign>
+                      <pr-owl:ProbAssign rdf:ID="ConnectionTest_Passed-ConnectionClientToRouter_NOK">
+                        <pr-owl:isProbAssignIn rdf:resource="#ConnectionTest_Table" />
+                        <pr-owl:hasConditionant rdf:resource="#cond_ConnectionClientToRouter_NOK" />
+                        <pr-owl:hasStateProb rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.9421812295913696</pr-owl:hasStateProb>
+                        <pr-owl:hasStateName rdf:resource="#Passed" />
+                      </pr-owl:ProbAssign>
+                    </pr-owl:hasProbAssign>
+                    <pr-owl:hasProbAssign>
+                      <pr-owl:ProbAssign rdf:ID="ConnectionTest_Failed-ConnectionClientToRouter_OK">
+                        <pr-owl:hasConditionant rdf:resource="#cond_ConnectionClientToRouter_OK" />
+                        <pr-owl:hasStateName rdf:resource="#Failed" />
+                        <pr-owl:hasStateProb rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.04713538661599159</pr-owl:hasStateProb>
+                        <pr-owl:isProbAssignIn rdf:resource="#ConnectionTest_Table" />
+                      </pr-owl:ProbAssign>
+                    </pr-owl:hasProbAssign>
+                    <pr-owl:hasProbAssign>
+                      <pr-owl:ProbAssign rdf:ID="ConnectionTest_Failed-ConnectionClientToRouter_NOK">
+                        <pr-owl:hasStateProb rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.057818781584501266</pr-owl:hasStateProb>
+                        <pr-owl:hasStateName rdf:resource="#Failed" />
+                        <pr-owl:isProbAssignIn rdf:resource="#ConnectionTest_Table" />
+                        <pr-owl:hasConditionant rdf:resource="#cond_ConnectionClientToRouter_NOK" />
+                      </pr-owl:ProbAssign>
+                    </pr-owl:hasProbAssign>
+                  </pr-owl:PR-OWLTable>
+                </pr-owl:hasProbDist>
+                <pr-owl:hasParent rdf:resource="#ConnectionClientToRouter" />
+                <pr-owl:isNodeFrom rdf:resource="#CommuneBN_2_Mfrag" />
+                <pr-owl:isResidentNodeIn rdf:resource="#CommuneBN_2_Mfrag" />
+                <pr-owl:hasPossibleValues rdf:resource="#Failed" />
+                <pr-owl:hasPossibleValues rdf:resource="#Passed" />
+              </pr-owl:Domain_Res>
+            </pr-owl:isParentOf>
+            <pr-owl:hasPossibleValues>
+              <pr-owl:CategoricalRVState rdf:ID="NOK">
+                <pr-owl:isPossibleValueOf rdf:resource="#ConnectionClientToRouter" />
+              </pr-owl:CategoricalRVState>
+            </pr-owl:hasPossibleValues>
+            <pr-owl:hasParent rdf:resource="#ConnectionClientToRouterFailure" />
+            <pr-owl:isResidentNodeIn rdf:resource="#CommuneBN_2_Mfrag" />
+            <pr-owl:hasPossibleValues>
+              <pr-owl:CategoricalRVState rdf:ID="OK">
+                <pr-owl:isPossibleValueOf rdf:resource="#ConnectionClientToRouter" />
+              </pr-owl:CategoricalRVState>
+            </pr-owl:hasPossibleValues>
+            <pr-owl:hasProbDist>
+              <pr-owl:PR-OWLTable rdf:ID="ConnectionClientToRouter_Table">
+                <pr-owl:isProbDistOf rdf:resource="#ConnectionClientToRouter" />
+                <pr-owl:hasProbAssign>
+                  <pr-owl:ProbAssign rdf:ID="ConnectionClientToRouter_NOK-ConnectionClientToRouterFailure_YES">
+                    <pr-owl:hasStateProb rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.7376816272735596</pr-owl:hasStateProb>
+                    <pr-owl:hasStateName rdf:resource="#NOK" />
+                    <pr-owl:isProbAssignIn rdf:resource="#ConnectionClientToRouter_Table" />
+                    <pr-owl:hasConditionant>
+                      <pr-owl:CondRelationship rdf:ID="cond_ConnectionClientToRouterFailure_YES">
+                        <pr-owl:isConditionantOf rdf:resource="#ConnectionClientToRouter_NOK-ConnectionClientToRouterFailure_YES" />
+                        <pr-owl:isConditionantOf>
+                          <pr-owl:ProbAssign rdf:ID="ConnectionClientToRouter_Broken-ConnectionClientToRouterFailure_YES">
+                            <pr-owl:isProbAssignIn rdf:resource="#ConnectionClientToRouter_Table" />
+                            <pr-owl:hasConditionant rdf:resource="#cond_ConnectionClientToRouterFailure_YES" />
+                            <pr-owl:hasStateName>
+                              <pr-owl:CategoricalRVState rdf:ID="Broken">
+                                <pr-owl:isPossibleValueOf rdf:resource="#ConnectionClientToRouter" />
+                              </pr-owl:CategoricalRVState>
+                            </pr-owl:hasStateName>
+                            <pr-owl:hasStateProb rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.2564384937286377</pr-owl:hasStateProb>
+                          </pr-owl:ProbAssign>
+                        </pr-owl:isConditionantOf>
+                        <pr-owl:isConditionantOf>
+                          <pr-owl:ProbAssign rdf:ID="ConnectionClientToRouter_OK-ConnectionClientToRouterFailure_YES">
+                            <pr-owl:hasStateName rdf:resource="#OK" />
+                            <pr-owl:isProbAssignIn rdf:resource="#ConnectionClientToRouter_Table" />
+                            <pr-owl:hasStateProb rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.005879875738173723</pr-owl:hasStateProb>
+                            <pr-owl:hasConditionant rdf:resource="#cond_ConnectionClientToRouterFailure_YES" />
+                          </pr-owl:ProbAssign>
+                        </pr-owl:isConditionantOf>
+                        <pr-owl:hasParentState rdf:resource="#YES" />
+                        <pr-owl:hasParentName rdf:resource="#ConnectionClientToRouterFailure" />
+                      </pr-owl:CondRelationship>
+                    </pr-owl:hasConditionant>
+                  </pr-owl:ProbAssign>
+                </pr-owl:hasProbAssign>
+                <pr-owl:hasProbAssign rdf:resource="#ConnectionClientToRouter_Broken-ConnectionClientToRouterFailure_YES" />
+                <pr-owl:hasProbAssign>
+                  <pr-owl:ProbAssign rdf:ID="ConnectionClientToRouter_Broken-ConnectionClientToRouterFailure_NO">
+                    <pr-owl:hasStateName rdf:resource="#Broken" />
+                    <pr-owl:isProbAssignIn rdf:resource="#ConnectionClientToRouter_Table" />
+                    <pr-owl:hasConditionant>
+                      <pr-owl:CondRelationship rdf:ID="cond_ConnectionClientToRouterFailure_NO">
+                        <pr-owl:hasParentState rdf:resource="#NO" />
+                        <pr-owl:hasParentName rdf:resource="#ConnectionClientToRouterFailure" />
+                        <pr-owl:isConditionantOf rdf:resource="#ConnectionClientToRouter_Broken-ConnectionClientToRouterFailure_NO" />
+                        <pr-owl:isConditionantOf>
+                          <pr-owl:ProbAssign rdf:ID="ConnectionClientToRouter_NOK-ConnectionClientToRouterFailure_NO">
+                            <pr-owl:isProbAssignIn rdf:resource="#ConnectionClientToRouter_Table" />
+                            <pr-owl:hasConditionant rdf:resource="#cond_ConnectionClientToRouterFailure_NO" />
+                            <pr-owl:hasStateProb rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.06987414509057999</pr-owl:hasStateProb>
+                            <pr-owl:hasStateName rdf:resource="#NOK" />
+                          </pr-owl:ProbAssign>
+                        </pr-owl:isConditionantOf>
+                        <pr-owl:isConditionantOf>
+                          <pr-owl:ProbAssign rdf:ID="ConnectionClientToRouter_OK-ConnectionClientToRouterFailure_NO">
+                            <pr-owl:isProbAssignIn rdf:resource="#ConnectionClientToRouter_Table" />
+                            <pr-owl:hasStateProb rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.9183467626571655</pr-owl:hasStateProb>
+                            <pr-owl:hasConditionant rdf:resource="#cond_ConnectionClientToRouterFailure_NO" />
+                            <pr-owl:hasStateName rdf:resource="#OK" />
+                          </pr-owl:ProbAssign>
+                        </pr-owl:isConditionantOf>
+                      </pr-owl:CondRelationship>
+                    </pr-owl:hasConditionant>
+                    <pr-owl:hasStateProb rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.011779113672673702</pr-owl:hasStateProb>
+                  </pr-owl:ProbAssign>
+                </pr-owl:hasProbAssign>
+                <pr-owl:hasProbAssign rdf:resource="#ConnectionClientToRouter_OK-ConnectionClientToRouterFailure_NO" />
+                <pr-owl:hasProbAssign rdf:resource="#ConnectionClientToRouter_NOK-ConnectionClientToRouterFailure_NO" />
+                <pr-owl:hasProbAssign rdf:resource="#ConnectionClientToRouter_OK-ConnectionClientToRouterFailure_YES" />
+              </pr-owl:PR-OWLTable>
+            </pr-owl:hasProbDist>
+            <pr-owl:isNodeFrom rdf:resource="#CommuneBN_2_Mfrag" />
+            <pr-owl:hasPossibleValues rdf:resource="#Broken" />
+            <pr-owl:isParentOf rdf:resource="#PacketLossPercentage" />
+            <pr-owl:isParentOf rdf:resource="#DetectedJitter" />
+          </pr-owl:Domain_Res>
+        </pr-owl:isParentOf>
+      </pr-owl:Domain_Res>
+    </pr-owl:isPossibleValueOf>
+    <pr-owl:isPossibleValueOf rdf:resource="#ServerMemoryFailure" />
+                                                              </pr-owl:CategoricalRVState>
+                                                            </pr-owl:hasStateName>
+                                                            <pr-owl:hasStateProb rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.5</pr-owl:hasStateProb>
+                                                            <pr-owl:isProbAssignIn rdf:resource="#ServerCpuFailure_Table" />
+                                                            <pr-owl:hasConditionant rdf:resource="#cond_DetectedJitter_Medium" />
+                                                          </pr-owl:ProbAssign>
+                                                        </pr-owl:isConditionantOf>
+                                                        <pr-owl:isConditionantOf>
+                                                          <pr-owl:ProbAssign rdf:ID="ServerMemoryFailure_YES-DetectedJitter_Medium">
+                                                            <pr-owl:hasStateName rdf:resource="#YES" />
+                                                            <pr-owl:hasConditionant rdf:resource="#cond_DetectedJitter_Medium" />
+                                                            <pr-owl:hasStateProb rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.5</pr-owl:hasStateProb>
+                                                            <pr-owl:isProbAssignIn rdf:resource="#ServerMemoryFailure_Table" />
+                                                          </pr-owl:ProbAssign>
+                                                        </pr-owl:isConditionantOf>
+                                                        <pr-owl:isConditionantOf>
+                                                          <pr-owl:ProbAssign rdf:ID="ServerMemoryFailure_NO-DetectedJitter_Medium">
+                                                            <pr-owl:hasConditionant rdf:resource="#cond_DetectedJitter_Medium" />
+                                                            <pr-owl:hasStateProb rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.5</pr-owl:hasStateProb>
+                                                            <pr-owl:isProbAssignIn rdf:resource="#ServerMemoryFailure_Table" />
+                                                            <pr-owl:hasStateName rdf:resource="#NO" />
+                                                          </pr-owl:ProbAssign>
+                                                        </pr-owl:isConditionantOf>
+                                                        <pr-owl:hasParentName rdf:resource="#DetectedJitter" />
+                                                      </pr-owl:CondRelationship>
+                                                    </pr-owl:hasConditionant>
+                                                    <pr-owl:hasStateProb rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.5</pr-owl:hasStateProb>
+                                                  </pr-owl:ProbAssign>
+                                                </pr-owl:hasProbAssign>
+                                                <pr-owl:hasProbAssign rdf:resource="#ServerCpuFailure_NO-DetectedJitter_Medium" />
+                                                <pr-owl:hasProbAssign rdf:resource="#ServerCpuFailure_YES-DetectedJitter_High" />
+                                                <pr-owl:hasProbAssign>
+                                                  <pr-owl:ProbAssign rdf:ID="ServerCpuFailure_NO-DetectedJitter_Low">
+                                                    <pr-owl:hasConditionant>
+                                                      <pr-owl:CondRelationship rdf:ID="cond_DetectedJitter_Low">
+                                                        <pr-owl:hasParentState rdf:resource="#Low" />
+                                                        <pr-owl:isConditionantOf rdf:resource="#ServerCpuFailure_NO-DetectedJitter_Low" />
+                                                        <pr-owl:isConditionantOf>
+                                                          <pr-owl:ProbAssign rdf:ID="ServerCpuFailure_YES-DetectedJitter_Low">
+                                                            <pr-owl:hasStateProb rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.30000001192092896</pr-owl:hasStateProb>
+                                                            <pr-owl:hasConditionant rdf:resource="#cond_DetectedJitter_Low" />
+                                                            <pr-owl:hasStateName rdf:resource="#YES" />
+                                                            <pr-owl:isProbAssignIn rdf:resource="#ServerCpuFailure_Table" />
+                                                          </pr-owl:ProbAssign>
+                                                        </pr-owl:isConditionantOf>
+                                                        <pr-owl:isConditionantOf>
+                                                          <pr-owl:ProbAssign rdf:ID="ServerMemoryFailure_NO-DetectedJitter_Low">
+                                                            <pr-owl:isProbAssignIn rdf:resource="#ServerMemoryFailure_Table" />
+                                                            <pr-owl:hasConditionant rdf:resource="#cond_DetectedJitter_Low" />
+                                                            <pr-owl:hasStateName rdf:resource="#NO" />
+                                                            <pr-owl:hasStateProb rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.699999988079071</pr-owl:hasStateProb>
+                                                          </pr-owl:ProbAssign>
+                                                        </pr-owl:isConditionantOf>
+                                                        <pr-owl:isConditionantOf>
+                                                          <pr-owl:ProbAssign rdf:ID="ServerMemoryFailure_YES-DetectedJitter_Low">
+                                                            <pr-owl:hasStateProb rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.30000001192092896</pr-owl:hasStateProb>
+                                                            <pr-owl:hasStateName rdf:resource="#YES" />
+                                                            <pr-owl:isProbAssignIn rdf:resource="#ServerMemoryFailure_Table" />
+                                                            <pr-owl:hasConditionant rdf:resource="#cond_DetectedJitter_Low" />
+                                                          </pr-owl:ProbAssign>
+                                                        </pr-owl:isConditionantOf>
+                                                        <pr-owl:hasParentName rdf:resource="#DetectedJitter" />
+                                                      </pr-owl:CondRelationship>
+                                                    </pr-owl:hasConditionant>
+                                                    <pr-owl:hasStateName rdf:resource="#NO" />
+                                                    <pr-owl:isProbAssignIn rdf:resource="#ServerCpuFailure_Table" />
+                                                    <pr-owl:hasStateProb rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.699999988079071</pr-owl:hasStateProb>
+                                                  </pr-owl:ProbAssign>
+                                                </pr-owl:hasProbAssign>
+                                                <pr-owl:hasProbAssign>
+                                                  <pr-owl:ProbAssign rdf:ID="ServerCpuFailure_NO-DetectedJitter_High">
+                                                    <pr-owl:hasStateProb rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.30000001192092896</pr-owl:hasStateProb>
+                                                    <pr-owl:hasStateName rdf:resource="#NO" />
+                                                    <pr-owl:isProbAssignIn rdf:resource="#ServerCpuFailure_Table" />
+                                                    <pr-owl:hasConditionant rdf:resource="#cond_DetectedJitter_High" />
+                                                  </pr-owl:ProbAssign>
+                                                </pr-owl:hasProbAssign>
+                                                <pr-owl:hasProbAssign rdf:resource="#ServerCpuFailure_YES-DetectedJitter_Low" />
+                                                <pr-owl:isProbDistOf rdf:resource="#ServerCpuFailure" />
+                                              </pr-owl:PR-OWLTable>
+                                            </pr-owl:hasProbDist>
+                                            <pr-owl:hasPossibleValues rdf:resource="#NO" />
+                                            <pr-owl:hasPossibleValues rdf:resource="#YES" />
+                                            <pr-owl:isParentOf rdf:resource="#ServerCpuUsage" />
+                                            <pr-owl:isNodeFrom rdf:resource="#CommuneBN_2_Mfrag" />
+                                            <pr-owl:hasParent rdf:resource="#DetectedJitter" />
+                                            <pr-owl:isResidentNodeIn rdf:resource="#CommuneBN_2_Mfrag" />
+                                          </pr-owl:Domain_Res>
+                                        </pr-owl:isPossibleValueOf>
+                                        <pr-owl:isPossibleValueOf rdf:resource="#ConnectionClientToRouterFailure" />
+                                        <pr-owl:isPossibleValueOf rdf:resource="#ServerMemoryFailure" />
+                                      </pr-owl:CategoricalRVState>
+                                    </pr-owl:hasStateName>
+                                    <pr-owl:isProbAssignIn rdf:resource="#ServerCpuFailure_Table" />
+                                    <pr-owl:hasStateProb rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.699999988079071</pr-owl:hasStateProb>
+                                  </pr-owl:ProbAssign>
+                                </pr-owl:isConditionantOf>
+                                <pr-owl:isConditionantOf rdf:resource="#ServerCpuFailure_NO-DetectedJitter_High" />
+                                <pr-owl:isConditionantOf>
+                                  <pr-owl:ProbAssign rdf:ID="ServerMemoryFailure_YES-DetectedJitter_High">
+                                    <pr-owl:hasStateProb rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.699999988079071</pr-owl:hasStateProb>
+                                    <pr-owl:hasStateName rdf:resource="#YES" />
+                                    <pr-owl:isProbAssignIn rdf:resource="#ServerMemoryFailure_Table" />
+                                    <pr-owl:hasConditionant rdf:resource="#cond_DetectedJitter_High" />
+                                  </pr-owl:ProbAssign>
+                                </pr-owl:isConditionantOf>
+                                <pr-owl:isConditionantOf rdf:resource="#ServerMemoryFailure_NO-DetectedJitter_High" />
+                                <pr-owl:hasParentName rdf:resource="#DetectedJitter" />
+                                <pr-owl:hasParentState rdf:resource="#High" />
+                              </pr-owl:CondRelationship>
+                            </pr-owl:hasConditionant>
+                            <pr-owl:hasStateProb rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.30000001192092896</pr-owl:hasStateProb>
+                            <pr-owl:isProbAssignIn rdf:resource="#ServerMemoryFailure_Table" />
+                            <pr-owl:hasStateName rdf:resource="#NO" />
+                          </pr-owl:ProbAssign>
+                        </pr-owl:hasProbAssign>
+                        <pr-owl:hasProbAssign rdf:resource="#ServerMemoryFailure_NO-DetectedJitter_Low" />
+                        <pr-owl:hasProbAssign rdf:resource="#ServerMemoryFailure_YES-DetectedJitter_Low" />
+                        <pr-owl:hasProbAssign rdf:resource="#ServerMemoryFailure_NO-DetectedJitter_Medium" />
+                        <pr-owl:hasProbAssign rdf:resource="#ServerMemoryFailure_YES-DetectedJitter_High" />
+                        <pr-owl:hasProbAssign rdf:resource="#ServerMemoryFailure_YES-DetectedJitter_Medium" />
+                      </pr-owl:PR-OWLTable>
+                    </pr-owl:hasProbDist>
+                    <pr-owl:hasPossibleValues rdf:resource="#NO" />
+                    <pr-owl:hasPossibleValues rdf:resource="#YES" />
+                    <pr-owl:isResidentNodeIn rdf:resource="#CommuneBN_2_Mfrag" />
+                    <pr-owl:hasParent rdf:resource="#DetectedJitter" />
+                  </pr-owl:Domain_Res>
+                </pr-owl:hasParent>
+                <pr-owl:hasProbDist>
+                  <pr-owl:PR-OWLTable rdf:ID="ServerMemoryUsage_Table">
+                    <pr-owl:isProbDistOf rdf:resource="#ServerMemoryUsage" />
+                    <pr-owl:hasProbAssign>
+                      <pr-owl:ProbAssign rdf:ID="ServerMemoryUsage_HighUsage-ServerMemoryFailure_YES">
+                        <pr-owl:hasConditionant>
+                          <pr-owl:CondRelationship rdf:ID="cond_ServerMemoryFailure_YES">
+                            <pr-owl:isConditionantOf rdf:resource="#ServerMemoryUsage_HighUsage-ServerMemoryFailure_YES" />
+                            <pr-owl:isConditionantOf>
+                              <pr-owl:ProbAssign rdf:ID="ServerMemoryUsage_MediumUsage-ServerMemoryFailure_YES">
+                                <pr-owl:hasConditionant rdf:resource="#cond_ServerMemoryFailure_YES" />
+                                <pr-owl:hasStateProb rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.30000001192092896</pr-owl:hasStateProb>
+                                <pr-owl:isProbAssignIn rdf:resource="#ServerMemoryUsage_Table" />
+                                <pr-owl:hasStateName rdf:resource="#MediumUsage" />
+                              </pr-owl:ProbAssign>
+                            </pr-owl:isConditionantOf>
+                            <pr-owl:isConditionantOf>
+                              <pr-owl:ProbAssign rdf:ID="ServerMemoryUsage_LowUsage-ServerMemoryFailure_YES">
+                                <pr-owl:hasConditionant rdf:resource="#cond_ServerMemoryFailure_YES" />
+                                <pr-owl:hasStateProb rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.10000000149011612</pr-owl:hasStateProb>
+                                <pr-owl:hasStateName rdf:resource="#LowUsage" />
+                                <pr-owl:isProbAssignIn rdf:resource="#ServerMemoryUsage_Table" />
+                              </pr-owl:ProbAssign>
+                            </pr-owl:isConditionantOf>
+                            <pr-owl:hasParentState rdf:resource="#YES" />
+                            <pr-owl:hasParentName rdf:resource="#ServerMemoryFailure" />
+                          </pr-owl:CondRelationship>
+                        </pr-owl:hasConditionant>
+                        <pr-owl:hasStateProb rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.6000000238418579</pr-owl:hasStateProb>
+                        <pr-owl:isProbAssignIn rdf:resource="#ServerMemoryUsage_Table" />
+                        <pr-owl:hasStateName rdf:resource="#HighUsage" />
+                      </pr-owl:ProbAssign>
+                    </pr-owl:hasProbAssign>
+                    <pr-owl:hasProbAssign>
+                      <pr-owl:ProbAssign rdf:ID="ServerMemoryUsage_LowUsage-ServerMemoryFailure_NO">
+                        <pr-owl:hasStateProb rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.6000000238418579</pr-owl:hasStateProb>
+                        <pr-owl:isProbAssignIn rdf:resource="#ServerMemoryUsage_Table" />
+                        <pr-owl:hasConditionant>
+                          <pr-owl:CondRelationship rdf:ID="cond_ServerMemoryFailure_NO">
+                            <pr-owl:hasParentName rdf:resource="#ServerMemoryFailure" />
+                            <pr-owl:hasParentState rdf:resource="#NO" />
+                            <pr-owl:isConditionantOf rdf:resource="#ServerMemoryUsage_LowUsage-ServerMemoryFailure_NO" />
+                            <pr-owl:isConditionantOf>
+                              <pr-owl:ProbAssign rdf:ID="ServerMemoryUsage_MediumUsage-ServerMemoryFailure_NO">
+                                <pr-owl:hasStateName rdf:resource="#MediumUsage" />
+                                <pr-owl:isProbAssignIn rdf:resource="#ServerMemoryUsage_Table" />
+                                <pr-owl:hasConditionant rdf:resource="#cond_ServerMemoryFailure_NO" />
+                                <pr-owl:hasStateProb rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.30000001192092896</pr-owl:hasStateProb>
+                              </pr-owl:ProbAssign>
+                            </pr-owl:isConditionantOf>
+                            <pr-owl:isConditionantOf>
+                              <pr-owl:ProbAssign rdf:ID="ServerMemoryUsage_HighUsage-ServerMemoryFailure_NO">
+                                <pr-owl:hasConditionant rdf:resource="#cond_ServerMemoryFailure_NO" />
+                                <pr-owl:hasStateProb rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.10000000149011612</pr-owl:hasStateProb>
+                                <pr-owl:isProbAssignIn rdf:resource="#ServerMemoryUsage_Table" />
+                                <pr-owl:hasStateName rdf:resource="#HighUsage" />
+                              </pr-owl:ProbAssign>
+                            </pr-owl:isConditionantOf>
+                          </pr-owl:CondRelationship>
+                        </pr-owl:hasConditionant>
+                        <pr-owl:hasStateName rdf:resource="#LowUsage" />
+                      </pr-owl:ProbAssign>
+                    </pr-owl:hasProbAssign>
+                    <pr-owl:hasProbAssign rdf:resource="#ServerMemoryUsage_MediumUsage-ServerMemoryFailure_NO" />
+                    <pr-owl:hasProbAssign rdf:resource="#ServerMemoryUsage_MediumUsage-ServerMemoryFailure_YES" />
+                    <pr-owl:hasProbAssign rdf:resource="#ServerMemoryUsage_LowUsage-ServerMemoryFailure_YES" />
+                    <pr-owl:hasProbAssign rdf:resource="#ServerMemoryUsage_HighUsage-ServerMemoryFailure_NO" />
+                  </pr-owl:PR-OWLTable>
+                </pr-owl:hasProbDist>
+                <pr-owl:isNodeFrom rdf:resource="#CommuneBN_2_Mfrag" />
+                <pr-owl:hasPossibleValues rdf:resource="#LowUsage" />
+                <pr-owl:hasPossibleValues rdf:resource="#MediumUsage" />
+                <pr-owl:hasPossibleValues rdf:resource="#HighUsage" />
+              </pr-owl:Domain_Res>
+            </pr-owl:isPossibleValueOf>
+            <pr-owl:isPossibleValueOf rdf:resource="#NetworkInterfaceRate" />
+            <pr-owl:isPossibleValueOf rdf:resource="#ServerCpuUsage" />
+          </pr-owl:CategoricalRVState>
+        </pr-owl:hasStateName>
+        <pr-owl:hasStateProb rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.582077145576477</pr-owl:hasStateProb>
+      </pr-owl:ProbAssign>
+    </pr-owl:hasProbAssign>
+    <pr-owl:hasProbAssign>
+      <pr-owl:ProbAssign rdf:ID="NetworkInterfaceRate_LowUsage-ConnectionClientToRouter_NOK">
+        <pr-owl:hasStateName rdf:resource="#LowUsage" />
+        <pr-owl:hasStateProb rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.03227569907903671</pr-owl:hasStateProb>
+        <pr-owl:hasConditionant rdf:resource="#cond_ConnectionClientToRouter_NOK" />
+        <pr-owl:isProbAssignIn rdf:resource="#NetworkInterfaceRate_Table" />
+      </pr-owl:ProbAssign>
+    </pr-owl:hasProbAssign>
+    <pr-owl:hasProbAssign>
+      <pr-owl:ProbAssign rdf:ID="NetworkInterfaceRate_ZeroUsage-ConnectionClientToRouter_NOK">
+        <pr-owl:hasStateName rdf:resource="#ZeroUsage" />
+        <pr-owl:hasStateProb rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.008242892101407051</pr-owl:hasStateProb>
+        <pr-owl:isProbAssignIn rdf:resource="#NetworkInterfaceRate_Table" />
+        <pr-owl:hasConditionant rdf:resource="#cond_ConnectionClientToRouter_NOK" />
+      </pr-owl:ProbAssign>
+    </pr-owl:hasProbAssign>
+    <pr-owl:hasProbAssign>
+      <pr-owl:ProbAssign rdf:ID="NetworkInterfaceRate_LowUsage-ConnectionClientToRouter_Broken">
+        <pr-owl:hasConditionant rdf:resource="#cond_ConnectionClientToRouter_Broken" />
+        <pr-owl:hasStateProb rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.013253425247967243</pr-owl:hasStateProb>
+        <pr-owl:hasStateName rdf:resource="#LowUsage" />
+        <pr-owl:isProbAssignIn rdf:resource="#NetworkInterfaceRate_Table" />
+      </pr-owl:ProbAssign>
+    </pr-owl:hasProbAssign>
+    <pr-owl:hasProbAssign>
+      <pr-owl:ProbAssign rdf:ID="NetworkInterfaceRate_MediumUsage-ConnectionClientToRouter_OK">
+        <pr-owl:hasConditionant rdf:resource="#cond_ConnectionClientToRouter_OK" />
+        <pr-owl:isProbAssignIn rdf:resource="#NetworkInterfaceRate_Table" />
+        <pr-owl:hasStateName rdf:resource="#MediumUsage" />
+        <pr-owl:hasStateProb rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.8026658892631531</pr-owl:hasStateProb>
+      </pr-owl:ProbAssign>
+    </pr-owl:hasProbAssign>
+    <pr-owl:hasProbAssign rdf:resource="#NetworkInterfaceRate_HighUsage-ConnectionClientToRouter_Broken" />
+    <pr-owl:isProbDistOf rdf:resource="#NetworkInterfaceRate" />
+    <pr-owl:hasProbAssign>
+      <pr-owl:ProbAssign rdf:ID="NetworkInterfaceRate_LowUsage-ConnectionClientToRouter_OK">
+        <pr-owl:isProbAssignIn rdf:resource="#NetworkInterfaceRate_Table" />
+        <pr-owl:hasStateName rdf:resource="#LowUsage" />
+        <pr-owl:hasConditionant rdf:resource="#cond_ConnectionClientToRouter_OK" />
+        <pr-owl:hasStateProb rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.13042913377285004</pr-owl:hasStateProb>
+      </pr-owl:ProbAssign>
+    </pr-owl:hasProbAssign>
+    <pr-owl:hasProbAssign>
+      <pr-owl:ProbAssign rdf:ID="NetworkInterfaceRate_ZeroUsage-ConnectionClientToRouter_Broken">
+        <pr-owl:hasStateProb rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.5203913450241089</pr-owl:hasStateProb>
+        <pr-owl:isProbAssignIn rdf:resource="#NetworkInterfaceRate_Table" />
+        <pr-owl:hasConditionant rdf:resource="#cond_ConnectionClientToRouter_Broken" />
+        <pr-owl:hasStateName rdf:resource="#ZeroUsage" />
+      </pr-owl:ProbAssign>
+    </pr-owl:hasProbAssign>
+    <pr-owl:hasProbAssign>
+      <pr-owl:ProbAssign rdf:ID="NetworkInterfaceRate_HighUsage-ConnectionClientToRouter_NOK">
+        <pr-owl:isProbAssignIn rdf:resource="#NetworkInterfaceRate_Table" />
+        <pr-owl:hasConditionant rdf:resource="#cond_ConnectionClientToRouter_NOK" />
+        <pr-owl:hasStateProb rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.37740427255630493</pr-owl:hasStateProb>
+        <pr-owl:hasStateName rdf:resource="#HighUsage" />
+      </pr-owl:ProbAssign>
+    </pr-owl:hasProbAssign>
+    <pr-owl:hasProbAssign>
+      <pr-owl:ProbAssign rdf:ID="NetworkInterfaceRate_HighUsage-ConnectionClientToRouter_OK">
+        <pr-owl:hasConditionant rdf:resource="#cond_ConnectionClientToRouter_OK" />
+        <pr-owl:hasStateName rdf:resource="#HighUsage" />
+        <pr-owl:isProbAssignIn rdf:resource="#NetworkInterfaceRate_Table" />
+        <pr-owl:hasStateProb rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.016619987785816193</pr-owl:hasStateProb>
+      </pr-owl:ProbAssign>
+    </pr-owl:hasProbAssign>
+    <pr-owl:hasProbAssign>
+      <pr-owl:ProbAssign rdf:ID="NetworkInterfaceRate_MediumUsage-ConnectionClientToRouter_Broken">
+        <pr-owl:isProbAssignIn rdf:resource="#NetworkInterfaceRate_Table" />
+        <pr-owl:hasStateName rdf:resource="#MediumUsage" />
+        <pr-owl:hasConditionant rdf:resource="#cond_ConnectionClientToRouter_Broken" />
+        <pr-owl:hasStateProb rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.453103244304657</pr-owl:hasStateProb>
+      </pr-owl:ProbAssign>
+    </pr-owl:hasProbAssign>
+    <pr-owl:hasProbAssign>
+      <pr-owl:ProbAssign rdf:ID="NetworkInterfaceRate_ZeroUsage-ConnectionClientToRouter_OK">
+        <pr-owl:isProbAssignIn rdf:resource="#NetworkInterfaceRate_Table" />
+        <pr-owl:hasStateName rdf:resource="#ZeroUsage" />
+        <pr-owl:hasConditionant rdf:resource="#cond_ConnectionClientToRouter_OK" />
+        <pr-owl:hasStateProb rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.05028499290347099</pr-owl:hasStateProb>
+      </pr-owl:ProbAssign>
+    </pr-owl:hasProbAssign>                                   </pr-owl:PR-OWLTable>
+                                                            </pr-owl:isProbAssignIn>
+                                                            <pr-owl:hasStateName rdf:resource="#HighUsage" />
+                                                          </pr-owl:ProbAssign>
+                                                        </pr-owl:isConditionantOf>
+                                                        <pr-owl:isConditionantOf rdf:resource="#DetectedJitter_Medium-ConnectionClientToRouter_Broken" />
+                                                        <pr-owl:hasParentState rdf:resource="#Broken" />
+                                                        <pr-owl:isConditionantOf>
+                                                          <pr-owl:ProbAssign rdf:ID="PacketLossPercentage_Low-ConnectionClientToRouter_Broken">
+                                                            <pr-owl:isProbAssignIn rdf:resource="#PacketLossPercentage_Table" />
+                                                            <pr-owl:hasConditionant rdf:resource="#cond_ConnectionClientToRouter_Broken" />
+                                                            <pr-owl:hasStateName rdf:resource="#Low" />
+                                                            <pr-owl:hasStateProb rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.0024629521649330854</pr-owl:hasStateProb>
+                                                          </pr-owl:ProbAssign>
+                                                        </pr-owl:isConditionantOf>
+                                                        <pr-owl:isConditionantOf>
+                                                          <pr-owl:ProbAssign rdf:ID="PacketLossPercentage_High-ConnectionClientToRouter_Broken">
+                                                            <pr-owl:hasStateName rdf:resource="#High" />
+                                                            <pr-owl:isProbAssignIn rdf:resource="#PacketLossPercentage_Table" />
+                                                            <pr-owl:hasStateProb rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.004918625578284264</pr-owl:hasStateProb>
+                                                            <pr-owl:hasConditionant rdf:resource="#cond_ConnectionClientToRouter_Broken" />
+                                                          </pr-owl:ProbAssign>
+                                                        </pr-owl:isConditionantOf>
+                                                        <pr-owl:isConditionantOf>
+                                                          <pr-owl:ProbAssign rdf:ID="DetectedJitter_Low-ConnectionClientToRouter_Broken">
+                                                            <pr-owl:hasStateName rdf:resource="#Low" />
+                                                            <pr-owl:hasConditionant rdf:resource="#cond_ConnectionClientToRouter_Broken" />
+                                                            <pr-owl:isProbAssignIn rdf:resource="#DetectedJitter_Table" />
+                                                            <pr-owl:hasStateProb rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.375</pr-owl:hasStateProb>
+                                                          </pr-owl:ProbAssign>
+                                                        </pr-owl:isConditionantOf>
+                                                        <pr-owl:isConditionantOf rdf:resource="#NetworkInterfaceRate_LowUsage-ConnectionClientToRouter_Broken" />
+                                                        <pr-owl:isConditionantOf>
+                                                          <pr-owl:ProbAssign rdf:ID="PacketLossPercentage_None-ConnectionClientToRouter_Broken">
+                                                            <pr-owl:hasConditionant rdf:resource="#cond_ConnectionClientToRouter_Broken" />
+                                                            <pr-owl:hasStateProb rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.9901592135429382</pr-owl:hasStateProb>
+                                                            <pr-owl:hasStateName>
+                                                              <pr-owl:CategoricalRVState rdf:ID="None">
+    <pr-owl:isPossibleValueOf rdf:resource="#PacketLossPercentage" />
+                                                              </pr-owl:CategoricalRVState>
+                                                            </pr-owl:hasStateName>
+                                                            <pr-owl:isProbAssignIn rdf:resource="#PacketLossPercentage_Table" />
+                                                          </pr-owl:ProbAssign>
+                                                        </pr-owl:isConditionantOf>
+                                                        <pr-owl:isConditionantOf rdf:resource="#ConnectionTest_Failed-ConnectionClientToRouter_Broken" />
+                                                        <pr-owl:isConditionantOf rdf:resource="#NetworkInterfaceRate_ZeroUsage-ConnectionClientToRouter_Broken" />
+                                                        <pr-owl:isConditionantOf rdf:resource="#NetworkInterfaceRate_MediumUsage-ConnectionClientToRouter_Broken" />
+                                                        <pr-owl:hasParentName rdf:resource="#ConnectionClientToRouter" />
+                                                        <pr-owl:isConditionantOf rdf:resource="#ConnectionTest_Passed-ConnectionClientToRouter_Broken" />
+                                                        <pr-owl:isConditionantOf>
+                                                          <pr-owl:ProbAssign rdf:ID="DetectedJitter_High-ConnectionClientToRouter_Broken">
+                                                            <pr-owl:isProbAssignIn rdf:resource="#DetectedJitter_Table" />
+                                                            <pr-owl:hasConditionant rdf:resource="#cond_ConnectionClientToRouter_Broken" />
+                                                            <pr-owl:hasStateProb rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.30000001192092896</pr-owl:hasStateProb>
+                                                            <pr-owl:hasStateName rdf:resource="#High" />
+                                                          </pr-owl:ProbAssign>
+                                                        </pr-owl:isConditionantOf>
+                                                      </pr-owl:CondRelationship>
+                                                    </pr-owl:hasConditionant>
+                                                    <pr-owl:isProbAssignIn rdf:resource="#DetectedJitter_Table" />
+                                                    <pr-owl:hasStateName rdf:resource="#Medium" />
+                                                  </pr-owl:ProbAssign>
+                                                </pr-owl:hasProbAssign>
+                                                <pr-owl:hasProbAssign>
+                                                  <pr-owl:ProbAssign rdf:ID="DetectedJitter_Low-ConnectionClientToRouter_NOK">
+                                                    <pr-owl:hasStateName rdf:resource="#Low" />
+                                                    <pr-owl:hasStateProb rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.25403666496276855</pr-owl:hasStateProb>
+                                                    <pr-owl:isProbAssignIn rdf:resource="#DetectedJitter_Table" />
+                                                    <pr-owl:hasConditionant rdf:resource="#cond_ConnectionClientToRouter_NOK" />
+                                                  </pr-owl:ProbAssign>
+                                                </pr-owl:hasProbAssign>
+                                                <pr-owl:hasProbAssign>
+                                                  <pr-owl:ProbAssign rdf:ID="DetectedJitter_Low-ConnectionClientToRouter_OK">
+                                                    <pr-owl:hasStateProb rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.5</pr-owl:hasStateProb>
+                                                    <pr-owl:hasConditionant rdf:resource="#cond_ConnectionClientToRouter_OK" />
+                                                    <pr-owl:isProbAssignIn rdf:resource="#DetectedJitter_Table" />
+                                                    <pr-owl:hasStateName rdf:resource="#Low" />
+                                                  </pr-owl:ProbAssign>
+                                                </pr-owl:hasProbAssign>
+                                                <pr-owl:hasProbAssign rdf:resource="#DetectedJitter_High-ConnectionClientToRouter_Broken" />
+                                                <pr-owl:hasProbAssign>
+                                                  <pr-owl:ProbAssign rdf:ID="DetectedJitter_Medium-ConnectionClientToRouter_OK">
+                                                    <pr-owl:hasStateName rdf:resource="#Medium" />
+                                                    <pr-owl:isProbAssignIn rdf:resource="#DetectedJitter_Table" />
+                                                    <pr-owl:hasStateProb rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.30000001192092896</pr-owl:hasStateProb>
+                                                    <pr-owl:hasConditionant rdf:resource="#cond_ConnectionClientToRouter_OK" />
+                                                  </pr-owl:ProbAssign>
+                                                </pr-owl:hasProbAssign>
+                                                <pr-owl:hasProbAssign rdf:resource="#DetectedJitter_High-ConnectionClientToRouter_NOK" />
+                                                <pr-owl:hasProbAssign rdf:resource="#DetectedJitter_Low-ConnectionClientToRouter_Broken" />
+                                                <pr-owl:hasProbAssign>
+                                                  <pr-owl:ProbAssign rdf:ID="DetectedJitter_High-ConnectionClientToRouter_OK">
+                                                    <pr-owl:hasStateName rdf:resource="#High" />
+                                                    <pr-owl:hasConditionant rdf:resource="#cond_ConnectionClientToRouter_OK" />
+                                                    <pr-owl:hasStateProb rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.20000000298023224</pr-owl:hasStateProb>
+                                                    <pr-owl:isProbAssignIn rdf:resource="#DetectedJitter_Table" />
+                                                  </pr-owl:ProbAssign>
+                                                </pr-owl:hasProbAssign>
+                                              </pr-owl:PR-OWLTable>
+                                            </pr-owl:isProbAssignIn>
+                                            <pr-owl:hasConditionant rdf:resource="#cond_ConnectionClientToRouter_NOK" />
+                                            <pr-owl:hasStateName rdf:resource="#High" />
+                                            <pr-owl:hasStateProb rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.4461400508880615</pr-owl:hasStateProb>
+                                          </pr-owl:ProbAssign>
+                                        </pr-owl:isConditionantOf>
+                                        <pr-owl:isConditionantOf rdf:resource="#NetworkInterfaceRate_MediumUsage-ConnectionClientToRouter_NOK" />
+                                        <pr-owl:isConditionantOf rdf:resource="#NetworkInterfaceRate_HighUsage-ConnectionClientToRouter_NOK" />
+                                        <pr-owl:hasParentState rdf:resource="#NOK" />
+                                        <pr-owl:isConditionantOf rdf:resource="#ConnectionTest_Failed-ConnectionClientToRouter_NOK" />
+                                        <pr-owl:hasParentName rdf:resource="#ConnectionClientToRouter" />
+                                        <pr-owl:isConditionantOf>
+                                          <pr-owl:ProbAssign rdf:ID="PacketLossPercentage_None-ConnectionClientToRouter_NOK">
+                                            <pr-owl:hasConditionant rdf:resource="#cond_ConnectionClientToRouter_NOK" />
+                                            <pr-owl:hasStateProb rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.030697112902998924</pr-owl:hasStateProb>
+                                            <pr-owl:hasStateName rdf:resource="#None" />
+                                            <pr-owl:isProbAssignIn rdf:resource="#PacketLossPercentage_Table" />
+                                          </pr-owl:ProbAssign>
+                                        </pr-owl:isConditionantOf>
+                                        <pr-owl:isConditionantOf rdf:resource="#NetworkInterfaceRate_ZeroUsage-ConnectionClientToRouter_NOK" />
+                                        <pr-owl:isConditionantOf rdf:resource="#PacketLossPercentage_Low-ConnectionClientToRouter_NOK" />
+                                        <pr-owl:isConditionantOf rdf:resource="#DetectedJitter_Low-ConnectionClientToRouter_NOK" />
+                                        <pr-owl:isConditionantOf>
+                                          <pr-owl:ProbAssign rdf:ID="PacketLossPercentage_Medium-ConnectionClientToRouter_NOK">
+                                            <pr-owl:hasConditionant rdf:resource="#cond_ConnectionClientToRouter_NOK" />
+                                            <pr-owl:isProbAssignIn rdf:resource="#PacketLossPercentage_Table" />
+                                            <pr-owl:hasStateName rdf:resource="#Medium" />
+                                            <pr-owl:hasStateProb rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.4268284738063812</pr-owl:hasStateProb>
+                                          </pr-owl:ProbAssign>
+                                        </pr-owl:isConditionantOf>
+                                        <pr-owl:isConditionantOf rdf:resource="#NetworkInterfaceRate_LowUsage-ConnectionClientToRouter_NOK" />
+                                        <pr-owl:isConditionantOf rdf:resource="#DetectedJitter_Medium-ConnectionClientToRouter_NOK" />
+                                        <pr-owl:isConditionantOf>
+                                          <pr-owl:ProbAssign rdf:ID="PacketLossPercentage_High-ConnectionClientToRouter_NOK">
+                                            <pr-owl:hasStateName rdf:resource="#High" />
+                                            <pr-owl:isProbAssignIn rdf:resource="#PacketLossPercentage_Table" />
+                                            <pr-owl:hasStateProb rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.4289178252220154</pr-owl:hasStateProb>
+                                            <pr-owl:hasConditionant rdf:resource="#cond_ConnectionClientToRouter_NOK" />
+                                          </pr-owl:ProbAssign>
+                                        </pr-owl:isConditionantOf>
+                                        <pr-owl:isConditionantOf rdf:resource="#ConnectionTest_Passed-ConnectionClientToRouter_NOK" />
+                                      </pr-owl:CondRelationship>
+                                    </pr-owl:hasConditionant>
+                                    <pr-owl:hasStateName rdf:resource="#Low" />
+                                    <pr-owl:hasStateProb rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.11355657875537872</pr-owl:hasStateProb>
+                                    <pr-owl:isProbAssignIn rdf:resource="#PacketLossPercentage_Table" />
+                                  </pr-owl:ProbAssign>
+                                </pr-owl:hasProbAssign>
+                                <pr-owl:hasProbAssign rdf:resource="#PacketLossPercentage_Low-ConnectionClientToRouter_Broken" />
+                                <pr-owl:isProbDistOf rdf:resource="#PacketLossPercentage" />
+                                <pr-owl:hasProbAssign rdf:resource="#PacketLossPercentage_Medium-ConnectionClientToRouter_NOK" />
+                                <pr-owl:hasProbAssign rdf:resource="#PacketLossPercentage_Medium-ConnectionClientToRouter_Broken" />
+                                <pr-owl:hasProbAssign rdf:resource="#PacketLossPercentage_None-ConnectionClientToRouter_NOK" />
+                                <pr-owl:hasProbAssign rdf:resource="#PacketLossPercentage_High-ConnectionClientToRouter_OK" />
+                                <pr-owl:hasProbAssign rdf:resource="#PacketLossPercentage_Medium-ConnectionClientToRouter_OK" />
+                                <pr-owl:hasProbAssign>
+                                  <pr-owl:ProbAssign rdf:ID="PacketLossPercentage_None-ConnectionClientToRouter_OK">
+                                    <pr-owl:hasStateName rdf:resource="#None" />
+                                    <pr-owl:hasConditionant rdf:resource="#cond_ConnectionClientToRouter_OK" />
+                                    <pr-owl:hasStateProb rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.6384457349777222</pr-owl:hasStateProb>
+                                    <pr-owl:isProbAssignIn rdf:resource="#PacketLossPercentage_Table" />
+                                  </pr-owl:ProbAssign>
+                                </pr-owl:hasProbAssign>
+                                <pr-owl:hasProbAssign rdf:resource="#PacketLossPercentage_High-ConnectionClientToRouter_Broken" />
+                                <pr-owl:hasProbAssign rdf:resource="#PacketLossPercentage_High-ConnectionClientToRouter_NOK" />
+                                <pr-owl:hasProbAssign rdf:resource="#PacketLossPercentage_None-ConnectionClientToRouter_Broken" />
+                              </pr-owl:PR-OWLTable>
+                            </pr-owl:hasProbDist>
+                            <pr-owl:isNodeFrom rdf:resource="#CommuneBN_2_Mfrag" />
+                            <pr-owl:hasParent rdf:resource="#ConnectionClientToRouter" />
+                            <pr-owl:hasPossibleValues rdf:resource="#None" />
+                            <pr-owl:hasPossibleValues rdf:resource="#Low" />
+                            <pr-owl:hasPossibleValues rdf:resource="#Medium" />
+                            <pr-owl:hasPossibleValues rdf:resource="#High" />
+                            <pr-owl:isResidentNodeIn rdf:resource="#CommuneBN_2_Mfrag" />
+                          </pr-owl:Domain_Res>
+                        </pr-owl:hasResidentNode>
+                        <pr-owl:hasResidentNode rdf:resource="#ServerMemoryUsage" />
+                        <pr-owl:hasResidentNode rdf:resource="#ConnectionClientToRouterFailure" />
+                        <pr-owl:hasResidentNode rdf:resource="#ServerCpuUsage" />
+                        <pr-owl:hasNode rdf:resource="#ServerMemoryUsage" />
+                        <pr-owl:hasResidentNode rdf:resource="#ServerMemoryFailure" />
+                        <pr-owl:hasNode rdf:resource="#PacketLossPercentage" />
+                        <pr-owl:hasNode rdf:resource="#ConnectionClientToRouterFailure" />
+                        <pr-owl:hasResidentNode rdf:resource="#DetectedJitter" />
+                        <pr-owl:hasResidentNode rdf:resource="#ServerCpuFailure" />
+                        <pr-owl:hasNode rdf:resource="#NetworkInterfaceRate" />
+                        <pr-owl:hasResidentNode rdf:resource="#ConnectionTest" />
+                        <pr-owl:hasResidentNode rdf:resource="#NetworkInterfaceRate" />
+                        <pr-owl:hasNode rdf:resource="#ConnectionClientToRouter" />
+                        <pr-owl:hasNode rdf:resource="#ConnectionTest" />
+                        <pr-owl:hasNode rdf:resource="#ServerCpuFailure" />
+                        <pr-owl:hasNode rdf:resource="#ServerCpuUsage" />
+                        <pr-owl:hasResidentNode rdf:resource="#ConnectionClientToRouter" />
+                        <pr-owl:hasNode rdf:resource="#ServerMemoryFailure" />
+                        <pr-owl:hasNode rdf:resource="#DetectedJitter" />
+                      </pr-owl:Domain_MFrag>
+                    </pr-owl:isNodeFrom>
+                    <pr-owl:isResidentNodeIn rdf:resource="#CommuneBN_2_Mfrag" />
+                    <pr-owl:hasPossibleValues rdf:resource="#Medium" />
+                    <pr-owl:hasParent rdf:resource="#ConnectionClientToRouter" />
+                    <pr-owl:hasProbDist rdf:resource="#DetectedJitter_Table" />
+                    <pr-owl:isParentOf rdf:resource="#ServerMemoryFailure" />
+                    <pr-owl:hasPossibleValues rdf:resource="#High" />
+                    <pr-owl:hasPossibleValues rdf:resource="#Low" />
+                    <pr-owl:isParentOf rdf:resource="#ServerCpuFailure" />
+                  </pr-owl:Domain_Res>
+                </pr-owl:isPossibleValueOf>
+                <pr-owl:isPossibleValueOf rdf:resource="#PacketLossPercentage" />
+              </pr-owl:CategoricalRVState>
+            </pr-owl:hasStateName>
+            <pr-owl:isProbAssignIn rdf:resource="#PacketLossPercentage_Table" />
+            <pr-owl:hasConditionant rdf:resource="#cond_ConnectionClientToRouter_OK" />
+            <pr-owl:hasStateProb rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.0073869116604328156</pr-owl:hasStateProb>
+          </pr-owl:ProbAssign>
+        </pr-owl:isConditionantOf>
+        <pr-owl:isConditionantOf rdf:resource="#NetworkInterfaceRate_LowUsage-ConnectionClientToRouter_OK" />
+        <pr-owl:isConditionantOf rdf:resource="#PacketLossPercentage_Low-ConnectionClientToRouter_OK" />
+        <pr-owl:isConditionantOf rdf:resource="#NetworkInterfaceRate_MediumUsage-ConnectionClientToRouter_OK" />
+        <pr-owl:isConditionantOf rdf:resource="#PacketLossPercentage_Medium-ConnectionClientToRouter_OK" />
+        <pr-owl:isConditionantOf rdf:resource="#ConnectionTest_Failed-ConnectionClientToRouter_OK" />
+        <pr-owl:isConditionantOf rdf:resource="#DetectedJitter_Medium-ConnectionClientToRouter_OK" />
+        <pr-owl:isConditionantOf rdf:resource="#NetworkInterfaceRate_ZeroUsage-ConnectionClientToRouter_OK" />
+        <pr-owl:isConditionantOf rdf:resource="#NetworkInterfaceRate_HighUsage-ConnectionClientToRouter_OK" />
+        <pr-owl:hasParentName rdf:resource="#ConnectionClientToRouter" />
+        <pr-owl:isConditionantOf rdf:resource="#DetectedJitter_Low-ConnectionClientToRouter_OK" />
+        <pr-owl:hasParentState rdf:resource="#OK" />
+        <pr-owl:isConditionantOf rdf:resource="#DetectedJitter_High-ConnectionClientToRouter_OK" />
+        <pr-owl:isConditionantOf rdf:resource="#ConnectionTest_Passed-ConnectionClientToRouter_OK" />
+        <pr-owl:isConditionantOf rdf:resource="#PacketLossPercentage_None-ConnectionClientToRouter_OK" />
+      </pr-owl:CondRelationship>
+    </pr-owl:hasConditionant>
+    <pr-owl:hasStateName rdf:resource="#Medium" />
+    <pr-owl:hasStateProb rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.029547549784183502</pr-owl:hasStateProb>
+    <pr-owl:isProbAssignIn rdf:resource="#PacketLossPercentage_Table" />
+  </pr-owl:ProbAssign>
+</rdf:RDF><!-- Created with Protege (with OWL Plugin 3.4.5, Build 608)  http://protege.stanford.edu -->

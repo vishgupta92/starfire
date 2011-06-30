@@ -14,8 +14,9 @@ public class RunUnBBayesTranslator {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 //		String uriOwl = "/home/jero.perez/workspaceCOMMUNE/bayesianTranslator/PruebaLLuviaEstados.owl";
-//		String uriOwl = "PruebaLLuviaEstados.owl";
-		String uriOwl = "./OWL/diagnosis5Test.owl";
+//		String uriOwl = "./OWL/PruebaLLuviaEstados.owl";
+		//String uriOwl = "./OWL/diagnosis5Test.owl";
+		String uriOwl = "./OWL/Generated/RedHambre.owl";
 		String uriNet = "./NET/Generated";
 
                 UnBBayesTranslatorOWL2Net aux = new UnBBayesTranslatorOWL2Net(new File(uriOwl), uriNet);
