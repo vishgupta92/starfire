@@ -1,0 +1,118 @@
+net
+{
+     node_size = (0 0);
+}
+
+node ServerCpuUsage
+{
+     label = "";
+     states = ("HighUsage" "MediumUsage" "LowUsage");
+}
+
+node ConnectionTest
+{
+     label = "";
+     states = ("Passed" "Failed");
+}
+
+node ConnectionClientToRouter
+{
+     label = "";
+     states = ("OK" "Broken" "NOK");
+}
+
+node PacketLossPercentage
+{
+     label = "";
+     states = ("High" "Medium" "Low" "None");
+}
+
+node ServerMemoryUsage
+{
+     label = "";
+     states = ("HighUsage" "MediumUsage" "LowUsage");
+}
+
+node DetectedJitter
+{
+     label = "";
+     states = ("High" "Low" "Medium");
+}
+
+node NetworkInterfaceRate
+{
+     label = "";
+     states = ("HighUsage" "MediumUsage" "LowUsage" "ZeroUsage");
+}
+
+node ServerFailure
+{
+     label = "";
+     states = ("NO" "YES");
+}
+
+node ConnectionClientToRouterFailure
+{
+     label = "C8";
+     states = ("YES" "NO");
+}
+
+potential (ServerCpuUsage | ServerFailure)
+{
+ data = (( 0.074259594 0.11138938 0.814351 )
+( 0.5 0.42922083 0.07077918 ));
+}
+
+potential (ConnectionTest | ConnectionClientToRouter)
+{
+ data = (( 0.595 0.405 )
+( 0.1776069 0.82239306 )
+( 0.5119037 0.4880963 ));
+}
+
+potential (ConnectionClientToRouter | ConnectionClientToRouterFailure)
+{
+ data = (( 0.05 0.35 0.6 )
+( 0.7 0.1 0.2 ));
+}
+
+potential (PacketLossPercentage | ConnectionClientToRouter)
+{
+ data = (( 0.050000437 0.20000109 0.2999994 0.4499991 )
+( 0.03711597 0.018557137 0.018554348 0.92577255 )
+( 0.30308706 0.28539202 0.15154436 0.25997657 ));
+}
+
+potential (ServerMemoryUsage | ServerFailure)
+{
+ data = (( 0.074259594 0.11138938 0.814351 )
+( 0.5 0.42922083 0.07077918 ));
+}
+
+potential (DetectedJitter | ConnectionClientToRouter ServerFailure)
+{
+ data = ((( 0.1 0.6 0.3 )
+( 0.3 0.4 0.3 ))
+(( 0.5 0.15 0.35 )
+( 0.1 0.6 0.3 ))
+(( 0.16553664 0.527626 0.30683735 )
+( 0.5179114 0.19154361 0.29054502 )));
+}
+
+potential (NetworkInterfaceRate | ConnectionClientToRouter)
+{
+ data = (( 0.143 0.13718733 0.28718734 0.43265697 )
+( 0.1 0.1 0.1 0.7 )
+( 0.55 0.3 0.1 0.05 ));
+}
+
+potential (ServerFailure)
+{
+ data = ( 0.4082515 0.59174854 );
+}
+
+potential (ConnectionClientToRouterFailure)
+{
+ data = ( 0.3 0.7 );
+}
+

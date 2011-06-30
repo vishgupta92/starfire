@@ -1,19 +1,14 @@
 package es.upm.dit.gsi.net2prOwl;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
-import java.io.IOException;
-import java.io.OutputStream;
 import java.io.Writer;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Set;
 import java.util.logging.Logger;
 
 import org.jdom.Attribute;
@@ -22,9 +17,9 @@ import org.jdom.Element;
 import org.jdom.Namespace;
 import org.jdom.input.SAXBuilder;
 import org.jdom.input.SAXHandler;
-import org.jdom.output.Format;
 import org.jdom.output.XMLOutputter;
 
+import tools.CopyPaste;
 import tools.CreateTables;
 import unbbayes.prs.Node;
 import unbbayes.prs.bn.ProbabilisticNetwork;
@@ -39,7 +34,6 @@ import es.upm.dit.gsi.ontology.Domain_Res;
 import es.upm.dit.gsi.ontology.MyFactory;
 import es.upm.dit.gsi.ontology.PR_OWLTable;
 import es.upm.dit.gsi.ontology.ProbAssign;
-import es.upm.dit.gsi.ontology.impl.DefaultCategoricalRVState;
 /**
  * This class tries to convert a. net to a file. owl
  * @author Jeronimo Fco Perez Regidor
@@ -52,7 +46,7 @@ public class BayesianTranslatorNet2OWL {
 	private MyFactory myFactory;
 	private File uriNet;
 	private File uriOwl;
-	public static JenaOWLModel owlModel;
+	public  JenaOWLModel owlModel;
 
 
         /**
@@ -60,6 +54,7 @@ public class BayesianTranslatorNet2OWL {
          * @param uriNet where the file to convert
          * @param uriOwl where is the file. owl base / empty
          */
+	
 	public BayesianTranslatorNet2OWL(File netFile, File owlEmptyFile) {
 		// load net
 		this.uriNet = netFile;
@@ -108,8 +103,7 @@ public class BayesianTranslatorNet2OWL {
 		for (int i = 0; i < nodesNet.size(); i++) {
 			String nameNode = nodesNet.get(i).getName();
 			logger.info("Name: " + nameNode);
-			// Domain_Res domain_Res = myFactory.getDomain_Res(nameNode);
-			Domain_Res domain_Res = myFactory.createDomain_Res(nameNode);
+			myFactory.createDomain_Res(nameNode);
 		}
 		for (int i = 0; i < nodesNet.size(); i++) {
 			// add to owl the parents of node.
@@ -138,12 +132,14 @@ public class BayesianTranslatorNet2OWL {
 				
 				if (categorical == null) {
 					logger.info("the state is null");
-					myFactory.createCategoricalRVState(nameState);		
+					myFactory.createCategoricalRVState(nameState);
+			
 
 				}
-
-				domain_Res.addHasPossibleValues(myFactory
-						.getCategoricalRVState(nameState));
+				
+//				domain_Res.addHasPossibleValues(myFactory
+//						.getCategoricalRVState(nameState));
+				domain_Res.addHasPossibleValues(myFactory.getCategoricalRVState(nameState));
 			}
 
 			// add to owl the PR_table node
@@ -170,6 +166,7 @@ public class BayesianTranslatorNet2OWL {
 
 		for (int i = 0; i < nodesNet.size(); i++) {
 
+
 			Node nodeNet = nodesNet.get(i);
 			ProbabilisticNode probNodeNet = (ProbabilisticNode) nodeNet;
 
@@ -184,7 +181,7 @@ public class BayesianTranslatorNet2OWL {
 				for (int t = 0; t < table1DS.length; t++) {
 					myFactory.createProbAssign(table1DS[t]);
 				}
-//cambiado
+
 				Collection<ProbAssign> allProbAssing =  myFactory
 						.getAllProbAssignInstances();
 				for (ProbAssign prob : allProbAssing) {
@@ -370,10 +367,12 @@ public class BayesianTranslatorNet2OWL {
 			a.setNamespace(Namespace.XML_NAMESPACE);
 			root.setAttribute(a);
 
+			@SuppressWarnings("unchecked")
 			List<Element> children = root.getChildren();
 			for (Element child : children) {
 				logger.info("child name: " + child.getName());
 				if (child.getName().equals("Ontology")) {
+					@SuppressWarnings("unchecked")
 					List<Attribute> atlist = child.getAttributes();
 					for (Attribute at : atlist) {
 						logger.info("at name: " + at.getName() + " : "
@@ -395,12 +394,28 @@ public class BayesianTranslatorNet2OWL {
 			outputter.output(doc, w);
 			w.flush();
 
-		
+			//Move and Delete initial Files
+			
+			move(name, "./OWL/Generated/" + name);
+			move(net.getId() + ".repository" ,"./OWL/Generated/"+ net.getId() + ".repository");
+
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
+	}
+	
+	
+	
+	/**
+	 * Copy and delete initial File.
+	 * @param addressFile
+	 * @param addressDestination
+	 */
+	private void move(String addressFile, String addressDestination) {
+		CopyPaste cP = new CopyPaste();
+		cP.copyFile(addressFile, addressDestination);
 	}
 	
 

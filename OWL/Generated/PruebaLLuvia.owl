@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:protege="http://protege.stanford.edu/plugins/owl/protege#" xmlns:xsp="http://www.owl-ontologies.com/2005/08/07/xsp.owl#" xmlns="http://www.gsi.upm.es/Commune.owl#" xmlns:owl="http://www.w3.org/2002/07/owl#" xmlns:xsd="http://www.w3.org/2001/XMLSchema#" xmlns:swrl="http://www.w3.org/2003/11/swrl#" xmlns:swrlb="http://www.w3.org/2003/11/swrlb#" xmlns:pr-owl="http://www.pr-owl.org/pr-owl.owl#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xml:base="http://www.gsi.dit.upm.es/Commune">
+  <owl:Ontology rdf:about="http://www.gsi.dit.upm.es/Commune#">
+    <owl:imports rdf:resource="http://www.pr-owl.org/pr-owl.owl" />
+  </owl:Ontology>
+  <pr-owl:PR-OWLTable rdf:ID="Lluvia_Table">
+    <pr-owl:isProbDistOf>
+      <pr-owl:Domain_Res rdf:ID="Lluvia">
+        <pr-owl:isResidentNodeIn>
+          <pr-owl:Domain_MFrag rdf:ID="PruebaLLuvia_Mfrag">
+            <pr-owl:hasNode>
+              <pr-owl:Domain_Res rdf:ID="Cesped">
+                <pr-owl:isNodeFrom rdf:resource="#PruebaLLuvia_Mfrag" />
+                <pr-owl:isResidentNodeIn rdf:resource="#PruebaLLuvia_Mfrag" />
+                <pr-owl:hasProbDist>
+                  <pr-owl:PR-OWLTable rdf:ID="Cesped_Table">
+                    <pr-owl:hasProbAssign>
+                      <pr-owl:ProbAssign rdf:ID="Cesped_YES-Lluvia_YES-Aspersor_NO">
+                        <pr-owl:hasStateProb rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">1.0</pr-owl:hasStateProb>
+                        <pr-owl:hasStateName>
+                          <pr-owl:CategoricalRVState rdf:ID="YES">
+                            <pr-owl:isPossibleValueOf rdf:resource="#Cesped" />
+                            <pr-owl:isPossibleValueOf>
+                              <pr-owl:Domain_Res rdf:ID="Aspersor">
+                                <pr-owl:hasParent rdf:resource="#Lluvia" />
+                                <pr-owl:hasPossibleValues>
+                                  <pr-owl:CategoricalRVState rdf:ID="NO">
+                                    <pr-owl:isPossibleValueOf rdf:resource="#Cesped" />
+                                    <pr-owl:isPossibleValueOf rdf:resource="#Aspersor" />
+                                    <pr-owl:isPossibleValueOf rdf:resource="#Lluvia" />
+                                  </pr-owl:CategoricalRVState>
+                                </pr-owl:hasPossibleValues>
+                                <pr-owl:hasPossibleValues rdf:resource="#YES" />
+                                <pr-owl:hasProbDist>
+                                  <pr-owl:PR-OWLTable rdf:ID="Aspersor_Table">
+                                    <pr-owl:hasProbAssign>
+                                      <pr-owl:ProbAssign rdf:ID="Aspersor_YES-Lluvia_YES">
+                                        <pr-owl:hasConditionant>
+                                          <pr-owl:CondRelationship rdf:ID="cond_Lluvia_YES">
+                                            <pr-owl:isConditionantOf rdf:resource="#Cesped_YES-Lluvia_YES-Aspersor_NO" />
+                                            <pr-owl:isConditionantOf>
+                                              <pr-owl:ProbAssign rdf:ID="Cesped_NO-Lluvia_YES-Aspersor_NO">
+                                                <pr-owl:isProbAssignIn rdf:resource="#Cesped_Table" />
+                                                <pr-owl:hasStateProb rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.0</pr-owl:hasStateProb>
+                                                <pr-owl:hasConditionant>
+                                                  <pr-owl:CondRelationship rdf:ID="cond_Aspersor_NO">
+                                                    <pr-owl:hasParentState rdf:resource="#NO" />
+                                                    <pr-owl:hasParentName rdf:resource="#Aspersor" />
+                                                    <pr-owl:isConditionantOf>
+                                                      <pr-owl:ProbAssign rdf:ID="Cesped_NO-Lluvia_NO-Aspersor_NO">
+                                                        <pr-owl:hasStateName rdf:resource="#NO" />
+                                                        <pr-owl:hasStateProb rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">1.0</pr-owl:hasStateProb>
+                                                        <pr-owl:isProbAssignIn rdf:resource="#Cesped_Table" />
+                                                        <pr-owl:hasConditionant rdf:resource="#cond_Aspersor_NO" />
+                                                        <pr-owl:hasConditionant>
+                                                          <pr-owl:CondRelationship rdf:ID="cond_Lluvia_NO">
+                                                            <pr-owl:isConditionantOf rdf:resource="#Cesped_NO-Lluvia_NO-Aspersor_NO" />
+                                                            <pr-owl:isConditionantOf>
+                                                              <pr-owl:ProbAssign rdf:ID="Cesped_NO-Lluvia_NO-Aspersor_YES">
+    <pr-owl:isProbAssignIn rdf:resource="#Cesped_Table" />
+    <pr-owl:hasConditionant>
+      <pr-owl:CondRelationship rdf:ID="cond_Aspersor_YES">
+        <pr-owl:isConditionantOf rdf:resource="#Cesped_NO-Lluvia_NO-Aspersor_YES" />
+        <pr-owl:isConditionantOf>
+          <pr-owl:ProbAssign rdf:ID="Cesped_YES-Lluvia_NO-Aspersor_YES">
+            <pr-owl:hasStateName rdf:resource="#YES" />
+            <pr-owl:isProbAssignIn rdf:resource="#Cesped_Table" />
+            <pr-owl:hasStateProb rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.8999999761581421</pr-owl:hasStateProb>
+            <pr-owl:hasConditionant rdf:resource="#cond_Aspersor_YES" />
+            <pr-owl:hasConditionant rdf:resource="#cond_Lluvia_NO" />
+          </pr-owl:ProbAssign>
+        </pr-owl:isConditionantOf>
+        <pr-owl:isConditionantOf>
+          <pr-owl:ProbAssign rdf:ID="Cesped_NO-Lluvia_YES-Aspersor_YES">
+            <pr-owl:hasStateProb rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.0</pr-owl:hasStateProb>
+            <pr-owl:hasConditionant rdf:resource="#cond_Aspersor_YES" />
+            <pr-owl:hasConditionant rdf:resource="#cond_Lluvia_YES" />
+            <pr-owl:hasStateName rdf:resource="#NO" />
+            <pr-owl:isProbAssignIn rdf:resource="#Cesped_Table" />
+          </pr-owl:ProbAssign>
+        </pr-owl:isConditionantOf>
+        <pr-owl:isConditionantOf>
+          <pr-owl:ProbAssign rdf:ID="Cesped_YES-Lluvia_YES-Aspersor_YES">
+            <pr-owl:hasStateName rdf:resource="#YES" />
+            <pr-owl:hasConditionant rdf:resource="#cond_Aspersor_YES" />
+            <pr-owl:hasConditionant rdf:resource="#cond_Lluvia_YES" />
+            <pr-owl:isProbAssignIn rdf:resource="#Cesped_Table" />
+            <pr-owl:hasStateProb rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">1.0</pr-owl:hasStateProb>
+          </pr-owl:ProbAssign>
+        </pr-owl:isConditionantOf>
+        <pr-owl:hasParentName rdf:resource="#Aspersor" />
+        <pr-owl:hasParentState rdf:resource="#YES" />
+      </pr-owl:CondRelationship>
+    </pr-owl:hasConditionant>
+    <pr-owl:hasConditionant rdf:resource="#cond_Lluvia_NO" />
+    <pr-owl:hasStateProb rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.10000000149011612</pr-owl:hasStateProb>
+    <pr-owl:hasStateName rdf:resource="#NO" />                 </pr-owl:ProbAssign>
+                                                            </pr-owl:isConditionantOf>
+                                                            <pr-owl:isConditionantOf rdf:resource="#Cesped_YES-Lluvia_NO-Aspersor_YES" />
+                                                            <pr-owl:isConditionantOf>
+                                                              <pr-owl:ProbAssign rdf:ID="Cesped_YES-Lluvia_NO-Aspersor_NO">
+    <pr-owl:hasStateProb rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.0</pr-owl:hasStateProb>
+    <pr-owl:hasStateName rdf:resource="#YES" />
+    <pr-owl:isProbAssignIn rdf:resource="#Cesped_Table" />
+    <pr-owl:hasConditionant rdf:resource="#cond_Aspersor_NO" />
+    <pr-owl:hasConditionant rdf:resource="#cond_Lluvia_NO" />  </pr-owl:ProbAssign>
+                                                            </pr-owl:isConditionantOf>
+                                                            <pr-owl:isConditionantOf>
+                                                              <pr-owl:ProbAssign rdf:ID="Aspersor_NO-Lluvia_NO">
+    <pr-owl:hasStateName rdf:resource="#NO" />
+    <pr-owl:hasStateProb rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.4000000059604645</pr-owl:hasStateProb>
+    <pr-owl:hasConditionant rdf:resource="#cond_Lluvia_NO" />
+    <pr-owl:isProbAssignIn rdf:resource="#Aspersor_Table" />   </pr-owl:ProbAssign>
+                                                            </pr-owl:isConditionantOf>
+                                                            <pr-owl:isConditionantOf>
+                                                              <pr-owl:ProbAssign rdf:ID="Aspersor_YES-Lluvia_NO">
+    <pr-owl:hasConditionant rdf:resource="#cond_Lluvia_NO" />
+    <pr-owl:hasStateProb rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.6000000238418579</pr-owl:hasStateProb>
+    <pr-owl:hasStateName rdf:resource="#YES" />
+    <pr-owl:isProbAssignIn rdf:resource="#Aspersor_Table" />   </pr-owl:ProbAssign>
+                                                            </pr-owl:isConditionantOf>
+                                                            <pr-owl:hasParentName rdf:resource="#Lluvia" />
+                                                            <pr-owl:hasParentState rdf:resource="#NO" />
+                                                          </pr-owl:CondRelationship>
+                                                        </pr-owl:hasConditionant>
+                                                      </pr-owl:ProbAssign>
+                                                    </pr-owl:isConditionantOf>
+                                                    <pr-owl:isConditionantOf rdf:resource="#Cesped_YES-Lluvia_YES-Aspersor_NO" />
+                                                    <pr-owl:isConditionantOf rdf:resource="#Cesped_NO-Lluvia_YES-Aspersor_NO" />
+                                                    <pr-owl:isConditionantOf rdf:resource="#Cesped_YES-Lluvia_NO-Aspersor_NO" />
+                                                  </pr-owl:CondRelationship>
+                                                </pr-owl:hasConditionant>
+                                                <pr-owl:hasConditionant rdf:resource="#cond_Lluvia_YES" />
+                                                <pr-owl:hasStateName rdf:resource="#NO" />
+                                              </pr-owl:ProbAssign>
+                                            </pr-owl:isConditionantOf>
+                                            <pr-owl:isConditionantOf rdf:resource="#Cesped_NO-Lluvia_YES-Aspersor_YES" />
+                                            <pr-owl:isConditionantOf rdf:resource="#Cesped_YES-Lluvia_YES-Aspersor_YES" />
+                                            <pr-owl:isConditionantOf>
+                                              <pr-owl:ProbAssign rdf:ID="Aspersor_NO-Lluvia_YES">
+                                                <pr-owl:isProbAssignIn rdf:resource="#Aspersor_Table" />
+                                                <pr-owl:hasConditionant rdf:resource="#cond_Lluvia_YES" />
+                                                <pr-owl:hasStateName rdf:resource="#NO" />
+                                                <pr-owl:hasStateProb rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.800000011920929</pr-owl:hasStateProb>
+                                              </pr-owl:ProbAssign>
+                                            </pr-owl:isConditionantOf>
+                                            <pr-owl:isConditionantOf rdf:resource="#Aspersor_YES-Lluvia_YES" />
+                                            <pr-owl:hasParentName rdf:resource="#Lluvia" />
+                                            <pr-owl:hasParentState rdf:resource="#YES" />
+                                          </pr-owl:CondRelationship>
+                                        </pr-owl:hasConditionant>
+                                        <pr-owl:isProbAssignIn rdf:resource="#Aspersor_Table" />
+                                        <pr-owl:hasStateName rdf:resource="#YES" />
+                                        <pr-owl:hasStateProb rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.20000000298023224</pr-owl:hasStateProb>
+                                      </pr-owl:ProbAssign>
+                                    </pr-owl:hasProbAssign>
+                                    <pr-owl:hasProbAssign rdf:resource="#Aspersor_NO-Lluvia_YES" />
+                                    <pr-owl:hasProbAssign rdf:resource="#Aspersor_NO-Lluvia_NO" />
+                                    <pr-owl:hasProbAssign rdf:resource="#Aspersor_YES-Lluvia_NO" />
+                                    <pr-owl:isProbDistOf rdf:resource="#Aspersor" />
+                                  </pr-owl:PR-OWLTable>
+                                </pr-owl:hasProbDist>
+                                <pr-owl:isResidentNodeIn rdf:resource="#PruebaLLuvia_Mfrag" />
+                                <pr-owl:isParentOf rdf:resource="#Cesped" />
+                                <pr-owl:isNodeFrom rdf:resource="#PruebaLLuvia_Mfrag" />
+                              </pr-owl:Domain_Res>
+                            </pr-owl:isPossibleValueOf>
+                            <pr-owl:isPossibleValueOf rdf:resource="#Lluvia" />
+                          </pr-owl:CategoricalRVState>
+                        </pr-owl:hasStateName>
+                        <pr-owl:hasConditionant rdf:resource="#cond_Aspersor_NO" />
+                        <pr-owl:hasConditionant rdf:resource="#cond_Lluvia_YES" />
+                        <pr-owl:isProbAssignIn rdf:resource="#Cesped_Table" />
+                      </pr-owl:ProbAssign>
+                    </pr-owl:hasProbAssign>
+                    <pr-owl:hasProbAssign rdf:resource="#Cesped_YES-Lluvia_NO-Aspersor_NO" />
+                    <pr-owl:hasProbAssign rdf:resource="#Cesped_NO-Lluvia_YES-Aspersor_YES" />
+                    <pr-owl:hasProbAssign rdf:resource="#Cesped_NO-Lluvia_YES-Aspersor_NO" />
+                    <pr-owl:isProbDistOf rdf:resource="#Cesped" />
+                    <pr-owl:hasProbAssign rdf:resource="#Cesped_NO-Lluvia_NO-Aspersor_NO" />
+                    <pr-owl:hasProbAssign rdf:resource="#Cesped_YES-Lluvia_YES-Aspersor_YES" />
+                    <pr-owl:hasProbAssign rdf:resource="#Cesped_NO-Lluvia_NO-Aspersor_YES" />
+                    <pr-owl:hasProbAssign rdf:resource="#Cesped_YES-Lluvia_NO-Aspersor_YES" />
+                  </pr-owl:PR-OWLTable>
+                </pr-owl:hasProbDist>
+                <pr-owl:hasParent rdf:resource="#Aspersor" />
+                <pr-owl:hasParent rdf:resource="#Lluvia" />
+                <pr-owl:hasPossibleValues rdf:resource="#NO" />
+                <pr-owl:hasPossibleValues rdf:resource="#YES" />
+              </pr-owl:Domain_Res>
+            </pr-owl:hasNode>
+            <pr-owl:hasNode rdf:resource="#Aspersor" />
+            <pr-owl:hasNode rdf:resource="#Lluvia" />
+            <pr-owl:hasResidentNode rdf:resource="#Cesped" />
+            <pr-owl:hasResidentNode rdf:resource="#Aspersor" />
+            <pr-owl:hasResidentNode rdf:resource="#Lluvia" />
+          </pr-owl:Domain_MFrag>
+        </pr-owl:isResidentNodeIn>
+        <pr-owl:isParentOf rdf:resource="#Cesped" />
+        <pr-owl:isParentOf rdf:resource="#Aspersor" />
+        <pr-owl:isNodeFrom rdf:resource="#PruebaLLuvia_Mfrag" />
+        <pr-owl:hasProbDist rdf:resource="#Lluvia_Table" />
+        <pr-owl:hasPossibleValues rdf:resource="#NO" />
+        <pr-owl:hasPossibleValues rdf:resource="#YES" />
+      </pr-owl:Domain_Res>
+    </pr-owl:isProbDistOf>
+    <pr-owl:hasProbAssign>
+      <pr-owl:ProbAssign rdf:ID="Lluvia_NO">
+        <pr-owl:isProbAssignIn rdf:resource="#Lluvia_Table" />
+        <pr-owl:hasStateProb rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.5</pr-owl:hasStateProb>
+        <pr-owl:hasStateName rdf:resource="#NO" />
+      </pr-owl:ProbAssign>
+    </pr-owl:hasProbAssign>
+    <pr-owl:hasProbAssign>
+      <pr-owl:ProbAssign rdf:ID="Lluvia_YES">
+        <pr-owl:hasStateName rdf:resource="#YES" />
+        <pr-owl:isProbAssignIn rdf:resource="#Lluvia_Table" />
+        <pr-owl:hasStateProb rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.5</pr-owl:hasStateProb>
+      </pr-owl:ProbAssign>
+    </pr-owl:hasProbAssign>
+  </pr-owl:PR-OWLTable>
+</rdf:RDF><!-- Created with Protege (with OWL Plugin 3.4.5, Build 608)  http://protege.stanford.edu -->

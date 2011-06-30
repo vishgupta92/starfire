@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:protege="http://protege.stanford.edu/plugins/owl/protege#" xmlns:xsp="http://www.owl-ontologies.com/2005/08/07/xsp.owl#" xmlns="http://www.gsi.upm.es/Commune.owl#" xmlns:owl="http://www.w3.org/2002/07/owl#" xmlns:xsd="http://www.w3.org/2001/XMLSchema#" xmlns:swrl="http://www.w3.org/2003/11/swrl#" xmlns:swrlb="http://www.w3.org/2003/11/swrlb#" xmlns:pr-owl="http://www.pr-owl.org/pr-owl.owl#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xml:base="http://www.gsi.dit.upm.es/Commune">
+  <owl:Ontology rdf:about="http://www.gsi.dit.upm.es/Commune#">
+    <owl:imports rdf:resource="http://www.pr-owl.org/pr-owl.owl" />
+  </owl:Ontology>
+  <pr-owl:ProbAssign rdf:ID="Padre_YES-Hijo_RELAJADO">
+    <pr-owl:hasStateName>
+      <pr-owl:CategoricalRVState rdf:ID="YES">
+        <pr-owl:isPossibleValueOf>
+          <pr-owl:Domain_Res rdf:ID="Padre">
+            <pr-owl:hasPossibleValues>
+              <pr-owl:CategoricalRVState rdf:ID="NO">
+                <pr-owl:isPossibleValueOf rdf:resource="#Padre" />
+              </pr-owl:CategoricalRVState>
+            </pr-owl:hasPossibleValues>
+            <pr-owl:hasPossibleValues rdf:resource="#YES" />
+            <pr-owl:hasProbDist>
+              <pr-owl:PR-OWLTable rdf:ID="Padre_Table">
+                <pr-owl:isProbDistOf rdf:resource="#Padre" />
+                <pr-owl:hasProbAssign>
+                  <pr-owl:ProbAssign rdf:ID="Padre_NO-Hijo_RELAJADO">
+                    <pr-owl:hasConditionant>
+                      <pr-owl:CondRelationship rdf:ID="cond_Hijo_RELAJADO">
+                        <pr-owl:hasParentState>
+                          <pr-owl:CategoricalRVState rdf:ID="RELAJADO">
+                            <pr-owl:isPossibleValueOf>
+                              <pr-owl:Domain_Res rdf:ID="Hijo">
+                                <pr-owl:isParentOf rdf:resource="#Padre" />
+                                <pr-owl:hasProbDist>
+                                  <pr-owl:PR-OWLTable rdf:ID="Hijo_Table">
+                                    <pr-owl:isProbDistOf rdf:resource="#Hijo" />
+                                    <pr-owl:hasProbAssign>
+                                      <pr-owl:ProbAssign rdf:ID="Hijo_RELAJADO">
+                                        <pr-owl:hasStateName rdf:resource="#RELAJADO" />
+                                        <pr-owl:isProbAssignIn rdf:resource="#Hijo_Table" />
+                                        <pr-owl:hasStateProb rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.4000000059604645</pr-owl:hasStateProb>
+                                      </pr-owl:ProbAssign>
+                                    </pr-owl:hasProbAssign>
+                                    <pr-owl:hasProbAssign>
+                                      <pr-owl:ProbAssign rdf:ID="Hijo_TRAVIESO">
+                                        <pr-owl:isProbAssignIn rdf:resource="#Hijo_Table" />
+                                        <pr-owl:hasStateProb rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.6000000238418579</pr-owl:hasStateProb>
+                                        <pr-owl:hasStateName>
+                                          <pr-owl:CategoricalRVState rdf:ID="TRAVIESO">
+                                            <pr-owl:isPossibleValueOf rdf:resource="#Hijo" />
+                                          </pr-owl:CategoricalRVState>
+                                        </pr-owl:hasStateName>
+                                      </pr-owl:ProbAssign>
+                                    </pr-owl:hasProbAssign>
+                                  </pr-owl:PR-OWLTable>
+                                </pr-owl:hasProbDist>
+                                <pr-owl:isResidentNodeIn>
+                                  <pr-owl:Domain_MFrag rdf:ID="PadreHijo_Mfrag">
+                                    <pr-owl:hasResidentNode rdf:resource="#Hijo" />
+                                    <pr-owl:hasResidentNode rdf:resource="#Padre" />
+                                    <pr-owl:hasNode rdf:resource="#Hijo" />
+                                    <pr-owl:hasNode rdf:resource="#Padre" />
+                                  </pr-owl:Domain_MFrag>
+                                </pr-owl:isResidentNodeIn>
+                                <pr-owl:isNodeFrom rdf:resource="#PadreHijo_Mfrag" />
+                                <pr-owl:hasPossibleValues rdf:resource="#RELAJADO" />
+                                <pr-owl:hasPossibleValues rdf:resource="#TRAVIESO" />
+                              </pr-owl:Domain_Res>
+                            </pr-owl:isPossibleValueOf>
+                          </pr-owl:CategoricalRVState>
+                        </pr-owl:hasParentState>
+                        <pr-owl:hasParentName rdf:resource="#Hijo" />
+                        <pr-owl:isConditionantOf rdf:resource="#Padre_NO-Hijo_RELAJADO" />
+                        <pr-owl:isConditionantOf rdf:resource="#Padre_YES-Hijo_RELAJADO" />
+                      </pr-owl:CondRelationship>
+                    </pr-owl:hasConditionant>
+                    <pr-owl:hasStateProb rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.8999999761581421</pr-owl:hasStateProb>
+                    <pr-owl:hasStateName rdf:resource="#NO" />
+                    <pr-owl:isProbAssignIn rdf:resource="#Padre_Table" />
+                  </pr-owl:ProbAssign>
+                </pr-owl:hasProbAssign>
+                <pr-owl:hasProbAssign rdf:resource="#Padre_YES-Hijo_RELAJADO" />
+                <pr-owl:hasProbAssign>
+                  <pr-owl:ProbAssign rdf:ID="Padre_YES-Hijo_TRAVIESO">
+                    <pr-owl:hasStateProb rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.8999999761581421</pr-owl:hasStateProb>
+                    <pr-owl:hasConditionant>
+                      <pr-owl:CondRelationship rdf:ID="cond_Hijo_TRAVIESO">
+                        <pr-owl:isConditionantOf rdf:resource="#Padre_YES-Hijo_TRAVIESO" />
+                        <pr-owl:isConditionantOf>
+                          <pr-owl:ProbAssign rdf:ID="Padre_NO-Hijo_TRAVIESO">
+                            <pr-owl:hasConditionant rdf:resource="#cond_Hijo_TRAVIESO" />
+                            <pr-owl:isProbAssignIn rdf:resource="#Padre_Table" />
+                            <pr-owl:hasStateName rdf:resource="#NO" />
+                            <pr-owl:hasStateProb rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.10000000149011612</pr-owl:hasStateProb>
+                          </pr-owl:ProbAssign>
+                        </pr-owl:isConditionantOf>
+                        <pr-owl:hasParentState rdf:resource="#TRAVIESO" />
+                        <pr-owl:hasParentName rdf:resource="#Hijo" />
+                      </pr-owl:CondRelationship>
+                    </pr-owl:hasConditionant>
+                    <pr-owl:isProbAssignIn rdf:resource="#Padre_Table" />
+                    <pr-owl:hasStateName rdf:resource="#YES" />
+                  </pr-owl:ProbAssign>
+                </pr-owl:hasProbAssign>
+                <pr-owl:hasProbAssign rdf:resource="#Padre_NO-Hijo_TRAVIESO" />
+              </pr-owl:PR-OWLTable>
+            </pr-owl:hasProbDist>
+            <pr-owl:isNodeFrom rdf:resource="#PadreHijo_Mfrag" />
+            <pr-owl:hasParent rdf:resource="#Hijo" />
+            <pr-owl:isResidentNodeIn rdf:resource="#PadreHijo_Mfrag" />
+          </pr-owl:Domain_Res>
+        </pr-owl:isPossibleValueOf>
+      </pr-owl:CategoricalRVState>
+    </pr-owl:hasStateName>
+    <pr-owl:hasConditionant rdf:resource="#cond_Hijo_RELAJADO" />
+    <pr-owl:isProbAssignIn rdf:resource="#Padre_Table" />
+    <pr-owl:hasStateProb rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.10000000149011612</pr-owl:hasStateProb>
+  </pr-owl:ProbAssign>
+</rdf:RDF><!-- Created with Protege (with OWL Plugin 3.4.5, Build 608)  http://protege.stanford.edu -->

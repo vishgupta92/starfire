@@ -1,7 +1,8 @@
-package tools;
+package test;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Set;
 
 
@@ -9,12 +10,12 @@ import unbbayes.prs.Node;
 import unbbayes.prs.bn.PotentialTable;
 import unbbayes.prs.bn.ProbabilisticNode;
 
-public class CreateTables {
-
-	
+public class CreateTablesTest {
 
 
-	public CreateTables() {
+
+
+	public CreateTablesTest() {
 
 	}
 
@@ -24,11 +25,11 @@ public class CreateTables {
 	 * @return Table 2D of values
 	 */
 	public double[][] marginalTable2DValue(ProbabilisticNode probNodeNet){
-	
+
 		ProbabilisticNode node = probNodeNet;
 		PotentialTable table = node.getProbabilityFunction();
 		double[][] marginalTable = null;
-		
+
 		if(node.getParentNodes().size() >= 1){
 			double numNodes = node.getParents().size();
 			//estados de los padres multiplicados
@@ -38,33 +39,32 @@ public class CreateTables {
 				numStateParent = numStateParent * parent.getStatesSize();
 			}
 			int parentsCel = numStateParent;
-		//	int parentsCel  = (int)Math.pow(2, numNodes); 
+			//	int parentsCel  = (int)Math.pow(2, numNodes); 
 
 			double[][] table2D = new double[node.getStatesSize()][parentsCel];
-	////
 
+	////		
+			
 			int counter = 0;
 			for(int j=0; j<parentsCel; j++){
 				for(int k = 0; k<node.getStatesSize();k++){
-					
-					
-					table2D[k][j] = table.getValue(counter);
-				
-					counter +=1;
+					table2D[k][j]=table.getValue(counter);
+
+					counter++;
 				}
 			}
 
 			marginalTable = table2D;
-	
+
 		}else {//If the parent is One.
 			if(node.getParentNodes().size() != 0){ // If it doesn't have a parent, continue
-				String nombreNodo = node.getName();
+	
 				int numberStatesAdjacentNode = (table.tableSize()/node.getStatesSize());
 				double[][] table2D = new double[node.getStatesSize()][numberStatesAdjacentNode];
 				int counter = 0;
 				for(int j=0; j < numberStatesAdjacentNode; j++){
 					for(int k = 0; k < node.getStatesSize();k++){
-						
+
 						table2D[k][j]=table.getValue(counter);
 						counter++;
 					}
@@ -80,14 +80,14 @@ public class CreateTables {
 	}
 
 
-/**
- *  Create a table of marginal values of node.
- * @param probNodeNet
- * @return table of values 1D
- */
+	/**
+	 *  Create a table of marginal values of node.
+	 * @param probNodeNet
+	 * @return table of values 1D
+	 */
 	public double[] marginalTable1DValue(ProbabilisticNode probNodeNet) {
 
-		
+
 		ProbabilisticNode node = probNodeNet;
 
 		PotentialTable table = node.getProbabilityFunction();
@@ -132,10 +132,10 @@ public class CreateTables {
 	 * @return Table 2D of String
 	 */
 	public String[][] marginalTable2DString(ProbabilisticNode probNodeNet){
-		
+
 		ProbabilisticNode node = probNodeNet;
 		PotentialTable table = node.getProbabilityFunction();
-		
+
 		String[][] marginalTable = null;
 		ArrayList<Node> parents =  node.getParents();
 
@@ -143,14 +143,14 @@ public class CreateTables {
 		if(node.getParentNodes().size() >= 1){// parents more than one.
 			double numNodes = node.getParents().size();
 			//estados de los padres multiplicados
-		
+
 			int numStateParent = 1;
 			for(Node parent: parents) {
 				numStateParent = numStateParent * parent.getStatesSize();
 			}
 			int parentsCel = numStateParent;
-//			double numNodes = node.getParents().size();
-//			int parentsCel  = (int)Math.pow(2, numNodes); 
+			//			double numNodes = node.getParents().size();
+			//			int parentsCel  = (int)Math.pow(2, numNodes); 
 
 			String[][] table2D = new String[node.getStatesSize()][parentsCel];
 
@@ -164,7 +164,7 @@ public class CreateTables {
 			}
 			marginalTable = table2D;
 
-			
+
 			//add the values of name string to table
 
 			ArrayList<ArrayList<String>> array = new ArrayList<ArrayList<String>>();//array de array
@@ -263,11 +263,11 @@ public class CreateTables {
 
 	}
 
-/**
- * Create a Table 1D, with the string of the StateNode
- * @param probNodeNet
- * @return table_String_1D
- */
+	/**
+	 * Create a Table 1D, with the string of the StateNode
+	 * @param probNodeNet
+	 * @return table_String_1D
+	 */
 	public String[] marginalTable1DString(ProbabilisticNode probNodeNet) {
 
 		//ProbabilisticNode node = (ProbabilisticNode) nodeNet;
@@ -285,12 +285,12 @@ public class CreateTables {
 	}
 
 
-/**
- * Create hashMap with String and value of the marginal table.
- * The node must have parents
- * @param probNodeNet
- * @return HashMap
- */
+	/**
+	 * Create hashMap with String and value of the marginal table.
+	 * The node must have parents
+	 * @param probNodeNet
+	 * @return HashMap
+	 */
 	public HashMap<String, Double> table2DToHashMap(ProbabilisticNode probNodeNet){
 
 		HashMap<String,Double> data = new HashMap<String, Double>();
@@ -298,7 +298,7 @@ public class CreateTables {
 		int numberStates = probNodeNet.getStatesSize();
 		double[][] tableValue = marginalTable2DValue(probNodeNet);
 		String[][] tableString = marginalTable2DString(probNodeNet);
-		
+
 		double numNodes = numberParents;
 		//estados de los padres multiplicados
 		ArrayList<Node> parents = probNodeNet.getParents();
@@ -307,16 +307,16 @@ public class CreateTables {
 			numStateParent = numStateParent * parent.getStatesSize();
 		}
 		int parentsCel = numStateParent;
-//		double numNodes = numberParents;
-//		int parentsCel  = (int)Math.pow(2, numNodes); 
+		//		double numNodes = numberParents;
+		//		int parentsCel  = (int)Math.pow(2, numNodes); 
 		for(int i = 0; i< parentsCel; i++) {
 			for(int j = 0; j<numberStates; j++) {
 				data.put(tableString[j][i], tableValue[j][i]);
 
 			}
 		}
-		
-		
+
+
 		return data;
 	}
 
@@ -326,22 +326,135 @@ public class CreateTables {
 	 * @return HashMap
 	 */
 	public HashMap<String, Double> table1DToHashMap(ProbabilisticNode probNodeNet){
-		
+
 		HashMap<String,Double> data = new HashMap<String, Double>();
 		String[] tableString = marginalTable1DString(probNodeNet);
 		double[] tableValue = marginalTable1DValue(probNodeNet);
-		
+
 		for(int k = 0; k<tableString.length;k++){
 			data.put(tableString[k], tableValue[k]);
 
 		}
-		
+
 		return data;
-		
-		
-		
-		
+
+	}
+
+	/**
+	 * 
+	 */
+	public boolean areEquaslMarginalString(Set<String>keysMapB,Set<String>keysMapA) {
+		Set<ArrayList<String>> keysB = new HashSet<ArrayList<String>>();
+		Set<ArrayList<String>> keysA = new HashSet<ArrayList<String>>();
+		boolean actual = true;
+
+		for(String keyB: keysMapB) {
+			String[]keyBP = keyB.split("-");
+			ArrayList<String> statesKey = new ArrayList<String>();
+			for(int i = 0; i<keyBP.length; i++) {
+				String keyState = keyBP[i];
+				statesKey.add(keyState);	
+			}
+			keysB.add(statesKey);
+		}
+		for(String keyA: keysMapA) {
+			String[]keyAP = keyA.split("-");
+			ArrayList<String> statesKey = new ArrayList<String>();
+			for(int i = 0; i<keyAP.length; i++) {
+				String keyState = keyAP[i];
+				statesKey.add(keyState);	
+			}
+			keysB.add(statesKey);
+		}
+
+		for(ArrayList<String> setB: keysB) {
+			for(ArrayList<String> setA: keysA) {
+				boolean[] actuales = new boolean[setA.size()];
+				int counter = 0;
+				for(String nameB: setB) {
+					if(setA.contains(nameB)) {
+						actuales[counter] = true;
+						counter += 1;
+					}	
+				}
+				for(int i = 0; i<actuales.length; i++) {
+					boolean a = actuales[i];
+					if(!a) {
+						actual = false;
+					}
+				}
+
+			}
+		}
+		return actual;
 	}
 
 
+	/**
+	 * 
+	 */
+	public boolean areEquaslMarginalValue(HashMap<String,Double>mapB,HashMap<String,Double>mapA) {
+
+		Set<ArrayList<String>> keysB = new HashSet<ArrayList<String>>();
+		Set<ArrayList<String>> keysA = new HashSet<ArrayList<String>>();
+		Set<String> keysMapB = mapB.keySet(); 
+		Set<String> keysMapA = mapA.keySet(); 
+		boolean actual = true;
+
+		for(String keyB: keysMapB) {
+			String[]keyBP = keyB.split("-");
+			ArrayList<String> statesKey = new ArrayList<String>();
+			for(int i = 0; i<keyBP.length; i++) {
+				String keyState = keyBP[i];
+				statesKey.add(keyState);	
+			}
+			keysB.add(statesKey);
+		}
+		for(String keyA: keysMapA) {
+			String[]keyAP = keyA.split("-");
+			ArrayList<String> statesKey = new ArrayList<String>();
+			for(int i = 0; i<keyAP.length; i++) {
+				String keyState = keyAP[i];
+				statesKey.add(keyState);	
+			}
+			keysB.add(statesKey);
+		}
+
+		for(ArrayList<String> setB: keysB) {
+			for(ArrayList<String> setA: keysA) {
+				boolean[] actuales = new boolean[setA.size()];
+				int counter = 0;
+				for(String nameB: setB) {
+					if(setA.contains(nameB)) {
+						actuales[counter] = true;
+						counter += 1;
+					}	
+				}
+				for(int i = 0; i<actuales.length; i++) {
+					boolean a = actuales[i];
+					if(a) {
+						String nameAtotal = setA.get(0);
+						String nameBtotal = setB.get(0);
+						for(int j = 1; j<setA.size();j++) {
+							nameAtotal += "-" + setA.get(j);
+						}
+						for(int k = 1; k<setB.size();k++) {
+							nameBtotal += "-" + setB.get(k);
+						}
+
+						double valueA = mapA.get(nameAtotal);
+						double valueB = mapB.get(nameBtotal);
+
+						if(valueA != valueB) {
+							actual = false;
+						}
+					}
+				}
+			}
+		}
+		return actual;
+	}
+	
+	
 }
+

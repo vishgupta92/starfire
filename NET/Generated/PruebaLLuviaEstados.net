@@ -1,7 +1,7 @@
 net
 {
      node_size = (0 0);
-     name = "NetworkName";
+     name = "PruebaLLuviaEstados";
      UnBBayes_Color_Probabilistic_Description = "-256";
      UnBBayes_Color_Probabilistic_Explanation = "-16711936";
 }
@@ -35,15 +35,11 @@ potential (Aspersor | Lluvia)
  data = (( 0.8 0.2 
  0.7)( 0.3 
  0.6 0.4 ));
-( 0.0 0.0 
- 0.0)( 0.0 
- 0.0 0.0 ));
 }
 
 potential (Lluvia)
 {
  data = ( 0.5 0.4 0.1 );
- 0.0 0.0 0.0 );
 }
 
 potential (Cesped | Aspersor Lluvia)
@@ -54,11 +50,5 @@ potential (Cesped | Aspersor Lluvia)
 (( 0.8 0.2 )
 ( 0.6 0.4 )
 ( 0.4 0.6 )));
-(( 0.0 0.0 )
-( 0.0 0.0 )
-( 0.0 0.0 ))
-(( 0.0 0.0 )
-( 0.0 0.0 )
-( 0.0 0.0 )));
 }
 

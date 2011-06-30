@@ -1,0 +1,423 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:protege="http://protege.stanford.edu/plugins/owl/protege#" xmlns:xsp="http://www.owl-ontologies.com/2005/08/07/xsp.owl#" xmlns="http://www.gsi.upm.es/Commune.owl#" xmlns:owl="http://www.w3.org/2002/07/owl#" xmlns:xsd="http://www.w3.org/2001/XMLSchema#" xmlns:swrl="http://www.w3.org/2003/11/swrl#" xmlns:swrlb="http://www.w3.org/2003/11/swrlb#" xmlns:pr-owl="http://www.pr-owl.org/pr-owl.owl#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xml:base="http://www.gsi.dit.upm.es/Commune">
+  <owl:Ontology rdf:about="http://www.gsi.dit.upm.es/Commune#">
+    <owl:imports rdf:resource="http://www.pr-owl.org/pr-owl.owl" />
+  </owl:Ontology>
+  <pr-owl:ProbAssign rdf:ID="Animal_NO-Humano_Sediento">
+    <pr-owl:hasStateProb rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.10000000149011612</pr-owl:hasStateProb>
+    <pr-owl:hasStateName>
+      <pr-owl:CategoricalRVState rdf:ID="NO">
+        <pr-owl:isPossibleValueOf>
+          <pr-owl:Domain_Res rdf:ID="Planta">
+            <pr-owl:hasPossibleValues>
+              <pr-owl:CategoricalRVState rdf:ID="YES">
+                <pr-owl:isPossibleValueOf rdf:resource="#Planta" />
+                <pr-owl:isPossibleValueOf>
+                  <pr-owl:Domain_Res rdf:ID="Animal">
+                    <pr-owl:isNodeFrom>
+                      <pr-owl:Domain_MFrag rdf:ID="Agua_Mfrag">
+                        <pr-owl:hasNode>
+                          <pr-owl:Domain_Res rdf:ID="Agua">
+                            <pr-owl:hasProbDist>
+                              <pr-owl:PR-OWLTable rdf:ID="Agua_Table">
+                                <pr-owl:hasProbAssign>
+                                  <pr-owl:ProbAssign rdf:ID="Agua_Fria-Humano_Hambriento-Animal_NO-Planta_YES">
+                                    <pr-owl:hasStateProb rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.699999988079071</pr-owl:hasStateProb>
+                                    <pr-owl:hasConditionant>
+                                      <pr-owl:CondRelationship rdf:ID="cond_Planta_YES">
+                                        <pr-owl:hasParentName rdf:resource="#Planta" />
+                                        <pr-owl:isConditionantOf>
+                                          <pr-owl:ProbAssign rdf:ID="Agua_Fria-Humano_Sediento-Animal_YES-Planta_YES">
+                                            <pr-owl:isProbAssignIn rdf:resource="#Agua_Table" />
+                                            <pr-owl:hasStateName>
+                                              <pr-owl:CategoricalRVState rdf:ID="Fria">
+                                                <pr-owl:isPossibleValueOf rdf:resource="#Agua" />
+                                              </pr-owl:CategoricalRVState>
+                                            </pr-owl:hasStateName>
+                                            <pr-owl:hasConditionant rdf:resource="#cond_Planta_YES" />
+                                            <pr-owl:hasConditionant>
+                                              <pr-owl:CondRelationship rdf:ID="cond_Animal_YES">
+                                                <pr-owl:hasParentState rdf:resource="#YES" />
+                                                <pr-owl:isConditionantOf>
+                                                  <pr-owl:ProbAssign rdf:ID="Agua_Caliente-Humano_Sediento-Animal_YES-Planta_NO">
+                                                    <pr-owl:isProbAssignIn rdf:resource="#Agua_Table" />
+                                                    <pr-owl:hasStateProb rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.30000001192092896</pr-owl:hasStateProb>
+                                                    <pr-owl:hasConditionant>
+                                                      <pr-owl:CondRelationship rdf:ID="cond_Planta_NO">
+                                                        <pr-owl:isConditionantOf>
+                                                          <pr-owl:ProbAssign rdf:ID="Agua_Fria-Humano_Hambriento-Animal_YES-Planta_NO">
+                                                            <pr-owl:hasConditionant rdf:resource="#cond_Planta_NO" />
+                                                            <pr-owl:hasConditionant rdf:resource="#cond_Animal_YES" />
+                                                            <pr-owl:hasConditionant>
+                                                              <pr-owl:CondRelationship rdf:ID="cond_Humano_Hambriento">
+    <pr-owl:isConditionantOf>
+      <pr-owl:ProbAssign rdf:ID="Agua_Caliente-Humano_Hambriento-Animal_NO-Planta_NO">
+        <pr-owl:hasStateProb rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.6000000238418579</pr-owl:hasStateProb>
+        <pr-owl:hasStateName>
+          <pr-owl:CategoricalRVState rdf:ID="Caliente">
+            <pr-owl:isPossibleValueOf rdf:resource="#Agua" />
+          </pr-owl:CategoricalRVState>
+        </pr-owl:hasStateName>
+        <pr-owl:hasConditionant rdf:resource="#cond_Planta_NO" />
+        <pr-owl:hasConditionant>
+          <pr-owl:CondRelationship rdf:ID="cond_Animal_NO">
+            <pr-owl:hasParentName rdf:resource="#Animal" />
+            <pr-owl:isConditionantOf rdf:resource="#Agua_Caliente-Humano_Hambriento-Animal_NO-Planta_NO" />
+            <pr-owl:isConditionantOf>
+              <pr-owl:ProbAssign rdf:ID="Agua_Fria-Humano_Hambriento-Animal_NO-Planta_NO">
+                <pr-owl:hasConditionant rdf:resource="#cond_Planta_NO" />
+                <pr-owl:hasConditionant rdf:resource="#cond_Animal_NO" />
+                <pr-owl:hasConditionant rdf:resource="#cond_Humano_Hambriento" />
+                <pr-owl:isProbAssignIn rdf:resource="#Agua_Table" />
+                <pr-owl:hasStateProb rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.4000000059604645</pr-owl:hasStateProb>
+                <pr-owl:hasStateName rdf:resource="#Fria" />
+              </pr-owl:ProbAssign>
+            </pr-owl:isConditionantOf>
+            <pr-owl:isConditionantOf>
+              <pr-owl:ProbAssign rdf:ID="Agua_Fria-Humano_Sediento-Animal_NO-Planta_NO">
+                <pr-owl:hasStateName rdf:resource="#Fria" />
+                <pr-owl:isProbAssignIn rdf:resource="#Agua_Table" />
+                <pr-owl:hasStateProb rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.10000000149011612</pr-owl:hasStateProb>
+                <pr-owl:hasConditionant rdf:resource="#cond_Planta_NO" />
+                <pr-owl:hasConditionant rdf:resource="#cond_Animal_NO" />
+                <pr-owl:hasConditionant>
+                  <pr-owl:CondRelationship rdf:ID="cond_Humano_Sediento">
+                    <pr-owl:isConditionantOf rdf:resource="#Agua_Fria-Humano_Sediento-Animal_YES-Planta_YES" />
+                    <pr-owl:isConditionantOf>
+                      <pr-owl:ProbAssign rdf:ID="Planta_YES-Humano_Sediento">
+                        <pr-owl:hasConditionant rdf:resource="#cond_Humano_Sediento" />
+                        <pr-owl:hasStateName rdf:resource="#YES" />
+                        <pr-owl:hasStateProb rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.10000000149011612</pr-owl:hasStateProb>
+                        <pr-owl:isProbAssignIn>
+                          <pr-owl:PR-OWLTable rdf:ID="Planta_Table">
+                            <pr-owl:hasProbAssign>
+                              <pr-owl:ProbAssign rdf:ID="Planta_NO-Humano_Hambriento">
+                                <pr-owl:isProbAssignIn rdf:resource="#Planta_Table" />
+                                <pr-owl:hasStateProb rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.8999999761581421</pr-owl:hasStateProb>
+                                <pr-owl:hasStateName rdf:resource="#NO" />
+                                <pr-owl:hasConditionant rdf:resource="#cond_Humano_Hambriento" />
+                              </pr-owl:ProbAssign>
+                            </pr-owl:hasProbAssign>
+                            <pr-owl:hasProbAssign rdf:resource="#Planta_YES-Humano_Sediento" />
+                            <pr-owl:hasProbAssign>
+                              <pr-owl:ProbAssign rdf:ID="Planta_YES-Humano_Hambriento">
+                                <pr-owl:isProbAssignIn rdf:resource="#Planta_Table" />
+                                <pr-owl:hasConditionant rdf:resource="#cond_Humano_Hambriento" />
+                                <pr-owl:hasStateName rdf:resource="#YES" />
+                                <pr-owl:hasStateProb rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.10000000149011612</pr-owl:hasStateProb>
+                              </pr-owl:ProbAssign>
+                            </pr-owl:hasProbAssign>
+                            <pr-owl:hasProbAssign>
+                              <pr-owl:ProbAssign rdf:ID="Planta_NO-Humano_Sediento">
+                                <pr-owl:isProbAssignIn rdf:resource="#Planta_Table" />
+                                <pr-owl:hasConditionant rdf:resource="#cond_Humano_Sediento" />
+                                <pr-owl:hasStateName rdf:resource="#NO" />
+                                <pr-owl:hasStateProb rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.8999999761581421</pr-owl:hasStateProb>
+                              </pr-owl:ProbAssign>
+                            </pr-owl:hasProbAssign>
+                            <pr-owl:isProbDistOf rdf:resource="#Planta" />
+                          </pr-owl:PR-OWLTable>
+                        </pr-owl:isProbAssignIn>
+                      </pr-owl:ProbAssign>
+                    </pr-owl:isConditionantOf>
+                    <pr-owl:isConditionantOf>
+                      <pr-owl:ProbAssign rdf:ID="Agua_Caliente-Humano_Sediento-Animal_NO-Planta_NO">
+                        <pr-owl:hasStateName rdf:resource="#Caliente" />
+                        <pr-owl:isProbAssignIn rdf:resource="#Agua_Table" />
+                        <pr-owl:hasStateProb rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.8999999761581421</pr-owl:hasStateProb>
+                        <pr-owl:hasConditionant rdf:resource="#cond_Planta_NO" />
+                        <pr-owl:hasConditionant rdf:resource="#cond_Animal_NO" />
+                        <pr-owl:hasConditionant rdf:resource="#cond_Humano_Sediento" />
+                      </pr-owl:ProbAssign>
+                    </pr-owl:isConditionantOf>
+                    <pr-owl:isConditionantOf rdf:resource="#Agua_Caliente-Humano_Sediento-Animal_YES-Planta_NO" />
+                    <pr-owl:isConditionantOf>
+                      <pr-owl:ProbAssign rdf:ID="Agua_Caliente-Humano_Sediento-Animal_YES-Planta_YES">
+                        <pr-owl:isProbAssignIn rdf:resource="#Agua_Table" />
+                        <pr-owl:hasStateName rdf:resource="#Caliente" />
+                        <pr-owl:hasStateProb rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.5</pr-owl:hasStateProb>
+                        <pr-owl:hasConditionant rdf:resource="#cond_Planta_YES" />
+                        <pr-owl:hasConditionant rdf:resource="#cond_Animal_YES" />
+                        <pr-owl:hasConditionant rdf:resource="#cond_Humano_Sediento" />
+                      </pr-owl:ProbAssign>
+                    </pr-owl:isConditionantOf>
+                    <pr-owl:isConditionantOf rdf:resource="#Planta_NO-Humano_Sediento" />
+                    <pr-owl:isConditionantOf>
+                      <pr-owl:ProbAssign rdf:ID="Animal_YES-Humano_Sediento">
+                        <pr-owl:hasConditionant rdf:resource="#cond_Humano_Sediento" />
+                        <pr-owl:hasStateName rdf:resource="#YES" />
+                        <pr-owl:isProbAssignIn>
+                          <pr-owl:PR-OWLTable rdf:ID="Animal_Table">
+                            <pr-owl:hasProbAssign>
+                              <pr-owl:ProbAssign rdf:ID="Animal_NO-Humano_Hambriento">
+                                <pr-owl:hasStateName rdf:resource="#NO" />
+                                <pr-owl:hasConditionant rdf:resource="#cond_Humano_Hambriento" />
+                                <pr-owl:isProbAssignIn rdf:resource="#Animal_Table" />
+                                <pr-owl:hasStateProb rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.8999999761581421</pr-owl:hasStateProb>
+                              </pr-owl:ProbAssign>
+                            </pr-owl:hasProbAssign>
+                            <pr-owl:hasProbAssign rdf:resource="#Animal_NO-Humano_Sediento" />
+                            <pr-owl:hasProbAssign>
+                              <pr-owl:ProbAssign rdf:ID="Animal_YES-Humano_Hambriento">
+                                <pr-owl:hasStateProb rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.10000000149011612</pr-owl:hasStateProb>
+                                <pr-owl:isProbAssignIn rdf:resource="#Animal_Table" />
+                                <pr-owl:hasStateName rdf:resource="#YES" />
+                                <pr-owl:hasConditionant rdf:resource="#cond_Humano_Hambriento" />
+                              </pr-owl:ProbAssign>
+                            </pr-owl:hasProbAssign>
+                            <pr-owl:hasProbAssign rdf:resource="#Animal_YES-Humano_Sediento" />
+                            <pr-owl:isProbDistOf rdf:resource="#Animal" />
+                          </pr-owl:PR-OWLTable>
+                        </pr-owl:isProbAssignIn>
+                        <pr-owl:hasStateProb rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.8999999761581421</pr-owl:hasStateProb>
+                      </pr-owl:ProbAssign>
+                    </pr-owl:isConditionantOf>
+                    <pr-owl:isConditionantOf>
+                      <pr-owl:ProbAssign rdf:ID="Agua_Fria-Humano_Sediento-Animal_YES-Planta_NO">
+                        <pr-owl:isProbAssignIn rdf:resource="#Agua_Table" />
+                        <pr-owl:hasStateName rdf:resource="#Fria" />
+                        <pr-owl:hasConditionant rdf:resource="#cond_Planta_NO" />
+                        <pr-owl:hasConditionant rdf:resource="#cond_Animal_YES" />
+                        <pr-owl:hasConditionant rdf:resource="#cond_Humano_Sediento" />
+                        <pr-owl:hasStateProb rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.699999988079071</pr-owl:hasStateProb>
+                      </pr-owl:ProbAssign>
+                    </pr-owl:isConditionantOf>
+                    <pr-owl:isConditionantOf>
+                      <pr-owl:ProbAssign rdf:ID="Agua_Fria-Humano_Sediento-Animal_NO-Planta_YES">
+                        <pr-owl:hasStateProb rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.800000011920929</pr-owl:hasStateProb>
+                        <pr-owl:isProbAssignIn rdf:resource="#Agua_Table" />
+                        <pr-owl:hasConditionant rdf:resource="#cond_Planta_YES" />
+                        <pr-owl:hasConditionant rdf:resource="#cond_Animal_NO" />
+                        <pr-owl:hasConditionant rdf:resource="#cond_Humano_Sediento" />
+                        <pr-owl:hasStateName rdf:resource="#Fria" />
+                      </pr-owl:ProbAssign>
+                    </pr-owl:isConditionantOf>
+                    <pr-owl:hasParentName>
+                      <pr-owl:Domain_Res rdf:ID="Humano">
+                        <pr-owl:isResidentNodeIn rdf:resource="#Agua_Mfrag" />
+                        <pr-owl:hasProbDist>
+                          <pr-owl:PR-OWLTable rdf:ID="Humano_Table">
+                            <pr-owl:isProbDistOf rdf:resource="#Humano" />
+                            <pr-owl:hasProbAssign>
+                              <pr-owl:ProbAssign rdf:ID="Humano_Hambriento">
+                                <pr-owl:isProbAssignIn rdf:resource="#Humano_Table" />
+                                <pr-owl:hasStateProb rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.5</pr-owl:hasStateProb>
+                                <pr-owl:hasStateName>
+                                  <pr-owl:CategoricalRVState rdf:ID="Hambriento">
+                                    <pr-owl:isPossibleValueOf rdf:resource="#Humano" />
+                                  </pr-owl:CategoricalRVState>
+                                </pr-owl:hasStateName>
+                              </pr-owl:ProbAssign>
+                            </pr-owl:hasProbAssign>
+                            <pr-owl:hasProbAssign>
+                              <pr-owl:ProbAssign rdf:ID="Humano_Sediento">
+                                <pr-owl:hasStateName>
+                                  <pr-owl:CategoricalRVState rdf:ID="Sediento">
+                                    <pr-owl:isPossibleValueOf rdf:resource="#Humano" />
+                                  </pr-owl:CategoricalRVState>
+                                </pr-owl:hasStateName>
+                                <pr-owl:hasStateProb rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.5</pr-owl:hasStateProb>
+                                <pr-owl:isProbAssignIn rdf:resource="#Humano_Table" />
+                              </pr-owl:ProbAssign>
+                            </pr-owl:hasProbAssign>
+                          </pr-owl:PR-OWLTable>
+                        </pr-owl:hasProbDist>
+                        <pr-owl:isNodeFrom rdf:resource="#Agua_Mfrag" />
+                        <pr-owl:hasPossibleValues rdf:resource="#Sediento" />
+                        <pr-owl:hasPossibleValues rdf:resource="#Hambriento" />
+                        <pr-owl:isParentOf rdf:resource="#Agua" />
+                        <pr-owl:isParentOf rdf:resource="#Planta" />
+                        <pr-owl:isParentOf rdf:resource="#Animal" />
+                      </pr-owl:Domain_Res>
+                    </pr-owl:hasParentName>
+                    <pr-owl:isConditionantOf>
+                      <pr-owl:ProbAssign rdf:ID="Agua_Caliente-Humano_Sediento-Animal_NO-Planta_YES">
+                        <pr-owl:hasConditionant rdf:resource="#cond_Planta_YES" />
+                        <pr-owl:hasConditionant rdf:resource="#cond_Animal_NO" />
+                        <pr-owl:hasConditionant rdf:resource="#cond_Humano_Sediento" />
+                        <pr-owl:hasStateProb rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.20000000298023224</pr-owl:hasStateProb>
+                        <pr-owl:isProbAssignIn rdf:resource="#Agua_Table" />
+                        <pr-owl:hasStateName rdf:resource="#Caliente" />
+                      </pr-owl:ProbAssign>
+                    </pr-owl:isConditionantOf>
+                    <pr-owl:isConditionantOf rdf:resource="#Agua_Fria-Humano_Sediento-Animal_NO-Planta_NO" />
+                    <pr-owl:hasParentState rdf:resource="#Sediento" />
+                    <pr-owl:isConditionantOf rdf:resource="#Animal_NO-Humano_Sediento" />
+                  </pr-owl:CondRelationship>
+                </pr-owl:hasConditionant>
+              </pr-owl:ProbAssign>
+            </pr-owl:isConditionantOf>
+            <pr-owl:isConditionantOf>
+              <pr-owl:ProbAssign rdf:ID="Agua_Caliente-Humano_Hambriento-Animal_NO-Planta_YES">
+                <pr-owl:hasStateName rdf:resource="#Caliente" />
+                <pr-owl:isProbAssignIn rdf:resource="#Agua_Table" />
+                <pr-owl:hasStateProb rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.30000001192092896</pr-owl:hasStateProb>
+                <pr-owl:hasConditionant rdf:resource="#cond_Planta_YES" />
+                <pr-owl:hasConditionant rdf:resource="#cond_Animal_NO" />
+                <pr-owl:hasConditionant rdf:resource="#cond_Humano_Hambriento" />
+              </pr-owl:ProbAssign>
+            </pr-owl:isConditionantOf>
+            <pr-owl:isConditionantOf rdf:resource="#Agua_Fria-Humano_Sediento-Animal_NO-Planta_YES" />
+            <pr-owl:isConditionantOf rdf:resource="#Agua_Fria-Humano_Hambriento-Animal_NO-Planta_YES" />
+            <pr-owl:isConditionantOf rdf:resource="#Agua_Caliente-Humano_Sediento-Animal_NO-Planta_NO" />
+            <pr-owl:hasParentState rdf:resource="#NO" />
+            <pr-owl:isConditionantOf rdf:resource="#Agua_Caliente-Humano_Sediento-Animal_NO-Planta_YES" />
+          </pr-owl:CondRelationship>
+        </pr-owl:hasConditionant>
+        <pr-owl:hasConditionant rdf:resource="#cond_Humano_Hambriento" />
+        <pr-owl:isProbAssignIn rdf:resource="#Agua_Table" />
+      </pr-owl:ProbAssign>
+    </pr-owl:isConditionantOf>
+    <pr-owl:isConditionantOf>
+      <pr-owl:ProbAssign rdf:ID="Agua_Caliente-Humano_Hambriento-Animal_YES-Planta_YES">
+        <pr-owl:hasConditionant rdf:resource="#cond_Planta_YES" />
+        <pr-owl:hasConditionant rdf:resource="#cond_Animal_YES" />
+        <pr-owl:hasConditionant rdf:resource="#cond_Humano_Hambriento" />
+        <pr-owl:isProbAssignIn rdf:resource="#Agua_Table" />
+        <pr-owl:hasStateProb rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.20000000298023224</pr-owl:hasStateProb>
+        <pr-owl:hasStateName rdf:resource="#Caliente" />
+      </pr-owl:ProbAssign>
+    </pr-owl:isConditionantOf>
+    <pr-owl:isConditionantOf rdf:resource="#Agua_Fria-Humano_Hambriento-Animal_NO-Planta_NO" />
+    <pr-owl:isConditionantOf rdf:resource="#Animal_YES-Humano_Hambriento" />
+    <pr-owl:isConditionantOf rdf:resource="#Agua_Fria-Humano_Hambriento-Animal_YES-Planta_NO" />
+    <pr-owl:isConditionantOf rdf:resource="#Planta_NO-Humano_Hambriento" />
+    <pr-owl:isConditionantOf rdf:resource="#Animal_NO-Humano_Hambriento" />
+    <pr-owl:isConditionantOf rdf:resource="#Agua_Fria-Humano_Hambriento-Animal_NO-Planta_YES" />
+    <pr-owl:isConditionantOf rdf:resource="#Planta_YES-Humano_Hambriento" />
+    <pr-owl:isConditionantOf rdf:resource="#Agua_Caliente-Humano_Hambriento-Animal_NO-Planta_YES" />
+    <pr-owl:isConditionantOf>
+      <pr-owl:ProbAssign rdf:ID="Agua_Caliente-Humano_Hambriento-Animal_YES-Planta_NO">
+        <pr-owl:hasStateName rdf:resource="#Caliente" />
+        <pr-owl:isProbAssignIn rdf:resource="#Agua_Table" />
+        <pr-owl:hasConditionant rdf:resource="#cond_Planta_NO" />
+        <pr-owl:hasConditionant rdf:resource="#cond_Animal_YES" />
+        <pr-owl:hasConditionant rdf:resource="#cond_Humano_Hambriento" />
+        <pr-owl:hasStateProb rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">1.0</pr-owl:hasStateProb>
+      </pr-owl:ProbAssign>
+    </pr-owl:isConditionantOf>
+    <pr-owl:hasParentName rdf:resource="#Humano" />
+    <pr-owl:isConditionantOf>
+      <pr-owl:ProbAssign rdf:ID="Agua_Fria-Humano_Hambriento-Animal_YES-Planta_YES">
+        <pr-owl:hasConditionant rdf:resource="#cond_Planta_YES" />
+        <pr-owl:hasConditionant rdf:resource="#cond_Animal_YES" />
+        <pr-owl:hasConditionant rdf:resource="#cond_Humano_Hambriento" />
+        <pr-owl:hasStateProb rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.800000011920929</pr-owl:hasStateProb>
+        <pr-owl:isProbAssignIn rdf:resource="#Agua_Table" />
+        <pr-owl:hasStateName rdf:resource="#Fria" />
+      </pr-owl:ProbAssign>
+    </pr-owl:isConditionantOf>
+    <pr-owl:hasParentState rdf:resource="#Hambriento" />       </pr-owl:CondRelationship>
+                                                            </pr-owl:hasConditionant>
+                                                            <pr-owl:hasStateProb rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.0</pr-owl:hasStateProb>
+                                                            <pr-owl:hasStateName rdf:resource="#Fria" />
+                                                            <pr-owl:isProbAssignIn rdf:resource="#Agua_Table" />
+                                                          </pr-owl:ProbAssign>
+                                                        </pr-owl:isConditionantOf>
+                                                        <pr-owl:hasParentState rdf:resource="#NO" />
+                                                        <pr-owl:isConditionantOf rdf:resource="#Agua_Fria-Humano_Sediento-Animal_NO-Planta_NO" />
+                                                        <pr-owl:isConditionantOf rdf:resource="#Agua_Caliente-Humano_Hambriento-Animal_YES-Planta_NO" />
+                                                        <pr-owl:hasParentName rdf:resource="#Planta" />
+                                                        <pr-owl:isConditionantOf rdf:resource="#Agua_Fria-Humano_Sediento-Animal_YES-Planta_NO" />
+                                                        <pr-owl:isConditionantOf rdf:resource="#Agua_Caliente-Humano_Sediento-Animal_YES-Planta_NO" />
+                                                        <pr-owl:isConditionantOf rdf:resource="#Agua_Fria-Humano_Hambriento-Animal_NO-Planta_NO" />
+                                                        <pr-owl:isConditionantOf rdf:resource="#Agua_Caliente-Humano_Sediento-Animal_NO-Planta_NO" />
+                                                        <pr-owl:isConditionantOf rdf:resource="#Agua_Caliente-Humano_Hambriento-Animal_NO-Planta_NO" />
+                                                      </pr-owl:CondRelationship>
+                                                    </pr-owl:hasConditionant>
+                                                    <pr-owl:hasConditionant rdf:resource="#cond_Animal_YES" />
+                                                    <pr-owl:hasConditionant rdf:resource="#cond_Humano_Sediento" />
+                                                    <pr-owl:hasStateName rdf:resource="#Caliente" />
+                                                  </pr-owl:ProbAssign>
+                                                </pr-owl:isConditionantOf>
+                                                <pr-owl:hasParentName rdf:resource="#Animal" />
+                                                <pr-owl:isConditionantOf rdf:resource="#Agua_Caliente-Humano_Hambriento-Animal_YES-Planta_YES" />
+                                                <pr-owl:isConditionantOf rdf:resource="#Agua_Fria-Humano_Sediento-Animal_YES-Planta_NO" />
+                                                <pr-owl:isConditionantOf rdf:resource="#Agua_Fria-Humano_Hambriento-Animal_YES-Planta_YES" />
+                                                <pr-owl:isConditionantOf rdf:resource="#Agua_Caliente-Humano_Sediento-Animal_YES-Planta_YES" />
+                                                <pr-owl:isConditionantOf rdf:resource="#Agua_Caliente-Humano_Hambriento-Animal_YES-Planta_NO" />
+                                                <pr-owl:isConditionantOf rdf:resource="#Agua_Fria-Humano_Sediento-Animal_YES-Planta_YES" />
+                                                <pr-owl:isConditionantOf rdf:resource="#Agua_Fria-Humano_Hambriento-Animal_YES-Planta_NO" />
+                                              </pr-owl:CondRelationship>
+                                            </pr-owl:hasConditionant>
+                                            <pr-owl:hasConditionant rdf:resource="#cond_Humano_Sediento" />
+                                            <pr-owl:hasStateProb rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.5</pr-owl:hasStateProb>
+                                          </pr-owl:ProbAssign>
+                                        </pr-owl:isConditionantOf>
+                                        <pr-owl:isConditionantOf rdf:resource="#Agua_Caliente-Humano_Hambriento-Animal_NO-Planta_YES" />
+                                        <pr-owl:isConditionantOf rdf:resource="#Agua_Caliente-Humano_Sediento-Animal_NO-Planta_YES" />
+                                        <pr-owl:isConditionantOf rdf:resource="#Agua_Caliente-Humano_Sediento-Animal_YES-Planta_YES" />
+                                        <pr-owl:hasParentState rdf:resource="#YES" />
+                                        <pr-owl:isConditionantOf rdf:resource="#Agua_Caliente-Humano_Hambriento-Animal_YES-Planta_YES" />
+                                        <pr-owl:isConditionantOf rdf:resource="#Agua_Fria-Humano_Hambriento-Animal_YES-Planta_YES" />
+                                        <pr-owl:isConditionantOf rdf:resource="#Agua_Fria-Humano_Hambriento-Animal_NO-Planta_YES" />
+                                        <pr-owl:isConditionantOf rdf:resource="#Agua_Fria-Humano_Sediento-Animal_NO-Planta_YES" />
+                                      </pr-owl:CondRelationship>
+                                    </pr-owl:hasConditionant>
+                                    <pr-owl:hasConditionant rdf:resource="#cond_Animal_NO" />
+                                    <pr-owl:hasConditionant rdf:resource="#cond_Humano_Hambriento" />
+                                    <pr-owl:hasStateName rdf:resource="#Fria" />
+                                    <pr-owl:isProbAssignIn rdf:resource="#Agua_Table" />
+                                  </pr-owl:ProbAssign>
+                                </pr-owl:hasProbAssign>
+                                <pr-owl:hasProbAssign rdf:resource="#Agua_Fria-Humano_Hambriento-Animal_NO-Planta_NO" />
+                                <pr-owl:hasProbAssign rdf:resource="#Agua_Fria-Humano_Sediento-Animal_NO-Planta_NO" />
+                                <pr-owl:hasProbAssign rdf:resource="#Agua_Caliente-Humano_Sediento-Animal_NO-Planta_YES" />
+                                <pr-owl:isProbDistOf rdf:resource="#Agua" />
+                                <pr-owl:hasProbAssign rdf:resource="#Agua_Caliente-Humano_Hambriento-Animal_YES-Planta_NO" />
+                                <pr-owl:hasProbAssign rdf:resource="#Agua_Caliente-Humano_Hambriento-Animal_NO-Planta_YES" />
+                                <pr-owl:hasProbAssign rdf:resource="#Agua_Caliente-Humano_Sediento-Animal_YES-Planta_NO" />
+                                <pr-owl:hasProbAssign rdf:resource="#Agua_Fria-Humano_Sediento-Animal_NO-Planta_YES" />
+                                <pr-owl:hasProbAssign rdf:resource="#Agua_Caliente-Humano_Sediento-Animal_YES-Planta_YES" />
+                                <pr-owl:hasProbAssign rdf:resource="#Agua_Caliente-Humano_Hambriento-Animal_YES-Planta_YES" />
+                                <pr-owl:hasProbAssign rdf:resource="#Agua_Fria-Humano_Hambriento-Animal_YES-Planta_YES" />
+                                <pr-owl:hasProbAssign rdf:resource="#Agua_Fria-Humano_Hambriento-Animal_YES-Planta_NO" />
+                                <pr-owl:hasProbAssign rdf:resource="#Agua_Caliente-Humano_Hambriento-Animal_NO-Planta_NO" />
+                                <pr-owl:hasProbAssign rdf:resource="#Agua_Caliente-Humano_Sediento-Animal_NO-Planta_NO" />
+                                <pr-owl:hasProbAssign rdf:resource="#Agua_Fria-Humano_Sediento-Animal_YES-Planta_NO" />
+                                <pr-owl:hasProbAssign rdf:resource="#Agua_Fria-Humano_Sediento-Animal_YES-Planta_YES" />
+                              </pr-owl:PR-OWLTable>
+                            </pr-owl:hasProbDist>
+                            <pr-owl:isNodeFrom rdf:resource="#Agua_Mfrag" />
+                            <pr-owl:hasPossibleValues rdf:resource="#Fria" />
+                            <pr-owl:hasPossibleValues rdf:resource="#Caliente" />
+                            <pr-owl:hasParent rdf:resource="#Planta" />
+                            <pr-owl:hasParent rdf:resource="#Animal" />
+                            <pr-owl:hasParent rdf:resource="#Humano" />
+                            <pr-owl:isResidentNodeIn rdf:resource="#Agua_Mfrag" />
+                          </pr-owl:Domain_Res>
+                        </pr-owl:hasNode>
+                        <pr-owl:hasNode rdf:resource="#Planta" />
+                        <pr-owl:hasNode rdf:resource="#Animal" />
+                        <pr-owl:hasNode rdf:resource="#Humano" />
+                        <pr-owl:hasResidentNode rdf:resource="#Agua" />
+                        <pr-owl:hasResidentNode rdf:resource="#Planta" />
+                        <pr-owl:hasResidentNode rdf:resource="#Animal" />
+                        <pr-owl:hasResidentNode rdf:resource="#Humano" />
+                      </pr-owl:Domain_MFrag>
+                    </pr-owl:isNodeFrom>
+                    <pr-owl:isParentOf rdf:resource="#Agua" />
+                    <pr-owl:isResidentNodeIn rdf:resource="#Agua_Mfrag" />
+                    <pr-owl:hasProbDist rdf:resource="#Animal_Table" />
+                    <pr-owl:hasPossibleValues rdf:resource="#YES" />
+                    <pr-owl:hasPossibleValues rdf:resource="#NO" />
+                    <pr-owl:hasParent rdf:resource="#Humano" />
+                  </pr-owl:Domain_Res>
+                </pr-owl:isPossibleValueOf>
+              </pr-owl:CategoricalRVState>
+            </pr-owl:hasPossibleValues>
+            <pr-owl:hasPossibleValues rdf:resource="#NO" />
+            <pr-owl:isParentOf rdf:resource="#Agua" />
+            <pr-owl:isResidentNodeIn rdf:resource="#Agua_Mfrag" />
+            <pr-owl:isNodeFrom rdf:resource="#Agua_Mfrag" />
+            <pr-owl:hasParent rdf:resource="#Humano" />
+            <pr-owl:hasProbDist rdf:resource="#Planta_Table" />
+          </pr-owl:Domain_Res>
+        </pr-owl:isPossibleValueOf>
+        <pr-owl:isPossibleValueOf rdf:resource="#Animal" />
+      </pr-owl:CategoricalRVState>
+    </pr-owl:hasStateName>
+    <pr-owl:isProbAssignIn rdf:resource="#Animal_Table" />
+    <pr-owl:hasConditionant rdf:resource="#cond_Humano_Sediento" />
+  </pr-owl:ProbAssign>
+</rdf:RDF><!-- Created with Protege (with OWL Plugin 3.4.5, Build 608)  http://protege.stanford.edu -->

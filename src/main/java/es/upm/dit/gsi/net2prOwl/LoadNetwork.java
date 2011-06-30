@@ -11,7 +11,7 @@ import unbbayes.prs.bn.ProbabilisticNetwork;
  */
 public class LoadNetwork {
 
-	private ProbabilisticNetwork net;
+
 
 	/**
 	 * Network load
