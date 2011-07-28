@@ -1,7 +1,9 @@
+*Diagnosis Framework*
+   * Diagnosis agent
 *Tools*
    * SelfLearningIntegration 
    * BayesianTranslator 
    * BayesianNetworkTrainingTool 
 
 *Installation*
-   * Installation_Guide
+   * Installation Guide
