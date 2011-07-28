@@ -1,11 +1,10 @@
-#summary this agent make a diagnosis when a sympton is received
+#summary this agent starts a diagnosis when a sympton is received
 
-= Introduction =
+= Objectives =
 
-Add your content here.
+The aim of this agent is start a diagnosis when a sympton is received. Once the diagnosis has finished, the agent select an action to perform. 
 
-
-= Details =
+= Process =
 
 Add your content here.  Format your content with:
   * Text in *bold* or _italic_
