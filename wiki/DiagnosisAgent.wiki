@@ -15,3 +15,6 @@ This agent is composed by
     * _SymptonManagerPlan_ : this class manage the symptons
     * _VlcLauncherPlan_ : this class launch the VLC with the predefined options.
     * _DiagnosisLoopPlan_ : this class analizes hypothesis an observations in order to perform the action with the highest expected benefit.
+
+ ==XML File==
+    * _Diagnosis.agent_ : this agent uses all the plans in order to search for an rtcp session, find an error in the transmission, recive the sympton and perform and action using hypothesis and observations.
