@@ -1,7 +1,11 @@
 *Tools*
-   * SelfLearningIntegration
-   * BayesianTranslator
-   * BayesianNetworkTrainingTool 
+   *SelfLearningIntegration
+   *BayesianTranslator
+   *BayesianNetworkTrainingTool 
 
 *Installation*
-   * Installation Guide
+   *Installation Guide
+
+*DiagnosisFramework*
+   *DiagnosisAgent
+ 
