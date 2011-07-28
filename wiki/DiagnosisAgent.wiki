@@ -4,9 +4,14 @@
 
 The aim of this agent is start a diagnosis when a sympton is received. Once the diagnosis has finished, the agent select an action to perform. 
 
-= Process =
+= Components =
+This agent is composed by
 
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
+ ==Java Clases==
+    * _LoadOWLPlan_ : this class load the .owl archive.
+    * _MonitorRequestProcessorPlan_ : this class throw a sympton when the transimission is not ok. 
+    * _ObservationManagerPlan_ : this class manage the observations
+    * _RtcpSearchPlan_ : this class search for a rtcp session
+    * _SymptonManagerPlan_ : this class manage the symptons
+    * _VlcLauncherPlan_ : this class launch the VLC with the predefined options.
+    * _DiagnosisLoopPlan_ : this class analizes hypothesis an observations in order to perform the action with the highest expected benefit.
