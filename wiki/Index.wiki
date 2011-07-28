@@ -1,10 +1,10 @@
-*Diagnosis Framework*
-   *Diagnosis agent*
+*Diagnosis Framework
+   *Diagnosis agent
 
-*Tools*
-   *SelfLearningIntegration* 
-   *BayesianTranslator*
-   *BayesianNetworkTrainingTool* 
+*Tools
+   *SelfLearningIntegration
+   *BayesianTranslator
+   *BayesianNetworkTrainingTool 
 
-*Installation*
-   *Installation Guide*
+*Installation
+   *Installation Guide
