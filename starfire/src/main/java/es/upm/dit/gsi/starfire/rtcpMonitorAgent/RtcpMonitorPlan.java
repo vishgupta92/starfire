@@ -18,6 +18,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import jadex.bdi.runtime.IBelief;
+import jadex.bdi.runtime.IGoal;
 import jadex.bridge.IComponentIdentifier;
 
 import jpcap.packet.Packet;
@@ -54,7 +55,7 @@ public class RtcpMonitorPlan extends CommunicationPlan {
 			
 			
 			while(!rtcpMonitor.searchForRTCPStream()){
-				getLogger().info("RMPlan: RTCP stream not found, trying again in 10000 ms");
+				getLogger().info("RMPlan: RTCP stream not found, trying again in 1000 ms");
 				
 				//String info = "NOK:RTCP stream not found";
 				//IMessageEvent msgResp = getEventbase().createMessageEvent("rtcp_inform");
@@ -64,7 +65,7 @@ public class RtcpMonitorPlan extends CommunicationPlan {
 				//msgResp.getParameter(SFipa.CONTENT).setValue(info);
 				//sendMessage(msgResp);		
 				//getLogger().info("RA: Rtcp response sent: " + info);
-				waitFor(10000);
+				waitFor(1000);
 			}
 			
 			getLogger().info("RMPlan: RTCP stream found, waiting for RTCP packet to arrive");
@@ -73,6 +74,7 @@ public class RtcpMonitorPlan extends CommunicationPlan {
 				waitFor(100);
 				p = rtcpMonitor.getRTCPPacket();
 				if(p != null){
+					
 					RTCPPacket rtcp = new RTCPPacket(p);
 					long jitter = rtcp.getJITTER();
 					long packetsLost = rtcp.getPACKETS_LOST();
@@ -116,6 +118,7 @@ public class RtcpMonitorPlan extends CommunicationPlan {
 					}
 				}
 			}
+			
 			getLogger().info("RMPlan: Plan ends");
 			
 		}

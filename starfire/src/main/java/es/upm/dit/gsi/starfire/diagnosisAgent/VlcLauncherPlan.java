@@ -51,7 +51,7 @@ public class VlcLauncherPlan extends Plan /*implements ActionListener*/ {
 		startVLC(DIR_IP, "", VIDEO);
 		
 		openSessionInstance();
-		
+				
 		IGoal searchRTP = createGoal("monitorizeRTP");
 		dispatchSubgoalAndWait(searchRTP);
 		getLogger().info("VlcPlan: Start monitoring request has been done");

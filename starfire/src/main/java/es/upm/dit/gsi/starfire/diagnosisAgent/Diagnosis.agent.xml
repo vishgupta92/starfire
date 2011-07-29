@@ -12,7 +12,9 @@
 		<import>java.util.ArrayList</import>
 		<import>jadex.base.fipa.*</import>
 		<import>communeOntology.Symptom</import>
+		<import>communeOntology.Observation</import>
 		<import>edu.stanford.smi.protegex.owl.jena.JenaOWLModel</import>
+		<import>es.upm.dit.gsi.starfire.capability.systemMonitor.MonitorPlan</import>
 	</imports>
 
 	<capabilities>
@@ -20,6 +22,8 @@
 		<capability name="procap" file="jadex.bdi.planlib.protocols.request.Request" />
 		<!-- Include the df cap. -->
 		<capability name="dfcap" file="jadex.bdi.planlib.df.DF" />
+		<!-- Include the SystemMonitor cap -->
+		<capability name="Monitor" file="es.upm.dit.gsi.starfire.capability.systemMonitor/Monitor.capability.xml"/>
 	</capabilities>
 
 	<beliefs>
@@ -32,7 +36,13 @@
 
 		<belief name="serverIP" class="String" />
 		<belief name="file" class="String" />
-
+		<beliefref name="freeCpu">
+    		<concrete ref="Monitor.freeCpu"/>
+		</beliefref>
+		<beliefref name="freeMemory">
+			<concrete ref="Monitor.freeMemory"/>
+		</beliefref>
+		
 		<!-- <belief name="address" class="String"> -->
 		<!-- <fact> -->
 		<!-- "/home/jero.perez/Jadex/jadex-2.0-rc6/sources/reasoningAgent/Example/net/PruebaLLuvia.net" -->
@@ -42,7 +52,9 @@
 
 	<goals>
 		<achievegoal name="launch_vlc" />
-
+		<achievegoalref name="monitorize">
+			<concrete ref="Monitor.monitorize"/>
+		</achievegoalref>
 		<achievegoal name="monitorizeRTP" />
 
 		<!-- Include make diagnosis loop goal type. -->
@@ -60,6 +72,12 @@
 			<trigger>
 				<goal ref="launch_vlc" />
 			</trigger>
+		</plan>
+		<plan name="system_monitor_plan">
+			<body class="MonitorPlan"/>
+				<trigger>
+					<goal ref="monitorize"/>			
+				</trigger>
 		</plan>
 		<plan name="rtcp_search_plan">
 			<body class="RtcpSearchPlan" />
@@ -100,25 +118,25 @@
 				<goal ref="make_diagnosis_loop_goal"/>
 			</trigger>
 		</plan>
-	</plans>
+	
 		<!-- Passive plan for managing a new observation. -->
 		<!-- Reacts on the creation of a new observation. -->
-		<!-- <plan name="manage_observation"> -->
-		<!-- <parameter name="diagnosisID" class="String" > -->
-		<!-- <goalmapping ref="new_observation.diagnosisID" /> -->
-		<!-- </parameter> -->
-		<!-- <parameter name="observation" class="Observation" > -->
-		<!-- <goalmapping ref="new_observation.content" /> -->
-		<!-- </parameter> -->
-		<!-- <body class="ObservationManagerPlan"/> -->
-		<!-- <trigger> -->
-		<!-- Check that there is a new observation -->
-		<!-- <internalevent ref="new_observation"/> -->
-		<!-- </trigger> -->
-		<!-- </plan> -->
+<!-- 		<plan name="manage_observation"> -->
+<!-- 		<parameter name="diagnosisID" class="String" > -->
+<!-- 		<goalmapping ref="new_observation.diagnosisID" /> -->
+<!-- 		</parameter> -->
+<!-- 		<parameter name="observation" class="Observation" > -->
+<!-- 		<goalmapping ref="new_observation.content" /> -->
+<!-- 		</parameter> -->
+<!-- 		<body class="ObservationManagerPlan"/> -->
+<!-- 		<trigger> -->
+<!-- 		Check that there is a new observation -->
+<!-- 		<internalevent ref="new_observation"/> -->
+<!-- 		</trigger> -->
+<!-- 		</plan> -->
 		<!-- Passive plan for executing the diagnosis loop. -->
 		<!-- Reacts when the diagnosis goal is thrown. -->
-	
+	</plans>
 
 	<events>
 		<messageevent name="monitor_request" direction="receive" type="fipa">

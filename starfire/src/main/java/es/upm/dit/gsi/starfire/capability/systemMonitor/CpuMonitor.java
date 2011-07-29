@@ -19,6 +19,7 @@ import org.hyperic.sigar.CpuInfo;
 import org.hyperic.sigar.Sigar;
 import org.hyperic.sigar.CpuPerc;
 import org.hyperic.sigar.SigarException;
+import org.hyperic.sigar.Cpu;
 
 
 public class CpuMonitor {
@@ -85,7 +86,7 @@ public class CpuMonitor {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		logger.info("CpuMonitor: free cpu percentage: "+freeCpu);
+		logger.info("CpuMonitor: free cpu percentage: "+ freeCpu);
 		return freeCpu;
 		
 	}

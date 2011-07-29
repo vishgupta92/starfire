@@ -52,9 +52,9 @@ public class MonitorPlan extends Plan {
 		netMonitor.updateNetStats();
 		IBelief net = getBeliefbase().getBelief("netRate");
 		double[] speed = netMonitor.getSpeed();
-		net.setFact(speed);	
+		//net.setFact(speed);	
 		IBelief maxNetRate = getBeliefbase().getBelief("maxNetRate");
-		maxNetRate.setFact(maxValue(speed)); //Get the maximum of all the interfaces 
+		//maxNetRate.setFact(maxValue(speed)); //Get the maximum of all the interfaces 
 
 		
 		getLogger().info("MA: Plan ends");

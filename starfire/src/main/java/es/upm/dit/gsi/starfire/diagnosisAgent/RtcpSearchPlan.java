@@ -3,6 +3,7 @@ package es.upm.dit.gsi.starfire.diagnosisAgent;
 import es.upm.dit.gsi.starfire.common.*;
 
 import jadex.bdi.runtime.GoalFailureException;
+import jadex.bdi.runtime.IGoal;
 import jadex.bridge.IComponentIdentifier;
 
 	public class RtcpSearchPlan extends CommunicationPlan {

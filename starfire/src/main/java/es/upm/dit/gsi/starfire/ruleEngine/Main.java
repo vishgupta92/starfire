@@ -13,31 +13,35 @@ import edu.stanford.smi.protegex.owl.swrl.bridge.drools.DroolsSWRLRuleEngineCrea
 import edu.stanford.smi.protegex.owl.swrl.bridge.jess.JessNames;
 import edu.stanford.smi.protegex.owl.swrl.bridge.jess.JessSWRLRuleEngine;
 import edu.stanford.smi.protegex.owl.swrl.bridge.jess.JessSWRLRuleEngineCreator;
+import org.drools.rule.builder.dialect.java.JavaDialectConfiguration;
+import org.drools.rule.builder.dialect.clips.*;
+
 
 public class Main {
 
 	/**
 	 * @param args
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args){
 		// TODO Auto-generated method stub
 		
 		try {
 //			String input = "/home/jlgonzalez/workspaceAgenteDiagnostico/RuleEngineTest/plugins/edu.stanford.smi.protegex.owl/P2PDiagnosis2.owl";
-//			File input = new File("http://starfire.googlecode.com/svn/trunk/starfire/plugins/edu.stanford.smi.protegex.owl/P2PDiagnosis.owl");
-//			FileReader owlfile = new FileReader(input);
-//			OWLModel owlModel = ProtegeOWL.createJenaOWLModelFromReader(owlfile);
+			//File input = new File("http://starfire.googlecode.com/svn/trunk/starfire/plugins/edu.stanford.smi.protegex.owl/P2PDiagnosis.owl");
+			//FileReader owlfile = new FileReader(input);
+			//OWLModel owlModel = ProtegeOWL.createJenaOWLModelFromReader(owlfile);
 			
 			OWLModel owlModel = ProtegeOWL.createJenaOWLModelFromURI("http://starfire.googlecode.com/svn/trunk/starfire/plugins/edu.stanford.smi.protegex.owl/Diagnosis.owl");
-//			SWRLRuleEngineFactory.registerRuleEngine(JessNames.PluginName, new JessSWRLRuleEngineCreator());
-			SWRLRuleEngine ruleEngine = SWRLRuleEngineFactory.create(JessNames.PluginName, owlModel);
+			//SWRLRuleEngineFactory.registerRuleEngine(JessNames.PluginName, new JessSWRLRuleEngineCreator());
+			//SWRLRuleEngine ruleEngine = SWRLRuleEngineFactory.create(JessNames.PluginName, owlModel);
 			
-//			SWRLRuleEngineFactory.registerRuleEngine(DroolsNames.PluginName, new DroolsSWRLRuleEngineCreator());
-//			SWRLRuleEngine ruleEngine = SWRLRuleEngineFactory.create(DroolsNames.PluginName, owlModel);
+			SWRLRuleEngineFactory.registerRuleEngine(DroolsNames.PluginName, new DroolsSWRLRuleEngineCreator());
+			SWRLRuleEngine ruleEngine = SWRLRuleEngineFactory.create(DroolsNames.PluginName, owlModel);
 			
-			ruleEngine.reset();
-			ruleEngine.importSWRLRulesAndOWLKnowledge();
-			ruleEngine.run();
+//			ruleEngine.reset();
+//			ruleEngine.importSWRLRulesAndOWLKnowledge();
+//			ruleEngine.run();
+			ruleEngine.infer();
 			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
