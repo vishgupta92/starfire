@@ -97,14 +97,14 @@ public class SymptomManagerPlan extends Plan {
 		//Set<Symptom> symptoms = new HashSet<Symptom>();
 		//symptoms.add(symptom);
 		//a1.setResultSymptom(symptoms);
-		ConnectivityTestAction a2 = myFactory.createConnectivityTestAction(null);
-		a2.setHasBayesianNode("ConnectivityTest");
-		NetworkInterfaceRateTest a3 = myFactory.createNetworkInterfaceRateTest(null);
-		a3.setHasBayesianNode("NetworkInterfaceRateTest");
-		UsageCPUTest a4 = myFactory.createUsageCPUTest(null);
-		a4.setHasBayesianNode("UsageCPUTest");
-		UsageMemoryTest a5 = myFactory.createUsageMemoryTest(null);
-		a5.setHasBayesianNode("UsageMemoryTest");
+		ConnectivityTestAction a2 = myFactory.createConnectivityTestAction("ConnectivityTest");
+		a2.setHasBayesianNode("ConnectionClientToRouter");
+		NetworkInterfaceRateTest a3 = myFactory.createNetworkInterfaceRateTest("NetworkInterfaceRateTest");
+		a3.setHasBayesianNode("NetworkInterfaceRate");
+		UsageCPUTest a4 = myFactory.createUsageCPUTest("UsageCPUTest");
+		a4.setHasBayesianNode("ServerCpuUsage");
+		UsageMemoryTest a5 = myFactory.createUsageMemoryTest("UsageMemoryTest");
+		a5.setHasBayesianNode("ServerMemoryUsage");
 		
 		//a1.setBelongsToDiagnosis(diagnosis);
 		a2.setBelongsToDiagnosis(diagnosis);

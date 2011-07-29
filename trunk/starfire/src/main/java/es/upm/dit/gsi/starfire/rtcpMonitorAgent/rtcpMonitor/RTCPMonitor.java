@@ -11,6 +11,8 @@ package es.upm.dit.gsi.starfire.rtcpMonitorAgent.rtcpMonitor;
  * @version 0.1 (03/2011)
  * @author Jaime de Miguel (GSI-ETSIT-UPM)
  */
+import jadex.bdi.runtime.IGoal;
+
 import java.io.IOException;
 import java.util.logging.Logger;
 
@@ -191,7 +193,7 @@ public class RTCPMonitor {
 			if(packetDataBinary.length >= 4){
 				//Check if the packet is a receiver report rtcp packet (RFC 3550)
 				if(String.valueOf(packetDataBinary[0]).startsWith(RTCP_VERSION) && packetDataBinary[1] == RTCP_RECEIVER_REPORT ){
-					logger.info("RM: RTCP RECEIVER REPORT PACKET FOUND!");					
+					logger.info("RM: RTCP RECEIVER REPORT PACKET FOUND!");	
 					return true;
 				}
 			}

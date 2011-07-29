@@ -17,10 +17,10 @@
 	</imports>
 	
 	<beliefs>
-		<belief name="freeCpu" class="double"/>	
-		<belief name="freeMemory" class="double"/>
-		<belief name="netRate" class="double[]"/>
-		<belief name="maxNetRate" class="double"/>
+		<belief name="freeCpu" exported="true" class="double"/>
+		<belief name="freeMemory" exported="true" class="double"/>
+		<belief name="netRate" exported="true" class="double[]"/>
+		<belief name="maxNetRate" exported="true" class="double"/>
 	</beliefs>
 	 
 	<goals>
@@ -28,7 +28,7 @@
 	</goals>
 
 	<plans>
-		<plan name="system_monitor_plan">
+		<plan name="system_monitor_plan" exported="true">
 			<body class="MonitorPlan"/>
 			<trigger>
 				<goal ref="monitorize"/>			
